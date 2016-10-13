@@ -39,41 +39,26 @@ d3.selectAll('#button-wrapper .btn').on('click', function() {
 /*DATA SOURCES*/
 
 
-d3.json("../data/state_squares.geojson", function(error1, results1) {
-    d3.csv("../data/state_data.csv", function(error2, results2) { 
-    	console.log(results1, error1)
-  
+d3.json("../data/state_squares.geojson", function(error1, jsonResults) {
+    d3.csv("../data/state_data.csv", function(error2, csvResults) { 
+      csvResults.forEach(function(csvState){
+        var state = csvState.state
+        jsonState = jsonResults.features.filter(function(d){
+          return d.properties.abbr == state
+        })
+        if(typeof(jsonState[0]) != "undefined"){
+          jsonState[0].properties.foo = csvState.arrests_rating;
+          jsonState[0].properties.number_prison_rating = csvState.number_prison_rating;
+          jsonState[0].properties.number_prison_ct_rating = csvState.number_prison_ct_rating;
+          jsonState[0].properties.arrests_rating = csvState.arrests_rating;
+          jsonState[0].properties.probation_rating = csvState.probation_rating;
+          jsonState[0].properties.parole_rating = csvState.parole_rating;
+          jsonState[0].properties.compliance_rating = csvState.compliance_rating;
 
-
-      for (var i = 0; i < results2.length; i++) {
-        var state = results2[i].state;
-        var number_prison_rating = results2[i].number_prison_rating;
-    		var number_prison_ct_rating = results2[i].number_prison_ct_rating;
-    		var arrests_rating = results2[i].arrests_rating;
-    		var probation_rating = results2[i].probation_rating;
-    		var parole_rating = results2[i].parole_rating;
-    		var compliance_rating = results2[i].compliance_rating;
-
-
-	      for (var j = 0; j < results1.features.length; j++) {
-
-	        if (state == results1.features[j].properties.abbr) {
-  	        results1.features[j].properties.number_prison_rating = number_prison_rating;
-      			results1.features[j].properties.number_prison_ct_rating = number_prison_ct_rating;
-      			results1.features[j].properties.arrests_rating = arrests_rating;
-      			results1.features[j].properties.probation_rating = probation_rating;
-      			results1.features[j].properties.parole_rating = parole_rating;
-      			results1.features[j].properties.compliance_rating = compliance_rating;
-          }
-
-	          break; 
-	        }
-	      }
-    	 
-
-
-    choropleth = new Choropleth(results1);
-    choropleth.update();
+        }
+      })
+      choropleth = new Choropleth(jsonResults)
+      choropleth.update()
 	});
 });
 
@@ -119,7 +104,6 @@ Choropleth.prototype.update = function() {
 
 function getRating(d) {
   if (options.filtered === 'number_prison_rating') {
-    console.log(d.properties.abbr)
     return d.properties.number_prison_rating;
   }   
   

@@ -16,7 +16,7 @@ var path = d3.geoPath()
 
 d3.json("/data/state_squares.geojson", function(error1, results1) {
     d3.csv("/data/state_data.csv", function(error2, results2) { 
-    	console.log(results1)
+    	console.log(results1, error1)
   
 
 
@@ -29,7 +29,7 @@ d3.json("/data/state_squares.geojson", function(error1, results1) {
 		var parole_rating = results2[i].parole_rating;
 		var compliance_rating = results2[i].compliance_rating;
 
-console.log(results1.features)
+console.log(results1)
 
 	      for (var j = 0; j < results1.features.length; j++) {
 
@@ -44,7 +44,7 @@ console.log(results1.features)
 	          break; */
 	        }
 	      }
-    	} 
+    	 
     choropleth = new Choropleth(results1);
 	});
 });

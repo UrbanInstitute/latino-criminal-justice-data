@@ -15,13 +15,35 @@
 </head>
 <body>
 
-<div id="map">
+<section>
+	<div class="col-md-2">
+		<div id="button-wrapper" class="btn-group-vertical controls-section" data-toggle="buttons">
+		    <button type="button" class="btn btn-link active" id="number_prison" value= "number_prison_rating" autocomplete="off" checked="" data-toggle="tab">Number in Prison
+		    </button>            
+		    <button type="button" class="btn btn-link" id="number_prison_ct" value = "number_prison_ct_rating" autocomplete="off" data-toggle="tab">Number in Prison by Crime Type
+		  	</button>
+		  	 <button type="button" class="btn btn-link" id="arrests" value = "arrests_rating" autocomplete="off" data-toggle="tab">Arrests
+		  	</button>
+		  	 <button type="button" class="btn btn-link" id="probation" value="probation_rating" autocomplete="off" data-toggle="tab">Probation
+		  	</button>
+		  	 <button type="button" class="btn btn-link" id="parole" value="parole_rating" autocomplete="off" data-toggle="tab">Parole
+		  	</button>
+		  	<button type="button" class="btn btn-link" id="compliance" value="compliance_rating" autocomplete="off" data-toggle="tab">Compliance
+		  	</button>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div id="map">
+		</div>
+	</div>
+</section>
+
    
 
 <script src="lib/jquery-2.2.1.min.js"></script>
 <script src="lib/bootstrap.min.js"></script>
 <script src="lib/d3.min.js"></script>
-<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 
 </body>
 </html>

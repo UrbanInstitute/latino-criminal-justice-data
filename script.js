@@ -23,25 +23,26 @@ d3.json("/data/state_squares.geojson", function(error1, results1) {
       for (var i = 0; i < results2.length; i++) {
         var state = results2[i].state;
         var number_prison_rating = results2[i].number_prison_rating;
-		var number_prison_ct_rating = results2[i].number_prison_ct_rating;
-		var arrests_rating = results2[i].arrests_rating;
-		var probation_rating = results2[i].probation_rating;
-		var parole_rating = results2[i].parole_rating;
-		var compliance_rating = results2[i].compliance_rating;
+    		var number_prison_ct_rating = results2[i].number_prison_ct_rating;
+    		var arrests_rating = results2[i].arrests_rating;
+    		var probation_rating = results2[i].probation_rating;
+    		var parole_rating = results2[i].parole_rating;
+    		var compliance_rating = results2[i].compliance_rating;
 
 console.log(results1)
 
 	      for (var j = 0; j < results1.features.length; j++) {
 
-	 /*       if (state == results1.features[j].properties.abbr) {
-	        results1.features[j].properties.number_prison_rating;
-			results1.features[j].properties.number_prison_ct_rating;
-			results1.features[j].properties.arrests_rating;
-			results1.features[j].properties.probation_rating;
-			results1.features[j].properties.parole_rating;
-			results1.features[j].properties.compliance_rating;
+	        if (state == results1.features[j].properties.abbr) {
+  	        results1.features[j].properties.number_prison_rating;
+      			results1.features[j].properties.number_prison_ct_rating;
+      			results1.features[j].properties.arrests_rating;
+      			results1.features[j].properties.probation_rating;
+      			results1.features[j].properties.parole_rating;
+      			results1.features[j].properties.compliance_rating;
+          }
 
-	          break; */
+	          break; 
 	        }
 	      }
     	 

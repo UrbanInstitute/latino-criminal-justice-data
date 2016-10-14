@@ -47,7 +47,6 @@ d3.json("../data/state_squares.geojson", function(error1, jsonResults) {
           return d.properties.abbr == state
         })
         if(typeof(jsonState[0]) != "undefined"){
-          jsonState[0].properties.foo = csvState.arrests_rating;
           jsonState[0].properties.number_prison_rating = csvState.number_prison_rating;
           jsonState[0].properties.number_prison_ct_rating = csvState.number_prison_ct_rating;
           jsonState[0].properties.arrests_rating = csvState.arrests_rating;

@@ -52,6 +52,8 @@ d3.selectAll('#button-wrapper .btn').on('click', function() {
     d3.select(".btn-link.active").classed("active",false);
     d3.select(this).classed("active", true);
     options.category = d3.select(this).attr("value");
+    d3.select(".btn-secondary.active").classed("active",false);
+    options.filter = 'regular';
 
     choropleth.update();
     console.log(options.category);
@@ -138,29 +140,31 @@ Choropleth.prototype.update = function() {
       .style("stroke-width", function(d) {
         if (d.properties[Cat] == 0) {
           return '2px'
-        };
+        }
       }) 
+      .style("opacity", function(d) {
+        if (options.filter == 'regular') {
+          if (d.properties[Filter + frequency] == 2){
+            return '0';
+          }
+        }
+      })
+     
 
-    tmp = filteredData.slice(); 
+  /*  newData = filteredData.slice(); 
     console.log(Filter)
-    if (options.filter !== 'all') {
-      tmp = filteredData.filter(function(d) {
+    if (options.filter == 'regular') {
+      newData = filteredData.filter(function(d) {
  //         return d.properties.parole_frequency == 2;
         return d.properties[Filter + frequency] == 2;
       }) 
-    }
-    if (options.filter == 'all') {
-      tmp = filteredData.filter(function(d) {
- //         return d.properties.parole_frequency == 2;
-        return d.properties[Filter + frequency] > 0;
-      }) 
-    }
-
+    } 
+   
     console.log(filteredData)
  
 
   var squares = d3.selectAll('path')
-      .data(tmp)
+      .data(newData)
       .style("fill", function(d) {
         return color(d.properties[Cat]);
       })
@@ -173,7 +177,7 @@ Choropleth.prototype.update = function() {
         if (d.properties[Cat] == 0) {
           return '2px'
         };
-      }) 
+      })  */
 
     // squares.enter().append('path')
     //   .attr('class', 'square')

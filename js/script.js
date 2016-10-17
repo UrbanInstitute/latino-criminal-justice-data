@@ -6,8 +6,8 @@ var options = {
 
 
 var color = d3.scaleThreshold()
-    .domain([0, 1, 2, 3, 4])
-    .range(["#ffffff", " #5c5859", "#a2d4ec", "#1696d2", "#fdbf11"]);
+    .domain([1, 2, 3, 4])
+    .range(["#ffffff", "#848081", "#a2d4ec", "#1696d2", "#0a4c6a"]);
 
 
 var margin = { top: 5, right: 15, bottom: 5, left: 15 } ; 
@@ -23,17 +23,22 @@ var projection = d3.geoEquirectangular()
 var path = d3.geoPath()
   .projection(projection);
 
+var getCat = function(){
+  return d3.select(".btn.btn-link.active").attr("value");
+}
+
 //EVENT HANDLERS
 
 
 d3.selectAll('#button-wrapper .btn').on('click', function() {
+    d3.select(".btn.active").classed("active",false);
+    d3.select(this).classed("active", true);
     options.filtered = d3.select(this).attr("value");
+
     choropleth.update();
-    console.log(options.filtered)
-    d3.select(options.filtered).classed('active', true); 
+    console.log(options.filtered);
+
 })
-
-
 
 
 /*DATA SOURCES*/
@@ -93,20 +98,28 @@ function Choropleth(states) {
 
 Choropleth.prototype.update = function() {
   var chart = this;
+  var Cat = getCat();
 
-  chart.map
-    .transition()
-    .attr('fill', function(d) {
-      return color(getRating(d)); 
-    }) 
-}
-
-function getRating(d) {
-  if (options.filtered === 'number_prison_rating') {
-    return d.properties.number_prison_rating;
-  }   
+   chart.map
+      .transition()
+      .style("fill", function(d) {
+        return color(d.properties[Cat]);
+      })
+      .style("stroke", function(d) {
+        if (d.properties[Cat] == 0) {
+          return '#848081'
+        }
+      })
+      .style("stroke-width", function(d) {
+        if (d.properties[Cat] == 0) {
+          return '2px'
+        };
+      }) 
   
 }
+  
+
+
 
 
 

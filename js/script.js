@@ -42,7 +42,7 @@ d3.selectAll('#toggle-wrapper .btn').on('click', function() {
     d3.select(this).classed("active", true);
     options.filter = d3.select(this).attr("id");
 
-    choropleth.update(jsonResults);
+    choropleth.update();
     console.log(options.filter);
 
 })
@@ -144,12 +144,24 @@ Choropleth.prototype.update = function(states) {
       }) 
 
     filteredData = filteredData.slice(); 
-    if (options.filter !== 'irregular') {
+    if (options.filter !== 'all') {
       filteredData = filteredData.filter(function(d) {
+ //         return d.properties.parole_frequency == 2;
         return d.properties[Filter + frequency] == 2;
-      });
-    } 
+      }) 
+    }
+   
+
     console.log(filteredData)
+
+  var squares = chart.svg.selectAll('.square')
+      .data(filteredData);
+    squares.enter().append('path')
+      .attr('class', 'square')
+    squares.exit().remove();
+    console.log(squares)
+
+
 }
 
 

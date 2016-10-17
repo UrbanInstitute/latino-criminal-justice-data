@@ -119,7 +119,7 @@ function Choropleth(states) {
 
 }
 
-Choropleth.prototype.update = function(states) {
+Choropleth.prototype.update = function() {
 
   var Cat = getCat();
       Filter = getFilter();
@@ -141,15 +141,16 @@ Choropleth.prototype.update = function(states) {
         };
       }) 
 
-    filteredData = filteredData.slice(); 
+    tmp = filteredData.slice(); 
+    console.log(Filter)
     if (options.filter !== 'all') {
-      filteredData = filteredData.filter(function(d) {
+      tmp = filteredData.filter(function(d) {
  //         return d.properties.parole_frequency == 2;
         return d.properties[Filter + frequency] == 2;
       }) 
     }
     if (options.filter == 'all') {
-      filteredData = filteredData.filter(function(d) {
+      tmp = filteredData.filter(function(d) {
  //         return d.properties.parole_frequency == 2;
         return d.properties[Filter + frequency] > 0;
       }) 
@@ -158,13 +159,26 @@ Choropleth.prototype.update = function(states) {
     console.log(filteredData)
  
 
-  var squares = chart.svg.selectAll('.square')
-      .data(filteredData);
-      console.log(filteredData)
-    squares.enter().append('path')
-      .attr('class', 'square')
-    squares.exit().remove();
-    console.log(squares)
+  var squares = d3.selectAll('path')
+      .data(tmp)
+      .style("fill", function(d) {
+        return color(d.properties[Cat]);
+      })
+      .style("stroke", function(d) {
+        if (d.properties[Cat] == 0) {
+          return '#848081'
+        }
+      })
+      .style("stroke-width", function(d) {
+        if (d.properties[Cat] == 0) {
+          return '2px'
+        };
+      }) 
+
+    // squares.enter().append('path')
+    //   .attr('class', 'square')
+    // squares.exit().remove();
+    // console.log(squares)
 
 
 }

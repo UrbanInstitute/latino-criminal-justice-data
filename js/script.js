@@ -116,7 +116,6 @@ function Choropleth(states) {
   	.data(states.features)
   	.enter().append('path')
   	.attr('d', path)
-console.log(states.features)
 
 }
 
@@ -125,7 +124,6 @@ Choropleth.prototype.update = function(states) {
   var Cat = getCat();
       Filter = getFilter();
       frequency = "_frequency"
-      console.log(filteredData)
 
    chart.map
       .transition()
@@ -150,12 +148,19 @@ Choropleth.prototype.update = function(states) {
         return d.properties[Filter + frequency] == 2;
       }) 
     }
-   
+    if (options.filter == 'all') {
+      filteredData = filteredData.filter(function(d) {
+ //         return d.properties.parole_frequency == 2;
+        return d.properties[Filter + frequency] > 0;
+      }) 
+    }
 
     console.log(filteredData)
+ 
 
   var squares = chart.svg.selectAll('.square')
       .data(filteredData);
+      console.log(filteredData)
     squares.enter().append('path')
       .attr('class', 'square')
     squares.exit().remove();

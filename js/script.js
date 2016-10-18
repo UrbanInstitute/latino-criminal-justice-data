@@ -128,28 +128,31 @@ Choropleth.prototype.update = function() {
       frequency = "_frequency"
 
    chart.map
-      .transition()
-      .style("fill", function(d) {
-        return color(d.properties[Cat]);
-      })
-      .style("stroke", function(d) {
-        if (d.properties[Cat] == 0) {
-          return '#848081'
-        }
-      })
-      .style("stroke-width", function(d) {
-        if (d.properties[Cat] == 0) {
-          return '2px'
-        }
-      }) 
-      .style("opacity", function(d) {
-        if (options.filter == 'regular') {
-          if (d.properties[Filter + frequency] == 2){
-            return '0';
-          }
-        }
-      })
-     
+   		.transition()
+      	.delay(function(d,i) { return i * 10; })
+    	.duration(1250)
+       	.style("opacity", function(d) {
+       		if (options.filter == 'regular') {
+         		if (d.properties[Filter + frequency] == 2){
+	            return '0';
+	        	}
+	     	}
+		 })
+	    .style("fill", function(d) {
+	        return color(d.properties[Cat]);
+	    })
+	    .style("stroke", function(d) {
+	       if (d.properties[Cat] == 0) {
+	         return '#848081'
+	       }
+	     })
+	    .style("stroke-width", function(d) {
+	        if (d.properties[Cat] == 0) {
+	          return '2px'
+	        }
+	     }) 
+	     
+	     
 
   /*  newData = filteredData.slice(); 
     console.log(Filter)

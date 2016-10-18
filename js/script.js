@@ -134,6 +134,15 @@ Choropleth.prototype.update = function() {
        	.style("opacity", function(d) {
        		if (options.filter == 'regular') {
          		if (d.properties[Filter + frequency] == 2){
+	            return '1';
+	        	} else {
+	        		return '0';
+	        	}
+	     	} 
+		 })
+       	.style("stroke-opacity", function(d) {
+       		if (options.filter == 'regular') {
+         		if (d.properties[Filter + frequency] == 2){
 	            return '0';
 	        	}
 	     	}
@@ -151,7 +160,10 @@ Choropleth.prototype.update = function() {
 	          return '2px'
 	        }
 	     }) 
-	     
+
+for (var j = 0; j < filteredData.length; j++) {
+console.log(filteredData[j].properties.number_prison_ct_frequency)
+}
 	     
 
   /*  newData = filteredData.slice(); 

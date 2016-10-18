@@ -64,8 +64,8 @@ d3.selectAll('#button-wrapper .btn').on('click', function() {
 /*DATA SOURCES*/
 
 
-d3.json("/data/state_squares.geojson", function(error1, jsonResults) {
-    d3.csv("/data/state_data.csv", function(error2, csvResults) { 
+d3.json("data/state_squares.geojson", function(error1, jsonResults) {
+    d3.csv("data/state_data.csv", function(error2, csvResults) { 
       csvResults.forEach(function(csvState){
         var state = csvState.state
         jsonState = jsonResults.features.filter(function(d){

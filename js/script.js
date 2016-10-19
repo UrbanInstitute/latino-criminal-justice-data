@@ -11,7 +11,7 @@ var chart=this;
 
 var color = d3.scaleThreshold()
     .domain([1, 2, 3, 4])
-    .range(["#ffffff", "#848081", "#a2d4ec", "#1696d2", "#0a4c6a"]);
+    .range(["#ffffff", " #cfe8f3", "#46abdb", "#12719e", "#0a4c6a"]);
 
 
 var margin = { top: 5, right: 15, bottom: 5, left: 15 } ; 
@@ -157,7 +157,7 @@ Choropleth.prototype.update = function() {
 	     })
 	    .style("stroke-width", function(d) {
 	        if (d.properties[Cat] == 0) {
-	          return '2px'
+	          return '1px'
 	        }
 	     }) 
 

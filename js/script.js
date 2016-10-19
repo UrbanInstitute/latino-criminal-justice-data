@@ -9,6 +9,7 @@ var options = {
 
 var chart=this;
 
+
 var color = d3.scaleThreshold()
     .domain([1, 2, 3, 4])
     .range(["#ffffff", " #cfe8f3", "#46abdb", "#12719e", "#0a4c6a"]);
@@ -34,6 +35,10 @@ var getCat = function(){
 var getFilter = function(){
   return d3.select(".btn.btn-link.active").attr("id");
 }
+
+var Cat = getCat();
+    Filter = getFilter();
+    frequency = "_frequency";
 
 //EVENT HANDLERS
 //TOGGLES
@@ -119,13 +124,29 @@ function Choropleth(states) {
   	.enter().append('path')
   	.attr('d', path)
 
+  chart.svg
+  	.selectAll(".place-label")
+  	.data(states.features)
+    .enter().append("text")
+    	.attr("class", "place-label")
+    	.attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+  	.attr("dy", ".5em")
+  	.attr("dx", "-.7em")
+  	.text(function(d) { 
+      if (options.filter == 'regular') {
+        if (d.properties[Filter + frequency] == 2) {
+          return d.properties.abbr;
+        } 
+      } else {
+        return d.properties.abbr;
+      }    
+  });
+
+
 }
 
 Choropleth.prototype.update = function() {
 
-  var Cat = getCat();
-      Filter = getFilter();
-      frequency = "_frequency"
 
    chart.map
    		.transition()
@@ -145,8 +166,8 @@ Choropleth.prototype.update = function() {
          		if (d.properties[Filter + frequency] == 2){
 	            return '0';
 	        	}
-	     	}
-		 })
+	     	   }
+		     })
 	    .style("fill", function(d) {
 	        return color(d.properties[Cat]);
 	    })
@@ -160,6 +181,7 @@ Choropleth.prototype.update = function() {
 	          return '1px'
 	        }
 	     }) 
+
 
 for (var j = 0; j < filteredData.length; j++) {
 console.log(filteredData[j].properties.number_prison_ct_frequency)

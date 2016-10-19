@@ -37,3 +37,8 @@ section {
 	height:50px;
 }
 
+.place-label {
+        fill: #444;
+        font-family: "Lato", sans-serif;
+        font-weight: bold;
+      }

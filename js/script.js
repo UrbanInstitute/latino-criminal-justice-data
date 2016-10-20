@@ -197,7 +197,7 @@ var Cat = getCat();
       .transition()
         .delay(function(d,i) { return i * 10; })
       .duration(1250)
-      .style("opacity", function(d) { 
+     /* .style("opacity", function(d) { 
         if (options.filter !== 'all') {
           if (d.properties[Filter + frequency] == 2) {
             return 1;
@@ -205,14 +205,27 @@ var Cat = getCat();
               return "0";
             }    
         } return 1;
-      })
+      }) */
       .style("fill", function(d) { 
+        if (options.filter !== 'all') {
+          if (d.properties[Filter + frequency] == 2) {
+            if (d.properties[Cat] == 4 | d.properties[Cat] == 3) {
+              return "#cfe8f3"
+            } else {
+                return "#000000";
+              } 
+          } else {
+              return "#d2d2d2";
+            }  
+        } return "#000000";
+      })
+ /*     .style("fill", function(d) { 
         if (d.properties[Cat] == 4 | d.properties[Cat] == 3) {
           return "#cfe8f3"
         } else {
           return "#000000";
-        }
-      });
+        } 
+      }); */
 
    
 

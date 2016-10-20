@@ -36,9 +36,11 @@ var getFilter = function(){
   return d3.select(".btn.btn-link.active").attr("id");
 }
 
-var Cat = getCat();
+  var Cat = getCat();
     Filter = getFilter();
     frequency = "_frequency";
+
+
 
 //EVENT HANDLERS
 //TOGGLES
@@ -47,7 +49,7 @@ d3.selectAll('#toggle-wrapper .btn').on('click', function() {
     d3.select(this).classed("active", true);
     options.filter = d3.select(this).attr("id");
 
-    choropleth.update();
+    choropleth.update(states);
     console.log(options.filter);
 
 })
@@ -60,7 +62,7 @@ d3.selectAll('#button-wrapper .btn').on('click', function() {
     d3.select(".btn-secondary.active").classed("active",false);
     options.filter = 'regular';
 
-    choropleth.update();
+    choropleth.update(states);
     console.log(options.category);
 
 })
@@ -125,27 +127,28 @@ function Choropleth(states) {
   	.attr('d', path)
 
   chart.svg
-  	.selectAll(".place-label")
-  	.data(states.features)
+    .selectAll(".place-label")
+    .data(states.features)
     .enter().append("text")
-    	.attr("class", "place-label")
-    	.attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
-  	.attr("dy", ".5em")
-  	.attr("dx", "-.7em")
-  	.text(function(d) { 
-      if (options.filter == 'regular') {
-        if (d.properties[Filter + frequency] == 2) {
-          return d.properties.abbr;
-        } 
-      } else {
-        return d.properties.abbr;
-      }    
-  });
+      .attr("class", "place-label")
+      .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+    .attr("dy", ".5em")
+    .attr("dx", "-.7em")
+    .text(function(d) { 
+      return d.properties.abbr;
+    });
+  
+
+  chart.states = states;
 
 
 }
 
-Choropleth.prototype.update = function() {
+Choropleth.prototype.update = function(states) {
+
+var Cat = getCat();
+  Filter = getFilter();
+  frequency = "_frequency";
 
 
    chart.map
@@ -180,7 +183,26 @@ Choropleth.prototype.update = function() {
 	        if (d.properties[Cat] == 0) {
 	          return '1px'
 	        }
-	     }) 
+	     }); 
+
+  chart.svg
+      .selectAll(".place-label")
+      .transition()
+        .delay(function(d,i) { return i * 10; })
+      .duration(1250)
+      .style("opacity", function(d) { 
+        if (options.filter !== 'all') {
+          if (d.properties[Filter + frequency] == 2) {
+            return 1;
+          } else { 
+              return "0";
+            }    
+        } return 1;
+      });
+
+   
+
+    
 
 
 for (var j = 0; j < filteredData.length; j++) {

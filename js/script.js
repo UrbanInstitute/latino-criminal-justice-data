@@ -18,7 +18,7 @@ var color = d3.scaleThreshold()
 var margin = { top: 5, right: 15, bottom: 5, left: 15 } ; 
 
 var width = 500 - margin.right - margin.left;
-var height = 700 - margin.top - margin.bottom;
+var height = 500 - margin.top - margin.bottom;
 
 var projection = d3.geoEquirectangular()
   .scale(2000)
@@ -44,8 +44,11 @@ var getFilter = function(){
 
 //EVENT HANDLERS
 //TOGGLES
+d3.select("#regular").classed("focus", true);
 d3.selectAll('#toggle-wrapper .btn').on('click', function() {
+    d3.select(".btn-secondary.focus").classed("focus", false);
     d3.select(".btn-secondary.active").classed("active",false);
+    d3.select(this).classed("focus", true);
     d3.select(this).classed("active", true);
     options.filter = d3.select(this).attr("id");
 
@@ -55,12 +58,16 @@ d3.selectAll('#toggle-wrapper .btn').on('click', function() {
 })
 
 //CATEGORIES
+d3.select("#number_prison").classed("focus", true);
 d3.selectAll('#button-wrapper .btn').on('click', function() {
+    d3.select(".btn-link.focus").classed("focus", false);
     d3.select(".btn-link.active").classed("active",false);
+    d3.select(this).classed("focus", true);
     d3.select(this).classed("active", true);
     options.category = d3.select(this).attr("value");
     d3.select(".btn-secondary.active").classed("active",false);
     options.filter = 'regular';
+    d3.select("#regular").classed("focus", true);
 
     choropleth.update(states);
     console.log(options.category);
@@ -198,6 +205,13 @@ var Cat = getCat();
               return "0";
             }    
         } return 1;
+      })
+      .style("fill", function(d) { 
+        if (d.properties[Cat] == 4) {
+          return "#ffffff"
+        } else {
+          return "#000000";
+        }
       });
 
    

@@ -207,8 +207,8 @@ var Cat = getCat();
         } return 1;
       })
       .style("fill", function(d) { 
-        if (d.properties[Cat] == 4) {
-          return "#ffffff"
+        if (d.properties[Cat] == 4 | d.properties[Cat] == 3) {
+          return "#cfe8f3"
         } else {
           return "#000000";
         }

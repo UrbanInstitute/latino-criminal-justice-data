@@ -98,6 +98,8 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
           jsonState[0].properties.probation_frequency = csvState.probation_frequency;
           jsonState[0].properties.parole_frequency = csvState.parole_frequency;
           jsonState[0].properties.compliance_frequency = csvState.compliance_frequency;
+          jsonState[0].properties.hispanic = csvState.compliance_hispanic;
+
 
         }
       })

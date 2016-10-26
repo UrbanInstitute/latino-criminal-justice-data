@@ -124,17 +124,21 @@ function Grid(states) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e704e3
     .attr("height", function(d) { return d.height; })
     .style("stroke", "#222");
 
+  // console.log(states.features)
+  var filtered = states.features.filter(function(d){
+    return parseFloat(d.properties.hispanic) > 900000
+  })
   chart.squares = chart.svg
     .selectAll(".square")
-    .data(states.features)
+    .data(filtered)
     .enter()
-    console.log(chart.squares)
+    .append("rect")
 
-  chart.squares = chart.squares
-    .filter(function(d) {return d.hispanic< '900,000';}) 
-    .remove("rect")
+  // chart.squares = chart.squares
+  //   .filter(function(d) {return d.hispanic< '900,000';}) 
+  //   .remove("rect")
 
-    console.log(chart.squares)
+  //   console.log(chart.squares)
 
 
     

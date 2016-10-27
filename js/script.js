@@ -29,20 +29,23 @@ var path = d3.geoPath()
   .projection(projection);
 
 var getCat = function(){
-  return d3.select(".btn.btn-link.active").attr("value");
+  return d3.select(".measure_type").attr("value");
 }
 
 var getFilter = function(){
-  return d3.select(".btn.btn-link.active").attr("id");
+  return d3.select(".measure_type").attr("id");
 }
 
   var Cat = getCat();
     Filter = getFilter();
     frequency = "_frequency";
 
+   
+
 
 
 //EVENT HANDLERS
+
 //TOGGLES
 d3.select("#regular").classed("focus", true);
 d3.selectAll('#toggle-wrapper .btn').on('click', function() {
@@ -55,10 +58,21 @@ d3.selectAll('#toggle-wrapper .btn').on('click', function() {
     choropleth.update(states);
     console.log(options.filter);
 
-})
+}) 
+
+  //DROPDOWN
+$("#measures").selectmenu({
+  change: function(event, d){
+  options.category = this.value;
+  choropleth.update(states);
+  console.log(options.category);
+  }
+});
+
+
 
 //CATEGORIES
-d3.select("#number_prison").classed("focus", true);
+/*d3.select("#number_prison").classed("focus", true);
 d3.selectAll('#button-wrapper .btn').on('click', function() {
     d3.select(".btn-link.focus").classed("focus", false);
     d3.select(".btn-link.active").classed("active",false);
@@ -72,7 +86,7 @@ d3.selectAll('#button-wrapper .btn').on('click', function() {
     choropleth.update(states);
     console.log(options.category);
 
-})
+}) */
 
 
 /*DATA SOURCES*/
@@ -103,9 +117,10 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
         }
       })
-      filteredData = jsonResults.features
-      choropleth = new Choropleth(jsonResults)
-      choropleth.update(jsonResults)
+      filteredData = jsonResults.features;
+      choropleth = new Choropleth(jsonResults);
+      choropleth.update(jsonResults);
+
 	});
 });
 
@@ -159,7 +174,6 @@ var Cat = getCat();
   Filter = getFilter();
   frequency = "_frequency";
 
-
    chart.map
    		.transition()
       	.delay(function(d,i) { return i * 10; })
@@ -172,11 +186,11 @@ var Cat = getCat();
 	        		return '0';
 	        	}
 	     	} 
-		 })
+		 }) 
        	.style("stroke-opacity", function(d) {
        		if (options.filter == 'regular') {
          		if (d.properties[Filter + frequency] == 2){
-	            return '0';
+	            return '0'; 
 	        	}
 	     	   }
 		     })

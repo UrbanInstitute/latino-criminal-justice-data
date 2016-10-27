@@ -152,7 +152,7 @@ var filteredData = states.features.filter(function(d){
     .attr("transform", function(d, i){ return "translate(0," + i *45 + ")"})
     .on("click", function(d){ console.log(d)});
   
-  var gridColumns = ["arrests_frequency", "compliance_frequency", "probation_frequency"]
+var gridColumns = ["number_prison_rating", "number_prison_ct_rating", "arrests_rating", "probation_rating", "parole_rating"]
   for(var i = 0; i < gridColumns.length; i++){
     var gridColumn = gridColumns[i]
     chart.row
@@ -162,7 +162,7 @@ var filteredData = states.features.filter(function(d){
       .attr("x", i*45)
       .attr("y", 0)
       .attr("class",function(d){
-        return "gridSquare " + gridColumn + "-" + d["properties"][gridColumn]
+        return "gridSquare " + "gridSquare" + "_"+ gridColumn
       })
   }
 
@@ -183,19 +183,44 @@ var rectNodes = group.getElementsByTagName('rect');
 
 console.log(filteredData)
 
-var column1 = d3.selectAll(rectNodes)
-  .filter(function(d, i) { return i % 5 == 0;})
-  .attr("fill", "red")
-  .data(filteredData, function(d) {return d.properties.hispanic})
+var column1 = d3.selectAll(".gridSquare_number_prison_rating")
+//  .filter(function(d, i) { return i % 5 == 0;})
+  .data(filteredData)
+  .style("fill", function(d) {
+          return color(d["properties"]["number_prison_rating"]);
+      })
+
+var column2 = d3.selectAll(".gridSquare_number_prison_ct_rating")
+//  .filter(function(d, i) { return i % 5 == 0;})
+  .data(filteredData)
+  .style("fill", function(d) {
+          return color(d["properties"]["number_prison_ct_rating"]);
+      })
+
+var column3 = d3.selectAll(".gridSquare_arrests_rating")
+//  .filter(function(d, i) { return i % 5 == 0;})
+  .data(filteredData)
+  .style("fill", function(d) {
+          return color(d["properties"]["arrests_rating"]);
+      })
+
+var column4 = d3.selectAll(".gridSquare_probation_rating")
+//  .filter(function(d, i) { return i % 5 == 0;})
+  .data(filteredData)
+  .style("fill", function(d) {
+          return color(d["properties"]["probation_rating"]);
+      })
+
+var column5 = d3.selectAll(".gridSquare_parole_rating")
+//  .filter(function(d, i) { return i % 5 == 0;})
+  .data(filteredData)
+  .style("fill", function(d) {
+          return color(d["properties"]["parole_rating"]);
+      })
 
 
 
 
-  // chart.squares = chart.squares
-  //   .filter(function(d) {return d.hispanic< '900,000';}) 
-  //   .remove("rect")
-
-  //   console.log(chart.squares)
 
 
     

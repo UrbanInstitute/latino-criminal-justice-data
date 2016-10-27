@@ -108,28 +108,68 @@ function Grid(states) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e704e3
       .attr("width", width)
       .attr("height", height);
 
-  chart.row = chart.svg.selectAll(".row")
-    .data(gridData)
-    .enter().append("g")
-    .attr("class", "row");
-console.log(states.features)
+//   chart.row = chart.svg.selectAll(".row")
+//     .data(gridData)
+//     .enter().append("g")
+//     .attr("class", "row");
+// console.log(states.features)
 
-  chart.column = chart.row.selectAll(".square")
-    .data(function(d) { return d; })
-    .enter().append("rect")
-    .attr("id", "groupofSquares")
-    .attr("class","square")
-    .attr("x", function(d) { return d.x; })
-    .attr("y", function(d) { return d.y; })
-    .attr("width", function(d) { return d.width; })
-    .attr("height", function(d) { return d.height; })
-    .style("stroke", "#222");
+  // chart.column = chart.row.selectAll(".square")
+  //   .data(function(d) { return d; })
+  //   .enter().append("rect")
+  //   .attr("id", "groupofSquares")
+  //   .attr("class","square")
+  //   .attr("x", function(d) { return d.x; })
+  //   .attr("y", function(d) { return d.y; })
+  //   .attr("width", function(d) { return d.width; })
+  //   .attr("height", function(d) { return d.height; })
+  //   .style("stroke", "#222")
+  //   .on("click", function(d){
+  //     console.log(d)
+  //   })
 
   // console.log(states.features)
 var filteredData = states.features.filter(function(d){
     return parseFloat(d.properties.hispanic.replace(/\,/g,"")) > 900000
   })
+// console.dir(filteredData)
 
+  // chart.column = chart.row.selectAll(".square")
+  //   .data(function(d) { return d; })
+  //   .enter().append("rect")
+  //   .attr("id", "groupofSquares")
+  //   .attr("class","square")
+  //   .attr("x", function(d) { return d.x; })
+  //   .attr("y", function(d) { return d.y; })
+  //   .attr("width", function(d) { return d.width; })
+  //   .attr("height", function(d) { return d.height; })
+  //   .style("stroke", "#222")
+  //   .on("click", function(d){
+  //     console.log(d)
+  //   })
+
+  chart.row = chart.svg.selectAll(".row")
+    .data(filteredData)
+    .enter().append("g")
+    .attr("class", "row")
+    .attr("width", 500)
+    .attr("height", 45)
+    .attr("transform", function(d, i){ return "translate(0," + i *45 + ")"})
+    .on("click", function(d){ console.log(d)});
+  
+  var gridColumns = ["arrests_frequency", "compliance_frequency", "probation_frequency"]
+  for(var i = 0; i < gridColumns.length; i++){
+    var gridColumn = gridColumns[i]
+    chart.row
+      .append("rect")
+      .attr("width",35)
+      .attr("height",35)
+      .attr("x", i*45)
+      .attr("y", 0)
+      .attr("class",function(d){
+        return "gridSquare " + gridColumn + "-" + d["properties"][gridColumn]
+      })
+  }
 
 
 var parseHispanic = function(i) {

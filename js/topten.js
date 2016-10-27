@@ -112,11 +112,12 @@ function Grid(states) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e704e3
     .data(gridData)
     .enter().append("g")
     .attr("class", "row");
-
+console.log(states.features)
 
   chart.column = chart.row.selectAll(".square")
     .data(function(d) { return d; })
     .enter().append("rect")
+    .attr("id", "groupofSquares")
     .attr("class","square")
     .attr("x", function(d) { return d.x; })
     .attr("y", function(d) { return d.y; })
@@ -125,14 +126,35 @@ function Grid(states) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e704e3
     .style("stroke", "#222");
 
   // console.log(states.features)
-  var filtered = states.features.filter(function(d){
-    return parseFloat(d.properties.hispanic) > 900000
+var filteredData = states.features.filter(function(d){
+    return parseFloat(d.properties.hispanic.replace(/\,/g,"")) > 900000
   })
-  chart.squares = chart.svg
-    .selectAll(".square")
-    .data(filtered)
-    .enter()
-    .append("rect")
+
+
+
+var parseHispanic = function(i) {
+  return parseFloat(i.properties.hispanic.replace(/\,/g,""))
+  };
+
+var filteredData = filteredData.sort(function(a,b) {
+    return d3.descending(parseHispanic(a),parseHispanic(b));
+    });
+
+console.log
+
+var group = document.querySelector('#grid');
+console.log(group)
+var rectNodes = group.getElementsByTagName('rect');
+
+console.log(filteredData)
+
+var column1 = d3.selectAll(rectNodes)
+  .filter(function(d, i) { return i % 5 == 0;})
+  .attr("fill", "red")
+  .data(filteredData, function(d) {return d.properties.hispanic})
+
+
+
 
   // chart.squares = chart.squares
   //   .filter(function(d) {return d.hispanic< '900,000';}) 

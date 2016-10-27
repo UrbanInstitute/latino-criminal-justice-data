@@ -19,11 +19,6 @@ var margin = { top: 5, right: 15, bottom: 5, left: 15 } ;
 var width = 600 - margin.right - margin.left;
 var height = 500 - margin.top - margin.bottom;
 
-var getCat = function(){
-  return d3.select(".btn.btn-link.active").attr("value");
-}
-
-var Cat = getCat();
 
 
 

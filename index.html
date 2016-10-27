@@ -12,26 +12,45 @@
   <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css">
+  <link rel="stylesheet" href="lib/jquery-ui.1.12.0.css">
 </head>
 <body>
 
 <section>
-	<div class="col-md-12">
-		<div class="col-md-4">
-		</div>
-		<div class="col-md-6">
-			<div class="spacer">
+<div id="container" class="svg-container">
+    <div class="row">
+		<div class="col-md-12">
+			<div class="col-md-4">
+				<div id="main" class="container">
+		            <div class="controls section">
+		              <div class="container">
+		                <div class="btn-toolbar">
+		                  <label for="measures" class="measure_class">Measures </label>
+		                  <select id="measures">
+		                    <option id="number_prison" class="measure_type" value="number_prison_rating">The Prison Population</option>
+		                    <option id="number_prison_ct" class="measure_type" value="number_prison_ct_rating">The Prison Population by Office</option>
+		                    <option id="arrests" class="measure_type" value="arrests_rating">Arrests</option>
+		                    <option id="probation" class="measure_type" value="probation_rating">The Probation Population</option>
+		                    <option id="parole" class="measure_type" value="parole_rating">The Parole Population</option>
+		                  </select>
+		                </div>
+		              </div>
+		            </div>
+            	</div>
 			</div>
-			<div id="toggle-wrapper" class="main-controls" data-toggle="buttons">
-	           <button type="button" class="btn btn-secondary active" id="regular"autocomplete="off" checked="" data-toggle="tab">Regular and Recent Reporting States
-	           </button>            
-	           <button type="button" class="btn btn-secondary" id="all" autocomplete="off" data-toggle="tab">All States
-	          </button>
-	        </div>
+			<div class="col-md-6">
+				<div id="toggle-wrapper" class="main-controls" data-toggle="buttons">
+		           <button type="button" class="btn btn-secondary active" id="regular"autocomplete="off" checked="" data-toggle="tab">Regular and Recent Reporting States
+		           </button>            
+		           <button type="button" class="btn btn-secondary" id="all" autocomplete="off" data-toggle="tab">All States
+		          </button>
+		        </div>
+			</div>
 		</div>
 	</div>
+</div>
 	<div class="col-md-4">
-		<div id="button-wrapper" class="btn-group-vertical controls-section" data-toggle="buttons">
+	<!--	<div id="button-wrapper" class="btn-group-vertical controls-section" data-toggle="buttons">
 		    <button type="button" class="btn btn-link active" id="number_prison" value= "number_prison_rating" autocomplete="off" checked="" data-toggle="tab">Number in Prison
 		    </button>            
 		    <button type="button" class="btn btn-link" id="number_prison_ct" value = "number_prison_ct_rating" autocomplete="off" data-toggle="tab">Number in Prison by Crime Type
@@ -44,7 +63,7 @@
 		  	</button>
 		  	<button type="button" class="btn btn-link" id="compliance" value="compliance_rating" autocomplete="off" data-toggle="tab">Compliance
 		  	</button>
-		</div>
+		</div> -->
 	</div>
 	<div class="col-md-8">
 		<div id="map_wrapper">
@@ -65,6 +84,7 @@
    
 
 <script src="lib/jquery-2.2.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 <script src="lib/bootstrap.min.js"></script>
 <script src="lib/d3.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>

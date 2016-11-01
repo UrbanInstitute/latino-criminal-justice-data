@@ -1,40 +1,172 @@
+/*ADJUSTING FOR SCREEN WIDTHS */
+
+.svg-container article {
+
+  float: left;
+  width: 30%;
+}
+
+/*TITLE */
+
+.title-text {
+    width: 100%;
+    background-color: #fff;
+    margin-top: -72px;
+    margin-bottom: 20px;
+    margin-left: -30px;
+    padding-left: 30px;
+    padding-top: 30px;
+    font: 400 30px/36px Lato, sans-serif;
+}
+
+.intro-text {
+    font: 400 20px/26px Lato, sans-serif;
+}
+
+
+.main h1 .number {
+    width: 40px;
+    background-color: #1696d2;
+    color: #fff;
+    height: 40px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-top: -10px;
+    font-weight: 300;
+    line-height: 1.5em;
+    font-size: 0.8em;
+}
 /*Map Buttons */
+
 
 body {
 	font-family: "Lato", sans-serif;
 }
 
-section {
-
-	width: 90%;
-	height: 600px;
-	padding: 10px;
-	margin: auto;
+.wrapper{
+    width:1100px;
+    margin:0 auto;
+    padding-top: 110px;
+    border-top:1px solid #eee;
 }
 
-.btn {
-	font-family: "Lato", sans-serif;
-	font-size: 10px;
-}
+#grid {
+  position: relative;
+  width: 50%;
+  float: right;
+  margin-top: 2em;
 
-
-
-#button-wrapper{
-	padding-top: 250px;
-	float: none;
-	margin: 0 auto;
 
 }
 
-#toggle-wrapper {
+.content{
+    width:1100px;
+    margin: 0 auto;
+    padding: 0px 30px;
+
+}
+
+
+
+#map {
 	position: relative;
+  width: 60%;
+  float: right;
+  margin-top: 2em;
+
 
 }
 
-.spacer {
-	margin:0; 
-	padding:0; 
-	height:100px;
+
+
+#measures-button {
+  width: 12em;
+  display: inline;
+  float: left;
+  height: 1.5em;
+  padding-top: 15px;
+
+}
+
+span.ui-selectmenu-text {
+  width: 125px;
+}
+
+#nav_bar{
+    position: relative;
+    width:70%;
+    height:50px;
+    margin-bottom: 30px;
+    float: right;
+}
+
+
+#steps{
+    width: 70%;
+    padding-top: 10px;
+    float: left;
+}
+
+#steps ul{
+    margin-left:0px;
+    margin-bottom:0px;
+    text-indent: 0px;
+    text-align: left;
+
+    
+}
+
+
+
+.step_button span{
+	display: inline;
+    float: left;
+    color:#333;
+    background-color: #f2f2f2;
+    padding: 12px;
+    text-align: center;
+    font-size:12px;
+    border:solid 1px #e1e1e1;
+}
+
+
+.step_button.active span{
+  background-color: #1696d2;
+  color: white;
+}
+.step_button span:hover{
+  background-color: #231f20;
+  color: white;
+}
+.step_button.frozen span{
+  background-color: ;
+  color: #ccc;
+  pointer-events: none;
+}
+.step_button.frozen{
+  pointer-events: none;
+}
+
+select#measures-menu{
+  display: none;
+}
+.ui-menu .ui-menu-item{
+    text-align: left;
+    text-indent: 1px;
+}
+#measures-menu-button{
+  position: absolute;
+  right: 0px;
+}
+.ui-icon, .ui-widget-content .ui-icon{
+  background-image: url("../images/checkmark.png") !important;
+  top: 8px !important;
+  opacity: 0;
+}
+.ui-icon.selected{
+  opacity: 1;
 }
 
 .place-label {

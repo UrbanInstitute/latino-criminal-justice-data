@@ -15,15 +15,23 @@ var color = d3.scaleThreshold()
     .range(["#ffffff", " #cfe8f3", "#46abdb", "#12719e", "#0a4c6a"]);
 
 
-var margin = { top: 5, right: 15, bottom: 5, left: 15 } ; 
+//var margin = { top: 5, right: 15, bottom: 5, left: 15 } ; 
 
-var width = 500 - margin.right - margin.left;
-var height = 500 - margin.top - margin.bottom;
+//var width = 500 - margin.right - margin.left;
+//var height = 500 - margin.top - margin.bottom;
+
+var $map = $("#map");
+var aspect_width = 30;
+var aspect_height = 8;
+var margin = { top: 0, right: 0, bottom: 10, left: 32 };
+var width= ($map.width() - margin.left - margin.right); 
+var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
+
 
 var projection = d3.geoEquirectangular()
   .scale(2000)
   .center([-96.03542,41.69553])
-  .translate([width / 2, height / 2]);
+  .translate([width / 2, height / .9]);
 
 var path = d3.geoPath()
   .projection(projection);
@@ -36,25 +44,23 @@ var getFilter = function(){
   return d3.select(".measure_type").attr("id");
 }
 
-  var Cat = getCat();
-    Filter = getFilter();
-    frequency = "_frequency";
-
+var Cat = getCat();
+Filter = getFilter();
+frequency = "_frequency";
+console.log(Filter)
    
 
-
-
-//EVENT HANDLERS
+ //EVENT HANDLERS
 
 //TOGGLES
-d3.select("#regular").classed("focus", true);
-d3.selectAll('#toggle-wrapper .btn').on('click', function() {
-    d3.select(".btn-secondary.focus").classed("focus", false);
-    d3.select(".btn-secondary.active").classed("active",false);
-    d3.select(this).classed("focus", true);
+d3.selectAll(".step_button").classed("active", false);
+d3.selectAll("#regular").classed("active", true)
+d3.select("#mobile-text").text("")
+d3.selectAll('.step_button')
+  .on('click', function() {
+    d3.selectAll(".step_button.active").classed("active", false);
     d3.select(this).classed("active", true);
     options.filter = d3.select(this).attr("id");
-
     choropleth.update(states);
     console.log(options.filter);
 
@@ -70,23 +76,6 @@ $("#measures").selectmenu({
 });
 
 
-
-//CATEGORIES
-/*d3.select("#number_prison").classed("focus", true);
-d3.selectAll('#button-wrapper .btn').on('click', function() {
-    d3.select(".btn-link.focus").classed("focus", false);
-    d3.select(".btn-link.active").classed("active",false);
-    d3.select(this).classed("focus", true);
-    d3.select(this).classed("active", true);
-    options.category = d3.select(this).attr("value");
-    d3.select(".btn-secondary.active").classed("active",false);
-    options.filter = 'regular';
-    d3.select("#regular").classed("focus", true);
-
-    choropleth.update(states);
-    console.log(options.category);
-
-}) */
 
 
 /*DATA SOURCES*/
@@ -117,25 +106,38 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
         }
       })
+
+
       filteredData = jsonResults.features;
       choropleth = new Choropleth(jsonResults);
       choropleth.update(jsonResults);
 
 	});
+
 });
 
 
 
 
+  function Choropleth(states) {
 
-function Choropleth(states) {
+    var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
+    var IS_PHONE = d3.select("#isPhone").style("display") == "block"
+
+
+
+    var height_scale = (IS_MOBILE) ? 1.4 : 1;
+      if(IS_PHONE) height_scale = 3;
+
+
 
   chart.svg = d3.select("#map")
       .append("div")
-      .classed("svg-container", true)
+      .classed("map-container", true)
       .append("svg")
       .attr("width", width)
       .attr("height", height);
+
 
    //   .attr("preserveAspectRatio", "xMinYMin meet")
    //   .attr("viewBox", "-70 0 700 700")
@@ -162,13 +164,20 @@ function Choropleth(states) {
       return d.properties.abbr;
     });
   
-
   chart.states = states;
 
 
+  window.onresize = function(){
+    IS_MOBILE = $("#isMobile").css("display") == "block"
+  }
+
 }
 
+
+
+
 Choropleth.prototype.update = function(states) {
+  console.log('hello')
 
 var Cat = getCat();
   Filter = getFilter();
@@ -207,7 +216,7 @@ var Cat = getCat();
 	          return '1px'
 	        }
 	     }); 
-
+ console.log('hello')
   chart.svg
       .selectAll(".place-label")
       .transition()
@@ -245,49 +254,10 @@ var Cat = getCat();
 
    
 
-    
+	   
 
 
-for (var j = 0; j < filteredData.length; j++) {
-console.log(filteredData[j].properties.number_prison_ct_frequency)
-}
-	     
-
-  /*  newData = filteredData.slice(); 
-    console.log(Filter)
-    if (options.filter == 'regular') {
-      newData = filteredData.filter(function(d) {
- //         return d.properties.parole_frequency == 2;
-        return d.properties[Filter + frequency] == 2;
-      }) 
-    } 
-   
-    console.log(filteredData)
- 
-
-  var squares = d3.selectAll('path')
-      .data(newData)
-      .style("fill", function(d) {
-        return color(d.properties[Cat]);
-      })
-      .style("stroke", function(d) {
-        if (d.properties[Cat] == 0) {
-          return '#848081'
-        }
-      })
-      .style("stroke-width", function(d) {
-        if (d.properties[Cat] == 0) {
-          return '2px'
-        };
-      })  */
-
-    // squares.enter().append('path')
-    //   .attr('class', 'square')
-    // squares.exit().remove();
-    // console.log(squares)
-
-
-}
+  }
 
 
 

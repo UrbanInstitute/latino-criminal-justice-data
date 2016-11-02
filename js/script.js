@@ -1,4 +1,11 @@
 //map is forked from a combination of https://github.com/githamm/us-state-squares and https://github.com/lvonlanthen/data-map-d3
+var LABELS= {
+  no_data: 'No data on race or ethnicity',
+  data_no_cat: 'Data, but no Latino category',
+  combined: 'Race/Ethnicity combined',
+  separate: 'Race/Ethnicity separate',
+  cross_tabbed: 'Race/Ethnicity cross-tabbed'
+}
 
 var filteredData = [];
 var options = {
@@ -163,6 +170,93 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
     .text(function(d) { 
       return d.properties.abbr;
     });
+
+  //LEGEND
+
+    chart.svg
+      .append("rect")
+      .attr("id", "no-data")
+      .attr("class", "legend-icon")
+      .attr("x", "7em")
+      .attr("y", "24em")
+      .attr("width", 15)
+      .attr("height", 15)
+    chart.svg.append("text")
+      .attr("class", "legend-text")
+      .attr("x", "11em")
+      .attr("y", "33em")
+      .attr("text-anchor", "start")
+      .text(function (d, i) {
+          return LABELS["no_data"];
+      });
+
+    chart.svg
+      .append("rect")
+      .attr("id", "data-no-cat")
+      .attr("class", "legend-icon")
+      .attr("x", "7em")
+      .attr("y", "25.5em")
+      .attr("width", 16)
+      .attr("height", 16)
+    chart.svg.append("text")
+      .attr("class", "legend-text")
+      .attr("x", "11em")
+      .attr("y", "35em")
+      .attr("text-anchor", "start")
+      .text(function (d, i) {
+          return LABELS["data_no_cat"];
+      });
+
+    chart.svg
+      .append("rect")
+      .attr("id", "combined")
+      .attr("class", "legend-icon")
+      .attr("x", "19.5em")
+      .attr("y", "24em")
+      .attr("width", 16)
+      .attr("height", 16)
+    chart.svg.append("text")
+      .attr("class", "legend-text")
+      .attr("x", "27.5em")
+      .attr("y", "33em")
+      .attr("text-anchor", "start")
+      .text(function (d, i) {
+          return LABELS["combined"];
+      });
+
+    chart.svg
+      .append("rect")
+      .attr("id", "separate")
+      .attr("class", "legend-icon")
+      .attr("x", "19.5em")
+      .attr("y", "25.5em")
+      .attr("width", 16)
+      .attr("height", 16)
+    chart.svg.append("text")
+      .attr("class", "legend-text")
+      .attr("x", "27.5em")
+      .attr("y", "35em")
+      .attr("text-anchor", "start")
+      .text(function (d, i) {
+          return LABELS["separate"];
+      });
+
+    chart.svg
+      .append("rect")
+      .attr("id", "cross-tabbed")
+      .attr("class", "legend-icon")
+      .attr("x", "19.5em")
+      .attr("y", "27em")
+      .attr("width", 16)
+      .attr("height", 16)
+    chart.svg.append("text")
+      .attr("class", "legend-text")
+      .attr("x", "27.5em")
+      .attr("y", "37em")
+      .attr("text-anchor", "start")
+      .text(function (d, i) {
+          return LABELS["cross_tabbed"];
+      });
   
   chart.states = states;
 
@@ -261,14 +355,8 @@ var Cat = getCat();
 
 
 
-//LEGEND
 
-chart.legendSvg= d3.select("#legend")
-  .append('svg')
 
-chart.g = chart.legendSvg.append('g')
-  .attr("class", "legend")
-  .attr("transform", "translate(" + 20 + "," + 50 + ")");
 
 
 

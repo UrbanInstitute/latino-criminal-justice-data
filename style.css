@@ -99,6 +99,39 @@ body {
 
 }
 
+/*MAP LEGEND*/
+
+#no-data {
+    stroke: #9d9d9d;
+    z-index: 3;
+    fill: none;
+} 
+
+#data-no-cat{
+    fill: #cfe8f3;
+    z-index: 3;
+} 
+
+#combined{
+    fill: #46abdb;
+    z-index: 3;
+} 
+
+#separate{
+    fill: #12719e;
+    z-index: 3;
+} 
+
+#cross-tabbed{
+    fill: #0a4c6a;
+    z-index: 3;
+} 
+
+.legend-text {
+  font-size: 12px;
+}
+
+
 
 
 #measures-button {

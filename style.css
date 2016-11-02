@@ -4,6 +4,15 @@
 
   float: left;
   width: 30%;
+  clear: left;
+
+}
+
+.wrapper {
+  position: relative;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*TITLE */
@@ -24,7 +33,7 @@
 }
 
 
-.main h1 .number {
+.wrapper h1 .number {
     width: 40px;
     background-color: #1696d2;
     color: #fff;
@@ -37,6 +46,11 @@
     font-weight: 300;
     line-height: 1.5em;
     font-size: 0.8em;
+}
+
+h1 {
+  float: left;
+  clear: left;
 }
 /*Map Buttons */
 
@@ -69,7 +83,13 @@ body {
 }
 
 
-
+#dropdown {
+  position: relative;
+  width: 20%;
+  float: left;
+  margin-left: 2em;
+  margin-top: 1em;
+}
 #map {
 	position: relative;
   width: 60%;

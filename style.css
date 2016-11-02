@@ -66,14 +66,6 @@ body {
     border-top:1px solid #eee;
 }
 
-#grid {
-  position: relative;
-  width: 50%;
-  float: right;
-  margin-top: 2em;
-
-
-}
 
 .content{
     width:1100px;
@@ -230,4 +222,17 @@ select#measures-menu{
 
 .ui-selectmenu-text {
 	font-size: 12px !important ;
+}
+
+/*GRID*/
+
+#grid {
+  position: relative;
+  width: 60%;
+  float: right;
+  margin-top: 2em;
+}
+
+.grid-state-labels {
+  font-size: 12px;
 }

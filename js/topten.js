@@ -1,4 +1,4 @@
-
+var STATES_LABELS= ["CA", "TX","FL","NY","IL","AZ","NJ","CO"]
 var filteredData = [];
 var options = {
   category: 'number_prison_rating',
@@ -14,10 +14,14 @@ var color = d3.scaleThreshold()
     .range(["#ffffff", " #cfe8f3", "#46abdb", "#12719e", "#0a4c6a"]);
 
 
-var margin = { top: 5, right: 15, bottom: 5, left: 15 } ; 
 
-var width = 600 - margin.right - margin.left;
-var height = 500 - margin.top - margin.bottom;
+var $grid = $("#grid");
+var aspect_width = 20;
+var aspect_height = 15;
+var margin = { top: 0, right: 0, bottom: 10, left: 32 };
+var width= ($map.width() - margin.left - margin.right); 
+var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
+
 
 
 
@@ -64,36 +68,6 @@ function Grid(states) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e704e3
  //states = states.properties.filter(function(d) {return d.state='NJ'})
 
 
-  function gridData(states) {
-      var data = new Array();
-      var xpos = 1; //starting xpos and ypos at 1 so the stroke will show when we make the grid below
-      var ypos = 1;
-      var width = 35;
-      var height = 35;
-
-      // iterate for rows 
-      for (var row = 0; row < 10; row++) {
-          data.push( new Array() );
-
-          // iterate for cells/columns inside rows
-          for (var column = 0; column < 5; column++) {
-              data[row].push({
-                  x: xpos,
-                  y: ypos,
-                  width: width,
-                  height: height
-              })
-              // increment the x position. I.e. move it over by 50 (width variable)
-              xpos += width + 7;
-          }
-          // reset the x position after a row is complete
-          xpos = 1;
-          // increment the y position for the next row. Move it down 50 (height variable)
-          ypos += height + 7; 
-      }
-      return data;
-  }
-
 
 
   chart.svg = d3.select("#grid")
@@ -103,45 +77,11 @@ function Grid(states) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e704e3
       .attr("width", width)
       .attr("height", height);
 
-//   chart.row = chart.svg.selectAll(".row")
-//     .data(gridData)
-//     .enter().append("g")
-//     .attr("class", "row");
-// console.log(states.features)
 
-  // chart.column = chart.row.selectAll(".square")
-  //   .data(function(d) { return d; })
-  //   .enter().append("rect")
-  //   .attr("id", "groupofSquares")
-  //   .attr("class","square")
-  //   .attr("x", function(d) { return d.x; })
-  //   .attr("y", function(d) { return d.y; })
-  //   .attr("width", function(d) { return d.width; })
-  //   .attr("height", function(d) { return d.height; })
-  //   .style("stroke", "#222")
-  //   .on("click", function(d){
-  //     console.log(d)
-  //   })
-
-  // console.log(states.features)
 var filteredData = states.features.filter(function(d){
     return parseFloat(d.properties.hispanic.replace(/\,/g,"")) > 900000
   })
-// console.dir(filteredData)
 
-  // chart.column = chart.row.selectAll(".square")
-  //   .data(function(d) { return d; })
-  //   .enter().append("rect")
-  //   .attr("id", "groupofSquares")
-  //   .attr("class","square")
-  //   .attr("x", function(d) { return d.x; })
-  //   .attr("y", function(d) { return d.y; })
-  //   .attr("width", function(d) { return d.width; })
-  //   .attr("height", function(d) { return d.height; })
-  //   .style("stroke", "#222")
-  //   .on("click", function(d){
-  //     console.log(d)
-  //   })
 
   chart.row = chart.svg.selectAll(".row")
     .data(filteredData)
@@ -149,8 +89,9 @@ var filteredData = states.features.filter(function(d){
     .attr("class", "row")
     .attr("width", 500)
     .attr("height", 45)
-    .attr("transform", function(d, i){ return "translate(0," + i *45 + ")"})
+    .attr("transform", function(d, i){ return "translate(" + 60 +" ," + i *45 + ")"})
     .on("click", function(d){ console.log(d)});
+
   
 var gridColumns = ["number_prison_rating", "number_prison_ct_rating", "arrests_rating", "probation_rating", "parole_rating"]
   for(var i = 0; i < gridColumns.length; i++){
@@ -187,38 +128,166 @@ var column1 = d3.selectAll(".gridSquare_number_prison_rating")
 //  .filter(function(d, i) { return i % 5 == 0;})
   .data(filteredData)
   .style("fill", function(d) {
-          return color(d["properties"]["number_prison_rating"]);
-      })
+    return color(d["properties"]["number_prison_rating"]);
+  })
+  .style("stroke", function(d) {
+    if (d["properties"]["number_prison_rating"] == 0) {
+      return "#9d9d9d";
+    }
+  })
 
 var column2 = d3.selectAll(".gridSquare_number_prison_ct_rating")
 //  .filter(function(d, i) { return i % 5 == 0;})
   .data(filteredData)
   .style("fill", function(d) {
-          return color(d["properties"]["number_prison_ct_rating"]);
-      })
+    return color(d["properties"]["number_prison_ct_rating"]);
+  })
+  .style("stroke", function(d) {
+    if (d["properties"]["number_prison_ct_rating"] == 0) {
+      return "#9d9d9d";
+    }
+  })
 
 var column3 = d3.selectAll(".gridSquare_arrests_rating")
 //  .filter(function(d, i) { return i % 5 == 0;})
   .data(filteredData)
   .style("fill", function(d) {
-          return color(d["properties"]["arrests_rating"]);
-      })
+    return color(d["properties"]["arrests_rating"]);
+  })
+  .style("stroke", function(d) {
+    if (d["properties"]["arrests_rating"] == 0) {
+      return "#9d9d9d";
+    }
+  })
 
 var column4 = d3.selectAll(".gridSquare_probation_rating")
 //  .filter(function(d, i) { return i % 5 == 0;})
   .data(filteredData)
   .style("fill", function(d) {
-          return color(d["properties"]["probation_rating"]);
-      })
+    return color(d["properties"]["probation_rating"]);
+  })
+  .style("stroke", function(d) {
+    if (d["properties"]["probation_rating"] == 0) {
+      return "#9d9d9d";
+    }
+  })
 
 var column5 = d3.selectAll(".gridSquare_parole_rating")
 //  .filter(function(d, i) { return i % 5 == 0;})
   .data(filteredData)
   .style("fill", function(d) {
-          return color(d["properties"]["parole_rating"]);
-      })
+    return color(d["properties"]["parole_rating"]);
+  })
+  .style("stroke", function(d) {
+    if (d["properties"]["parole_rating"] == 0) {
+      return "#9d9d9d";
+    }
+  })
+
+//ADD LABELS
+
+var STATE_LABELS= ["CA", "TX","FL","NY","IL","AZ","NJ","CO","NM","GA"]
+  for(var i = 0; i < STATE_LABELS.length; i++){
+    var STATE_LABELS = STATE_LABELS[i]
+    chart.svg.selectAll(".row")
+      .data(filteredData)
+      .append("text")
+      .attr("class", "grid-state-labels")
+      .attr("transform", function(d, i){ console.log('hi');return "translate(" + -30 +" ,"+ 2 + i + ")"})
+      .attr("text-anchor", "start")
+      .text(function (d) {
+          return d["properties"]["abbr"];
+      });
+
+  }
 
 
+//LEGEND
+
+    chart.svg
+      .append("rect")
+      .attr("id", "no-data")
+      .attr("class", "legend-icon")
+      .attr("x", "19.5em")
+      .attr("y", "20em")
+      .attr("width", 15)
+      .attr("height", 15)
+    chart.svg.append("text")
+      .attr("class", "legend-text")
+      .attr("x", "27.5em")
+      .attr("y", "27.7em")
+      .attr("text-anchor", "start")
+      .text(function (d, i) {
+          return LABELS["no_data"];
+      });
+
+    chart.svg
+      .append("rect")
+      .attr("id", "data-no-cat")
+      .attr("class", "legend-icon")
+      .attr("x", "19.5em")
+      .attr("y", "21.5em")
+      .attr("width", 16)
+      .attr("height", 16)
+    chart.svg.append("text")
+      .attr("class", "legend-text")
+      .attr("x", "27.5em")
+      .attr("y", "29.8em")
+      .attr("text-anchor", "start")
+      .text(function (d, i) {
+          return LABELS["data_no_cat"];
+      });
+
+    chart.svg
+      .append("rect")
+      .attr("id", "combined")
+      .attr("class", "legend-icon")
+      .attr("x", "19.5em")
+      .attr("y", "23em")
+      .attr("width", 16)
+      .attr("height", 16)
+    chart.svg.append("text")
+      .attr("class", "legend-text")
+      .attr("x", "27.5em")
+      .attr("y", "31.8em")
+      .attr("text-anchor", "start")
+      .text(function (d, i) {
+          return LABELS["combined"];
+      });
+
+    chart.svg
+      .append("rect")
+      .attr("id", "separate")
+      .attr("class", "legend-icon")
+      .attr("x", "19.5em")
+      .attr("y", "24.5em")
+      .attr("width", 16)
+      .attr("height", 16)
+    chart.svg.append("text")
+      .attr("class", "legend-text")
+      .attr("x", "27.5em")
+      .attr("y", "33.8em")
+      .attr("text-anchor", "start")
+      .text(function (d, i) {
+          return LABELS["separate"];
+      });
+
+    chart.svg
+      .append("rect")
+      .attr("id", "cross-tabbed")
+      .attr("class", "legend-icon")
+      .attr("x", "19.5em")
+      .attr("y", "26em")
+      .attr("width", 16)
+      .attr("height", 16)
+    chart.svg.append("text")
+      .attr("class", "legend-text")
+      .attr("x", "27.5em")
+      .attr("y", "35.6em")
+      .attr("text-anchor", "start")
+      .text(function (d, i) {
+          return LABELS["cross_tabbed"];
+      });
 
 
 

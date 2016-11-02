@@ -236,3 +236,8 @@ select#measures-menu{
 .grid-state-labels {
   font-size: 12px;
 }
+
+.grid-cat-labels {
+  font-size: 12px;
+  z-index: 3;
+}

@@ -1,4 +1,3 @@
-var STATES_LABELS= ["CA", "TX","FL","NY","IL","AZ","NJ","CO"]
 var filteredData = [];
 var options = {
   category: 'number_prison_rating',
@@ -95,7 +94,7 @@ var filteredData = states.features.filter(function(d){
   
 var gridColumns = ["number_prison_rating", "number_prison_ct_rating", "arrests_rating", "probation_rating", "parole_rating"]
   for(var i = 0; i < gridColumns.length; i++){
-    var gridColumn = gridColumns[i]
+    var gridColumn = gridColumns[i]; 
     chart.row
       .append("rect")
       .attr("width",35)
@@ -118,11 +117,10 @@ var filteredData = filteredData.sort(function(a,b) {
 
 console.log
 
-var group = document.querySelector('#grid');
-console.log(group)
-var rectNodes = group.getElementsByTagName('rect');
+//var group = document.querySelector('#grid');
+//var rectNodes = group.getElementsByTagName('rect');
 
-console.log(filteredData)
+
 
 var column1 = d3.selectAll(".gridSquare_number_prison_rating")
 //  .filter(function(d, i) { return i % 5 == 0;})
@@ -184,11 +182,9 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
     }
   })
 
+
 //ADD LABELS
 
-var STATE_LABELS= ["CA", "TX","FL","NY","IL","AZ","NJ","CO","NM","GA"]
-  for(var i = 0; i < STATE_LABELS.length; i++){
-    var STATE_LABELS = STATE_LABELS[i]
     chart.svg.selectAll(".row")
       .data(filteredData)
       .append("text")
@@ -199,7 +195,34 @@ var STATE_LABELS= ["CA", "TX","FL","NY","IL","AZ","NJ","CO","NM","GA"]
           return d["properties"]["abbr"];
       });
 
-  }
+
+//var last_row = document.querySelectorAll('.row')[9]
+  
+//so i can see the text element under each rect but it's not appearing. i did some 
+//further research and apparnetly i need to append the text to the g, so not the rect?
+//but there is only one g element so how do i append each of the 5 measures?
+  last_row = chart.svg.selectAll('.row')
+    .filter(function(d, i) { return i == 9;})
+    .attr("class", "last_row");
+
+  
+  var MEASURES = ["Prison", "Prison Pop", "Arrests", "Probation", "Parole"]
+
+  last_row = chart.svg.selectAll(".last_row rect")
+    .data(MEASURES);
+
+  last_row.selectAll('g').append('text').text('HI')
+  
+    last_row.each(function(d) {
+      d3.select(this).append("text")
+      .attr("class", "grid-cat-labels")
+    //  .attr("transform", function(d, i){return "translate(10,-10)"})
+      .attr("text-anchor", "start")
+      .text(function (d) {
+           return d;
+       });
+    })
+
 
 
 //LEGEND

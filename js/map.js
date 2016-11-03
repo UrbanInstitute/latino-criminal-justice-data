@@ -44,7 +44,7 @@ var path = d3.geoPath()
   .projection(projection);
 
 var getCat = function(){
-  return d3.select(".measure_type").attr("value");
+  return options.category;
 }
 
 var getFilter = function(){

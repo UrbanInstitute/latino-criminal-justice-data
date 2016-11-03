@@ -60,12 +60,12 @@ console.log(Filter)
  //EVENT HANDLERS
 
 //TOGGLES
-d3.selectAll(".step_button").classed("active", false);
+d3.selectAll(".step2_button").classed("active", false);
 d3.selectAll("#regular").classed("active", true)
 d3.select("#mobile-text").text("")
-d3.selectAll('.step_button')
+d3.selectAll('.step2_button')
   .on('click', function() {
-    d3.selectAll(".step_button.active").classed("active", false);
+    d3.selectAll(".step2_button.active").classed("active", false);
     d3.select(this).classed("active", true);
     options.filter = d3.select(this).attr("id");
     choropleth.update(states);

@@ -1,7 +1,6 @@
 var filteredData = [];
 var options = {
-  category: 'number_prison_rating',
-  filter: 'regular'
+  selectedData: 'step1-regular'
 
 }
 
@@ -22,7 +21,26 @@ var width= ($firstGraphic.width() - margin.left - margin.right);
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
 
 
+var getFilter1 = function(){
+  return d3.select(".step1_button").attr("value");
+}
+Filter1 = getFilter1();
 
+//EVENT HANDLERS
+
+//TOGGLES
+d3.selectAll(".step1_button").classed("active", false);
+d3.selectAll("#step1-regular").classed("active", true)
+d3.select("#mobile-text").text("")
+d3.selectAll('.step1_button')
+  .on('click', function() {
+    d3.selectAll(".step1_button.active").classed("active", false);
+    d3.select(this).classed("step1_button.active", true);
+    options.selectedData = d3.select(this).attr("id");
+    firstGraphic.update(states);
+    console.log(options.selectedData);
+
+}) 
 
 
 /*DATA SOURCES*/
@@ -41,14 +59,17 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
         }
       })
-      filteredData = jsonResults.features
+    
 
-      firstGraphic = new firstGraphic(jsonResults)
+      firstGraphic = new FirstGraphic(jsonResults)
+      firstGraphic.update(jsonResults)
 	});
 });
 
-function firstGraphic(states) { 
+function FirstGraphic(states) { 
   console.log('3')
+
+  console.log(Filter1)
 
   chart.svg = d3.select("#firstGraphic")
       .append("div")
@@ -57,68 +78,35 @@ function firstGraphic(states) {
       .attr("width", width)
       .attr("height", height);
 
-  /*DEFINING EACH MEASURE-ALL*/
-  var allData_0 = states.features.filter(function(d){
-      return d.properties.num_crime_cat_all == '0';
-    });
 
-  var allData_1 = states.features.filter(function(d){
-      return d.properties.num_crime_cat_all == '1';
-    });
+ chart.states = states;
 
-  var allData_2 = states.features.filter(function(d){
-      return d.properties.num_crime_cat_all == '2';
-    });
+}
 
-  var allData_3 = states.features.filter(function(d){
-      return d.properties.num_crime_cat_all == '3';
-    });
 
-  var allData_4 = states.features.filter(function(d){
-      return d.properties.num_crime_cat_all == '4';
-    });
 
-  var allData_5 = states.features.filter(function(d){
-      return d.properties.num_crime_cat_all == '5';
-    });
+FirstGraphic.prototype.update = function(states) {
 
-  /*DEFINING EACH MEASURE-FILTERED*/
-  var filteredData_0 = states.features.filter(function(d){
-      return d.properties.num_crime_cat_2 == '0';
-    });
 
-  var filteredData_1 = states.features.filter(function(d){
-      return d.properties.num_crime_cat_2 == '1';
-    });
 
-  var filteredData_2 = states.features.filter(function(d){
-      return d.properties.num_crime_cat_2 == '2';
-    });
+  data0 = states.features.filter(function(d) {return d.properties[Filter1]=='0'})
+  data1 = states.features.filter(function(d) {return d.properties[Filter1]=='1'})
+  data2 = states.features.filter(function(d) {return d.properties[Filter1]=='2'})
+  data3 = states.features.filter(function(d) {return d.properties[Filter1]=='3'})
+  data4 = states.features.filter(function(d) {return d.properties[Filter1]=='4'})
+  data5 = states.features.filter(function(d) {return d.properties[Filter1]=='5'})
 
-  var filteredData_3 = states.features.filter(function(d){
-      return d.properties.num_crime_cat_2 == '3';
-    });
 
-  var filteredData_4 = states.features.filter(function(d){
-      return d.properties.num_crime_cat_2 == '4';
-    });
+    //ADDING GROUPS
+  yBase = 400
 
-  var filteredData_5 = states.features.filter(function(d){
-      return d.properties.num_crime_cat_2 == '5';
-    });
+  //0 measures
+  group0 = chart.svg.append('g')
+      .data(data0)
+      console.log(states.features)
 
-  console.log(allData_2)
-
-//ADDING GROUPS
-yBase = 400
-//0 measures
-
-group0 = chart.svg.append('g')
-    .data(allData_0)
-    .attr("fill", "#000")
-
-  for (var i = 0; i <allData_0.length; i++) {
-rect0 = group0.append("rect")
+  for (var i = 0; i <data0.length; i++) {
+  rect0 = group0.append("rect")
       .attr("width",35)
       .attr("height",35)
       .attr("x", function(d) {
@@ -147,83 +135,83 @@ rect0 = group0.append("rect")
       })
   }
 
-//1 measure
-group1 = chart.svg.append('g')
-    .data(allData_1)
-    .attr("fill", "#000")
+  //1 measure
+  group1 = chart.svg.append('g')
+      .data(data1)
+      .attr("fill", "#000")
 
-  for (var i = 0; i <allData_1.length; i++) {
-rect1 = group1.append("rect")
-      .attr("width",35)
-      .attr("height",35)
-      .attr("x", function(d) {
-        if (i%2 !== 0) {
-          return 140;
-        } else {
-          return 100;
-        }
-      })
-      .attr("y", function(d) {
-        if (i%2 == 0){
-          return yBase - ((i/2)*40);
-        } else if (i == 1) {
-          return yBase;
-        } else{
-          return yBase - (((i-1)/2)*40);
-        }
-      }) //so that all columns start from the bottom up
-      .attr("class", "group1")
-      .attr("class", function(d) {
-        if (i%2 !== 0) {
-          return "odd"
-        } else {
-          return "even"
-        }
-      })
-  }
+    for (var i = 0; i <data1.length; i++) {
+    rect1 = group1.append("rect")
+        .attr("width",35)
+        .attr("height",35)
+        .attr("x", function(d) {
+          if (i%2 !== 0) {
+            return 140;
+          } else {
+            return 100;
+          }
+        })
+        .attr("y", function(d) {
+          if (i%2 == 0){
+            return yBase - ((i/2)*40);
+          } else if (i == 1) {
+            return yBase;
+          } else{
+            return yBase - (((i-1)/2)*40);
+          }
+        }) //so that all columns start from the bottom up
+        .attr("class", "group1")
+        .attr("class", function(d) {
+          if (i%2 !== 0) {
+            return "odd"
+          } else {
+            return "even"
+          }
+        })
+    }
 
 
-//2 measures
-group2 = chart.svg.append('g')
-    .data(allData_2)
-    .attr("fill", "#000")
+  //2 measures
+  group2 = chart.svg.append('g')
+      .data(data2)
+      .attr("fill", "#000")
 
-  for (var i = 0; i <allData_2.length; i++) {
-rect2 = group2.append("rect")
-      .attr("width",35)
-      .attr("height",35)
-      .attr("x", function(d) {
-        if (i%2 !== 0) {
-          return 240;
-        } else {
-          return 200;
-        }
-      })
-      .attr("y", function(d) {
-        if (i%2 == 0){
-          return yBase - ((i/2)*40);
-        } else if (i == 1) {
-          return yBase;
-        } else{
-          return yBase - (((i-1)/2)*40);
-        }
-      }) //so that all columns start from the bottom up
-      .attr("class", "group2")
-      .attr("class", function(d) {
-        if (i%2 !== 0) {
-          return "odd"
-        } else {
-          return "even"
-        }
-      })
-  }
+    for (var i = 0; i <data2.length; i++) {
+    rect2 = group2.append("rect")
+        .attr("width",35)
+        .attr("height",35)
+        .attr("x", function(d) {
+          if (i%2 !== 0) {
+            return 240;
+          } else {
+            return 200;
+          }
+        })
+        .attr("y", function(d) {
+          if (i%2 == 0){
+            return yBase - ((i/2)*40);
+          } else if (i == 1) {
+            return yBase;
+          } else{
+            return yBase - (((i-1)/2)*40);
+          }
+        }) //so that all columns start from the bottom up
+        .attr("class", "group2")
+        .attr("class", function(d) {
+          if (i%2 !== 0) {
+            return "odd"
+          } else {
+            return "even"
+          }
+        })
+    }
 
 //3measures
 group3 = chart.svg.append('g')
-    .data(allData_3)
+    .data(data3)
     .attr("fill", "#000")
 
-  for (var i = 0; i <allData_3.length; i++) {
+  for (var i = 0; i <data3.length; i++) {
 rect3 = group3.append("rect")
       .attr("width",35)
       .attr("height",35)
@@ -256,10 +244,10 @@ rect3 = group3.append("rect")
 
 //4 measures
 group4 = chart.svg.append('g')
-    .data(allData_4)
+    .data(data4)
     .attr("fill", "#000")
 
-  for (var i = 0; i <allData_4.length; i++) {
+  for (var i = 0; i <data4.length; i++) {
 rect4 = group4.append("rect")
       .attr("width",35)
       .attr("height",35)
@@ -292,10 +280,10 @@ rect4 = group4.append("rect")
 
   //5 measures
 group5 = chart.svg.append('g')
-    .data(allData_5)
+    .data(data5)
     .attr("fill", "#000")
 
-  for (var i = 0; i <allData_5.length; i++) {
+  for (var i = 0; i <data5.length; i++) {
 rect5 = group5.append("rect")
       .attr("width",35)
       .attr("height",35)
@@ -324,6 +312,7 @@ rect5 = group5.append("rect")
         }
       })
   }
-
-
 } 
+
+
+

@@ -160,13 +160,13 @@ span.ui-selectmenu-text {
 }
 
 
-#steps{
+#step1, #step2 {
     width: 70%;
     padding-top: 10px;
     float: left;
 }
 
-#steps ul{
+#step1, #step2 ul{
     margin-left:0px;
     margin-bottom:0px;
     text-indent: 0px;
@@ -175,9 +175,18 @@ span.ui-selectmenu-text {
     
 }
 
+.step1_button span{
+  display: inline;
+    float: left;
+    color:#333;
+    background-color: #f2f2f2;
+    padding: 12px;
+    text-align: center;
+    font-size:12px;
+    border:solid 1px #e1e1e1;
+}
 
-
-.step_button span{
+.step2_button span{
 	display: inline;
     float: left;
     color:#333;
@@ -188,23 +197,31 @@ span.ui-selectmenu-text {
     border:solid 1px #e1e1e1;
 }
 
-
-.step_button.active span{
+.step1_button.active span{
   background-color: #1696d2;
   color: white;
 }
-.step_button span:hover{
+
+.step2_button.active span{
+  background-color: #1696d2;
+  color: white;
+}
+
+.step2_button span:hover{
   background-color: #231f20;
   color: white;
 }
-.step_button.frozen span{
+.step1_button span:hover{
+  background-color: #231f20;
+  color: white;
+}
+
+.step1_button.frozen, .step2_button.frozen span{
   background-color: ;
   color: #ccc;
   pointer-events: none;
 }
-.step_button.frozen{
-  pointer-events: none;
-}
+
 
 select#measures-menu{
   display: none;

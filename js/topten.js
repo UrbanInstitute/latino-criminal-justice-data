@@ -204,18 +204,18 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
   
   var MEASURES = ["Prison", "Prison Pop", "Arrests", "Probation", "Parole"]
 
-  last_row = chart.svg.selectAll(".last_row rect")
-    .data(MEASURES);
-
-  last_row.selectAll('g').append('text').text('HI')
+  last_row = chart.svg.selectAll(".last_row")
+    // .data(MEASURES);
   
-    last_row.each(function(d) {
-      d3.select(this).append("text")
+    last_row.selectAll("rect").each(function(d, i) {
+      console.log(MEASURES[i])
+      last_row.append("text")
       .attr("class", "grid-cat-labels")
-    //  .attr("transform", function(d, i){return "translate(10,-10)"})
+      .attr("transform", "translate(" + (i*45 - 2) + ",45) rotate(-90)" )
       .attr("text-anchor", "start")
+
       .text(function (d) {
-           return d;
+           return MEASURES[i]
        });
     })
 

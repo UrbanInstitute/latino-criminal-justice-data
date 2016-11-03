@@ -1,4 +1,7 @@
 /*ADJUSTING FOR SCREEN WIDTHS */
+*:focus{
+  outline: none;
+}
 
 .svg-container article {
 

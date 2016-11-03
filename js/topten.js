@@ -1,9 +1,5 @@
 var filteredData = [];
-var options = {
-  category: 'number_prison_rating',
-  filter: 'regular'
 
-}
 
 var chart=this;
 

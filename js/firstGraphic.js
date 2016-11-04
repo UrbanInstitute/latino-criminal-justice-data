@@ -86,37 +86,28 @@ function FirstGraphic(states) {
 
 
 FirstGraphic.prototype.update = function(states) {
-
-
-
-  data0 = states.features.filter(function(d) {return d.properties[Filter1]=='0'})
-  data1 = states.features.filter(function(d) {return d.properties[Filter1]=='1'})
-  data2 = states.features.filter(function(d) {return d.properties[Filter1]=='2'})
-  data3 = states.features.filter(function(d) {return d.properties[Filter1]=='3'})
-  data4 = states.features.filter(function(d) {return d.properties[Filter1]=='4'})
-  data5 = states.features.filter(function(d) {return d.properties[Filter1]=='5'})
-
-
     //ADDING GROUPS
   yBase = 400
-
+  for(var j = 0; j < 6; j++){
   //0 measures
-  group0 = chart.svg.append('g')
-      .data(data0)
-      console.log(states.features)
+  var data = states.features.filter(function(d) {return d.properties[Filter1]== String(j)})
+  group = chart.svg.append('g')
 
-  for (var i = 0; i <data0.length; i++) {
-  rect0 = group0.append("rect")
+  rect0 = group.selectAll("cell")
+      .data(data)
+      .enter()
+      .append("rect")
+      .attr("class","cell")
       .attr("width",35)
       .attr("height",35)
-      .attr("x", function(d) {
+      .attr("x", function(d,i) {
         if (i%2 !== 0) {
-          return 40;
+          return 40 + j*100;
         } else {
-          return 0;
+          return j*100;
         }
       })
-      .attr("y", function(d) {
+      .attr("y", function(d,i) {
         if (i%2 == 0){
           return yBase - ((i/2)*40);
         } else if (i == 1) {
@@ -126,192 +117,14 @@ FirstGraphic.prototype.update = function(states) {
         }
       }) //so that all columns start from the bottom up
       .attr("class", "group0")
-      .attr("class", function(d) {
+      .attr("class", function(d,i) {
         if (i%2 !== 0) {
           return "odd"
         } else {
           return "even"
         }
       })
-  }
-
-  //1 measure
-  group1 = chart.svg.append('g')
-      .data(data1)
-      .attr("fill", "#000")
-
-    for (var i = 0; i <data1.length; i++) {
-    rect1 = group1.append("rect")
-        .attr("width",35)
-        .attr("height",35)
-        .attr("x", function(d) {
-          if (i%2 !== 0) {
-            return 140;
-          } else {
-            return 100;
-          }
-        })
-        .attr("y", function(d) {
-          if (i%2 == 0){
-            return yBase - ((i/2)*40);
-          } else if (i == 1) {
-            return yBase;
-          } else{
-            return yBase - (((i-1)/2)*40);
-          }
-        }) //so that all columns start from the bottom up
-        .attr("class", "group1")
-        .attr("class", function(d) {
-          if (i%2 !== 0) {
-            return "odd"
-          } else {
-            return "even"
-          }
-        })
     }
-
-
-  //2 measures
-  group2 = chart.svg.append('g')
-      .data(data2)
-      .attr("fill", "#000")
-
-    for (var i = 0; i <data2.length; i++) {
-    rect2 = group2.append("rect")
-        .attr("width",35)
-        .attr("height",35)
-        .attr("x", function(d) {
-          if (i%2 !== 0) {
-            return 240;
-          } else {
-            return 200;
-          }
-        })
-        .attr("y", function(d) {
-          if (i%2 == 0){
-            return yBase - ((i/2)*40);
-          } else if (i == 1) {
-            return yBase;
-          } else{
-            return yBase - (((i-1)/2)*40);
-          }
-        }) //so that all columns start from the bottom up
-        .attr("class", "group2")
-        .attr("class", function(d) {
-          if (i%2 !== 0) {
-            return "odd"
-          } else {
-            return "even"
-          }
-        })
-    }
-
-//3measures
-group3 = chart.svg.append('g')
-    .data(data3)
-    .attr("fill", "#000")
-
-  for (var i = 0; i <data3.length; i++) {
-rect3 = group3.append("rect")
-      .attr("width",35)
-      .attr("height",35)
-      .attr("x", function(d) {
-        if (i%2 !== 0) {
-          return 340;
-        } else {
-          return 300;
-        }
-      })
-      .attr("y", function(d) {
-        if (i%2 == 0){
-          return yBase - ((i/2)*40);
-        } else if (i == 1) {
-          return yBase;
-        } else{
-          return yBase - (((i-1)/2)*40);
-        }
-      }) //so that all columns start from the bottom up
-      .attr("class", "group3")
-      .attr("class", function(d) {
-        if (i%2 !== 0) {
-          return "odd"
-        } else {
-          return "even"
-        }
-      })
-  }
-
-
-//4 measures
-group4 = chart.svg.append('g')
-    .data(data4)
-    .attr("fill", "#000")
-
-  for (var i = 0; i <data4.length; i++) {
-rect4 = group4.append("rect")
-      .attr("width",35)
-      .attr("height",35)
-      .attr("x", function(d) {
-        if (i%2 !== 0) {
-          return 440;
-        } else {
-          return 400;
-        }
-      })
-      .attr("y", function(d) {
-        if (i%2 == 0){
-          return yBase - ((i/2)*40);
-        } else if (i == 1) {
-          return yBase;
-        } else{
-          return yBase - (((i-1)/2)*40);
-        }
-      }) //so that all columns start from the bottom up
-      .attr("class", "group4")
-      .attr("class", function(d) {
-        if (i%2 !== 0) {
-          return "odd"
-        } else {
-          return "even"
-        }
-      })
-  }
-
-
-  //5 measures
-group5 = chart.svg.append('g')
-    .data(data5)
-    .attr("fill", "#000")
-
-  for (var i = 0; i <data5.length; i++) {
-rect5 = group5.append("rect")
-      .attr("width",35)
-      .attr("height",35)
-      .attr("x", function(d) {
-        if (i%2 !== 0) {
-          return 540;
-        } else {
-          return 500;
-        }
-      })
-      .attr("y", function(d) {
-        if (i%2 == 0){
-          return yBase - ((i/2)*40);
-        } else if (i == 1) {
-          return yBase;
-        } else{
-          return yBase - (((i-1)/2)*40);
-        }
-      }) //so that all columns start from the bottom up
-      .attr("class", "group5")
-      .attr("class", function(d) {
-        if (i%2 !== 0) {
-          return "odd"
-        } else {
-          return "even"
-        }
-      })
-  }
 } 
 
 

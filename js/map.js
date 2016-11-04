@@ -273,7 +273,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 Choropleth.prototype.update = function(states) {
   console.log('hello')
 
-var Cat = getCat();
+  var Cat = getCat();
   Filter = getFilter();
   frequency = "_frequency";
 
@@ -310,8 +310,8 @@ var Cat = getCat();
 	          return '1px'
 	        }
 	     }); 
- console.log('hello')
-  chart.svg
+ console.log('hello', chart.svg.node())
+ d3.select(".map-container")
       .selectAll(".place-label")
       .transition()
         .delay(function(d,i) { return i * 10; })

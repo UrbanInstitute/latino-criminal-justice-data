@@ -10,11 +10,12 @@ var LABELS= {
 var filteredData = [];
 var options = {
   category: 'number_prison_rating',
-  filter: 'regular'
+  filter: 'regular',
+  catID: 'number_prison'
 
 }
 
-var chart=this;
+var chartMap=this;
 
 
 var color = d3.scaleThreshold()
@@ -47,14 +48,11 @@ var getCat = function(){
   return options.category;
 }
 
-var getFilter = function(){
-  return d3.select(".measure_type").attr("id");
-}
 
 var Cat = getCat();
-Filter = getFilter();
+
 frequency = "_frequency";
-console.log(Filter)
+
    
 
  //EVENT HANDLERS
@@ -77,6 +75,7 @@ d3.selectAll('.step2_button')
 $("#measures").selectmenu({
   change: function(event, d){
   options.category = this.value;
+  options.catID = this.id;
   choropleth.update(states);
   console.log(options.category);
   }
@@ -138,7 +137,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
 
 
-  chart.svg = d3.select("#map")
+  chartMap.svg = d3.select("#map")
       .append("div")
       .classed("map-container", true)
       .append("svg")
@@ -153,13 +152,14 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
    // .attr('height', height + margin.top + margin.bottom);
 
 
-  chart.map = chart.svg.append('g')
+  chartMap.map = chartMap.svg.append('g')
   	.selectAll('path')
   	.data(states.features)
   	.enter().append('path')
   	.attr('d', path)
 
-  chart.svg
+
+  chartMap.svg
     .selectAll(".place-label")
     .data(states.features)
     .enter().append("text")
@@ -171,9 +171,11 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       return d.properties.abbr;
     });
 
+    
+
   //LEGEND
 
-    chart.svg
+    chartMap.svg
       .append("rect")
       .attr("id", "no-data")
       .attr("class", "legend-icon")
@@ -181,7 +183,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "24em")
       .attr("width", 15)
       .attr("height", 15)
-    chart.svg.append("text")
+    chartMap.svg.append("text")
       .attr("class", "legend-text")
       .attr("x", "11em")
       .attr("y", "33em")
@@ -190,7 +192,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
           return LABELS["no_data"];
       });
 
-    chart.svg
+    chartMap.svg
       .append("rect")
       .attr("id", "data-no-cat")
       .attr("class", "legend-icon")
@@ -198,7 +200,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "25.5em")
       .attr("width", 16)
       .attr("height", 16)
-    chart.svg.append("text")
+    chartMap.svg.append("text")
       .attr("class", "legend-text")
       .attr("x", "11em")
       .attr("y", "35em")
@@ -207,7 +209,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
           return LABELS["data_no_cat"];
       });
 
-    chart.svg
+    chartMap.svg
       .append("rect")
       .attr("id", "combined")
       .attr("class", "legend-icon")
@@ -215,7 +217,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "24em")
       .attr("width", 16)
       .attr("height", 16)
-    chart.svg.append("text")
+    chartMap.svg.append("text")
       .attr("class", "legend-text")
       .attr("x", "27.5em")
       .attr("y", "33em")
@@ -224,7 +226,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
           return LABELS["combined"];
       });
 
-    chart.svg
+    chartMap.svg
       .append("rect")
       .attr("id", "separate")
       .attr("class", "legend-icon")
@@ -232,7 +234,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "25.5em")
       .attr("width", 16)
       .attr("height", 16)
-    chart.svg.append("text")
+    chartMap.svg.append("text")
       .attr("class", "legend-text")
       .attr("x", "27.5em")
       .attr("y", "35em")
@@ -241,7 +243,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
           return LABELS["separate"];
       });
 
-    chart.svg
+    chartMap.svg
       .append("rect")
       .attr("id", "cross-tabbed")
       .attr("class", "legend-icon")
@@ -249,7 +251,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "27em")
       .attr("width", 16)
       .attr("height", 16)
-    chart.svg.append("text")
+    chartMap.svg.append("text")
       .attr("class", "legend-text")
       .attr("x", "27.5em")
       .attr("y", "37em")
@@ -258,7 +260,8 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
           return LABELS["cross_tabbed"];
       });
   
-  chart.states = states;
+  chartMap.states = states;
+
 
 
   window.onresize = function(){
@@ -274,16 +277,19 @@ Choropleth.prototype.update = function(states) {
   console.log('hello')
 
   var Cat = getCat();
-  Filter = getFilter();
-  frequency = "_frequency";
 
-   chart.map
+  frequency = "_frequency";
+  rating = "_rating";
+
+  console.log(Cat)
+
+   chartMap.map
    		.transition()
       	.delay(function(d,i) { return i * 10; })
     	.duration(1250)
        	.style("opacity", function(d) {
        		if (options.filter == 'regular') {
-         		if (d.properties[Filter + frequency] == 2){
+         		if (d.properties[Cat + frequency] == 2){
 	            return '1';
 	        	} else {
 	        		return '0';
@@ -292,33 +298,34 @@ Choropleth.prototype.update = function(states) {
 		 }) 
        	.style("stroke-opacity", function(d) {
        		if (options.filter == 'regular') {
-         		if (d.properties[Filter + frequency] == 2){
+         		if (d.properties[Cat + frequency] == 2){
 	            return '0'; 
 	        	}
 	     	   }
 		     })
 	    .style("fill", function(d) {
-	        return color(d.properties[Cat]);
+	        return color(d.properties[Cat + rating]);
 	    })
 	    .style("stroke", function(d) {
-	       if (d.properties[Cat] == 0) {
+	       if (d.properties[Cat + rating] == 0) {
 	         return '#848081'
 	       }
 	     })
 	    .style("stroke-width", function(d) {
-	        if (d.properties[Cat] == 0) {
+	        if (d.properties[Cat + rating] == 0) {
 	          return '1px'
 	        }
 	     }); 
- console.log('hello', chart.svg.node())
+ console.log('hello', chartMap.svg.node())
+ 
  d3.select(".map-container")
       .selectAll(".place-label")
       .transition()
-        .delay(function(d,i) { return i * 10; })
+        .delay(function(d,i) {return i * 10; })
       .duration(1250)
      /* .style("opacity", function(d) { 
         if (options.filter !== 'all') {
-          if (d.properties[Filter + frequency] == 2) {
+          if (d.properties[Cat + frequency] == 2) {
             return 1;
           } else { 
               return "0";
@@ -327,8 +334,8 @@ Choropleth.prototype.update = function(states) {
       }) */
       .style("fill", function(d) { 
         if (options.filter !== 'all') {
-          if (d.properties[Filter + frequency] == 2) {
-            if (d.properties[Cat] == 4 | d.properties[Cat] == 3) {
+          if (d.properties[Cat + frequency] == 2) {
+            if (d.properties[Cat + rating] == 4 | d.properties[Cat + rating] == 3) {
               return "#cfe8f3"
             } else {
                 return "#000000";
@@ -336,10 +343,21 @@ Choropleth.prototype.update = function(states) {
           } else {
               return "#d2d2d2";
             }  
+        } else 
+        if (options.filter == 'all') {
+          if (d.properties[Cat + frequency] == 2) {
+            if (d.properties[Cat + rating] == 4 | d.properties[Cat + rating] == 3) {
+              return "#cfe8f3"
+            } else {
+                return "#000000";
+              } 
+          } else {
+              return "#000000";
+            }  
         } return "#000000";
       })
  /*     .style("fill", function(d) { 
-        if (d.properties[Cat] == 4 | d.properties[Cat] == 3) {
+        if (d.properties[Cat + rating] == 4 | d.properties[Cat + rating] == 3) {
           return "#cfe8f3"
         } else {
           return "#000000";

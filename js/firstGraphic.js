@@ -97,6 +97,7 @@ FirstGraphic.prototype.update = function(states) {
       .data(data)
       .enter()
       .append("rect")
+      .style("fill", "#9d9d9d")
       .attr("class","cell")
       .attr("width",35)
       .attr("height",35)

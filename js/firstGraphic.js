@@ -116,12 +116,11 @@ FirstGraphic.prototype.update = function(states) {
           return yBase - (((i-1)/2)*40);
         }
       }) //so that all columns start from the bottom up
-      .attr("class", "group0")
       .attr("class", function(d,i) {
         if (i%2 !== 0) {
-          return "odd"
+          return "odd group0"
         } else {
-          return "even"
+          return "even group0"
         }
       })
     }

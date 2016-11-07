@@ -1,10 +1,3 @@
-var LABELS= {
-  no_data: 'No data on race or ethnicity',
-  data_no_cat: 'Data, but no Latino category',
-  combined: 'Race/Ethnicity combined',
-  separate: 'Race/Ethnicity separate',
-  cross_tabbed: 'Race/Ethnicity cross-tabbed'
-}
 
 function functionNameGoesHere(){
 //map is forked from a combination of https://github.com/githamm/us-state-squares and https://github.com/lvonlanthen/data-map-d3
@@ -46,14 +39,14 @@ var projection = d3.geoEquirectangular()
 var path = d3.geoPath()
   .projection(projection);
 
-var getCat = function(){
+var getCat = function(){  
   return options.category;
 }
 
 
 var Cat = getCat();
 
-frequency = "_frequency";
+var frequency = "_frequency";
 
    
 
@@ -68,7 +61,7 @@ d3.selectAll('.step2_button')
     d3.selectAll(".step2_button.active").classed("active", false);
     d3.select(this).classed("active", true);
     options.filter = d3.select(this).attr("id");
-    choropleth.update(states);
+    choropleth.update(mapStates);
     console.log(options.filter);
 
 }) 
@@ -77,7 +70,7 @@ d3.selectAll('.step2_button')
 $("#measures").selectmenu({
   change: function(event, d){
   options.category = this.value;
-  choropleth.update(states);
+  choropleth.update(mapStates);
   console.log(options.category);
   }
 });
@@ -126,7 +119,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
 
 
-  function Choropleth(states) {
+  function Choropleth(mapStates) {
 
     var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
     var IS_PHONE = d3.select("#isPhone").style("display") == "block"
@@ -155,14 +148,14 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
   chartMap.map = chartMap.svg.append('g')
   	.selectAll('path')
-  	.data(states.features)
+  	.data(mapStates.features)
   	.enter().append('path')
   	.attr('d', path)
 
 
   chartMap.svg
     .selectAll(".place-label")
-    .data(states.features)
+    .data(mapStates.features)
     .enter().append("text")
       .attr("class", "place-label")
       .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
@@ -261,7 +254,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
           return LABELS["cross_tabbed"];
       });
   
-  chartMap.states = states;
+  chartMap.mapStates = mapStates;
 
 
 
@@ -274,7 +267,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
 
 
-Choropleth.prototype.update = function(states) {
+Choropleth.prototype.update = function(mapStates) {
   console.log('hello')
 
   var Cat = getCat();

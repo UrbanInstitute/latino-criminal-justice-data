@@ -1,3 +1,11 @@
+var LABELS= {
+  no_data: 'No data on race or ethnicity',
+  data_no_cat: 'Data, but no Latino category',
+  combined: 'Race/Ethnicity combined',
+  separate: 'Race/Ethnicity separate',
+  cross_tabbed: 'Race/Ethnicity cross-tabbed'
+}
+
 function drawFirstGraphic() {
   var selectedData = 'num_crime_cat_2'
 
@@ -97,7 +105,7 @@ function drawFirstGraphic() {
     var data = states.features.filter(function(d) {return d.properties[selectedData]== String(j)})
     console.log(data)  //**why is this undefined???
 
-    column = chart.group.selectAll("cell")
+    var column = chart.group.selectAll("cell")
         .data(data)
 
     columnEnter = column

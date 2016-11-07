@@ -1,7 +1,7 @@
 var filteredData = [];
 
 
-var chart=this;
+var chartTen=this;
 
 
 var color = d3.scaleThreshold()
@@ -12,7 +12,7 @@ var color = d3.scaleThreshold()
 
 var $grid = $("#grid");
 var aspect_width = 20;
-var aspect_height = 15;
+var aspect_height = 16.5;
 var margin = { top: 0, right: 0, bottom: 10, left: 32 };
 var width= ($map.width() - margin.left - margin.right); 
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
@@ -65,7 +65,7 @@ function Grid(states) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e704e3
 
 
 
-  chart.svg = d3.select("#grid")
+  chartTen.svg = d3.select("#grid")
       .append("div")
       .classed("svg-container", true)
       .append("svg")
@@ -78,7 +78,7 @@ var filteredData = states.features.filter(function(d){
   })
 
 
-  chart.row = chart.svg.selectAll(".row")
+  chartTen.row = chartTen.svg.selectAll(".row")
     .data(filteredData)
     .enter().append("g")
     .attr("class", "row")
@@ -91,7 +91,7 @@ var filteredData = states.features.filter(function(d){
 var gridColumns = ["number_prison_rating", "number_prison_ct_rating", "arrests_rating", "probation_rating", "parole_rating"]
   for(var i = 0; i < gridColumns.length; i++){
     var gridColumn = gridColumns[i]; 
-    chart.row
+    chartTen.row
       .append("rect")
       .attr("width",35)
       .attr("height",35)
@@ -181,7 +181,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
 
 //ADD LABELS
 
-    chart.svg.selectAll(".row")
+    chartTen.svg.selectAll(".row")
       .data(filteredData)
       .append("text")
       .attr("class", "grid-state-labels")
@@ -197,21 +197,21 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
 //so i can see the text element under each rect but it's not appearing. i did some 
 //further research and apparnetly i need to append the text to the g, so not the rect?
 //but there is only one g element so how do i append each of the 5 measures?
-  last_row = chart.svg.selectAll('.row')
+  last_row = chartTen.svg.selectAll('.row')
     .filter(function(d, i) { return i == 9;})
     .attr("class", "last_row");
 
   
   var MEASURES = ["Prison", "Prison Pop", "Arrests", "Probation", "Parole"]
 
-  last_row = chart.svg.selectAll(".last_row")
+  last_row = chartTen.svg.selectAll(".last_row")
     // .data(MEASURES);
   
     last_row.selectAll("rect").each(function(d, i) {
       console.log(MEASURES[i])
       last_row.append("text")
       .attr("class", "grid-cat-labels")
-      .attr("transform", "translate(" + (i*45 - 2) + ",45) rotate(-90)" )
+      .attr("transform", "translate(" + (i*45 -7) + ",87) rotate(-45)" )
       .attr("text-anchor", "start")
 
       .text(function (d) {
@@ -223,7 +223,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
 
 //LEGEND
 
-    chart.svg
+    chartTen.svg
       .append("rect")
       .attr("id", "no-data")
       .attr("class", "legend-icon")
@@ -231,7 +231,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
       .attr("y", "20em")
       .attr("width", 15)
       .attr("height", 15)
-    chart.svg.append("text")
+    chartTen.svg.append("text")
       .attr("class", "legend-text")
       .attr("x", "27.5em")
       .attr("y", "27.7em")
@@ -240,7 +240,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
           return LABELS["no_data"];
       });
 
-    chart.svg
+    chartTen.svg
       .append("rect")
       .attr("id", "data-no-cat")
       .attr("class", "legend-icon")
@@ -248,7 +248,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
       .attr("y", "21.5em")
       .attr("width", 16)
       .attr("height", 16)
-    chart.svg.append("text")
+    chartTen.svg.append("text")
       .attr("class", "legend-text")
       .attr("x", "27.5em")
       .attr("y", "29.8em")
@@ -257,7 +257,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
           return LABELS["data_no_cat"];
       });
 
-    chart.svg
+    chartTen.svg
       .append("rect")
       .attr("id", "combined")
       .attr("class", "legend-icon")
@@ -265,7 +265,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
       .attr("y", "23em")
       .attr("width", 16)
       .attr("height", 16)
-    chart.svg.append("text")
+    chartTen.svg.append("text")
       .attr("class", "legend-text")
       .attr("x", "27.5em")
       .attr("y", "31.8em")
@@ -274,7 +274,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
           return LABELS["combined"];
       });
 
-    chart.svg
+    chartTen.svg
       .append("rect")
       .attr("id", "separate")
       .attr("class", "legend-icon")
@@ -282,7 +282,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
       .attr("y", "24.5em")
       .attr("width", 16)
       .attr("height", 16)
-    chart.svg.append("text")
+    chartTen.svg.append("text")
       .attr("class", "legend-text")
       .attr("x", "27.5em")
       .attr("y", "33.8em")
@@ -291,7 +291,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
           return LABELS["separate"];
       });
 
-    chart.svg
+    chartTen.svg
       .append("rect")
       .attr("id", "cross-tabbed")
       .attr("class", "legend-icon")
@@ -299,7 +299,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
       .attr("y", "26em")
       .attr("width", 16)
       .attr("height", 16)
-    chart.svg.append("text")
+    chartTen.svg.append("text")
       .attr("class", "legend-text")
       .attr("x", "27.5em")
       .attr("y", "35.6em")

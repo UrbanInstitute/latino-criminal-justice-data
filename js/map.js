@@ -1,5 +1,3 @@
-function functionNameGoesHere(){
-//map is forked from a combination of https://github.com/githamm/us-state-squares and https://github.com/lvonlanthen/data-map-d3
 var LABELS= {
   no_data: 'No data on race or ethnicity',
   data_no_cat: 'Data, but no Latino category',
@@ -7,6 +5,10 @@ var LABELS= {
   separate: 'Race/Ethnicity separate',
   cross_tabbed: 'Race/Ethnicity cross-tabbed'
 }
+
+function functionNameGoesHere(){
+//map is forked from a combination of https://github.com/githamm/us-state-squares and https://github.com/lvonlanthen/data-map-d3
+
 
 var filteredData = [];
 var options = {
@@ -34,7 +36,7 @@ var aspect_height = 8;
 var margin = { top: 0, right: 0, bottom: 10, left: 32 };
 var width= ($map.width() - margin.left - margin.right); 
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
-
+console.log(height)
 
 var projection = d3.geoEquirectangular()
   .scale(2000)

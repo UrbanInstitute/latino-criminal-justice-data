@@ -32,7 +32,7 @@ var color = d3.scaleThreshold()
 
 var $map = $("#map");
 var aspect_width = 30;
-var aspect_height = 8;
+var aspect_height = 16.5;
 var margin = { top: 0, right: 0, bottom: 10, left: 32 };
 var width= ($map.width() - margin.left - margin.right); 
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
@@ -41,7 +41,7 @@ console.log(height)
 var projection = d3.geoEquirectangular()
   .scale(2000)
   .center([-96.03542,41.69553])
-  .translate([width / 2, height / .9]);
+  .translate([width / 2, height / 2]);
 
 var path = d3.geoPath()
   .projection(projection);

@@ -1,3 +1,4 @@
+function functionNameGoesHere(){
 //map is forked from a combination of https://github.com/githamm/us-state-squares and https://github.com/lvonlanthen/data-map-d3
 var LABELS= {
   no_data: 'No data on race or ethnicity',
@@ -375,7 +376,8 @@ console.log('hi')
 
 
 
-
+}
+functionNameGoesHere();
 
 
 

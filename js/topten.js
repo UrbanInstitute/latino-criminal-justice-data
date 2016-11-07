@@ -1,3 +1,4 @@
+function anotherFunctionGoesHere(){
 var filteredData = [];
 
 
@@ -14,7 +15,7 @@ var $grid = $("#grid");
 var aspect_width = 20;
 var aspect_height = 16.5;
 var margin = { top: 0, right: 0, bottom: 10, left: 32 };
-var width= ($map.width() - margin.left - margin.right); 
+var width= ($grid.width() - margin.left - margin.right); 
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
 
 
@@ -315,3 +316,6 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
    
 
 } 
+
+}
+anotherFunctionGoesHere()

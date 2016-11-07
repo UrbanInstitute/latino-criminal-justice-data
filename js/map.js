@@ -10,7 +10,7 @@ var LABELS= {
 var filteredData = [];
 var options = {
   category: 'number_prison',
-  filter: 'regular'
+  filter: 'step2-regular'
 
 }
 
@@ -58,7 +58,7 @@ frequency = "_frequency";
 
 //TOGGLES
 d3.selectAll(".step2_button").classed("active", false);
-d3.selectAll("#regular").classed("active", true)
+d3.select("#step2-regular").classed("active", true)
 d3.select("#mobile-text").text("")
 d3.selectAll('.step2_button')
   .on('click', function() {
@@ -286,7 +286,7 @@ console.log('hi')
       	.delay(function(d,i) { return i * 10; })
     	.duration(1250)
        	.style("opacity", function(d) {
-       		if (options.filter == 'regular') {
+       		if (options.filter == 'step2-regular') {
          		if (d.properties[Cat + frequency] == 2){
               console.log(Cat + frequency);
 	            return '1';
@@ -297,7 +297,7 @@ console.log('hi')
 	     	} 
 		 }) 
        	.style("stroke-opacity", function(d) {
-       		if (options.filter == 'regular') {
+       		if (options.filter == 'step2-regular') {
          		if (d.properties[Cat + frequency] == 2){
 	            return '0'; 
 	        	}

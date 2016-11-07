@@ -9,9 +9,8 @@ var LABELS= {
 
 var filteredData = [];
 var options = {
-  category: 'number_prison_rating',
-  filter: 'regular',
-  catID: 'number_prison'
+  category: 'number_prison',
+  filter: 'regular'
 
 }
 
@@ -75,7 +74,6 @@ d3.selectAll('.step2_button')
 $("#measures").selectmenu({
   change: function(event, d){
   options.category = this.value;
-  options.catID = this.id;
   choropleth.update(states);
   console.log(options.category);
   }
@@ -282,7 +280,7 @@ Choropleth.prototype.update = function(states) {
   rating = "_rating";
 
   console.log(Cat)
-
+console.log('hi')
    chartMap.map
    		.transition()
       	.delay(function(d,i) { return i * 10; })
@@ -290,8 +288,10 @@ Choropleth.prototype.update = function(states) {
        	.style("opacity", function(d) {
        		if (options.filter == 'regular') {
          		if (d.properties[Cat + frequency] == 2){
+              console.log(Cat + frequency);
 	            return '1';
 	        	} else {
+              console.log(Cat + frequency);
 	        		return '0';
 	        	}
 	     	} 

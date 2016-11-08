@@ -83,20 +83,24 @@ function drawFirstGraphic() {
 
       //ADDING GROUPS
     yBase = 400
+    yBase2 = 425
     for(var j = 0; j < 6; j++){
     //0 measures
     var data = states.features.filter(function(d) {return d.properties[selectedData]== String(j)})
     console.log(data)  //**why is this undefined???
 
-    var cells = chart.group.selectAll("cell")
+    cells = chart.group.selectAll("cell")
         .data(data)
-        .enter().append("rect")
+        .enter()
+
+        cells.append("rect")
         .style("fill", "#9d9d9d")
         .attr("class",function(d){
           return "cell " + d.properties.abbr
         })
         .attr("width",35)
         .attr("height",35)
+       
         .attr("x", function(d,i) {
           if (i%2 !== 0) {
             return 40 + j*100;
@@ -104,6 +108,9 @@ function drawFirstGraphic() {
             return j*100;
           }
         })
+        .transition()
+        .duration(800)
+        .delay(function(d, i) { return i*15; })
         .attr("y", function(d,i) {
           if (i%2 == 0){
             return yBase - ((i/2)*40);
@@ -112,10 +119,77 @@ function drawFirstGraphic() {
           } else{
             return yBase - (((i-1)/2)*40);
           }
-        }) //so that all columns start from the bottom up
+         }) //so that all columns start from the bottom up
+    
+
+    cells.append("text")
+     .attr("class",function(d){
+          return "cell-text " + d.properties.abbr
+        })
+  //  .attr("class", "cell-label")
+   // .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+       .transition()
+        .duration(800)
+        .delay(function(d, i) { return i*15; })
+       .attr("x", function(d,i) {
+          if (i%2 !== 0) {
+            return (46 + j*100);
+          } else {
+            return 6 + j*100;
+          }
+        })
+        .transition()
+        .duration(800)
+        .delay(function(d, i) { return i*15; })
+        .attr("y", function(d,i) {
+          if (i%2 == 0){
+            return yBase2 - ((i/2)*40);
+          } else if (i == 1) {
+            return yBase2;
+          } else{
+            return yBase2 - (((i-1)/2)*40);
+          }
+         }) //so that all columns start from the bottom up
+        .text(function(d) { 
+          return d.properties.abbr;
+        });
+
 console.log(data)
       
       }
+   var CATEGORY_LABELS = ["0", "1", "2", "3", "4", "5"]
+
+//ADDING COLUMN LABELS
+
+   chart.bottomRow = chart.svg.selectAll(".bottomRow")
+    .data(CATEGORY_LABELS)
+    .enter().append("g")
+    .attr("class", "bottomRow")
+    .attr("width", 300)
+    .attr("height", 45)
+    .attr("transform", function(d, i){ return "translate(" + (i*100 + 20) +" ,460)"})
+
+
+
+    chart.bottomRow.each(function(d, i) {
+      chart.bottomRow.append("text")
+       .attr("class", "firstGraphic-column-text")
+    //   .attr("transform", "translate("+ (i*40) +" ,10)")
+       .attr("text-anchor", "start")
+       .text(function (i) {
+          return CATEGORY_LABELS[i];
+      });
+
+  })
+   //  chart.bottomRow.append("text")
+   //    .attr("class", "firstGraphic-column-text")
+   //    .attr("transform", function(d, i){ return "translate("+ (i*4 + 2) +" ,10)"})
+   //    .attr("text-anchor", "start")
+   //     .text(function (d) {
+   //        return CATEGORY_LABELS[i];
+   //    });
+   //  }
+
 
 
    chart.states = states;
@@ -126,7 +200,7 @@ console.log(data)
 
 
  FirstGraphic.prototype.update = function(states) {
-    chart.states = states
+    //chart.states = states
    
     yBase = 400
     for(var j = 0; j < 6; j++){
@@ -135,33 +209,54 @@ console.log(data)
     var data = states.features.filter(function(d) {return d.properties[selectedData]== String(j)})
     // console.log(states.features.length)
     // console.log(data)
-    for(var i = 0; i < data.length; i++){
-    chart.group.select(".cell." + data[i].properties.abbr)
-      .transition()
-      .duration(2000)
-        .attr("x", function() {
-          if (i%2 !== 0) {
-            return 40 + j*100;
-          } else {
-            return j*100;
-          }
-        })
-        .attr("y", function() {
-          if (i%2 == 0){
-            return yBase - ((i/2)*40);
-          } else if (i == 1) {
-            return yBase;
-          } else{
-            return yBase - (((i-1)/2)*40);
-          }
-        }) //so that all columns start from the bottom up
-    }
+      for(var i = 0; i < data.length; i++){
+      chart.group.select(".cell." + data[i].properties.abbr)
+  //      .data(data)
+        .transition()
+        .duration(2000)
+          .attr("x", function() {
+            if (i%2 !== 0) {
+              return 40 + j*100;
+            } else {
+              return j*100;
+            }
+          })
+          .attr("y", function() {
+            if (i%2 == 0){
+              return yBase - ((i/2)*40);
+            } else if (i == 1) {
+              return yBase;
+            } else{
+              return yBase - (((i-1)/2)*40);
+            }
+          }) //so that all columns start from the bottom up
+        
+        chart.group.select(".cell-text." + data[i].properties.abbr)
 
+          .transition()
+          .duration(2000)
+          .attr("x", function() {
+            if (i%2 !== 0) {
+              return (46 + j*100);
+            } else {
+              return 6 + j*100;
+            }
+          })
+          .attr("y", function() {
+            if (i%2 == 0){
+              return yBase2 - ((i/2)*40);
+            } else if (i == 1) {
+              return yBase2;
+            } else{
+              return yBase2 - (((i-1)/2)*40);
+            }
+           }) //so that all columns start from the bottom up  
+       }
+      }
 
-    }
+   
 
   } 
-
 }
 
 drawFirstGraphic();

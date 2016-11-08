@@ -193,11 +193,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
       });
 
 
-//var last_row = document.querySelectorAll('.row')[9]
-  
-//so i can see the text element under each rect but it's not appearing. i did some 
-//further research and apparnetly i need to append the text to the g, so not the rect?
-//but there is only one g element so how do i append each of the 5 measures?
+
   last_row = chartTen.svg.selectAll('.row')
     .filter(function(d, i) { return i == 9;})
     .attr("class", "last_row");

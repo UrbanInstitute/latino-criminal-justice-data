@@ -137,7 +137,6 @@ console.log(data)
     // console.log(data)
     for(var i = 0; i < data.length; i++){
     chart.group.select(".cell." + data[i].properties.abbr)
-      .data(data)
       .transition()
       .duration(2000)
         .attr("x", function() {

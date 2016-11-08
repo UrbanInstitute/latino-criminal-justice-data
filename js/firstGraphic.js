@@ -1,10 +1,3 @@
-var LABELS= {
-  no_data: 'No data on race or ethnicity',
-  data_no_cat: 'Data, but no Latino category',
-  combined: 'Race/Ethnicity combined',
-  separate: 'Race/Ethnicity separate',
-  cross_tabbed: 'Race/Ethnicity cross-tabbed'
-}
 
 function drawFirstGraphic() {
   var selectedData = 'num_crime_cat_2'
@@ -88,16 +81,6 @@ function drawFirstGraphic() {
     chart.group = chart.svg.append('g')
 
 
-   chart.states = states;
-
-  }
-
-
-
-  FirstGraphic.prototype.update = function(states) {
-
-
-
       //ADDING GROUPS
     yBase = 400
     for(var j = 0; j < 6; j++){
@@ -105,12 +88,9 @@ function drawFirstGraphic() {
     var data = states.features.filter(function(d) {return d.properties[selectedData]== String(j)})
     console.log(data)  //**why is this undefined???
 
-    var column = chart.group.selectAll("cell")
+    var cells = chart.group.selectAll("cell")
         .data(data)
-
-    columnEnter = column
-        .enter()
-        .append("rect")
+        .enter().append("rect")
         .style("fill", "#9d9d9d")
         .attr("class","cell")
         .attr("width",35)
@@ -131,16 +111,53 @@ function drawFirstGraphic() {
             return yBase - (((i-1)/2)*40);
           }
         }) //so that all columns start from the bottom up
-        .attr("class", function(d,i) {
+console.log(data)
+      
+      }
+
+
+   chart.states = states;
+   
+
+  }
+
+
+
+ FirstGraphic.prototype.update = function(states) {
+
+   
+    yBase = 400
+    for(var j = 0; j < 6; j++){
+
+    var data = states.features.filter(function(d) {return d.properties[selectedData]== String(j)})
+
+console.log(data)
+
+    chart.group.selectAll("rect")
+      .data(data)
+      .transition()
+      .duration(2000)
+        .attr("x", function(d,i) {
           if (i%2 !== 0) {
-            return "odd group0"
+            return 40 + j*100;
           } else {
-            return "even group0"
+            return j*100;
           }
         })
-      column.merge(columnEnter)
+        .attr("y", function(d,i) {
+          if (i%2 == 0){
+            return yBase - ((i/2)*40);
+          } else if (i == 1) {
+            return yBase;
+          } else{
+            return yBase - (((i-1)/2)*40);
+          }
+        }) //so that all columns start from the bottom up
 
-      }
+console.log(data)
+
+    }
+
   } 
 
 }

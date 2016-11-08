@@ -1,4 +1,4 @@
-function anotherFunctionGoesHere(){
+function drawTopten(){
 var filteredData = [];
 
 
@@ -55,7 +55,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 	});
 });
 
-function Grid(states) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e704e3efcbd5739
+function Grid(gridStates) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e704e3efcbd5739
 
 //var filteredData = states.features.properties.filter(function(d) {return d.hispanic>900000})
 
@@ -74,7 +74,7 @@ function Grid(states) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e704e3
       .attr("height", height);
 
 
-var filteredData = states.features.filter(function(d){
+var filteredData = gridStates.features.filter(function(d){
     return parseFloat(d.properties.hispanic.replace(/\,/g,"")) > 900000
   })
 
@@ -180,7 +180,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
   })
 
 
-//ADD LABELS
+//ADD DATA_QUALITY_LABELS
 
     chartTen.svg.selectAll(".row")
       .data(filteredData)
@@ -212,7 +212,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
       console.log(MEASURES[i])
       last_row.append("text")
       .attr("class", "grid-cat-labels")
-      .attr("transform", "translate(" + (i*45 -7) + ",87) rotate(-45)" )
+      .attr("transform", "translate(" + (i*45 -7) + ",85) rotate(-45)" )
       .attr("text-anchor", "start")
 
       .text(function (d) {
@@ -238,7 +238,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
       .attr("y", "27.7em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return LABELS["no_data"];
+          return DATA_QUALITY_LABELS["no_data"];
       });
 
     chartTen.svg
@@ -255,7 +255,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
       .attr("y", "29.8em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return LABELS["data_no_cat"];
+          return DATA_QUALITY_LABELS["data_no_cat"];
       });
 
     chartTen.svg
@@ -272,7 +272,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
       .attr("y", "31.8em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return LABELS["combined"];
+          return DATA_QUALITY_LABELS["combined"];
       });
 
     chartTen.svg
@@ -289,7 +289,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
       .attr("y", "33.8em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return LABELS["separate"];
+          return DATA_QUALITY_LABELS["separate"];
       });
 
     chartTen.svg
@@ -306,7 +306,7 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
       .attr("y", "35.6em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return LABELS["cross_tabbed"];
+          return DATA_QUALITY_LABELS["cross_tabbed"];
       });
 
 
@@ -318,4 +318,4 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
 } 
 
 }
-anotherFunctionGoesHere()
+drawTopten()

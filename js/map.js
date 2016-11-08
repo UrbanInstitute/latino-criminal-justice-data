@@ -1,5 +1,13 @@
+var DATA_QUALITY_LABELS= {
+  no_data: 'No data on race or ethnicity',
+  data_no_cat: 'Data, but no Latino category',
+  combined: 'Race/Ethnicity combined',
+  separate: 'Race/Ethnicity separate',
+  cross_tabbed: 'Race/Ethnicity cross-tabbed'
+}
 
-function functionNameGoesHere(){
+
+function drawMap(){
 //map is forked from a combination of https://github.com/githamm/us-state-squares and https://github.com/lvonlanthen/data-map-d3
 
 
@@ -151,6 +159,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
   	.data(mapStates.features)
   	.enter().append('path')
   	.attr('d', path)
+    .style("opacity", 0)
 
 
   chartMap.svg
@@ -183,7 +192,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "33em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return LABELS["no_data"];
+          return DATA_QUALITY_LABELS["no_data"];
       });
 
     chartMap.svg
@@ -200,7 +209,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "35em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return LABELS["data_no_cat"];
+          return DATA_QUALITY_LABELS["data_no_cat"];
       });
 
     chartMap.svg
@@ -217,7 +226,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "33em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return LABELS["combined"];
+          return DATA_QUALITY_LABELS["combined"];
       });
 
     chartMap.svg
@@ -234,7 +243,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "35em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return LABELS["separate"];
+          return DATA_QUALITY_LABELS["separate"];
       });
 
     chartMap.svg
@@ -251,7 +260,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "37em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return LABELS["cross_tabbed"];
+          return DATA_QUALITY_LABELS["cross_tabbed"];
       });
   
   chartMap.mapStates = mapStates;
@@ -275,8 +284,7 @@ Choropleth.prototype.update = function(mapStates) {
   frequency = "_frequency";
   rating = "_rating";
 
-  console.log(Cat)
-console.log('hi')
+
    chartMap.map
    		.transition()
       	.delay(function(d,i) { return i * 10; })
@@ -372,7 +380,7 @@ console.log('hi')
 
 
 }
-functionNameGoesHere();
+drawMap();
 
 
 

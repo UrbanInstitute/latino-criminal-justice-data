@@ -63,7 +63,7 @@ function drawFirstGraphic() {
       
 
         firstGraphic = new FirstGraphic(jsonResults)
-        firstGraphic.update(jsonResults)
+        // firstGraphic.update(jsonResults)
   	});
   });
 
@@ -92,7 +92,9 @@ function drawFirstGraphic() {
         .data(data)
         .enter().append("rect")
         .style("fill", "#9d9d9d")
-        .attr("class","cell")
+        .attr("class",function(d){
+          return "cell " + d.properties.abbr
+        })
         .attr("width",35)
         .attr("height",35)
         .attr("x", function(d,i) {
@@ -124,27 +126,28 @@ console.log(data)
 
 
  FirstGraphic.prototype.update = function(states) {
-
+    chart.states = states
    
     yBase = 400
     for(var j = 0; j < 6; j++){
 
+
     var data = states.features.filter(function(d) {return d.properties[selectedData]== String(j)})
-
-console.log(data)
-
-    chart.group.selectAll("rect")
+    // console.log(states.features.length)
+    // console.log(data)
+    for(var i = 0; i < data.length; i++){
+    chart.group.select(".cell." + data[i].properties.abbr)
       .data(data)
       .transition()
       .duration(2000)
-        .attr("x", function(d,i) {
+        .attr("x", function() {
           if (i%2 !== 0) {
             return 40 + j*100;
           } else {
             return j*100;
           }
         })
-        .attr("y", function(d,i) {
+        .attr("y", function() {
           if (i%2 == 0){
             return yBase - ((i/2)*40);
           } else if (i == 1) {
@@ -153,8 +156,8 @@ console.log(data)
             return yBase - (((i-1)/2)*40);
           }
         }) //so that all columns start from the bottom up
+    }
 
-console.log(data)
 
     }
 

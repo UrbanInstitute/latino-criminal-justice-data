@@ -1,5 +1,17 @@
 var GLOBAL_LANGUAGE = "english";
 
+var BUTTON_NAMES= {
+    english: {
+    regular: "Regularly and Recently Reported Data",
+    all: "All Data Reported"
+    },
+    spanish: {
+    regular: "spanish-version-regular",
+    all: "spanish-version-all"
+    }
+}
+
+
 var DATA_QUALITY_LABELS= {
   english: {
     no_data: 'No data on race or ethnicity',
@@ -33,6 +45,26 @@ var MEASURES = {
     ["parole","Parole"]
   ]
 }
+
+
+
+$("#spanish")
+.on("click", function() {
+ 
+  d3.select(this).classed("active", true)
+  console.log($("#step1-regular").data())
+
+  if ($("#step1-regular").text() == $("#step1-regular").data(BUTTON_NAMES["spanish"]["regular"])) {
+    console.log('hi')
+    $("#step1-regular").text($("#step1-regular").data(BUTTON_NAMES["english"]["regular"]));
+  } else {
+    console.log('hi')
+    $("#step1-regular").data(BUTTON_NAMES[GLOBAL_LANGUAGE]["regular"], $("#step1-regular").text());
+    $("#step1-regular").text(BUTTON_NAMES["spanish"]["regular"])
+   d3.select("#step1-regular").classed(".step1_button", "true")
+  }
+})
+
 
 
 function drawMap(){

@@ -163,7 +163,7 @@ filteredData = filteredData.sort(function(a,b) {
       .attr("text-anchor", "start")
 
       .text(function () { 
-           return MEASURES[GLOBAL_LANGUAGE][i][1] //returning "UNDEFINED"
+           return MEASURES[GLOBAL_LANGUAGE][i][1] 
 
        });
     })

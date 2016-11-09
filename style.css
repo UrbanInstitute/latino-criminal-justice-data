@@ -172,7 +172,9 @@ span.ui-selectmenu-text {
 #step1, #step2, #step3 {
     width: 70%;
     padding-top: 10px;
-    float: left;
+
+    left: 50%;
+    right: 50%;
 }
 
 #spanish, #step1, #step2, #step3 ul{
@@ -197,7 +199,7 @@ span.ui-selectmenu-text {
 
 .step1_button, .step2_button, .step3_button {
   display: inline;
-    float: left;
+    float: right;
     color:#333;
     background-color: #f2f2f2;
     padding: 12px;
@@ -295,4 +297,8 @@ select#measures-menu{
 .grid-cat-labels {
   font-size: 12px;
   z-index: 3;
+}
+
+.cell-text {
+  font-size: 12px;
 }

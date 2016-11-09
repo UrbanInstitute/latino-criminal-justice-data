@@ -1,69 +1,3 @@
-var GLOBAL_LANGUAGE = "english";
-
-var BUTTON_NAMES= {
-    english: {
-    regular: "Regularly and Recently Reported Data",
-    all: "All Data Reported"
-    },
-    spanish: {
-    regular: "spanish-version-regular",
-    all: "spanish-version-all"
-    }
-}
-
-
-var DATA_QUALITY_LABELS= {
-  english: {
-    no_data: 'No data on race or ethnicity',
-    data_no_cat: 'Data, but no Latino category',
-    combined: 'Race/Ethnicity combined',
-    separate: 'Race/Ethnicity separate',
-    cross_tabbed: 'Race/Ethnicity cross-tabbed'
-  },
-  spanish: {
-    no_data: '',
-    data_no_cat: '',
-    combined: '',
-    separate: '',
-    cross_tabbed: ''
-  }
-}
-
-var MEASURES = {
-  english: [
-    ["prison","Prison"], 
-    ["prison_pop","Prison Pop"], 
-    ["arrests","Arrests"], 
-    ["probation","Probation"], 
-    ["parole","Parole"]
-  ],
-  spanish: [
-    ["prison","Prison"], 
-    ["prison_pop","Prison Pop"], 
-    ["arrests","Arrests"], 
-    ["probation","Probation"], 
-    ["parole","Parole"]
-  ]
-}
-
-
-
-$("#spanish")
-.on("click", function() {
- 
-  d3.select(this).classed("active", true)
-  console.log($("#step1-regular").data())
-
-  if ($("#step1-regular").text() == $("#step1-regular").data(BUTTON_NAMES["spanish"]["regular"])) {
-    console.log('hi')
-    $("#step1-regular").text($("#step1-regular").data(BUTTON_NAMES["english"]["regular"]));
-  } else {
-    console.log('hi')
-    $("#step1-regular").data(BUTTON_NAMES[GLOBAL_LANGUAGE]["regular"], $("#step1-regular").text());
-    $("#step1-regular").text(BUTTON_NAMES["spanish"]["regular"])
-   d3.select("#step1-regular").classed(".step1_button", "true")
-  }
-})
 
 
 
@@ -93,7 +27,7 @@ var color = d3.scaleThreshold()
 
 var $map = $("#map");
 var aspect_width = 30;
-var aspect_height = 25;
+var aspect_height = 23;
 var margin = { top: 0, right: 0, bottom: 10, left: 32 };
 var width= ($map.width() - margin.left - margin.right); 
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
@@ -102,7 +36,7 @@ console.log(height)
 var projection = d3.geoEquirectangular()
   .scale(2000)
   .center([-96.03542,41.69553])
-  .translate([width / 2, height / 3]);
+  .translate([width / 2.8, height / 3.3]);
 
 var path = d3.geoPath()
   .projection(projection);

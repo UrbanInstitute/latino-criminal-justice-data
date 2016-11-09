@@ -17,7 +17,7 @@ var color = d3.scaleThreshold()
 
 var $grid = $("#grid");
 var aspect_width = 20;
-var aspect_height = 18.5;
+var aspect_height = 17;
 var margin = { top: 0, right: 0, bottom: 10, left: 32 };
 var width= ($grid.width() - margin.left - margin.right); 
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
@@ -104,7 +104,7 @@ var filteredData = gridStates.features.filter(function(d){
     .attr("class", "row")
     .attr("width", 500)
     .attr("height", 45)
-    .attr("transform", function(d, i){ return "translate(" + 100 +" ," + (i*45 + 25) + ")"})
+    .attr("transform", function(d, i){ return "translate(" + 35 +" ," + (i*45) + ")"})
 
   
 gridColumns = ["number_prison", "number_prison_ct", "arrests", "probation", "parole"]
@@ -266,6 +266,7 @@ Grid.prototype.update = function(gridStates) {
 
   var frequency = "_frequency"
   var rating = "_rating"
+
 
   for(var i = 0; i < gridColumns.length; i++){
   var gridColumn = gridColumns[i]; 

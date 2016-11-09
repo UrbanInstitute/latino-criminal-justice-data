@@ -15,7 +15,7 @@ function drawFirstGraphic() {
 
   var $firstGraphic = $("#firstGraphic");
   var aspect_width = 20;
-  var aspect_height = 15;
+  var aspect_height = 13;
   var margin = { top: 0, right: 0, bottom: 10, left: 32 };
   var width= ($firstGraphic.width() - margin.left - margin.right); 
   var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
@@ -82,8 +82,8 @@ function drawFirstGraphic() {
 
 
       //ADDING GROUPS
-    yBase = 400
-    yBase2 = 425
+    yBase = 320
+    yBase2 = 342
     for(var j = 0; j < 6; j++){
     //0 measures
     var data = states.features.filter(function(d) {return d.properties[selectedData]== String(j)})
@@ -92,7 +92,7 @@ function drawFirstGraphic() {
         .enter()
 
         cells.append("rect")
-        .style("fill", "#9d9d9d")
+        .style("fill", "#1696d2")
         .attr("class",function(d){
           return "cell " + d.properties.abbr
         })
@@ -126,9 +126,6 @@ function drawFirstGraphic() {
         })
   //  .attr("class", "cell-label")
    // .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
-       .transition()
-        .duration(800)
-        .delay(function(d, i) { return i*15; })
        .attr("x", function(d,i) {
           if (i%2 !== 0) {
             return (46 + j*100);
@@ -162,7 +159,7 @@ function drawFirstGraphic() {
     .attr("class", "bottomRow")
     .attr("width", 300)
     .attr("height", 45)
-    .attr("transform", function(d, i){ return "translate(" + (i*100 + 20) +" ,460)"})
+    .attr("transform", function(d, i){ return "translate(" + (i*100 + 20) +" ,380)"})
 
 
 

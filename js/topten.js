@@ -1,3 +1,4 @@
+
 function drawTopten(){
 
 var options = {
@@ -151,8 +152,6 @@ filteredData = filteredData.sort(function(a,b) {
     .filter(function(d, i) { return i == 9;})
     .attr("class", "last_row");
 
-  
-  var MEASURES = ["Prison", "Prison Pop", "Arrests", "Probation", "Parole"]
 
   last_row = chartTen.svg.selectAll(".last_row")
     // .data(MEASURES);
@@ -163,8 +162,9 @@ filteredData = filteredData.sort(function(a,b) {
       .attr("transform", "translate(" + (i*45 -7) + ",85) rotate(-45)" )
       .attr("text-anchor", "start")
 
-      .text(function (d) {
-           return MEASURES[i]
+      .text(function (d, i) { 
+           return MEASURES[GLOBAL_LANGUAGE][i] //returning "UNDEFINED"
+
        });
     })
 
@@ -186,7 +186,7 @@ filteredData = filteredData.sort(function(a,b) {
       .attr("y", "27.7em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS["no_data"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["no_data"];
       });
 
     chartTen.svg
@@ -203,7 +203,7 @@ filteredData = filteredData.sort(function(a,b) {
       .attr("y", "29.8em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS["data_no_cat"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["data_no_cat"];
       });
 
     chartTen.svg
@@ -220,7 +220,7 @@ filteredData = filteredData.sort(function(a,b) {
       .attr("y", "31.8em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS["combined"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["combined"];
       });
 
     chartTen.svg
@@ -237,7 +237,7 @@ filteredData = filteredData.sort(function(a,b) {
       .attr("y", "33.8em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS["separate"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["separate"];
       });
 
     chartTen.svg
@@ -254,7 +254,7 @@ filteredData = filteredData.sort(function(a,b) {
       .attr("y", "35.6em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS["cross_tabbed"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["cross_tabbed"];
       });
 
     chartTen.gridStates = gridStates

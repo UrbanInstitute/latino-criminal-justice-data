@@ -1,9 +1,37 @@
+var GLOBAL_LANGUAGE = "english";
+
 var DATA_QUALITY_LABELS= {
-  no_data: 'No data on race or ethnicity',
-  data_no_cat: 'Data, but no Latino category',
-  combined: 'Race/Ethnicity combined',
-  separate: 'Race/Ethnicity separate',
-  cross_tabbed: 'Race/Ethnicity cross-tabbed'
+  english: {
+    no_data: 'No data on race or ethnicity',
+    data_no_cat: 'Data, but no Latino category',
+    combined: 'Race/Ethnicity combined',
+    separate: 'Race/Ethnicity separate',
+    cross_tabbed: 'Race/Ethnicity cross-tabbed'
+  },
+  spanish: {
+    no_data: '',
+    data_no_cat: '',
+    combined: '',
+    separate: '',
+    cross_tabbed: ''
+  }
+}
+
+var MEASURES = {
+  english: {
+    prison: "Prison", 
+    prison_pop: "Prison Pop", 
+    arrests: "Arrests", 
+    probation: "Probation", 
+    parole: "Parole"
+  },
+  spanish: {
+    prison: "Prison", 
+    prison_pop: "Prison Pop", 
+    arrests: "Arrests", 
+    probation: "Probation", 
+    parole: "Parole"
+  }
 }
 
 
@@ -192,7 +220,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "33em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS["no_data"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["no_data"];
       });
 
     chartMap.svg
@@ -209,7 +237,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "35em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS["data_no_cat"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["data_no_cat"];
       });
 
     chartMap.svg
@@ -226,7 +254,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "33em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS["combined"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["combined"];
       });
 
     chartMap.svg
@@ -243,7 +271,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "35em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS["separate"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["separate"];
       });
 
     chartMap.svg
@@ -260,7 +288,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .attr("y", "37em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS["cross_tabbed"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["cross_tabbed"];
       });
   
   chartMap.mapStates = mapStates;

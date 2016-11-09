@@ -178,7 +178,29 @@ span.ui-selectmenu-text {
     
 }
 
-.step1_button, .step2_button, .step3_button span{
+.step1_button span{
+  display: inline;
+    float: left;
+    color:#333;
+    background-color: #f2f2f2;
+    padding: 12px;
+    text-align: center;
+    font-size:12px;
+    border:solid 1px #e1e1e1;
+}
+
+.step2_button span{
+  display: inline;
+    float: left;
+    color:#333;
+    background-color: #f2f2f2;
+    padding: 12px;
+    text-align: center;
+    font-size:12px;
+    border:solid 1px #e1e1e1;
+}
+
+.step3_button span{
   display: inline;
     float: left;
     color:#333;
@@ -190,22 +212,37 @@ span.ui-selectmenu-text {
 }
 
 
-.step1_button.active, .step2_button.active, .step3_button.active span{
+.step1_button.active span{
+  background-color: #1696d2;
+  color: white;
+}
+
+.step2_button.active span{
+  background-color: #1696d2;
+  color: white;
+}
+
+.step3_button.active span{
   background-color: #1696d2;
   color: white;
 }
 
 
-.step2_button, .step1_button, .step3_button span:hover{
+.step2_button span:hover{
   background-color: #231f20;
   color: white;
 }
 
-.step1_button.frozen, .step2_button.frozen .step3_button.frozen span{
-  background-color: ;
-  color: #ccc;
-  pointer-events: none;
+.step1_button span:hover{
+  background-color: #231f20;
+  color: white;
 }
+
+.step3_button span:hover{
+  background-color: #231f20;
+  color: white;
+}
+
 
 
 select#measures-menu{

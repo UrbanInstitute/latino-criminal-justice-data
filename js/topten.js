@@ -1,5 +1,8 @@
 function drawTopten(){
-var filteredData = [];
+
+var options = {
+  filter: 'step3-regular'
+}
 
 
 var chartTen=this;
@@ -20,7 +23,21 @@ var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - ma
 
 
 
+//EVENT HANDLERS
 
+//TOGGLES
+d3.selectAll(".step3_button").classed("active", false);
+d3.select("#step3-regular").classed("active", true)
+d3.select("#mobile-text").text("")
+d3.selectAll('.step3_button')
+  .on('click', function() {
+    d3.selectAll(".step3_button.active").classed("active", false);
+    d3.select(this).classed("active", true);
+    options.filter = d3.select(this).attr("id");
+    grid.update(gridStates);
+    console.log(options.filter);
+
+}) 
 
 /*DATA SOURCES*/
 
@@ -52,6 +69,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       filteredData = jsonResults.features
 
       grid = new Grid(jsonResults)
+      grid.update(jsonResults);
 	});
 });
 
@@ -66,12 +84,12 @@ function Grid(gridStates) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e7
 
 
 
-  chartTen.svg = d3.select("#grid")
-      .append("div")
-      .classed("svg-container", true)
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height);
+chartTen.svg = d3.select("#grid")
+    .append("div")
+    .classed("svg-container", true)
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
 
 var filteredData = gridStates.features.filter(function(d){
@@ -86,10 +104,9 @@ var filteredData = gridStates.features.filter(function(d){
     .attr("width", 500)
     .attr("height", 45)
     .attr("transform", function(d, i){ return "translate(" + 100 +" ," + (i*45 + 25) + ")"})
-    .on("click", function(d){ console.log(d)});
 
   
-var gridColumns = ["number_prison_rating", "number_prison_ct_rating", "arrests_rating", "probation_rating", "parole_rating"]
+gridColumns = ["number_prison", "number_prison_ct", "arrests", "probation", "parole"]
   for(var i = 0; i < gridColumns.length; i++){
     var gridColumn = gridColumns[i]; 
     chartTen.row
@@ -101,83 +118,19 @@ var gridColumns = ["number_prison_rating", "number_prison_ct_rating", "arrests_r
       .attr("class",function(d){
         return "gridSquare " + "gridSquare" + "_"+ gridColumn
       })
+      .style("opacity", 0)
   }
 
 
 var parseHispanic = function(i) {
   return parseFloat(i.properties.hispanic.replace(/\,/g,""))
-  };
+};
 
-var filteredData = filteredData.sort(function(a,b) {
+filteredData = filteredData.sort(function(a,b) {
     return d3.descending(parseHispanic(a),parseHispanic(b));
-    });
-
-console.log
-
-//var group = document.querySelector('#grid');
-//var rectNodes = group.getElementsByTagName('rect');
+});
 
 
-
-var column1 = d3.selectAll(".gridSquare_number_prison_rating")
-//  .filter(function(d, i) { return i % 5 == 0;})
-  .data(filteredData)
-  .style("fill", function(d) {
-    return color(d["properties"]["number_prison_rating"]);
-  })
-  .style("stroke", function(d) {
-    if (d["properties"]["number_prison_rating"] == 0) {
-      return "#9d9d9d";
-    }
-  })
-
-var column2 = d3.selectAll(".gridSquare_number_prison_ct_rating")
-//  .filter(function(d, i) { return i % 5 == 0;})
-  .data(filteredData)
-  .style("fill", function(d) {
-    return color(d["properties"]["number_prison_ct_rating"]);
-  })
-  .style("stroke", function(d) {
-    if (d["properties"]["number_prison_ct_rating"] == 0) {
-      return "#9d9d9d";
-    }
-  })
-
-var column3 = d3.selectAll(".gridSquare_arrests_rating")
-//  .filter(function(d, i) { return i % 5 == 0;})
-  .data(filteredData)
-  .style("fill", function(d) {
-    return color(d["properties"]["arrests_rating"]);
-  })
-  .style("stroke", function(d) {
-    if (d["properties"]["arrests_rating"] == 0) {
-      return "#9d9d9d";
-    }
-  })
-
-var column4 = d3.selectAll(".gridSquare_probation_rating")
-//  .filter(function(d, i) { return i % 5 == 0;})
-  .data(filteredData)
-  .style("fill", function(d) {
-    return color(d["properties"]["probation_rating"]);
-  })
-  .style("stroke", function(d) {
-    if (d["properties"]["probation_rating"] == 0) {
-      return "#9d9d9d";
-    }
-  })
-
-var column5 = d3.selectAll(".gridSquare_parole_rating")
-//  .filter(function(d, i) { return i % 5 == 0;})
-  .data(filteredData)
-  .style("fill", function(d) {
-    return color(d["properties"]["parole_rating"]);
-  })
-  .style("stroke", function(d) {
-    if (d["properties"]["parole_rating"] == 0) {
-      return "#9d9d9d";
-    }
-  })
 
 
 //ADD DATA_QUALITY_LABELS
@@ -205,7 +158,6 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
     // .data(MEASURES);
   
     last_row.selectAll("rect").each(function(d, i) {
-      console.log(MEASURES[i])
       last_row.append("text")
       .attr("class", "grid-cat-labels")
       .attr("transform", "translate(" + (i*45 -7) + ",85) rotate(-45)" )
@@ -305,13 +257,59 @@ var column5 = d3.selectAll(".gridSquare_parole_rating")
           return DATA_QUALITY_LABELS["cross_tabbed"];
       });
 
-
-
-
-    
-   
-
-} 
+    chartTen.gridStates = gridStates
 
 }
+
+
+Grid.prototype.update = function(gridStates) {
+
+  var frequency = "_frequency"
+  var rating = "_rating"
+
+  for(var i = 0; i < gridColumns.length; i++){
+  var gridColumn = gridColumns[i]; 
+  var eachColumn = d3.selectAll(".gridSquare_" + gridColumn);
+   // .data(filteredData)
+   eachColumn
+    .transition()
+    .delay(function(d,i) { return i * 10; })
+    .duration(1500)
+    .style("opacity", function(d) {
+      if (options.filter == 'step3-regular') {
+        if (d.properties[gridColumn + frequency] == 2){
+          return '1';
+        } else {
+          return '0';
+        }
+      } 
+    }) 
+    .style("stroke-opacity", function(d) {
+    if (options.filter == 'step3-regular') {
+      if (d.properties[gridColumn + frequency] == 2){
+        return '0'; 
+      }
+     }
+   })
+    .style("fill", function(d) {
+      return color(d["properties"][gridColumn + rating]);
+    })
+    .style("stroke", function(d) {
+      if (d["properties"][gridColumn + rating] == 0) {
+        return "#9d9d9d";
+      }
+    })
+    .style("stroke-width", function(d) {
+      if (d.properties[gridColumn + rating] == 0) {
+        return '1px'
+      }
+    }); 
+
+  }     
+
+
+ }
+
+}
+
 drawTopten()

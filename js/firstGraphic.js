@@ -87,8 +87,6 @@ function drawFirstGraphic() {
     for(var j = 0; j < 6; j++){
     //0 measures
     var data = states.features.filter(function(d) {return d.properties[selectedData]== String(j)})
-    console.log(data)  //**why is this undefined???
-
     cells = chart.group.selectAll("cell")
         .data(data)
         .enter()
@@ -152,10 +150,7 @@ function drawFirstGraphic() {
          }) //so that all columns start from the bottom up
         .text(function(d) { 
           return d.properties.abbr;
-        });
-
-console.log(data)
-      
+        });      
       }
    var CATEGORY_LABELS = ["0", "1", "2", "3", "4", "5"]
 

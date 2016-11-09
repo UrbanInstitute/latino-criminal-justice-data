@@ -289,30 +289,28 @@ Choropleth.prototype.update = function(mapStates) {
    		.transition()
       	.delay(function(d,i) { return i * 10; })
     	.duration(1250)
-       	.style("opacity", function(d) {
-       		if (options.filter == 'step2-regular') {
-         		if (d.properties[Cat + frequency] == 2){
-              console.log(Cat + frequency);
-	            return '1';
-	        	} else {
-              console.log(Cat + frequency);
-	        		return '0';
-	        	}
-	     	} 
-		 }) 
-       	.style("stroke-opacity", function(d) {
-       		if (options.filter == 'step2-regular') {
-         		if (d.properties[Cat + frequency] == 2){
-	            return '0'; 
-	        	}
-	     	   }
-		     })
+     	.style("opacity", function(d) {
+     		if (options.filter == 'step2-regular') {
+       		if (d.properties[Cat + frequency] == 2){
+            return '1';
+        	} else {
+        		return '0';
+        	}
+      	} 
+		  }) 
+     	.style("stroke-opacity", function(d) {
+     		if (options.filter == 'step2-regular') {
+       		if (d.properties[Cat + frequency] == 2){
+            return '0'; 
+        	}
+     	   }
+	     })
 	    .style("fill", function(d) {
 	        return color(d.properties[Cat + rating]);
 	    })
 	    .style("stroke", function(d) {
 	       if (d.properties[Cat + rating] == 0) {
-	         return '#848081'
+	         return '#9d9d9d'
 	       }
 	     })
 	    .style("stroke-width", function(d) {

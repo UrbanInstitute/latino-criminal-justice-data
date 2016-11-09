@@ -162,8 +162,8 @@ filteredData = filteredData.sort(function(a,b) {
       .attr("transform", "translate(" + (i*45 -7) + ",85) rotate(-45)" )
       .attr("text-anchor", "start")
 
-      .text(function (d, i) { 
-           return MEASURES[GLOBAL_LANGUAGE][i] //returning "UNDEFINED"
+      .text(function () { 
+           return MEASURES[GLOBAL_LANGUAGE][i][1] //returning "UNDEFINED"
 
        });
     })

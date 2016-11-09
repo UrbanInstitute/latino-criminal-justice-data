@@ -18,20 +18,20 @@ var DATA_QUALITY_LABELS= {
 }
 
 var MEASURES = {
-  english: {
-    prison: "Prison", 
-    prison_pop: "Prison Pop", 
-    arrests: "Arrests", 
-    probation: "Probation", 
-    parole: "Parole"
-  },
-  spanish: {
-    prison: "Prison", 
-    prison_pop: "Prison Pop", 
-    arrests: "Arrests", 
-    probation: "Probation", 
-    parole: "Parole"
-  }
+  english: [
+    ["prison","Prison"], 
+    ["prison_pop","Prison Pop"], 
+    ["arrests","Arrests"], 
+    ["probation","Probation"], 
+    ["parole","Parole"]
+  ],
+  spanish: [
+    ["prison","Prison"], 
+    ["prison_pop","Prison Pop"], 
+    ["arrests","Arrests"], 
+    ["probation","Probation"], 
+    ["parole","Parole"]
+  ]
 }
 
 

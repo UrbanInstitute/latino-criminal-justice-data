@@ -298,6 +298,8 @@ select#measures-menu{
 
 .ui-selectmenu-text {
 	font-size: 12px !important ;
+  margin-right: 2px;
+  text-overflow: none !important;
 }
 
 /*GRID*/

@@ -46,19 +46,38 @@ var MEASURES = {
   ]
 }
 
+var MEASURES_DROPDOWN = {
+  english: [
+    ["prison","the prison population"], 
+    ["prison_pop","the prison population by office"], 
+    ["arrests","arrests"], 
+    ["probation","the probation population"], 
+    ["parole","the parole population"]
+  ],
+  spanish: [
+    ["prison","the prison population-spanish"], 
+    ["prison_pop","the prison population by office-spanish"], 
+    ["arrests","arrests-spanish"], 
+    ["probation","the probation population-spanish"], 
+    ["parole","the parole population-spanish"]
+  ]
+}
+
+
+
+
 
 
 $("#spanish")
 .on("click", function() {
- 
+  GLOBAL_LANGUAGE = "spanish";
+  console.log(GLOBAL_LANGUAGE)
   d3.select(this).classed("active", true)
-  if ($(".reg_button").text() == $(".reg_button").data(BUTTON_NAMES["spanish"]["regular"])) {
-    console.log('hi')
-    $(".reg_button").text($(".reg_button").data(BUTTON_NAMES["english"]["regular"]));
+  if ($(".reg_button").text() == $(".reg_button").data(BUTTON_NAMES[GLOBAL_LANGUAGE]["regular"])) {
+    $(".reg_button").text($(".reg_button").data(BUTTON_NAMES[GLOBAL_LANGUAGE]["regular"]));
   } else {
-    console.log('hi')
     $(".reg_button").data(BUTTON_NAMES[GLOBAL_LANGUAGE]["regular"], $(".reg_button").text());
-    $(".reg_button").text(BUTTON_NAMES["spanish"]["regular"])
+    $(".reg_button").text(BUTTON_NAMES[GLOBAL_LANGUAGE]["regular"])
    d3.select(".reg_button").classed(".step1_button", "true")
   }
 })
@@ -67,14 +86,51 @@ $("#spanish")
 .on("click", function() {
  
   d3.select(this).classed("active", true)
-  if ($(".all_button").text() == $(".all_button").data(BUTTON_NAMES["spanish"]["all"])) {
+  if ($(".all_button").text() == $(".all_button").data(BUTTON_NAMES[GLOBAL_LANGUAGE]["all"])) {
     console.log('hi')
-    $(".all_button").text($(".all_button").data(BUTTON_NAMES["english"]["all"]));
+    $(".all_button").text($(".all_button").data(BUTTON_NAMES[GLOBAL_LANGUAGE]["all"]));
   } else {
     console.log('hi')
     $(".all_button").data(BUTTON_NAMES[GLOBAL_LANGUAGE]["all"], $(".all_button").text());
-    $(".all_button").text(BUTTON_NAMES["spanish"]["all"])
+    $(".all_button").text(BUTTON_NAMES[GLOBAL_LANGUAGE]["all"])
    d3.select(".all_button").classed(".step1_button", "true")
   }
 })
+
+$("#spanish")
+.on("click", function() {
+ 
+  d3.select(this).classed("active", true)
+  d3.selectAll(".measure_type").each(function(d, i) {
+    if ($(".measure_type").text() == $(".measure_type").data(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])) {
+      $(".measure_type").text($(".measure_type").data(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1]));
+    } else {
+      $(".measure_type").data(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1], $(".measure_type").text());
+      $(".measure_type").text(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
+  }
+
+
+  })
+
+})
+
+// $("#spanish")
+// .on("click", function() {
+//   selectLegend = d3.select("#legend")
+//   legendText = selectLegend.selectAll(".legend-text")
+ 
+//   d3.select(this).classed("active", true)
+//  d3.selectAll.each(function(d, i) {
+//     if ($(".legend-text").text() == $(".legend-text").data(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])) {
+//       $(".legend-text").text($(".legend-text").data(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1]));
+//     } else {
+//       $(".legend-text").data(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1], $(".legend-text").text());
+//       $(".legend-text").text(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])
+//   }
+
+
+//   })
+
+// })
+
 

@@ -172,7 +172,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
     
 
   //LEGEND
-  var categories = ["1","2","3","4","5"]
+
 
 function wrapText(text, width) {
   text.each(function() {
@@ -211,7 +211,7 @@ function wrapText(text, width) {
       .append("rect")
       .attr("id", "no-data")
       .attr("class", "legend-icon")
-      .attr("x", ".5em")
+      .attr("x", ".2em")
       .attr("y", "2em")
       .attr("width", 15)
       .attr("height", 15)
@@ -231,14 +231,14 @@ function wrapText(text, width) {
       .append("rect")
       .attr("id", "data-no-cat")
       .attr("class", "legend-icon")
-      .attr("x", "7em")
+      .attr("x", "7.3em")
       .attr("y", "2em")
       .attr("width", 16)
       .attr("height", 16)
     chartMap.legend.append("text")
       .attr("class", "legend-text")
       .attr("dy", 0)
-      .attr("x", "11em")
+      .attr("x", "11.5em")
       .attr("y", "3.7em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -249,14 +249,14 @@ function wrapText(text, width) {
       .append("rect")
       .attr("id", "combined")
       .attr("class", "legend-icon")
-      .attr("x", "13em")
+      .attr("x", "14em")
       .attr("y", "2em")
       .attr("width", 16)
       .attr("height", 16)
     chartMap.legend.append("text")
       .attr("class", "legend-text")
       .attr("dy", 0)
-      .attr("x", "16em")
+      .attr("x", "20.4em")
       .attr("y", "3.7em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -267,14 +267,14 @@ function wrapText(text, width) {
       .append("rect")
       .attr("id", "separate")
       .attr("class", "legend-icon")
-      .attr("x", "19em")
+      .attr("x", "20.6em")
       .attr("y", "2em")
       .attr("width", 16)
       .attr("height", 16)
     chartMap.legend.append("text")
       .attr("class", "legend-text")
       .attr("dy", 0)
-      .attr("x", "23.5em")
+      .attr("x", "29em")
       .attr("y", "3.7em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -292,14 +292,14 @@ function wrapText(text, width) {
     chartMap.legend.append("text")
       .attr("class", "legend-text")
       .attr("dy", 0)
-      .attr("x", "30em")
+      .attr("x", "37.8em")
       .attr("y", "3.7em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["cross_tabbed"];
       });
 
-     chartMap.legend.selectAll('.legend-text').call(wrapText,100)
+     chartMap.legend.selectAll('.legend-text').call(wrapText,90)
   
   chartMap.mapStates = mapStates;
 

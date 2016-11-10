@@ -84,7 +84,7 @@ $("#spanish")
 
 $("#spanish")
 .on("click", function() {
- 
+   GLOBAL_LANGUAGE = "spanish";
   d3.select(this).classed("active", true)
   if ($(".all_button").text() == $(".all_button").data(BUTTON_NAMES[GLOBAL_LANGUAGE]["all"])) {
     console.log('hi')
@@ -99,6 +99,7 @@ $("#spanish")
 
 $("#spanish")
 .on("click", function() {
+    GLOBAL_LANGUAGE = "spanish";
  
   d3.select(this).classed("active", true)
   d3.selectAll(".measure_type").each(function(d, i) {

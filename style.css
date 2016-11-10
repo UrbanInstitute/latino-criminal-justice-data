@@ -102,11 +102,27 @@ body {
   float: right;
   margin-top: 2em;
 
-
 }
 
 
+
 /*MAP LEGEND*/
+
+#legend {
+  position: relative;
+  width: 60%;
+  float: right;
+  margin-top: 2em;
+
+}
+
+svg.legend-text-div {
+  position: relative;
+  word-wrap: break-word;
+  float: right;
+  width: 2em;
+
+}
 
 #no-data {
     stroke: #9d9d9d;
@@ -134,8 +150,11 @@ body {
     z-index: 3;
 } 
 
-.legend-text {
+text.legend-text {
   font-size: 12px;
+  word-wrap: break-word;
+   width: 2em;
+
 }
 
 

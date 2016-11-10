@@ -27,8 +27,8 @@ var color = d3.scaleThreshold()
 
 var $map = $("#map");
 var aspect_width = 30;
-var aspect_height = 23;
-var margin = { top: 0, right: 0, bottom: 10, left: 32 };
+var aspect_height = 17;
+var margin = { top: 5, right: 0, bottom: 10, left: 32 };
 var width= ($map.width() - margin.left - margin.right); 
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
 console.log(height)
@@ -36,7 +36,7 @@ console.log(height)
 var projection = d3.geoEquirectangular()
   .scale(2000)
   .center([-96.03542,41.69553])
-  .translate([width / 2.8, height / 3.3]);
+  .translate([width / 2.8, height / 2.1]);
 
 var path = d3.geoPath()
   .projection(projection);
@@ -160,10 +160,11 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
     .selectAll(".place-label")
     .data(mapStates.features)
     .enter().append("text")
-      .attr("class", "place-label")
-      .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+    .attr("class", "place-label")
+    .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+    .style("text-anchor", "middle")
     .attr("dy", ".5em")
-    .attr("dx", "-.7em")
+  //  .attr("dx", "-.7em")
     .text(function(d) { 
       return d.properties.abbr;
     });
@@ -171,91 +172,134 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
     
 
   //LEGEND
+  var categories = ["1","2","3","4","5"]
 
-    chartMap.svg
+for(var i = 0; i < categories.length; i++){
+
+    function wrapText(text, width) {
+      text.each(function () {
+          var textEl = d3.select(this),
+              words = textEl.text().split(/\s+/).reverse(),
+              word,
+              line = [],
+              linenumber = 0,
+              lineHeight = 1.1, // ems
+              y = textEl.attr('y'),
+              dx = parseFloat(textEl.attr('dx') || 0), 
+              dy = parseFloat(textEl.attr('dy') || 0),
+              tspan = textEl.text(null).append('tspan')
+              .attr('x', function (i) {
+                return i*15; }).attr('y', y).attr('dy', dy + 'em');
+
+          while (word = words.pop()) {
+              line.push(word);
+              tspan.text(line.join(' '));
+              if (tspan.node().getComputedTextLength() > width) {
+                  line.pop();
+                  tspan.text(line.join(' '));
+                  line = [word];
+                  tspan = textEl.append('tspan').attr('x', i).attr('y', y).attr('dx', dx*i).attr('dy', ++linenumber * lineHeight + dy + 'em').text(word);
+              }
+          }
+      });
+    }
+  }
+
+  chartMap.legend = d3.select("#legend")
+      .append("div")
+      .classed("map-legend", true)
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height/3);
+
+    chartMap.legend
       .append("rect")
       .attr("id", "no-data")
       .attr("class", "legend-icon")
-      .attr("x", "7em")
-      .attr("y", "24em")
+      .attr("x", ".5em")
+      .attr("y", "2em")
       .attr("width", 15)
       .attr("height", 15)
-    chartMap.svg.append("text")
+    chartMap.legend
+      .append("text")
       .attr("class", "legend-text")
-      .attr("x", "11em")
-      .attr("y", "33em")
+      .attr("x", "4em")
+      .attr("y", "3.7em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["no_data"];
+         return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["no_data"];
       });
+   
 
-    chartMap.svg
+    chartMap.legend
       .append("rect")
       .attr("id", "data-no-cat")
       .attr("class", "legend-icon")
       .attr("x", "7em")
-      .attr("y", "25.5em")
+      .attr("y", "2em")
       .attr("width", 16)
       .attr("height", 16)
-    chartMap.svg.append("text")
+    chartMap.legend.append("text")
       .attr("class", "legend-text")
       .attr("x", "11em")
-      .attr("y", "35em")
+      .attr("y", "3.7em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["data_no_cat"];
       });
 
-    chartMap.svg
+    chartMap.legend
       .append("rect")
       .attr("id", "combined")
       .attr("class", "legend-icon")
-      .attr("x", "19.5em")
-      .attr("y", "24em")
+      .attr("x", "13em")
+      .attr("y", "2em")
       .attr("width", 16)
       .attr("height", 16)
-    chartMap.svg.append("text")
+    chartMap.legend.append("text")
       .attr("class", "legend-text")
-      .attr("x", "27.5em")
-      .attr("y", "33em")
+      .attr("x", "16em")
+      .attr("y", "3.7em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["combined"];
       });
 
-    chartMap.svg
+    chartMap.legend
       .append("rect")
       .attr("id", "separate")
       .attr("class", "legend-icon")
-      .attr("x", "19.5em")
-      .attr("y", "25.5em")
+      .attr("x", "19em")
+      .attr("y", "2em")
       .attr("width", 16)
       .attr("height", 16)
-    chartMap.svg.append("text")
+    chartMap.legend.append("text")
       .attr("class", "legend-text")
-      .attr("x", "27.5em")
-      .attr("y", "35em")
+      .attr("x", "23.5em")
+      .attr("y", "3.7em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["separate"];
       });
 
-    chartMap.svg
+    chartMap.legend
       .append("rect")
       .attr("id", "cross-tabbed")
       .attr("class", "legend-icon")
-      .attr("x", "19.5em")
-      .attr("y", "27em")
+      .attr("x", "27em")
+      .attr("y", "2em")
       .attr("width", 16)
       .attr("height", 16)
-    chartMap.svg.append("text")
+    chartMap.legend.append("text")
       .attr("class", "legend-text")
-      .attr("x", "27.5em")
-      .attr("y", "37em")
+      .attr("x", "30em")
+      .attr("y", "3.7em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["cross_tabbed"];
       });
+
+     chartMap.legend.selectAll('.legend-text').call(wrapText,100)
   
   chartMap.mapStates = mapStates;
 
@@ -314,7 +358,7 @@ Choropleth.prototype.update = function(mapStates) {
 	     }); 
  console.log('hello', chartMap.svg.node())
  
- d3.select(".map-container")
+ var stateText = d3.select(".map-container")
       .selectAll(".place-label")
       .transition()
         .delay(function(d,i) {return i * 10; })
@@ -351,19 +395,9 @@ Choropleth.prototype.update = function(mapStates) {
               return "#000000";
             }  
         } return "#000000";
-      })
- /*     .style("fill", function(d) { 
-        if (d.properties[Cat + rating] == 4 | d.properties[Cat + rating] == 3) {
-          return "#cfe8f3"
-        } else {
-          return "#000000";
-        } 
-      }); */
-
-   
-
-	   
-
+      });
+      
+ //     stateText.style("text-anchor", "start")
 
   }
 

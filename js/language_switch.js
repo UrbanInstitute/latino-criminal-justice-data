@@ -21,11 +21,11 @@ var DATA_QUALITY_LABELS= {
     cross_tabbed: 'Race/Ethnicity cross-tabbed'
   },
   spanish: {
-    no_data: '',
-    data_no_cat: '',
-    combined: '',
-    separate: '',
-    cross_tabbed: ''
+    no_data: 'No data- spanish',
+    data_no_cat: 'Data, no latino- spanish',
+    combined: 'Race/Ethnicity combined - spanish',
+    separate: 'Race/Ethnicity separate- spanish',
+    cross_tabbed: 'Race/Ethnicity cross-tabbed- spanish'
   }
 }
 

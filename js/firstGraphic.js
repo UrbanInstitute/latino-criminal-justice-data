@@ -120,17 +120,17 @@ function drawFirstGraphic() {
          }) //so that all columns start from the bottom up
     
 
-    cells.append("text")
-     .attr("class",function(d){
+      cells.append("text")
+        .attr("class",function(d){
           return "cell-text " + d.properties.abbr
         })
   //  .attr("class", "cell-label")
    // .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
-       .attr("x", function(d,i) {
+        .attr("x", function(d,i) {
           if (i%2 !== 0) {
-            return (46 + j*100);
+            return (57 + j*100);
           } else {
-            return 6 + j*100;
+            return 17 + j*100;
           }
         })
         .transition()
@@ -147,7 +147,8 @@ function drawFirstGraphic() {
          }) //so that all columns start from the bottom up
         .text(function(d) { 
           return d.properties.abbr;
-        });      
+        })      
+        .attr("text-anchor", "middle");
       }
    var CATEGORY_LABELS = ["0", "1", "2", "3", "4", "5"]
 
@@ -172,7 +173,7 @@ function drawFirstGraphic() {
           return CATEGORY_LABELS[i];
       });
 
-  })
+    })
    //  chart.bottomRow.append("text")
    //    .attr("class", "firstGraphic-column-text")
    //    .attr("transform", function(d, i){ return "translate("+ (i*4 + 2) +" ,10)"})

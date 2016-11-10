@@ -174,36 +174,31 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
   //LEGEND
   var categories = ["1","2","3","4","5"]
 
-for(var i = 0; i < categories.length; i++){
-
-    function wrapText(text, width) {
-      text.each(function () {
-          var textEl = d3.select(this),
-              words = textEl.text().split(/\s+/).reverse(),
-              word,
-              line = [],
-              linenumber = 0,
-              lineHeight = 1.1, // ems
-              y = textEl.attr('y'),
-              dx = parseFloat(textEl.attr('dx') || 0), 
-              dy = parseFloat(textEl.attr('dy') || 0),
-              tspan = textEl.text(null).append('tspan')
-              .attr('x', function (i) {
-                return i*15; }).attr('y', y).attr('dy', dy + 'em');
-
-          while (word = words.pop()) {
-              line.push(word);
-              tspan.text(line.join(' '));
-              if (tspan.node().getComputedTextLength() > width) {
-                  line.pop();
-                  tspan.text(line.join(' '));
-                  line = [word];
-                  tspan = textEl.append('tspan').attr('x', i).attr('y', y).attr('dx', dx*i).attr('dy', ++linenumber * lineHeight + dy + 'em').text(word);
-              }
-          }
-      });
+function wrapText(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.1, // ems
+        y = text.attr("y"),
+        x = text.attr("x"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+      }
     }
-  }
+  });
+}
+
 
   chartMap.legend = d3.select("#legend")
       .append("div")
@@ -223,8 +218,9 @@ for(var i = 0; i < categories.length; i++){
     chartMap.legend
       .append("text")
       .attr("class", "legend-text")
-      .attr("x", "4em")
+      .attr("dy", 0)
       .attr("y", "3.7em")
+      .attr("x","2em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["no_data"];
@@ -241,6 +237,7 @@ for(var i = 0; i < categories.length; i++){
       .attr("height", 16)
     chartMap.legend.append("text")
       .attr("class", "legend-text")
+      .attr("dy", 0)
       .attr("x", "11em")
       .attr("y", "3.7em")
       .attr("text-anchor", "start")
@@ -258,6 +255,7 @@ for(var i = 0; i < categories.length; i++){
       .attr("height", 16)
     chartMap.legend.append("text")
       .attr("class", "legend-text")
+      .attr("dy", 0)
       .attr("x", "16em")
       .attr("y", "3.7em")
       .attr("text-anchor", "start")
@@ -275,6 +273,7 @@ for(var i = 0; i < categories.length; i++){
       .attr("height", 16)
     chartMap.legend.append("text")
       .attr("class", "legend-text")
+      .attr("dy", 0)
       .attr("x", "23.5em")
       .attr("y", "3.7em")
       .attr("text-anchor", "start")
@@ -292,6 +291,7 @@ for(var i = 0; i < categories.length; i++){
       .attr("height", 16)
     chartMap.legend.append("text")
       .attr("class", "legend-text")
+      .attr("dy", 0)
       .attr("x", "30em")
       .attr("y", "3.7em")
       .attr("text-anchor", "start")

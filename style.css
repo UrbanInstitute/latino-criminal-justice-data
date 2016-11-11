@@ -8,15 +8,14 @@
 .svg-container article {
 
   float: left;
-  width: 34%;
   clear: left;
-  margin-right: 1em;
+  margin-right: .2em;
   margin-left: 1em;
 
 }
 
 p {
-  margin-right: 5em;
+  padding-right: 4em;
   line-height: 1.5em;
 }
 
@@ -27,6 +26,25 @@ p {
   margin-right: auto;
 }
 
+/*CONTAINERS */
+.svg-container {
+  position: relative;
+  clear: both;
+}
+
+.text-container {
+  position: relative;
+  width: 39%;
+  padding-right: 3%;
+  padding-bottom: 20px;
+  float: left;
+}
+
+.graphic-container {
+  width: 58%;
+  float: right;
+  text-align: left;
+}
 /*TITLE */
 
 .title-text {
@@ -46,26 +64,21 @@ p {
 }
 
 
-.wrapper h1 .number {
-    width: 40px;
-    background-color: #1696d2;
-    color: #fff;
-    height: 40px;
-    text-align: center;
+h1 {
+    width: 330px;
+    height: 120px;
+    text-align: left;
     display: inline-block;
     vertical-align: middle;
-    margin-right: 10px;
-    margin-top: -10px;
     font-weight: 300;
-    line-height: 1.5em;
+    line-height: 1.4em;
     font-size: 0.8em;
+    padding-bottom: .1em;
+    padding-left: .4em;
+    float: left;
+    clear: left;
 }
 
-h1 {
-  padding-top: .5em;
-  float: left;
-  clear: left;
-}
 /*Map Buttons */
 
 
@@ -91,27 +104,30 @@ body {
 
 #dropdown {
   position: relative;
-  width: 20%;
+  width: 90%;
   float: left;
-  margin-left: 2em;
-  margin-top: 1em;
+  padding-left: 1em;
 }
+
+
 
 /*FIRST GRAPHIC*/
 
 #firstGraphic {
   position: relative;
-  width: 57%;
   float: right;
   margin-top: 2em;
+  width: 100%;
+  height: 100%;
 
 
 }
 #map {
 	position: relative;
-  width: 60%;
   float: right;
   margin-top: 2em;
+  width: 100%;
+  height: 100%;
 
 }
 
@@ -121,7 +137,6 @@ body {
 
 #legend {
   position: relative;
-  width: 60%;
   float: right;
   margin-top: 2em;
 
@@ -172,7 +187,7 @@ text.legend-text {
 
 
 #measures-button {
-  width: 12em;
+  width: 19em;
   display: inline;
   float: left;
   height: 1.5em;
@@ -288,37 +303,45 @@ select#measures-menu{
     text-align: left;
     text-indent: 1px;
 }
-#measures-menu-button{
-  position: absolute;
-  right: 0px;
-}
+
 .ui-icon, .ui-widget-content .ui-icon{
-  background-image: url("../images/checkmark.png") !important;
   top: 8px !important;
   opacity: 0;
 }
+
+
 .ui-icon.selected{
   opacity: 1;
 }
 
 .place-label {
-        fill: #444;
-        font-family: "Lato", sans-serif;
-        font-weight: bold;
+    fill: #444;
+    font-family: "Lato", sans-serif;
+    font-weight: bold;
+    font-size: 12px;
  }
 
 .ui-selectmenu-text {
-	font-size: 12px !important ;
+	font-size: 17px !important ;
   margin-right: 2px;
-  text-overflow: none !important;
+  overflow: visible !important;
 }
 
 /*GRID*/
 
+#legend3 {
+  position: relative;
+  float: right;
+  margin-top: 2em;
+  width: 45%;
+
+}
+
 #grid {
   position: relative;
-  width: 60%;
-  float: right;
+  width:55%;
+  height: 100%;
+  float: left;
   margin-top: 2em;
 }
 

@@ -18,12 +18,12 @@ function drawFirstGraphic() {
 
 
   var $firstGraphic = $("#firstGraphic");
-  var aspect_width = 18;
-  var aspect_height = 13;
+
+  var aspect_width = 30;
+  var aspect_height = 30;
   var margin = { top: 0, right: 0, bottom: 10, left: 32 };
   var width= ($firstGraphic.width() - margin.left - margin.right); 
   var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
-
   var getFilter1 = function(){
     return selectedData;
   }

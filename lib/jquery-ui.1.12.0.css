@@ -108,6 +108,8 @@
 	top: 0;
 	left: 0;
 	cursor: default;
+	border-color: #ccc;
+	border-width: 1px;
 }
 .ui-menu {
 	list-style: none;
@@ -721,7 +723,7 @@ button.ui-button::-moz-focus-inner {
 	white-space: nowrap;
 	width: 14em;
 	height: 45px;
-   	background: url(../images/urban-select-2x.png) no-repeat right #EFEFEF;
+   	background: url(../images/urban-select-2x.png) no-repeat right #ffffff;
    	background-size: 45px 45px;
 	border: none;   	
    	/*width: 45px;*/
@@ -952,8 +954,9 @@ a.ui-button,
 a:link.ui-button,
 a:visited.ui-button,
 .ui-button {
-	color: #454545;
+	color: #1696d2;
 	text-decoration: none;
+
 }
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,

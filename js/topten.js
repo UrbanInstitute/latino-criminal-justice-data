@@ -1,6 +1,8 @@
 
 function drawTopten(){
 
+var cellWidth= 39
+
 var options = {
   filter: 'step3-regular'
 }
@@ -17,7 +19,7 @@ var color = d3.scaleThreshold()
 
 var $grid = $("#grid");
 var aspect_width = 20;
-var aspect_height = 17;
+var aspect_height = 35;
 var margin = { top: 0, right: 0, bottom: 10, left: 32 };
 var width= ($grid.width() - margin.left - margin.right); 
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
@@ -103,8 +105,8 @@ var filteredData = gridStates.features.filter(function(d){
     .enter().append("g")
     .attr("class", "row")
     .attr("width", 500)
-    .attr("height", 45)
-    .attr("transform", function(d, i){ return "translate(" + 35 +" ," + (i*45) + ")"})
+    .attr("height", 49)
+    .attr("transform", function(d, i){ return "translate(" + cellWidth +" ," + (i*49) + ")"})
 
   
 gridColumns = ["number_prison", "number_prison_ct", "arrests", "probation", "parole"]
@@ -112,9 +114,9 @@ gridColumns = ["number_prison", "number_prison_ct", "arrests", "probation", "par
     var gridColumn = gridColumns[i]; 
     chartTen.row
       .append("rect")
-      .attr("width",35)
-      .attr("height",35)
-      .attr("x", i*45)
+      .attr("width",cellWidth)
+      .attr("height",cellWidth)
+      .attr("x", i*49)
       .attr("y", 0)
       .attr("class",function(d){
         return "gridSquare " + "gridSquare" + "_"+ gridColumn
@@ -159,7 +161,7 @@ filteredData = filteredData.sort(function(a,b) {
     last_row.selectAll("rect").each(function(d, i) {
       last_row.append("text")
       .attr("class", "grid-cat-labels")
-      .attr("transform", "translate(" + (i*45 -7) + ",85) rotate(-45)" )
+      .attr("transform", "translate(" + (i*49 -7) + ",85) rotate(-45)" )
       .attr("text-anchor", "start")
 
       .text(function () { 
@@ -172,86 +174,93 @@ filteredData = filteredData.sort(function(a,b) {
 
 //LEGEND
 
-    chartTen.svg
+  chartTen.legend = d3.select("#legend3")
+      .append("div")
+      .classed("grid-legend", true)
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    chartTen.legend
       .append("rect")
       .attr("id", "no-data")
       .attr("class", "legend-icon")
-      .attr("x", "23.5em")
-      .attr("y", "20em")
+      .attr("x", "1em")
+      .attr("y", "0em")
       .attr("width", 15)
       .attr("height", 15)
-    chartTen.svg.append("text")
+    chartTen.legend.append("text")
       .attr("class", "legend-text")
-      .attr("x", "33.5em")
-      .attr("y", "27.7em")
+      .attr("x", "3.5em")
+      .attr("y", "1em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["no_data"];
       });
 
-    chartTen.svg
+    chartTen.legend
       .append("rect")
       .attr("id", "data-no-cat")
       .attr("class", "legend-icon")
-      .attr("x", "23.5em")
-      .attr("y", "21.5em")
+      .attr("x", "1em")
+      .attr("y", "2.2em")
       .attr("width", 16)
       .attr("height", 16)
-    chartTen.svg.append("text")
+    chartTen.legend.append("text")
       .attr("class", "legend-text")
-      .attr("x", "33.5em")
-      .attr("y", "29.8em")
+      .attr("x", "3.5em")
+      .attr("y", "4em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["data_no_cat"];
       });
 
-    chartTen.svg
+    chartTen.legend
       .append("rect")
       .attr("id", "combined")
       .attr("class", "legend-icon")
-      .attr("x", "23.5em")
-      .attr("y", "23em")
+      .attr("x", "1em")
+      .attr("y", "4.4em")
       .attr("width", 16)
       .attr("height", 16)
-    chartTen.svg.append("text")
+    chartTen.legend.append("text")
       .attr("class", "legend-text")
-      .attr("x", "33.5em")
-      .attr("y", "31.8em")
+      .attr("x", "3.5em")
+      .attr("y", "7em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["combined"];
       });
 
-    chartTen.svg
+    chartTen.legend
       .append("rect")
       .attr("id", "separate")
       .attr("class", "legend-icon")
-      .attr("x", "23.5em")
-      .attr("y", "24.5em")
+      .attr("x", "1em")
+      .attr("y", "6.6em")
       .attr("width", 16)
       .attr("height", 16)
-    chartTen.svg.append("text")
+    chartTen.legend.append("text")
       .attr("class", "legend-text")
-      .attr("x", "33.5em")
-      .attr("y", "33.8em")
+      .attr("x", "3.5em")
+      .attr("y", "10em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["separate"];
       });
 
-    chartTen.svg
+    chartTen.legend
       .append("rect")
       .attr("id", "cross-tabbed")
       .attr("class", "legend-icon")
-      .attr("x", "23.5em")
-      .attr("y", "26em")
+      .attr("x", "1em")
+      .attr("y", "8.8em")
       .attr("width", 16)
       .attr("height", 16)
-    chartTen.svg.append("text")
+    chartTen.legend.append("text")
       .attr("class", "legend-text")
-      .attr("x", "33.5em")
-      .attr("y", "35.6em")
+      .attr("x", "3.5em")
+      .attr("y", "13em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["cross_tabbed"];

@@ -4,6 +4,9 @@ function drawFirstGraphic() {
 
   var yBase = 350
   var ybaseCell = 372
+  var squareDim = 43
+  var xEvencell= 60
+  var xOddcell= 19
 
   var chart=this;
 
@@ -102,7 +105,7 @@ function drawFirstGraphic() {
        
         .attr("x", function(d,i) {
           if (i%2 !== 0) {
-            return 43 + j*100;
+            return squareDim + j*100;
           } else {
             return j*100;
           }
@@ -112,11 +115,11 @@ function drawFirstGraphic() {
         .delay(function(d, i) { return i*15; })
         .attr("y", function(d,i) {
           if (i%2 == 0){
-            return yBase - ((i/2)*43);
+            return yBase - ((i/2)*squareDim);
           } else if (i == 1) {
             return yBase;
           } else{
-            return yBase - (((i-1)/2)*43);
+            return yBase - (((i-1)/2)*squareDim);
           }
          }) //so that all columns start from the bottom up
     
@@ -129,9 +132,9 @@ function drawFirstGraphic() {
    // .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
         .attr("x", function(d,i) {
           if (i%2 !== 0) {
-            return (60 + j*100);
+            return (xEvencell + j*100);
           } else {
-            return 20 + j*100;
+            return xOddcell + j*100;
           }
         })
         .transition()
@@ -139,11 +142,11 @@ function drawFirstGraphic() {
         .delay(function(d, i) { return i*15; })
         .attr("y", function(d,i) {
           if (i%2 == 0){
-            return ybaseCell - ((i/2)*43);
+            return ybaseCell - ((i/2)*squareDim);
           } else if (i == 1) {
             return ybaseCell;
           } else{
-            return ybaseCell - (((i-1)/2)*43);
+            return ybaseCell - (((i-1)/2)*squareDim);
           }
          }) //so that all columns start from the bottom up
         .text(function(d) { 
@@ -209,18 +212,18 @@ function drawFirstGraphic() {
         .duration(2000)
           .attr("x", function() {
             if (i%2 !== 0) {
-              return 43 + j*100;
+              return squareDim + j*100;
             } else {
               return j*100;
             }
           })
           .attr("y", function() {
             if (i%2 == 0){
-              return yBase - ((i/2)*43);
+              return yBase - ((i/2)*squareDim);
             } else if (i == 1) {
               return yBase;
             } else{
-              return yBase - (((i-1)/2)*43);
+              return yBase - (((i-1)/2)*squareDim);
             }
           }) //so that all columns start from the bottom up
         
@@ -230,18 +233,18 @@ function drawFirstGraphic() {
           .duration(2000)
           .attr("x", function() {
             if (i%2 !== 0) {
-              return (60 + j*100);
+              return (xEvencell + j*100);
             } else {
-              return 20 + j*100;
+              return xOddcell + j*100;
             }
           })
           .attr("y", function() {
             if (i%2 == 0){
-              return ybaseCell - ((i/2)*43);
+              return ybaseCell - ((i/2)*squareDim);
             } else if (i == 1) {
               return ybaseCell;
             } else{
-              return ybaseCell - (((i-1)/2)*43);
+              return ybaseCell - (((i-1)/2)*squareDim);
             }
            }) //so that all columns start from the bottom up  
        }

@@ -63,6 +63,22 @@ var MEASURES_DROPDOWN = {
   ]
 }
 
+var MEASURES_TOOLTIP = {
+  english: [
+    ["prison","The Prison Population"], 
+    ["prison_pop","The Prison Population by office"], 
+    ["arrests","Arrest records"], 
+    ["probation","The Probation Population"], 
+    ["parole","The Parole Population"]
+  ],
+  spanish: [
+    ["prison","the prison population-spanish"], 
+    ["prison_pop","the prison population by office-spanish"], 
+    ["arrests","arrests-spanish"], 
+    ["probation","the probation population-spanish"], 
+    ["parole","the parole population-spanish"]
+  ]
+}
 
 
 

@@ -2,11 +2,13 @@
 function drawFirstGraphic() {
   var selectedData = 'num_crime_cat_2'
 
-  var yBase = 350
-  var ybaseCell = 372
-  var squareDim = 43
-  var xEvencell= 60
-  var xOddcell= 19
+
+  $tooltip = $("tooltip")
+  yBase = 350
+  ybaseCell = 372
+  squareDim = 43
+  xEvencell= 60
+  xOddcell= 19
 
   var chart=this;
 
@@ -61,7 +63,16 @@ function drawFirstGraphic() {
           if(typeof(jsonState[0]) != "undefined"){
             jsonState[0].properties.num_crime_cat_all = csvState.num_crime_cat_all;
             jsonState[0].properties.num_crime_cat_2 = csvState.num_crime_cat_2;
-
+            jsonState[0].properties.all_number_prison = csvState.all_number_prison;
+            jsonState[0].properties.all_number_prison_ct = csvState.all_number_prison_ct;
+            jsonState[0].properties.all_arrests = csvState.all_arrests;
+            jsonState[0].properties.all_probation = csvState.all_probation;
+            jsonState[0].properties.all_parole = csvState.all_parole;
+            jsonState[0].properties.reg_number_prison = csvState.reg_number_prison;
+            jsonState[0].properties.reg_number_prison_ct = csvState.reg_number_prison_ct;
+            jsonState[0].properties.reg_arrests = csvState.reg_arrests;
+            jsonState[0].properties.reg_probation = csvState.reg_probation;
+            jsonState[0].properties.reg_parole = csvState.reg_parole;
           }
         })
       
@@ -83,6 +94,7 @@ function drawFirstGraphic() {
         .attr("height", height);
 
     chart.group = chart.svg.append('g')
+                  .attr("class", "g")
 
 
       //ADDING GROUPS
@@ -95,14 +107,13 @@ function drawFirstGraphic() {
         .data(data)
         .enter()
 
-        cells.append("rect")
+    cells.append("rect")
         .style("fill", "#1696d2")
         .attr("class",function(d){
           return "cell " + d.properties.abbr
         })
         .attr("width",38)
         .attr("height",38)
-       
         .attr("x", function(d,i) {
           if (i%2 !== 0) {
             return squareDim + j*100;
@@ -123,7 +134,6 @@ function drawFirstGraphic() {
           }
          }) //so that all columns start from the bottom up
     
-
       cells.append("text")
         .attr("class",function(d){
           return "cell-text " + d.properties.abbr
@@ -153,7 +163,27 @@ function drawFirstGraphic() {
           return d.properties.abbr;
         })      
         .attr("text-anchor", "middle");
+      
+
       }
+      chart.svg.selectAll(".cell")
+          .on("mouseover", function() {
+            d3.select(this)
+          console.log('hi')
+          // d3.select(this)          
+          // console.log(d3.select(this))
+          //   .style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
+          //  .classed("active", true ) // should then accept fill from CSS
+           tooltip()
+           console.log('hi')
+
+        })
+        .on("mouseout",  function() {
+          d3.select(this)
+           .classed("active", false)
+           .style('fill', "#1696d2") // Re-sets the "explicit" fill
+
+        })
    var CATEGORY_LABELS = ["0", "1", "2", "3", "4", "5"]
 
 //ADDING COLUMN LABELS
@@ -187,6 +217,48 @@ function drawFirstGraphic() {
    //    });
    //  }
 
+  chart.tooltip = d3.select("#tooltip")
+    .append("div")
+    .classed("tooltip-div", true)
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height/3)
+
+   function tooltip(mystate) {
+
+
+     hoverData = data.filter(function(d) {
+      return d.all_number_prison & d.all_number_prison_ct & d.state == mystate;
+     })
+     console.log(hoverData)
+ 
+      var padding = 50;
+
+      $tooltip.empty();
+
+
+
+      chart.tooltip
+        .append("text")
+        .attr("class", "tooltip-text")
+        .attr("dy", 0)
+        .attr("y", "3.7em")
+        .attr("x","2em")
+        .attr("text-anchor", "start")
+        .text(function () {
+           for(var i = 0; i < 5; i++){
+            return MEASURES_TOOLTIP[GLOBAL_LANGUAGE][i][1]
+          }
+      });
+   
+
+        var width = $tooltip.width() - margin.left - margin.right,
+        height = height/2 - margin.top - margin.bottom;
+   }
+
+
+
+ 
 
 
    chart.states = states;
@@ -196,8 +268,11 @@ function drawFirstGraphic() {
 
 
 
+
  FirstGraphic.prototype.update = function(states) {
     //chart.states = states
+
+
 
     for(var j = 0; j < 6; j++){
 
@@ -206,7 +281,7 @@ function drawFirstGraphic() {
     // console.log(states.features.length)
     // console.log(data)
       for(var i = 0; i < data.length; i++){
-      chart.group.select(".cell." + data[i].properties.abbr)
+      chart.group.selectAll(".cell." + data[i].properties.abbr)
   //      .data(data)
         .transition()
         .duration(2000)
@@ -250,6 +325,8 @@ function drawFirstGraphic() {
        }
       }
 
+
+    
    
 
   } 

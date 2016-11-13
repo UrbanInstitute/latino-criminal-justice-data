@@ -145,6 +145,9 @@ body {
 
 }
 
+.tooltip-text {
+  font-size: 12px;
+}
 
 
 
@@ -374,4 +377,8 @@ select#measures-menu{
 
 .cell-text {
   font-size: 12px;
+}
+
+.cell-text: hover span{
+  color: #ffffff;
 }

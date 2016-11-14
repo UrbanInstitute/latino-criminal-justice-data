@@ -2,7 +2,6 @@
 
 function drawFirstGraphic() {
   var selectedData = 'num_crime_cat_2'
-      selectedState = "cell HI";
 
   tooltipCatNames = ["all_number_prison", "all_number_prison_ct", "all_arrests", "all_probation", "all_parole"]
 
@@ -175,19 +174,21 @@ function drawFirstGraphic() {
       chart.group.selectAll(".cell")
           .on("mouseover", function(mystate) {
             d3.select(this)         
-           .style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
-          .classed("active", true ) // should then accept fill from CSS
-           tooltip(mystate)
-           console.log(mystate)
-          selectedState = d3.select(this).attr('class')
-
+              .style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
+              .classed("hover", true ) // should then accept fill from CSS
+            tooltip(mystate)
+            selectedState = d3.select(this).attr('class').split(' ')[1]
+            d3.selectAll('.cell-text.' + selectedState)
+              .style('fill', '#ffffff')
 
         })
         .on("mouseout",  function() {
           d3.select(this)
-           .classed("active", false)
+           .classed("hover", false)
            .style('fill', "#1696d2") // Re-sets the "explicit" fill
-            $tooltip.empty()
+         d3.selectAll('.cell-text.' + selectedState)
+            .style('fill', '#000000')
+
 
         })
       

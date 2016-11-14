@@ -1,6 +1,8 @@
 
-
 function drawFirstGraphic() {
+
+    var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
+
 
   var selectTooltip = d3.select('.tooltip-div')
   var selectedData = 'num_crime_cat_2'
@@ -26,7 +28,7 @@ function drawFirstGraphic() {
   var $firstGraphic = $("#firstGraphic");
 
   var aspect_width = 30;
-  var aspect_height = 21;
+  var aspect_height = 23;
   var margin = { top: 0, right: 0, bottom: 10, left: 32 };
   var width= ($firstGraphic.width() - margin.left - margin.right); 
   var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
@@ -103,11 +105,13 @@ function drawFirstGraphic() {
                   .attr("class", "g")
 
 
+
       //ADDING GROUPS
 
     
     for(var j = 0; j < 6; j++){
-    //0 measures
+
+    var cell_scale = (IS_MOBILE) ? .6 : 1;
     var data = states.features.filter(function(d) {return d.properties[selectedData]== String(j)})
     cells = chart.group.selectAll("cell")
         .data(data)
@@ -118,13 +122,13 @@ function drawFirstGraphic() {
         .attr("class",function(d){
           return "cell " + d.properties.abbr
         })
-        .attr("width",38)
-        .attr("height",38)
+        .attr("width",38*cell_scale)
+        .attr("height",38*cell_scale)
         .attr("x", function(d,i) {
           if (i%2 !== 0) {
-            return squareDim + j*100;
+            return (squareDim + j*100) *cell_scale;
           } else {
-            return j*100;
+            return (j*100) *cell_scale
           }
         })
         .transition()
@@ -132,11 +136,11 @@ function drawFirstGraphic() {
         .delay(function(d, i) { return i*15; })
         .attr("y", function(d,i) {
           if (i%2 == 0){
-            return yBase - ((i/2)*squareDim);
+            return (yBase - ((i/2)*squareDim)) * cell_scale;
           } else if (i == 1) {
-            return yBase;
+            return yBase * cell_scale;
           } else{
-            return yBase - (((i-1)/2)*squareDim);
+            return (yBase - (((i-1)/2)*squareDim)) * cell_scale;
           }
          }) //so that all columns start from the bottom up
     
@@ -148,9 +152,9 @@ function drawFirstGraphic() {
    // .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
         .attr("x", function(d,i) {
           if (i%2 !== 0) {
-            return (xEvencell + j*100);
+            return (xEvencell + j*100)*cell_scale;
           } else {
-            return xOddcell + j*100;
+            return (xOddcell + j*100)*cell_scale;
           }
         })
         .transition()
@@ -158,11 +162,11 @@ function drawFirstGraphic() {
         .delay(function(d, i) { return i*15; })
         .attr("y", function(d,i) {
           if (i%2 == 0){
-            return ybaseCell - ((i/2)*squareDim);
+            return (ybaseCell - ((i/2)*squareDim))*cell_scale;
           } else if (i == 1) {
-            return ybaseCell;
+            return ybaseCell*cell_scale;
           } else{
-            return ybaseCell - (((i-1)/2)*squareDim);
+            return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale;
           }
          }) //so that all columns start from the bottom up
         .text(function(d) { 
@@ -404,5 +408,6 @@ function tooltip(mystate) {
 }
 
 drawFirstGraphic();
+ window.onresize = drawFirstGraphic
 
 

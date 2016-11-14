@@ -1,9 +1,26 @@
 /*ADJUSTING FOR SCREEN WIDTHS */
-*:focus{
-  outline: none;
+
+ @media (max-width: 600px) {
+      .graphic-container {
+        float: none !important;
+      }
+      #isMobile{
+        display: block !important;
+      }
+  }
+
+
+
+
+#isMobile{
+    display: none;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
-
-
 
 .svg-container article {
 
@@ -41,7 +58,7 @@ p {
 }
 
 .graphic-container {
-  width: 58%;
+  width: 57%;
   float: right;
   text-align: left;
 }

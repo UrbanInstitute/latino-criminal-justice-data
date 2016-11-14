@@ -4,6 +4,7 @@ function drawFirstGraphic() {
   var selectedData = 'num_crime_cat_2'
       selectedState = "cell HI";
 
+  tooltipCatNames = ["all_number_prison", "all_number_prison_ct", "all_arrests", "all_probation", "all_parole"]
 
   $tooltip = $("tooltip")
   yBase = 350
@@ -172,16 +173,12 @@ function drawFirstGraphic() {
       }
 
       chart.group.selectAll(".cell")
-          .on("mouseover", function() {
-            d3.select(this)
-
-          //console.log('hi')
-          // d3.select(this)          
-          // console.log(d3.select(this))
+          .on("mouseover", function(mystate) {
+            d3.select(this)         
            .style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
           .classed("active", true ) // should then accept fill from CSS
-           tooltip()
-           console.log('hi')
+           tooltip(mystate)
+           console.log(mystate)
           selectedState = d3.select(this).attr('class')
 
 
@@ -232,7 +229,7 @@ function drawFirstGraphic() {
     .classed("tooltip-div", true)
     .append("svg")
     .attr("width", width)
-    .attr("height", height/2)
+    .attr("height", height/2.3)
 
   chart.tooltipRight = chart.tooltip
     .append("g")
@@ -247,49 +244,62 @@ function drawFirstGraphic() {
     .attr("transform", "translate("+ .05*width + ",0)");
 
 chart.states = states
-   function tooltip(states) {
 
 
-var hoverData = data.filter(function(d) {return d.properties.name== String(j)})
-console.log(hoverData)
+function tooltip(mystate) {
 
- 
-      var padding = 50;
- for(var i = 0; i < 5; i++){
-      chart.tooltipRight
-        .append("text")
-        .attr("class", "tooltip-text")
-        .attr("dy", 0)
-        .attr("y", 1+ 2*i +"em")
-        .attr("x","18em")
-        .attr("text-anchor", "start")
-        .text(function () {
-            return MEASURES_TOOLTIP[GLOBAL_LANGUAGE][i][1]
-          });
+   
+   for(var i = 0; i < MEASURES_TOOLTIP[GLOBAL_LANGUAGE].length; i++){
+        chart.tooltipRight
+          .append("text")
+          .attr("class", "tooltip-text")
+          .attr("dy", 0)
+          .attr("y", 1+ 2.7*i +"em")
+          .attr("x","18em")
+          .attr("text-anchor", "start")
+          .text(function () {
+              return MEASURES_TOOLTIP[GLOBAL_LANGUAGE][i][1]
+            });
+    }
+
+    for (var i = 0; i < tooltipCatNames.length; i++) {
+      
+        tooltipCatName = tooltipCatNames[i]
+        var imgs = chart.tooltipRight.selectAll("img").data([0]);
+          imgs.enter()
+         .append("svg:image")
+          .attr("xlink:href", function(d, j) {
+            if (mystate.properties[tooltipCatName] == "1") { 
+              console.log(tooltipCatName)
+              return "images/checkbox.svg";
+            }
+            else {
+            return "images/uncheckedbox.svg"
+          }
+          }) 
+          .attr("x", "10em")
+          .attr("y",  2*i + "em")
+          .attr("width", "20")
+          .attr("height", "20");
       }
+          
+  
+  
+        chart.tooltipLeft
+          .append("text")
+          .attr("class", "tooltip-text-state")
+          .attr("dy", 0)
+          .attr("y", "3em")
+          .attr("x","0em")
+          .attr("text-anchor", "start")
+          .text(function() {
+            return mystate.properties.name;
+          });
+  
+     
 
-var imgs = chart.tooltipRight.selectAll("img").data([0]);
-        imgs.enter()
-        .append("svg:image")
-        .attr("xlink:href", "http://uploads.webflow.com/580674b120de885f03ad8655/582241afeb431b60411243f7_icn-check.svg")
-        .attr("x", "0")
-        .attr("y", "0")
-        .attr("width", "20")
-        .attr("height", "20");
-
-      chart.tooltipLeft
-        .append("text")
-        .attr("class", "tooltip-text-state")
-        .attr("dy", 0)
-        .attr("y", "3em")
-        .attr("x","0em")
-        .attr("text-anchor", "start")
-        .text("State");
-   
-   
-
-        var width = $tooltip.width() - margin.left - margin.right,
-        height = height/2 - margin.top - margin.bottom;
+          var width = $tooltip.width() - margin.left - margin.right,
+          height = height/2 - margin.top - margin.bottom;
    }
 
 

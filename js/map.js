@@ -27,7 +27,7 @@ var color = d3.scaleThreshold()
 
 var $map = $("#map");
 var aspect_width = 30;
-var aspect_height = 23;
+var aspect_height = 19;
 var margin = { top: 5, right: 0, bottom: 10, left: 32 };
 var width= ($map.width() - margin.left - margin.right); 
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
@@ -36,7 +36,7 @@ console.log(height)
 var projection = d3.geoEquirectangular()
   .scale(2300)
   .center([-96.03542,41.69553])
-  .translate([width / 2.3, height / 2.7]);
+  .translate([width / 2.3, height / 2.2]);
 
 var path = d3.geoPath()
   .projection(projection);
@@ -206,8 +206,6 @@ function wrapText(text, width) {
       .append("svg")
       .attr("width", width)
       .attr("height", height/3);
-
-      console.log(chartMap.legend)
 
     chartMap.legend
       .append("rect")

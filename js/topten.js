@@ -161,7 +161,7 @@ filteredData = filteredData.sort(function(a,b) {
     last_row.selectAll("rect").each(function(d, i) {
       last_row.append("text")
       .attr("class", "grid-cat-labels")
-      .attr("transform", "translate(" + (i*49 -7) + ",85) rotate(-45)" )
+      .attr("transform", "translate(" + (i*52 -5) + ",90) rotate(-45)" )
       .attr("text-anchor", "start")
 
       .text(function () { 

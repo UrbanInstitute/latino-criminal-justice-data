@@ -45,6 +45,55 @@ p {
   float: right;
   text-align: left;
 }
+
+.urban-switch.large {
+    font-size: 13px;
+    font-family: Lato, sans-serif;
+    height: 26px;
+    border: none;
+    color: #ffffff;
+    display: inline-block;
+    line-height: 12px;
+    text-align: left;
+    border-radius: 10px;
+    padding-right: 10px;
+
+    margin-bottom: 18px;
+}
+
+.switch.large {
+    background-image: url(../images/off-on.png);
+    background-color: #696969;
+    background-repeat: no-repeat;
+    /*width: 55px;*/
+    /*height: 18px;*/
+    /*border-radius: 10px;*/
+
+
+    width: 83px;
+    height: 26px;
+    border-radius: 20px;
+    margin-left: 60px;
+}
+
+.switch.large.off {
+    background-position: -68px 0px;
+    background-color: #696969;
+}
+
+.switch.large.on {
+    background-position: -10px 0px;
+    background-color: #1696d2;
+}
+
+.toggle_text{
+  font-weight: 900;
+    margin-left: 60px;
+    margin-top: -14px;
+    margin-bottom: 9px;
+    font-size: 18px;
+}
+
 /*TITLE */
 
 .title-text {
@@ -131,7 +180,7 @@ body {
 #tooltip {
   position: relative;
   float: right;
-  margin-top: 2em;
+  margin-top: 1em;
 
 }
 
@@ -149,6 +198,17 @@ body {
   font-size: 12px;
 }
 
+.tooltip-text-state {
+  font-size: 32px;
+  line-height: 36px;
+  font-weight: 400;
+}
+
+.tooltip-header {
+  fill: #1696d2;
+  font-size: 12px;
+  text-transform: uppercase;
+}
 
 
 

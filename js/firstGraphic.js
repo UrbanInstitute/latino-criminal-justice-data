@@ -1,6 +1,8 @@
 
 
 function drawFirstGraphic() {
+
+  var selectTooltip = d3.select('.tooltip-div')
   var selectedData = 'num_crime_cat_2'
 
   tooltipCatNames = ["all_number_prison", "all_number_prison_ct", "all_arrests", "all_probation", "all_parole"]
@@ -188,6 +190,12 @@ function drawFirstGraphic() {
            .style('fill', "#1696d2") // Re-sets the "explicit" fill
          d3.selectAll('.cell-text.' + selectedState)
             .style('fill', '#000000')
+        chart.tooltipLeft.selectAll('text')
+            .remove()
+        chart.tooltipRight.selectAll('text')
+            .remove()
+        chart.tooltipRight.selectAll('.checkbox')
+            .remove()
 
 
         })
@@ -234,13 +242,13 @@ function drawFirstGraphic() {
 
   chart.tooltipRight = chart.tooltip
     .append("g")
-    .attr("width", width/2)
+    .attr("width", width/2.3)
     .attr("height", height)
- //   .attr("transform", "translate("+ width/4 +", 0)");
+    .attr("transform", "translate("+ width/6 +", 0)");
 
   chart.tooltipLeft = chart.tooltip
     .append("g")
-    .attr("width", width/2)
+    .attr("width", width/1.7)
     .attr("height", height/2)
     .attr("transform", "translate("+ .05*width + ",0)");
 
@@ -255,7 +263,7 @@ function tooltip(mystate) {
           .append("text")
           .attr("class", "tooltip-text")
           .attr("dy", 0)
-          .attr("y", 1+ 2.7*i +"em")
+          .attr("y", 3.8+ 2.3*i +"em")
           .attr("x","18em")
           .attr("text-anchor", "start")
           .text(function () {
@@ -278,25 +286,41 @@ function tooltip(mystate) {
             return "images/uncheckedbox.svg"
           }
           }) 
+          .attr('class', 'checkbox')
           .attr("x", "10em")
-          .attr("y",  2*i + "em")
+          .attr("y",  2 + 1.7*i + "em")
           .attr("width", "20")
           .attr("height", "20");
       }
           
+        chart.tooltipRight
+          .append("text")
+          .attr("class", "tooltip-header")
+          .attr("dy", 0)
+          .attr("y", "1em")
+          .attr("x","12em")
+          .attr("text-anchor", "start")
+          .text("data on latinos has been reported for");
   
   
         chart.tooltipLeft
           .append("text")
           .attr("class", "tooltip-text-state")
           .attr("dy", 0)
-          .attr("y", "3em")
-          .attr("x","0em")
+          .attr("y", "2em")
+          .attr("x","-1em")
           .attr("text-anchor", "start")
           .text(function() {
             return mystate.properties.name;
           });
-  
+        chart.tooltipLeft
+          .append("text")
+          .attr("class", "tooltip-header")
+          .attr("dy", 0)
+          .attr("y", "1em")
+          .attr("x","-2.3em")
+          .attr("text-anchor", "start")
+          .text("state");
      
 
           var width = $tooltip.width() - margin.left - margin.right,

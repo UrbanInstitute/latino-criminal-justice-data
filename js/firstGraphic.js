@@ -222,6 +222,8 @@ function drawFirstGraphic() {
             .remove()
         chart.tooltipRight.selectAll('.checkbox')
             .remove()
+        addHeaders();
+        addMeasures();
 
 
         })
@@ -287,38 +289,71 @@ function drawFirstGraphic() {
     .attr("width", width*cell_scale)
     .attr("height", height/2.3*cell_scale)
 
-
-
-  chart.tooltipRight = chart.tooltip
-    .append("g")
-    .attr("width", width/2.3*cell_scale)
-    .attr("height", height*cell_scale)
-    .attr("transform", "translate("+ (width/6)*cell_scale +", 0)");
-
   chart.tooltipLeft = chart.tooltip
     .append("g")
     .attr("width", width/1.7)
     .attr("height", height/2)
     .attr("transform", "translate("+ (.05*width)*cell_scale + ",0)");
 
+  chart.tooltipRight = chart.tooltip
+    .append("g")
+    .attr("width", width/2.3*cell_scale)
+    .attr("height", height*cell_scale)
+    .attr("transform", "translate("+ (width/6)*cell_scale +", 0)");
+  
+  for (var i = 0; i < tooltipCatNames.length; i++) {
+  var imgs = chart.tooltipRight.selectAll("img").data([0]);
+    imgs.enter()
+    .append("svg:image")
+    .attr("xlink:href", "images/uncheckedbox.svg") 
+    .attr('class', 'checkbox_initial')
+    .attr("x", "10em")
+    .attr("y",  2 + 1.7*i + "em")
+    .attr("width", "20")
+    .attr("height", "20");
+  }
+
+  function addMeasures() {
+    for(var i = 0; i < MEASURES_TOOLTIP[GLOBAL_LANGUAGE].length; i++){
+      chart.tooltipRight
+        .append("text")
+        .attr("class", "tooltip-text")
+        .attr("dy", 0)
+        .attr("y", 3.8+ 2.3*i +"em")
+        .attr("x","18em")
+        .attr("text-anchor", "start")
+        .text(function () {
+            return MEASURES_TOOLTIP[GLOBAL_LANGUAGE][i][1]
+          });
+      }
+  }
+
+  function addHeaders() {
+  chart.tooltipRight
+    .append("text")
+    .attr("class", "tooltip-header")
+    .attr("dy", 0)
+    .attr("y", "1em")
+    .attr("x","12em")
+    .attr("text-anchor", "start")
+    .text("data on latinos has been reported for");
+  chart.tooltipLeft
+    .append("text")
+    .attr("class", "tooltip-header")
+    .attr("dy", 0)
+    .attr("y", "1em")
+    .attr("x","-2.3em")
+    .attr("text-anchor", "start")
+    .text("state");
+
+  }
+  addHeaders()
+
+
 chart.states = states
 
 
 function tooltip(mystate) {
-
-   
-   for(var i = 0; i < MEASURES_TOOLTIP[GLOBAL_LANGUAGE].length; i++){
-        chart.tooltipRight
-          .append("text")
-          .attr("class", "tooltip-text")
-          .attr("dy", 0)
-          .attr("y", 3.8+ 2.3*i +"em")
-          .attr("x","18em")
-          .attr("text-anchor", "start")
-          .text(function () {
-              return MEASURES_TOOLTIP[GLOBAL_LANGUAGE][i][1]
-            });
-    }
 
     for (var i = 0; i < tooltipCatNames.length; i++) {
       
@@ -342,16 +377,6 @@ function tooltip(mystate) {
           .attr("height", "20");
       }
           
-        chart.tooltipRight
-          .append("text")
-          .attr("class", "tooltip-header")
-          .attr("dy", 0)
-          .attr("y", "1em")
-          .attr("x","12em")
-          .attr("text-anchor", "start")
-          .text("data on latinos has been reported for");
-  
-  
         chart.tooltipLeft
           .append("text")
           .attr("class", "tooltip-text-state")
@@ -362,14 +387,6 @@ function tooltip(mystate) {
           .text(function() {
             return mystate.properties.name;
           });
-        chart.tooltipLeft
-          .append("text")
-          .attr("class", "tooltip-header")
-          .attr("dy", 0)
-          .attr("y", "1em")
-          .attr("x","-2.3em")
-          .attr("text-anchor", "start")
-          .text("state");
      
 
           var width = $tooltip.width() - margin.left - margin.right,

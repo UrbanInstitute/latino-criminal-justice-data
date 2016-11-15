@@ -1,7 +1,9 @@
 
 function drawFirstGraphic() {
 
-    var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
+  cell_scale = (IS_PHONE) ? .6 : 1;
+
+    var IS_PHONE = d3.select("#isPhone").style("display") == "block"
 
 
   var selectTooltip = d3.select('.tooltip-div')
@@ -11,7 +13,7 @@ function drawFirstGraphic() {
 
   $tooltip = $("tooltip")
   yBase = 350
-  ybaseCell = 372
+  ybaseCell = 373
   squareDim = 43
   xEvencell= 60
   xOddcell= 19
@@ -91,6 +93,7 @@ function drawFirstGraphic() {
   });
 
   function FirstGraphic(states) { 
+    cell_scale = (IS_PHONE) ? .6 : 1;
 
 
 
@@ -98,11 +101,23 @@ function drawFirstGraphic() {
         .append("div")
         .classed("step-container", true)
         .append("svg")
-        .attr("width", width)
-        .attr("height", height);
+        .attr("width", function(){
+          if (IS_PHONE) {
+            return width*cell_scale
+          } else {
+            return width}
+        })
+        .attr("height", function(){
+          if (IS_PHONE) {
+            console.log(height*cell_scale)
+            return height*cell_scale
+          } else {
+            return height}
+        })
 
     chart.group = chart.svg.append('g')
                   .attr("class", "g")
+                  .attr("transform", "translate(20,0)")
 
 
 
@@ -111,7 +126,6 @@ function drawFirstGraphic() {
     
     for(var j = 0; j < 6; j++){
 
-    var cell_scale = (IS_MOBILE) ? .6 : 1;
     var data = states.features.filter(function(d) {return d.properties[selectedData]== String(j)})
     cells = chart.group.selectAll("cell")
         .data(data)
@@ -146,7 +160,11 @@ function drawFirstGraphic() {
     
       cells.append("text")
         .attr("class",function(d){
-          return "cell-text " + d.properties.abbr
+          if (IS_PHONE) {
+          return "cell-text-mobile " + d.properties.abbr
+          } else {
+              return "cell-text " + d.properties.abbr
+          }
         })
   //  .attr("class", "cell-label")
    // .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
@@ -211,24 +229,45 @@ function drawFirstGraphic() {
    chart.bottomRow = chart.svg.selectAll(".bottomRow")
     .data(CATEGORY_LABELS)
     .enter().append("g")
-    .attr("class", "bottomRow")
+    .attr("class",function(d){
+      if (IS_PHONE) {
+      return "bottomRow-mobile"
+      } else {
+          return "bottomRow"
+      }
+    })
     .attr("width", 300)
     .attr("height", 45)
-    .attr("transform", function(d, i){ return "translate(" + (i*100 + 20) +" ,410)"})
+    .attr("transform", function(d, i){ 
+      if (i == 5) {
+        if (IS_PHONE){
+        return "translate(" + (i*100 + 36*cell_scale*2)*cell_scale +" , " + 410*cell_scale +")"; //label 5 needs to  be aligned under one cell
+      } return "translate(" + (i*100 + 36)*cell_scale +" , " + 410*cell_scale +")"; //label 5 needs to  be aligned under one cell
+    } else { 
+      if (IS_PHONE){
+        return "translate(" + (i*100 + 55*cell_scale*2)*cell_scale+" ," + 410*cell_scale +")"
+      }
+        return "translate(" + (i*100 + 55)*cell_scale+" ," + 410*cell_scale +")"
+      }
+    })
+   
 
 
 
     chart.bottomRow.each(function(d, i) {
       chart.bottomRow.append("text")
-       .attr("class", "firstGraphic-column-text")
+       .attr("class", "firstGraphic-column-text-"+ i)
     //   .attr("transform", "translate("+ (i*40) +" ,10)")
        .attr("text-anchor", "start")
        .text(function (i) {
           return CATEGORY_LABELS[i];
       });
-
+      
     })
-   //  chart.bottomRow.append("text")
+
+    
+
+         //  chart.bottomRow.append("text")
    //    .attr("class", "firstGraphic-column-text")
    //    .attr("transform", function(d, i){ return "translate("+ (i*4 + 2) +" ,10)"})
    //    .attr("text-anchor", "start")
@@ -241,20 +280,22 @@ function drawFirstGraphic() {
     .append("div")
     .classed("tooltip-div", true)
     .append("svg")
-    .attr("width", width)
-    .attr("height", height/2.3)
+    .attr("width", width*cell_scale)
+    .attr("height", height/2.3*cell_scale)
+
+
 
   chart.tooltipRight = chart.tooltip
     .append("g")
-    .attr("width", width/2.3)
-    .attr("height", height)
-    .attr("transform", "translate("+ width/6 +", 0)");
+    .attr("width", width/2.3*cell_scale)
+    .attr("height", height*cell_scale)
+    .attr("transform", "translate("+ (width/6)*cell_scale +", 0)");
 
   chart.tooltipLeft = chart.tooltip
     .append("g")
     .attr("width", width/1.7)
     .attr("height", height/2)
-    .attr("transform", "translate("+ .05*width + ",0)");
+    .attr("transform", "translate("+ (.05*width)*cell_scale + ",0)");
 
 chart.states = states
 

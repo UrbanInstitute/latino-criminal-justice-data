@@ -4,7 +4,10 @@
       .graphic-container {
         float: none !important;
       }
-      #isMobile{
+      #tooltip {
+        float: left !important;
+      }
+      #isPhone{
         display: block !important;
       }
   }
@@ -12,7 +15,7 @@
 
 
 
-#isMobile{
+#isPhone{
     display: none;
     pointer-events: none;
     width: 0;
@@ -145,7 +148,6 @@ h1 {
     clear: left;
 }
 
-/*Map Buttons */
 
 
 body {
@@ -168,16 +170,8 @@ body {
 }
 
 
-#dropdown {
-  position: relative;
-  width: 90%;
-  float: left;
-  padding-left: 1em;
-}
 
-
-
-/*FIRST GRAPHIC*/
+/*******FIRST GRAPHIC********/
 
 .g {
   pointer-events: all;
@@ -227,8 +221,18 @@ body {
   text-transform: uppercase;
 }
 
+.bottomRow-mobile{
+  font-size: 12px;
+}
 
+/*Map Buttons */
 
+#dropdown {
+  position: relative;
+  width: 90%;
+  float: left;
+  padding-left: 1em;
+}
 
 /*MAP LEGEND*/
 
@@ -277,6 +281,11 @@ text.legend-text {
   font-size: 12px;
   word-wrap: break-word;
    width: 2em;
+
+}
+
+text.legend-text-mobile {
+  font-size: 12px;
 
 }
 
@@ -456,6 +465,6 @@ select#measures-menu{
   font-size: 12px;
 }
 
-.cell-text: hover span{
-  color: #ffffff;
+.cell-text-mobile {
+  font-size: 10px;
 }

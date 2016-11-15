@@ -3,6 +3,8 @@
 
 function drawMap(){
 //map is forked from a combination of https://github.com/githamm/us-state-squares and https://github.com/lvonlanthen/data-map-d3
+cell_scale = (IS_PHONE) ? .6 : 1;
+var IS_PHONE = d3.select("#isPhone").style("display") == "block"
 
 
 var filteredData = [];
@@ -36,7 +38,9 @@ console.log(height)
 var projection = d3.geoEquirectangular()
   .scale(2300)
   .center([-96.03542,41.69553])
-  .translate([width / 2.3, height / 2.2]);
+  .translate([(width / 2.3), (height / 2.2)]);
+
+
 
 var path = d3.geoPath()
   .projection(projection);
@@ -130,15 +134,25 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
     var height_scale = (IS_MOBILE) ? 1.4 : 1;
       if(IS_PHONE) height_scale = 3;
-
+    cell_scale = (IS_PHONE) ? .6 : 1;
 
 
   chartMap.svg = d3.select("#map")
       .append("div")
       .classed("map-container", true)
       .append("svg")
-      .attr("width", width)
-      .attr("height", height);
+      .attr("width", function(){
+          if (IS_PHONE) {
+            return width*cell_scale
+          } else {
+            return width}
+        })
+      .attr("height", function(){
+          if (IS_PHONE) {
+            return height*cell_scale
+          } else {
+            return height}
+        })
 
 
    //   .attr("preserveAspectRatio", "xMinYMin meet")
@@ -199,25 +213,34 @@ function wrapText(text, width) {
   });
 }
 
+legend_scale_x = (IS_PHONE) ? 0 : 1;
+legend_scale_y = (IS_PHONE) ? 2 : 1;
 
   chartMap.legend = d3.select("#legend")
       .append("div")
       .classed("map-legend", true)
       .append("svg")
       .attr("width", width)
-      .attr("height", height/3);
+      .attr("height", (height/3)*legend_scale_y);
 
+/*FIRST*/
     chartMap.legend
       .append("rect")
       .attr("id", "no-data")
       .attr("class", "legend-icon")
-      .attr("x", ".2em")
+      .attr("x", .2*legend_scale_x + "em")
       .attr("y", "2em")
-      .attr("width", 15)
-      .attr("height", 15)
+      .attr("width", 16)
+      .attr("height", 16)
     chartMap.legend
       .append("text")
-      .attr("class", "legend-text")
+      .attr("class",function(d){
+        if (IS_PHONE) {
+          return "legend-text-mobile"
+        } else {
+          return "legend-text"
+        }
+      })
       .attr("dy", 0)
       .attr("y", "3.7em")
       .attr("x","2em")
@@ -225,75 +248,150 @@ function wrapText(text, width) {
       .text(function (d, i) {
          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["no_data"];
       });
-   
 
+/*SECOND*/   
     chartMap.legend
       .append("rect")
       .attr("id", "data-no-cat")
       .attr("class", "legend-icon")
-      .attr("x", "7.3em")
-      .attr("y", "2em")
+      .attr("x", 7.3*legend_scale_x + "em")
+      .attr("y",function(d){
+        if (IS_PHONE) {
+          return 2*legend_scale_y + "em"
+        } else {
+          return "2em"
+        }
+      })
       .attr("width", 16)
       .attr("height", 16)
     chartMap.legend.append("text")
-      .attr("class", "legend-text")
+      .attr("class",function(d){
+        if (IS_PHONE) {
+          return "legend-text-mobile"
+        } else {
+          return "legend-text"
+        }
+      })
       .attr("dy", 0)
-      .attr("x", "11.5em")
-      .attr("y", "3.7em")
+      .attr("x", 11.5*legend_scale_x + "em")
+      .attr("y",function(d){
+        if (IS_PHONE) {
+          return 3.3*legend_scale_y + "em"
+        } else {
+          return "3.7em"
+        }
+      })
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["data_no_cat"];
       });
 
+/*THIRD*/
     chartMap.legend
       .append("rect")
       .attr("id", "combined")
       .attr("class", "legend-icon")
-      .attr("x", "14em")
-      .attr("y", "2em")
+      .attr("x", 14*legend_scale_x + "em")
+      .attr("y",function(d){
+        if (IS_PHONE) {
+          return 3*legend_scale_y + "em"
+        } else {
+          return "2em"
+        }
+      })
       .attr("width", 16)
       .attr("height", 16)
     chartMap.legend.append("text")
-      .attr("class", "legend-text")
+      .attr("class",function(d){
+        if (IS_PHONE) {
+          return "legend-text-mobile"
+        } else {
+          return "legend-text"
+        }
+      })
       .attr("dy", 0)
-      .attr("x", "20.4em")
-      .attr("y", "3.7em")
+      .attr("x", 20.4*legend_scale_x+"em")
+      .attr("y",function(d){
+        if (IS_PHONE) {
+          return 4.6*legend_scale_y + "em"
+        } else {
+          return "3.7em"
+        }
+      })
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["combined"];
       });
 
+/*FOURTH*/
     chartMap.legend
       .append("rect")
       .attr("id", "separate")
       .attr("class", "legend-icon")
-      .attr("x", "20.6em")
-      .attr("y", "2em")
+      .attr("x", 20.6*legend_scale_x + "em")
+      .attr("y",function(d){
+        if (IS_PHONE) {
+          return 4*legend_scale_y + "em"
+        } else {
+          return "2em"
+        }
+      })
       .attr("width", 16)
       .attr("height", 16)
     chartMap.legend.append("text")
-      .attr("class", "legend-text")
+      .attr("class",function(d){
+        if (IS_PHONE) {
+          return "legend-text-mobile"
+        } else {
+          return "legend-text"
+        }
+      })
       .attr("dy", 0)
-      .attr("x", "29em")
-      .attr("y", "3.7em")
+      .attr("x", 29*legend_scale_x+"em")
+      .attr("y",function(d){
+        if (IS_PHONE) {
+          return 5.9*legend_scale_y + "em"
+        } else {
+          return "3.7em"
+        }
+      })
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["separate"];
       });
 
+/*FIFTH*/
     chartMap.legend
       .append("rect")
       .attr("id", "cross-tabbed")
       .attr("class", "legend-icon")
-      .attr("x", "27em")
-      .attr("y", "2em")
+      .attr("x", 27*legend_scale_x + "em")
+      .attr("y",function(d){
+        if (IS_PHONE) {
+          return 5*legend_scale_y + "em"
+        } else {
+          return "2em"
+        }
+      })
       .attr("width", 16)
       .attr("height", 16)
     chartMap.legend.append("text")
-      .attr("class", "legend-text")
+      .attr("class",function(d){
+        if (IS_PHONE) {
+          return "legend-text-mobile"
+        } else {
+          return "legend-text"
+        }
+      })
       .attr("dy", 0)
-      .attr("x", "37.8em")
-      .attr("y", "3.7em")
+      .attr("x", 37.8*legend_scale_x+"em")
+       .attr("y",function(d){
+        if (IS_PHONE) {
+          return 7.1*legend_scale_y + "em"
+        } else {
+          return "3.7em"
+        }
+      })
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["cross_tabbed"];
@@ -403,10 +501,11 @@ Choropleth.prototype.update = function(mapStates) {
 
 
 
-
-
 }
+
+
 drawMap();
 
+window.onresize = drawMap
 
 

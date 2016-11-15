@@ -43,7 +43,8 @@ function drawFirstGraphic() {
 
   //EVENT HANDLERS
  
-    
+  d3.select(".cell .HI").classed("hover", true)
+
 
   //TOGGLES
   d3.selectAll(".step1_button").classed("active", false);
@@ -195,8 +196,11 @@ function drawFirstGraphic() {
 
       }
 
+
       chart.group.selectAll(".cell")
           .on("mouseover", function(mystate) {
+            console.log(mystate)
+
             d3.select(this)         
               .style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
               .classed("hover", true ) // should then accept fill from CSS

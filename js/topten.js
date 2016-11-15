@@ -282,38 +282,57 @@ Grid.prototype.update = function(gridStates) {
   var eachColumn = d3.selectAll(".gridSquare_" + gridColumn);
    // .data(filteredData)
    eachColumn
-    .transition()
-    .delay(function(d,i) { return i * 10; })
+    .transition() 
     .duration(1500)
     .style("opacity", function(d) {
       if (options.filter == 'step3-regular') {
         if (d.properties[gridColumn + frequency] == 2){
           return '1';
         } else {
-          return '0';
+          return '1';
         }
       } 
     }) 
-    .style("stroke-opacity", function(d) {
-    if (options.filter == 'step3-regular') {
-      if (d.properties[gridColumn + frequency] == 2){
-        return '0'; 
-      }
-     }
-   })
+   //  .style("stroke-opacity", function(d) {
+   //  if (options.filter == 'step3-regular') {
+   //    if (d.properties[gridColumn + frequency] == 2){
+   //      return '0'; 
+   //    }
+   //   }
+   // })
+    .delay(function(d,i) { return i * 50; })
     .style("fill", function(d) {
-      return color(d["properties"][gridColumn + rating]);
+        if (options.filter == 'step3-regular') {
+          if (d.properties[gridColumn + frequency] == 2) {
+           return color(d.properties[gridColumn + rating]);
+          } return "#ffffff"
+        } else if (options.filter == 'step3-all') {
+            return color(d.properties[gridColumn + rating]);
+        }
     })
+    // .style("fill", function(d) {
+    //   return color(d["properties"][gridColumn + rating]);
+    // })
+    // .style("stroke", function(d) {
+    //   if (d["properties"][gridColumn + rating] == 0) {
+    //     return "#9d9d9d";
+    //   }
+    // })
+     .delay(function(d,i) { return i * 50; })
     .style("stroke", function(d) {
-      if (d["properties"][gridColumn + rating] == 0) {
-        return "#9d9d9d";
-      }
-    })
+       if (options.filter == 'step3-regular' && d.properties[gridColumn+frequency] != 2) {
+          return '#9d9d9d'
+        } else if (options.filter == 'step3-all' && d.properties[gridColumn + rating] == 0) {
+         return '#9d9d9d'
+       }
+     })
     .style("stroke-width", function(d) {
-      if (d.properties[gridColumn + rating] == 0) {
+       if (options.filter == 'step3-regular' && d.properties[gridColumn+frequency] != 2) {
+        return '1px'
+       } else if (d.properties[gridColumn + rating] == 0) {
         return '1px'
       }
-    }); 
+    })
 
   }     
 

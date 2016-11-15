@@ -29,7 +29,7 @@ var color = d3.scaleThreshold()
 
 var $map = $("#map");
 var aspect_width = 30;
-var aspect_height = 19;
+var aspect_height = 20;
 var margin = { top: 5, right: 0, bottom: 10, left: 32 };
 var width= ($map.width() - margin.left - margin.right); 
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
@@ -38,7 +38,7 @@ console.log(height)
 var projection = d3.geoEquirectangular()
   .scale(2300)
   .center([-96.03542,41.69553])
-  .translate([(width / 2.3), (height / 2.2)]);
+  .translate([(width / 2.3), (height / 2.3)]);
 
 
 
@@ -430,24 +430,33 @@ Choropleth.prototype.update = function(mapStates) {
        		if (d.properties[Cat + frequency] == 2){
             return '1';
         	} else {
-        		return '0';
+        		return '1';
         	}
       	} 
-		  }) 
-     	.style("stroke-opacity", function(d) {
-     		if (options.filter == 'step2-regular') {
-       		if (d.properties[Cat + frequency] == 2){
-            return '0'; 
-        	}
-     	   }
-	     })
+		   }) 
+     	// .style("stroke-opacity", function(d) {
+     	// 	if (options.filter == 'step2-regular') {
+      //  		if (d.properties[Cat + frequency] == 2){
+      //       return '0'; 
+      //   	} 
+     	//    }
+	     // })
 	    .style("fill", function(d) {
-	        return color(d.properties[Cat + rating]);
+        if (options.filter == 'step2-regular') {
+          if (d.properties[Cat + frequency] == 2) {
+	         return color(d.properties[Cat + rating]);
+          } return "#ffffff"
+        } else if (options.filter == 'step2-all') {
+            return color(d.properties[Cat + rating]);
+        }
 	    })
+
 	    .style("stroke", function(d) {
-	       if (d.properties[Cat + rating] == 0) {
-	         return '#9d9d9d'
-	       }
+	       if (options.filter == 'step2-regular' && d.properties[Cat+frequency] != 2) {
+            return '#9d9d9d'
+          } else if (options.filter == 'step2-all' && d.properties[Cat + rating] == 0) {
+           return '#9d9d9d'
+         }
 	     })
 	    .style("stroke-width", function(d) {
 	        if (d.properties[Cat + rating] == 0) {
@@ -471,28 +480,22 @@ Choropleth.prototype.update = function(mapStates) {
         } return 1;
       }) */
       .style("fill", function(d) { 
-        if (options.filter !== 'all') {
+        if (options.filter == 'step2-regular') {
           if (d.properties[Cat + frequency] == 2) {
             if (d.properties[Cat + rating] == 4 | d.properties[Cat + rating] == 3) {
               return "#cfe8f3"
-            } else {
+            } else if (d.properties[Cat + rating] == 2 | d.properties[Cat + rating] == 1) {
                 return "#000000";
               } 
-          } else {
-              return "#d2d2d2";
-            }  
-        } else 
-        if (options.filter == 'all') {
-          if (d.properties[Cat + frequency] == 2) {
+          } return "#d2d2d2";
+              
+        } else if (options.filter == 'step2-all') {
             if (d.properties[Cat + rating] == 4 | d.properties[Cat + rating] == 3) {
               return "#cfe8f3"
-            } else {
+            } else if (d.properties[Cat + rating] == 2 | d.properties[Cat + rating] == 1) {
                 return "#000000";
               } 
-          } else {
-              return "#000000";
-            }  
-        } return "#000000";
+          } return "#d2d2d2";
       });
       
  //     stateText.style("text-anchor", "start")

@@ -327,6 +327,7 @@ function drawFirstGraphic() {
           });
       }
   }
+  addMeasures();
 
   function addHeaders() {
   chart.tooltipRight

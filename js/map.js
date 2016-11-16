@@ -29,7 +29,7 @@ var color = d3.scaleThreshold()
 
 var $map = $("#map");
 var aspect_width = 30;
-var aspect_height = 20;
+var aspect_height = 25;
 var margin = { top: 5, right: 0, bottom: 10, left: 32 };
 var width= ($map.width() - margin.left - margin.right); 
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 

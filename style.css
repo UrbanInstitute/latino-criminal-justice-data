@@ -4,13 +4,25 @@
       .graphic-container {
         float: none !important;
       }
+      .text-container {
+        width: auto;
+      }
       #tooltip {
         float: left !important;
       }
       #isPhone{
         display: block !important;
       }
+      .main-title {
+        width: auto;
+      }
   }
+@media (max-width: 1100px) {
+  .wrapper {
+    width: 100%;
+  }
+}
+
 
 
 
@@ -34,17 +46,23 @@
 
 }
 
+.last-header {
+  width: 100%;
+}
+
+li {
+  width: 70%;
+}
+
+.end-list ul {
+  width: 90%;
+}
+
 p {
   padding-right: 4em;
   line-height: 1.5em;
 }
 
-.wrapper {
-  position: relative;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 /*CONTAINERS */
 .svg-container {
@@ -81,29 +99,13 @@ p {
     margin-bottom: 18px;
 }
 
-.switch.large {
-    background-image: url(../images/off-on.png);
-    background-color: #696969;
-    background-repeat: no-repeat;
-    /*width: 55px;*/
-    /*height: 18px;*/
-    /*border-radius: 10px;*/
-
-
-    width: 83px;
-    height: 26px;
-    border-radius: 20px;
-    margin-left: 60px;
+.end-text {
+  position: relative;
+  float: left;
 }
 
-.switch.large.off {
-    background-position: -68px 0px;
-    background-color: #696969;
-}
-
-.switch.large.on {
-    background-position: -10px 0px;
-    background-color: #1696d2;
+.last-header {
+  height: 60px;
 }
 
 .toggle_text{
@@ -128,8 +130,12 @@ p {
 }
 
 .intro-text {
-    font: 400 20px/26px Lato, sans-serif;
+    font-size: 20px 
+    font: Lato, sans-serif;
+    font-weight: 300;
     margin-bottom: 4em;
+    line-height: 1.3;
+    color: #666;
 }
 
 
@@ -223,6 +229,7 @@ body {
 
 .bottomRow-mobile{
   font-size: 12px;
+
 }
 
 /*Map Buttons */
@@ -315,7 +322,7 @@ span.ui-selectmenu-text {
 
 
 #spanish {
-    width: 100%;
+
     padding-top: 10px;
     float: left;
 }

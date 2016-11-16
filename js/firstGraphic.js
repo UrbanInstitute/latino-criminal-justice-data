@@ -208,13 +208,17 @@ function drawFirstGraphic() {
             selectedState = d3.select(this).attr('class').split(' ')[1]
             d3.selectAll('.cell-text.' + selectedState)
               .style('fill', '#ffffff')
+            d3.selectAll('.cell-text-mobile.' + selectedState)
+              .style('fill', '#ffffff')
 
         })
         .on("mouseout",  function() {
           d3.select(this)
            .classed("hover", false)
            .style('fill', "#1696d2") // Re-sets the "explicit" fill
-         d3.selectAll('.cell-text.' + selectedState)
+          d3.selectAll('.cell-text.' + selectedState)
+            .style('fill', '#000000')
+          d3.selectAll('.cell-text-mobile.' + selectedState)
             .style('fill', '#000000')
         chart.tooltipLeft.selectAll('text')
             .remove()
@@ -282,24 +286,26 @@ function drawFirstGraphic() {
    //    });
    //  }
 
+  tooltip_phone_width = (IS_PHONE) ? .3 : 1;
+   tooltip_phone_height = (IS_PHONE) ? 70 : 0;
   chart.tooltip = d3.select("#tooltip")
     .append("div")
     .classed("tooltip-div", true)
     .append("svg")
     .attr("width", width*cell_scale)
-    .attr("height", height/2.3*cell_scale)
+    .attr("height", height/2.3 + tooltip_phone_height)
 
   chart.tooltipLeft = chart.tooltip
     .append("g")
-    .attr("width", width/1.7)
-    .attr("height", height/2)
-    .attr("transform", "translate("+ (.05*width)*cell_scale + ",0)");
+    .attr("width", width/1.7*tooltip_phone_width)
+    .attr("height", height/2 + tooltip_phone_height)
+    .attr("transform", "translate("+ (.05*width) + ",0)");
 
   chart.tooltipRight = chart.tooltip
     .append("g")
-    .attr("width", width/2.3*cell_scale)
-    .attr("height", height*cell_scale)
-    .attr("transform", "translate("+ (width/6)*cell_scale +", 0)");
+    .attr("width", width/2.3*tooltip_phone_width)
+    .attr("height", height + tooltip_phone_height)
+    .attr("transform", "translate("+ (width/6)*tooltip_phone_width +", " + 0 + tooltip_phone_height +")");
   
   for (var i = 0; i < tooltipCatNames.length; i++) {
   var imgs = chart.tooltipRight.selectAll("img").data([0]);
@@ -307,9 +313,13 @@ function drawFirstGraphic() {
     .append("svg:image")
     .attr("xlink:href", "images/uncheckedbox.svg") 
     .attr('class', 'checkbox_initial')
-    .attr("x", "10em")
+    .attr("x", function() {
+        if (IS_PHONE) {
+          return "0em"
+        } else return "10em"
+      })
     .attr("y",  2 + 1.7*i + "em")
-    .attr("width", "20")
+    .attr("width","20")
     .attr("height", "20");
   }
 
@@ -320,7 +330,11 @@ function drawFirstGraphic() {
         .attr("class", "tooltip-text")
         .attr("dy", 0)
         .attr("y", 3.8+ 2.3*i +"em")
-        .attr("x","18em")
+        .attr("x", function() {
+          if (IS_PHONE) {
+            return "2em"
+          } else return "18em"
+        })
         .attr("text-anchor", "start")
         .text(function () {
             return MEASURES_TOOLTIP[GLOBAL_LANGUAGE][i][1]
@@ -335,7 +349,11 @@ function drawFirstGraphic() {
     .attr("class", "tooltip-header")
     .attr("dy", 0)
     .attr("y", "1em")
-    .attr("x","12em")
+    .attr("x", function() {
+        if (IS_PHONE) {
+          return "0em"
+        } else return "12em"
+      })
     .attr("text-anchor", "start")
     .text("data on latinos has been reported for");
   chart.tooltipLeft
@@ -343,7 +361,11 @@ function drawFirstGraphic() {
     .attr("class", "tooltip-header")
     .attr("dy", 0)
     .attr("y", "1em")
-    .attr("x","-2.3em")
+    .attr("x", function() {
+      if (IS_PHONE) {
+        return "0em"
+    } else return "-2.3em"
+    })
     .attr("text-anchor", "start")
     .text("state");
 
@@ -372,7 +394,11 @@ function tooltip(mystate) {
           }
           }) 
           .attr('class', 'checkbox')
-          .attr("x", "10em")
+          .attr("x", function() {
+            if (IS_PHONE) {
+              return "0em"
+            } else return "10em"
+          })
           .attr("y",  2 + 1.7*i + "em")
           .attr("width", "20")
           .attr("height", "20");
@@ -383,7 +409,11 @@ function tooltip(mystate) {
           .attr("class", "tooltip-text-state")
           .attr("dy", 0)
           .attr("y", "2em")
-          .attr("x","-1em")
+          .attr("x", function() {
+            if (IS_PHONE) {
+              return "0em"
+          } else return "-1em"
+          })
           .attr("text-anchor", "start")
           .text(function() {
             return mystate.properties.name;
@@ -425,39 +455,60 @@ function tooltip(mystate) {
         .duration(2000)
           .attr("x", function() {
             if (i%2 !== 0) {
-              return squareDim + j*100;
+              return (squareDim + j*100) *cell_scale;
             } else {
-              return j*100;
+              return (j*100) *cell_scale
             }
           })
           .attr("y", function() {
             if (i%2 == 0){
-              return yBase - ((i/2)*squareDim);
+              return (yBase - ((i/2)*squareDim)) * cell_scale;
             } else if (i == 1) {
-              return yBase;
+              return yBase*cell_scale;
             } else{
-              return yBase - (((i-1)/2)*squareDim);
+              return (yBase - (((i-1)/2)*squareDim)) * cell_scale;
             }
           }) //so that all columns start from the bottom up
         
         chart.group.select(".cell-text." + data[i].properties.abbr)
-
           .transition()
           .duration(2000)
           .attr("x", function() {
             if (i%2 !== 0) {
-              return (xEvencell + j*100);
+              console.log('hi')
+             return (xEvencell + j*100)*cell_scale;
             } else {
-              return xOddcell + j*100;
+              return (xOddcell + j*100)*cell_scale;
             }
           })
           .attr("y", function() {
             if (i%2 == 0){
-              return ybaseCell - ((i/2)*squareDim);
+              return (ybaseCell - ((i/2)*squareDim))*cell_scale;
             } else if (i == 1) {
-              return ybaseCell;
+              return ybaseCell*cell_scale;
             } else{
-              return ybaseCell - (((i-1)/2)*squareDim);
+              return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale;
+            }
+           }) //so that all columns start from the bottom up  
+
+        chart.group.select(".cell-text-mobile." + data[i].properties.abbr)
+          .transition()
+          .duration(2000)
+          .attr("x", function() {
+            if (i%2 !== 0) {
+              console.log('hi')
+             return (xEvencell + j*100)*cell_scale;
+            } else {
+              return (xOddcell + j*100)*cell_scale;
+            }
+          })
+          .attr("y", function() {
+            if (i%2 == 0){
+              return (ybaseCell - ((i/2)*squareDim))*cell_scale;
+            } else if (i == 1) {
+              return ybaseCell*cell_scale;
+            } else{
+              return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale;
             }
            }) //so that all columns start from the bottom up  
        }

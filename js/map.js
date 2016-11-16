@@ -143,13 +143,13 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       .append("svg")
       .attr("width", function(){
           if (IS_PHONE) {
-            return width*cell_scale
+            return width
           } else {
             return width}
         })
       .attr("height", function(){
           if (IS_PHONE) {
-            return height*cell_scale
+            return height
           } else {
             return height}
         })
@@ -273,7 +273,14 @@ legend_scale_y = (IS_PHONE) ? 2 : 1;
         }
       })
       .attr("dy", 0)
-      .attr("x", 11.5*legend_scale_x + "em")
+      .attr("x", function() {
+        if(IS_PHONE) {
+        return '2em';} 
+          else {
+          return '11.5em'
+        }
+      })
+
       .attr("y",function(d){
         if (IS_PHONE) {
           return 3.3*legend_scale_y + "em"
@@ -310,7 +317,13 @@ legend_scale_y = (IS_PHONE) ? 2 : 1;
         }
       })
       .attr("dy", 0)
-      .attr("x", 20.4*legend_scale_x+"em")
+      .attr("x", function() {
+        if(IS_PHONE) {
+        return '2em';} 
+          else {
+          return '20.4em'
+        }
+      })
       .attr("y",function(d){
         if (IS_PHONE) {
           return 4.6*legend_scale_y + "em"
@@ -347,7 +360,13 @@ legend_scale_y = (IS_PHONE) ? 2 : 1;
         }
       })
       .attr("dy", 0)
-      .attr("x", 29*legend_scale_x+"em")
+      .attr("x", function() {
+        if(IS_PHONE) {
+        return '2em';} 
+          else {
+          return '29em'
+        }
+      })
       .attr("y",function(d){
         if (IS_PHONE) {
           return 5.9*legend_scale_y + "em"
@@ -384,7 +403,13 @@ legend_scale_y = (IS_PHONE) ? 2 : 1;
         }
       })
       .attr("dy", 0)
-      .attr("x", 37.8*legend_scale_x+"em")
+      .attr("x", function() {
+        if(IS_PHONE) {
+        return '2em';} 
+          else {
+          return '37.8em'
+        }
+      })
        .attr("y",function(d){
         if (IS_PHONE) {
           return 7.1*legend_scale_y + "em"

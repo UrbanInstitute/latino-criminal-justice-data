@@ -95,6 +95,8 @@ function drawFirstGraphic() {
 
   function FirstGraphic(states) { 
     cell_scale = (IS_PHONE) ? .6 : 1;
+    phone_width = (IS_PHONE) ? 20 : 0;
+    phone_height = (IS_PHONE) ? 40 : 0;
 
 
 
@@ -104,14 +106,13 @@ function drawFirstGraphic() {
         .append("svg")
         .attr("width", function(){
           if (IS_PHONE) {
-            return width*cell_scale
+            return width + phone_width
           } else {
             return width}
         })
         .attr("height", function(){
           if (IS_PHONE) {
-            console.log(height*cell_scale)
-            return height*cell_scale
+            return height + phone_height
           } else {
             return height}
         })
@@ -127,8 +128,20 @@ function drawFirstGraphic() {
     .append('text')
     .attr("text-anchor", "start")
     .attr('class', 'xlabel')
-    .attr('x', '9.5em')
-    .attr('y', '27em')
+    .attr('x', function() {
+      if (IS_PHONE) {
+        return '1em'
+      } else {
+        return '9.5em'
+      }
+    })
+    .attr('y', function() {
+      if (IS_PHONE) {
+        return '17em'
+      } else {
+        return '27em'
+      }
+    })
     .text('Number of Categories with Data Reported')
     .style('fill', "#9d9d9d")
 
@@ -172,11 +185,10 @@ function drawFirstGraphic() {
       cells.append("text")
         .attr("class",function(d){
           if (IS_PHONE) {
-          return "cell-text-mobile " + d.properties.abbr
-          } else {
-              return "cell-text " + d.properties.abbr
+            return "cell-text-mobile " + d.properties.abbr;
           }
-        })
+              return "cell-text " + d.properties.abbr;
+          })
   //  .attr("class", "cell-label")
    // .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
         .attr("x", function(d,i) {
@@ -216,20 +228,27 @@ function drawFirstGraphic() {
               .classed("hover", true ) // should then accept fill from CSS
             tooltip(mystate)
             selectedState = d3.select(this).attr('class').split(' ')[1]
+            if(IS_PHONE) {
+               d3.selectAll('.cell-text-mobile.' + selectedState)
+              .style('fill', '#ffffff')
+            } else {
             d3.selectAll('.cell-text.' + selectedState)
               .style('fill', '#ffffff')
-            d3.selectAll('.cell-text-mobile.' + selectedState)
-              .style('fill', '#ffffff')
+            }
 
         })
         .on("mouseout",  function() {
           d3.select(this)
            .classed("hover", false)
            .style('fill', "#1696d2") // Re-sets the "explicit" fill
+          if(IS_PHONE) {
+            d3.selectAll('.cell-text-mobile.' + selectedState)
+            .style('fill', '#000000')
+          } else {
           d3.selectAll('.cell-text.' + selectedState)
             .style('fill', '#000000')
-          d3.selectAll('.cell-text-mobile.' + selectedState)
-            .style('fill', '#000000')
+          }
+          
         chart.tooltipLeft.selectAll('text')
             .remove()
         chart.tooltipRight.selectAll('text')
@@ -303,8 +322,8 @@ function drawFirstGraphic() {
     .append("div")
     .classed("tooltip-div", true)
     .append("svg")
-    .attr("width", width*cell_scale)
-    .attr("height", height/2.3 + tooltip_phone_height)
+    .attr("width", width)
+    .attr("height", height/2.3 + tooltip_phone_height*2)
 
   chart.tooltipLeft = chart.tooltip
     .append("g")
@@ -481,7 +500,8 @@ function tooltip(mystate) {
             }
           }) //so that all columns start from the bottom up
         
-        chart.group.select(".cell-text." + data[i].properties.abbr)
+        if(IS_PHONE) {
+          chart.group.select(".cell-text-mobile." + data[i].properties.abbr)
           .transition()
           .duration(2000)
           .attr("x", function() {
@@ -502,7 +522,8 @@ function tooltip(mystate) {
             }
            }) //so that all columns start from the bottom up  
 
-        chart.group.select(".cell-text-mobile." + data[i].properties.abbr)
+        } else {
+                  chart.group.select(".cell-text." + data[i].properties.abbr)
           .transition()
           .duration(2000)
           .attr("x", function() {
@@ -522,6 +543,11 @@ function tooltip(mystate) {
               return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale;
             }
            }) //so that all columns start from the bottom up  
+
+          }
+
+
+        
        }
       }
 

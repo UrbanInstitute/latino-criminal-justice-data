@@ -120,7 +120,17 @@ function drawFirstGraphic() {
                   .attr("class", "g")
                   .attr("transform", "translate(20,0)")
 
+    xLabel = chart.svg.append("g")
+    .attr("transform", "translate(20,0)")
 
+    xLabel
+    .append('text')
+    .attr("text-anchor", "start")
+    .attr('class', 'xlabel')
+    .attr('x', '9.5em')
+    .attr('y', '27em')
+    .text('Number of Categories with Data Reported')
+    .style('fill', "#9d9d9d")
 
       //ADDING GROUPS
 
@@ -274,6 +284,7 @@ function drawFirstGraphic() {
       });
       
     })
+
 
     
 

@@ -96,7 +96,7 @@ function drawFirstGraphic() {
   function FirstGraphic(states) { 
     cell_scale = (IS_PHONE) ? .6 : 1;
     phone_width = (IS_PHONE) ? 20 : 0;
-    phone_height = (IS_PHONE) ? 40 : 0;
+    phone_height = (IS_PHONE) ? 48 : 0;
 
 
 
@@ -119,7 +119,7 @@ function drawFirstGraphic() {
 
     chart.group = chart.svg.append('g')
                   .attr("class", "g")
-                  .attr("transform", "translate(20,0)")
+                  .attr("transform", "translate(0,0)")
 
     xLabel = chart.svg.append("g")
     .attr("transform", "translate(20,0)")
@@ -130,9 +130,9 @@ function drawFirstGraphic() {
     .attr('class', 'xlabel')
     .attr('x', function() {
       if (IS_PHONE) {
-        return '1em'
+        return '-.5em'
       } else {
-        return '9.5em'
+        return '6.5em'
       }
     })
     .attr('y', function() {
@@ -280,13 +280,13 @@ function drawFirstGraphic() {
     .attr("transform", function(d, i){ 
       if (i == 5) {
         if (IS_PHONE){
-        return "translate(" + (i*100 + 36*cell_scale*2)*cell_scale +" , " + 410*cell_scale +")"; //label 5 needs to  be aligned under one cell
-      } return "translate(" + (i*100 + 36)*cell_scale +" , " + 410*cell_scale +")"; //label 5 needs to  be aligned under one cell
+        return "translate(" + (i*100 + 15*cell_scale*2)*cell_scale +" , " + 410*cell_scale +")"; //label 5 needs to  be aligned under one cell
+      } return "translate(" + (i*100 + 15)*cell_scale +" , " + 410*cell_scale +")"; //label 5 needs to  be aligned under one cell
     } else { 
       if (IS_PHONE){
-        return "translate(" + (i*100 + 55*cell_scale*2)*cell_scale+" ," + 410*cell_scale +")"
+        return "translate(" + (i*100 + 36*cell_scale*2)*cell_scale+" ," + 410*cell_scale +")"
       }
-        return "translate(" + (i*100 + 55)*cell_scale+" ," + 410*cell_scale +")"
+        return "translate(" + (i*100 + 36)*cell_scale+" ," + 410*cell_scale +")"
       }
     })
    

@@ -92,7 +92,7 @@ chartTen.svg = d3.select("#grid")
     .classed("svg-container", true)
     .append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
 
 
 var filteredData = gridStates.features.filter(function(d){
@@ -116,7 +116,7 @@ gridColumns = ["number_prison", "number_prison_ct", "arrests", "probation", "par
       .append("rect")
       .attr("width",cellWidth)
       .attr("height",cellWidth)
-      .attr("x", i*49)
+      .attr("x", 40+i*49)
       .attr("y", 0)
       .attr("class",function(d){
         return "gridSquare " + "gridSquare" + "_"+ gridColumn
@@ -142,7 +142,7 @@ filteredData = filteredData.sort(function(a,b) {
       .data(filteredData)
       .append("text")
       .attr("class", "grid-state-labels")
-      .attr("transform", function(d, i){ console.log('hi');return "translate(" + -30 +" ,"+ 2 + i + ")"})
+      .attr("transform", function(d, i){ console.log('hi');return "translate(" + 15 +" ,"+ 2 + i + ")"})
       .attr("text-anchor", "start")
       .text(function (d) {
           return d["properties"]["abbr"];
@@ -161,8 +161,8 @@ filteredData = filteredData.sort(function(a,b) {
     last_row.selectAll("rect").each(function(d, i) {
       last_row.append("text")
       .attr("class", "grid-cat-labels")
-      .attr("transform", "translate(" + (i*52 -5) + ",90) rotate(-45)" )
-      .attr("text-anchor", "start")
+      .attr("transform", "translate(" + (i*52+ 70) + ",55) rotate(-45)" )
+      .attr("text-anchor", "end")
 
       .text(function () { 
            return MEASURES[GLOBAL_LANGUAGE][i][1] 

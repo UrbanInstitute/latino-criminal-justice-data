@@ -38,9 +38,9 @@ console.log(height)
 
 if (IS_PHONE) {
   var projection = d3.geoEquirectangular()
-      .scale(1250)
+      .scale(1200)
       .center([-96.03542,41.69553])
-      .translate([(width / 2), (height / 1.8)]);
+      .translate([(width / 2), (height / 2)]);
 } else {
       var projection = d3.geoEquirectangular()
       .scale(2300)

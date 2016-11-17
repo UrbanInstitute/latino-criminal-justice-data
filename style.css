@@ -522,4 +522,5 @@ select#measures-menu{
 
 .cell-text-mobile {
   font-size: 10px;
+  pointer-events: none;
 }

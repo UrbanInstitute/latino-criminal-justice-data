@@ -288,6 +288,7 @@ body {
   width: 90%;
   float: left;
   padding-left: 1em;
+  z-index: 10;
 }
 
 /*MAP LEGEND*/

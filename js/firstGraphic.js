@@ -1,9 +1,11 @@
 
 function drawFirstGraphic() {
 
-  cell_scale = (IS_PHONE) ? .6 : 1;
+  cell_scale_phone = (IS_PHONE) ? .6 : 1;
+  cell_scale_mobile = (IS_MOBILE) ? .7 : 1;
 
     var IS_PHONE = d3.select("#isPhone").style("display") == "block"
+    var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
 
 
   var selectTooltip = d3.select('.tooltip-div')
@@ -34,6 +36,7 @@ function drawFirstGraphic() {
   var margin = { top: 0, right: 0, bottom: 10, left: 32 };
   var width= ($firstGraphic.width() - margin.left - margin.right); 
   var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
+  console.log(height)
   var getFilter1 = function(){
     return selectedData;
   }
@@ -94,9 +97,12 @@ function drawFirstGraphic() {
   });
 
   function FirstGraphic(states) { 
-    cell_scale = (IS_PHONE) ? .6 : 1;
+    cell_scale_phone = (IS_PHONE) ? .8 : 1;
+    cell_scale_mobile = (IS_MOBILE) ? .7 : 1;
     phone_width = (IS_PHONE) ? 20 : 0;
-    phone_height = (IS_PHONE) ? 50 : 0;
+    phone_height = (IS_PHONE) ? 16 : 0;
+    mobile_width = (IS_MOBILE) ? 30 : 0;
+    mobile_height = (IS_MOBILE) ? 70 : 0;
 
 
 
@@ -105,14 +111,15 @@ function drawFirstGraphic() {
         .classed("step-container", true)
         .append("svg")
         .attr("width", function(){
-          if (IS_PHONE) {
-            return width + phone_width
+          if ((IS_PHONE) || (IS_MOBILE)) {
+            return width + phone_width + mobile_width
           } else {
             return width}
         })
         .attr("height", function(){
-          if (IS_PHONE) {
-            return height + phone_height
+          if ((IS_PHONE) || (IS_MOBILE))  {
+            return height + phone_height + mobile_height
+            console.log('hi')
           } else {
             return height}
         })
@@ -129,16 +136,22 @@ function drawFirstGraphic() {
     .attr("text-anchor", "start")
     .attr('class', 'xlabel')
     .attr('x', function() {
-      if (IS_PHONE) {
+      if (IS_PHONE)  {
         return '-.5em'
-      } else {
-        return '6.5em'
+      } else { 
+        if (IS_MOBILE) {
+          console.log('hi')
+          return '1.5em'
+          } return '6.5em'
       }
     })
     .attr('y', function() {
       if (IS_PHONE) {
-        return '17em'
-      } else {
+        return '16em'
+      } else { 
+        if (IS_MOBILE) {
+          return '19.5em'
+        }
         return '27em'
       }
     })
@@ -160,13 +173,13 @@ function drawFirstGraphic() {
         .attr("class",function(d){
           return "cell " + d.properties.abbr
         })
-        .attr("width",38*cell_scale)
-        .attr("height",38*cell_scale)
+        .attr("width",38*cell_scale_phone*cell_scale_mobile)
+        .attr("height",38*cell_scale_phone*cell_scale_mobile)
         .attr("x", function(d,i) {
           if (i%2 !== 0) {
-            return (squareDim + j*100) *cell_scale;
+            return (squareDim + j*100) *cell_scale_phone*cell_scale_mobile;
           } else {
-            return (j*100) *cell_scale
+            return (j*100) *cell_scale_phone*cell_scale_mobile;
           }
         })
         .transition()
@@ -174,11 +187,11 @@ function drawFirstGraphic() {
         .delay(function(d, i) { return i*15; })
         .attr("y", function(d,i) {
           if (i%2 == 0){
-            return (yBase - ((i/2)*squareDim)) * cell_scale;
+            return (yBase - ((i/2)*squareDim)) * cell_scale_phone*cell_scale_mobile;
           } else if (i == 1) {
-            return yBase * cell_scale;
+            return yBase * cell_scale_phone*cell_scale_mobile;
           } else{
-            return (yBase - (((i-1)/2)*squareDim)) * cell_scale;
+            return (yBase - (((i-1)/2)*squareDim)) * cell_scale_phone*cell_scale_mobile;
           }
          }) //so that all columns start from the bottom up
     
@@ -193,9 +206,9 @@ function drawFirstGraphic() {
    // .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
         .attr("x", function(d,i) {
           if (i%2 !== 0) {
-            return (xEvencell + j*100)*cell_scale;
+            return (xEvencell + j*100)*cell_scale_phone*cell_scale_mobile;
           } else {
-            return (xOddcell + j*100)*cell_scale;
+            return (xOddcell + j*100)*cell_scale_phone*cell_scale_mobile;
           }
         })
         .transition()
@@ -203,11 +216,11 @@ function drawFirstGraphic() {
         .delay(function(d, i) { return i*15; })
         .attr("y", function(d,i) {
           if (i%2 == 0){
-            return (ybaseCell - ((i/2)*squareDim))*cell_scale;
+            return (ybaseCell - ((i/2)*squareDim))*cell_scale_phone*cell_scale_mobile;
           } else if (i == 1) {
-            return ybaseCell*cell_scale;
+            return ybaseCell*cell_scale_phone*cell_scale_mobile;
           } else{
-            return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale;
+            return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale_phone*cell_scale_mobile;
           }
          }) //so that all columns start from the bottom up
         .text(function(d) { 
@@ -279,14 +292,14 @@ function drawFirstGraphic() {
     .attr("height", 45)
     .attr("transform", function(d, i){ 
       if (i == 5) {
-        if (IS_PHONE){
-        return "translate(" + (i*100 + 15*cell_scale*2)*cell_scale +" , " + 410*cell_scale +")"; //label 5 needs to  be aligned under one cell
-      } return "translate(" + (i*100 + 15)*cell_scale +" , " + 410*cell_scale +")"; //label 5 needs to  be aligned under one cell
+        if ((IS_PHONE) || (IS_MOBILE)){
+        return "translate(" + (i*100 + 15*cell_scale_phone*cell_scale_mobile*2)*cell_scale_phone*cell_scale_mobile +" , " + 410*cell_scale_phone*cell_scale_mobile +")"; //label 5 needs to  be aligned under one cell
+      } return "translate(" + (i*100 + 15) +" , " + 410 +")"; //label 5 needs to  be aligned under one cell
     } else { 
-      if (IS_PHONE){
-        return "translate(" + (i*100 + 36*cell_scale*2)*cell_scale+" ," + 410*cell_scale +")"
+      if ((IS_PHONE)|| (IS_MOBILE)){
+        return "translate(" + (i*100 + 36*cell_scale_phone*cell_scale_mobile*2)*cell_scale_phone*cell_scale_mobile +" ," + 410*cell_scale_phone*cell_scale_mobile +")"
       }
-        return "translate(" + (i*100 + 36)*cell_scale+" ," + 410*cell_scale +")"
+        return "translate(" + (i*100 + 36)+" ," + 410+")"
       }
     })
    
@@ -487,18 +500,18 @@ function tooltip(mystate) {
         .duration(2000)
           .attr("x", function() {
             if (i%2 !== 0) {
-              return (squareDim + j*100) *cell_scale;
+              return (squareDim + j*100) *cell_scale_phone;
             } else {
-              return (j*100) *cell_scale
+              return (j*100) *cell_scale_phone
             }
           })
           .attr("y", function() {
             if (i%2 == 0){
-              return (yBase - ((i/2)*squareDim)) * cell_scale;
+              return (yBase - ((i/2)*squareDim)) * cell_scale_phone;
             } else if (i == 1) {
-              return yBase*cell_scale;
+              return yBase*cell_scale_phone;
             } else{
-              return (yBase - (((i-1)/2)*squareDim)) * cell_scale;
+              return (yBase - (((i-1)/2)*squareDim)) * cell_scale_phone;
             }
           }) //so that all columns start from the bottom up
         
@@ -509,18 +522,18 @@ function tooltip(mystate) {
           .attr("x", function() {
             if (i%2 !== 0) {
               console.log('hi')
-             return (xEvencell + j*100)*cell_scale;
+             return (xEvencell + j*100)*cell_scale_phone;
             } else {
-              return (xOddcell + j*100)*cell_scale;
+              return (xOddcell + j*100)*cell_scale_phone;
             }
           })
           .attr("y", function() {
             if (i%2 == 0){
-              return (ybaseCell - ((i/2)*squareDim))*cell_scale;
+              return (ybaseCell - ((i/2)*squareDim))*cell_scale_phone;
             } else if (i == 1) {
-              return ybaseCell*cell_scale;
+              return ybaseCell*cell_scale_phone;
             } else{
-              return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale;
+              return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale_phone;
             }
            }) //so that all columns start from the bottom up  
 
@@ -531,18 +544,18 @@ function tooltip(mystate) {
           .attr("x", function() {
             if (i%2 !== 0) {
               console.log('hi')
-             return (xEvencell + j*100)*cell_scale;
+             return (xEvencell + j*100)*cell_scale_phone;
             } else {
-              return (xOddcell + j*100)*cell_scale;
+              return (xOddcell + j*100)*cell_scale_phone;
             }
           })
           .attr("y", function() {
             if (i%2 == 0){
-              return (ybaseCell - ((i/2)*squareDim))*cell_scale;
+              return (ybaseCell - ((i/2)*squareDim))*cell_scale_phone;
             } else if (i == 1) {
-              return ybaseCell*cell_scale;
+              return ybaseCell*cell_scale_phone;
             } else{
-              return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale;
+              return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale_phone;
             }
            }) //so that all columns start from the bottom up  
 

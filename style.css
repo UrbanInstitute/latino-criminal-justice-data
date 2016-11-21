@@ -128,9 +128,10 @@ p {
 }
 
 .graphic-container {
-  width: 56%;
+  width: 53%;
   float: left;
   text-align: left;
+  padding-left: 3%;
 }
 
 
@@ -166,15 +167,12 @@ hr {
 
 /*TITLE */
 
-.title-text {
-    width: 100%;
-    background-color: #fff;
-    margin-top: -72px;
-    margin-bottom: 20px;
-    margin-left: -30px;
-    padding-left: 30px;
-    padding-top: 30px;
-    font: 400 30px/36px Lato, sans-serif;
+h1.title {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 42px;
+    line-height: 50px;
+    font-weight: 700;
 }
 
 p.large {
@@ -212,7 +210,7 @@ body {
     width:1100px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 110px;
+    padding-top: 10px;
     border-top:1px solid #eee;
     padding-right: 30px;
     padding-left: 30px;
@@ -224,6 +222,28 @@ body {
     margin: 0 auto;
     padding: 0px 30px;
 
+}
+
+.intro-inset {
+    position: relative;
+    display: inline-block;
+    max-width: 30%;
+    min-width: 20%;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    padding: 0px;
+    float: right;
+    border-left: 1px solid #555;
+    font-size: 0.7em;
+}
+
+.inset-language {
+    position: relative;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    line-height: 2em;
+    font-weight: 700;
 }
 
 
@@ -393,15 +413,60 @@ span.ui-selectmenu-text {
     
 }
 
-.spanish span{
-  display: inline;
-    float: left;
-    color:#333;
-    background-color: #f2f2f2;
-    padding: 12px;
+.title-area {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 10;
+    display: inline-block;
+    width: 1125px;
+    height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: left;
+}
+
+.title-block {
+    position: absolute;
+    bottom: 5%;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 10px 30px;
+    background-color: rgba(0, 0, 0, .5);
+    color: #fff;
+}
+
+.inset-header {
+    padding-bottom: 5px;
+    padding-left: 10px;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-weight: 700em;
+}
+
+.inset-link {
+    display: block;
+    padding: 10px;
+    font-weight: 700;
+    text-transform: none;
+    font-size: 14px;
+}
+
+.section-banner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 350px;
     text-align: center;
-    font-size:12px;
-    border:solid 1px #e1e1e1;
+}
+
+a {
+    color: #1696d2;
+    line-height: 14px;
+    text-decoration: none;
 }
 
 .step1_button, .step2_button, .step3_button {

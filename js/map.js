@@ -45,7 +45,7 @@ if (IS_PHONE) {
       var projection = d3.geoEquirectangular()
       .scale(2300)
       .center([-96.03542,41.69553])
-      .translate([(width / 2.3), (height / 2.3)]);
+      .translate([(width / 2.1), (height / 2.3)]);
 }
 
 

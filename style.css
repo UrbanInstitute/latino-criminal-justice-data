@@ -47,6 +47,26 @@
         width: 80% !important;
 
       }
+      .section-banner {
+        height: 200px !important;
+      }
+
+      .title-area {
+        width: 290px !important;
+      }
+
+      .banner-area {
+        height: 100% !important;
+      }
+
+      .title {
+        font-size: 28px !important;
+        line-height: 32px !important;
+      }
+
+      .large {
+        font-size: 18px !important;
+      }
 
 
   }
@@ -272,6 +292,9 @@ body {
 
 }
 
+.tooltip-div-right {
+    border-left: 10px solid #555;
+}
 
 #map {
 	position: relative;
@@ -461,6 +484,20 @@ span.ui-selectmenu-text {
     width: 100%;
     height: 350px;
     text-align: center;
+}
+
+.banner-area {
+    position: relative;
+    display: block;
+    background-color: #dadada;
+}
+
+.img-banner {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
 }
 
 a {

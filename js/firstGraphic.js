@@ -96,7 +96,7 @@ function drawFirstGraphic() {
   function FirstGraphic(states) { 
     cell_scale = (IS_PHONE) ? .6 : 1;
     phone_width = (IS_PHONE) ? 20 : 0;
-    phone_height = (IS_PHONE) ? 48 : 0;
+    phone_height = (IS_PHONE) ? 50 : 0;
 
 
 
@@ -317,7 +317,7 @@ function drawFirstGraphic() {
    //  }
 
   tooltip_phone_width = (IS_PHONE) ? .3 : 1;
-   tooltip_phone_height = (IS_PHONE) ? 70 : 0;
+   tooltip_phone_height = (IS_PHONE) ? 73 : 0;
   chart.tooltip = d3.select("#tooltip")
     .append("div")
     .classed("tooltip-div", true)
@@ -327,12 +327,14 @@ function drawFirstGraphic() {
 
   chart.tooltipLeft = chart.tooltip
     .append("g")
+    .classed("tooltip-div-left", true)
     .attr("width", width/1.7*tooltip_phone_width)
     .attr("height", height/2 + tooltip_phone_height)
     .attr("transform", "translate("+ (.05*width) + ",0)");
 
   chart.tooltipRight = chart.tooltip
     .append("g")
+    .classed("tooltip-div-right", true)
     .attr("width", width/2.3*tooltip_phone_width)
     .attr("height", height + tooltip_phone_height)
     .attr("transform", "translate("+ (width/6)*tooltip_phone_width +", " + 0 + tooltip_phone_height +")");

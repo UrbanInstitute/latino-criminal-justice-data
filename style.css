@@ -5,7 +5,7 @@
         float: none !important;
       }
       .text-container {
-        width: 95% !important;
+        width: 100% !important;
       }
       .graphic-container {
         width: 100% !important;
@@ -13,6 +13,20 @@
       #tooltip {
         float: left !important;
       }
+      .tooltip-div-left {
+        width: 100% !important;
+      }
+      .tooltip-div-right {
+        margin-top: 15px;
+        padding-top: 15px;
+        padding-left: 0px;
+        border-top: 1px solid #555;
+        border-left-style: none !important;
+      }
+      .xlabel {
+        font-size: 12px;
+      }
+      
       #isPhone{
         display: block !important;
       }
@@ -37,8 +51,8 @@
       #step1, #step2, #step3 {
         float: left;
         width: 100% !important;
-
       }
+      
       li {
          width: 90%;
       }
@@ -74,6 +88,16 @@
 @media (max-width: 768px){
   #isMobile {
     display: block !important;
+  }
+  .tooltip-div-left {
+    width: 100% !important;
+  }
+  .tooltip-div-right {
+    margin-top: 15px;
+    padding-top: 15px;
+    padding-left: 0px;
+    border-top: 1px solid #555;
+    border-left-style: none !important;
   }
   .main-content {
     width: auto;
@@ -316,14 +340,27 @@ body {
 
 #tooltip {
   position: relative;
-  float: right;
+  float: left;
   margin-top: 1em;
+  width: 100%;
 
 }
 
 .tooltip-div-right {
-    border-left: 10px solid #555;
+    position: relative;
+    padding-left: 18px;
+    float: left;
+    border-left: 1px solid #555;
 }
+
+
+div.tooltip-div-left {
+    position: relative;
+    padding-right: 30px;
+    float: left;
+   
+}
+
 
 #map {
 	position: relative;
@@ -650,6 +687,7 @@ select#measures-menu{
 
 .cell-text {
   font-size: 12px;
+  pointer-events: none;
 }
 
 .cell-text-mobile {

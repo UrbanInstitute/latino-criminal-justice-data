@@ -2,7 +2,7 @@
 function drawFirstGraphic() {
 
   cell_scale_phone = (IS_PHONE) ? .6 : 1;
-  cell_scale_mobile = (IS_MOBILE) ? .7 : 1;
+  cell_scale_mobile = (IS_MOBILE) ? .66 : 1;
 
     var IS_PHONE = d3.select("#isPhone").style("display") == "block"
     var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
@@ -32,7 +32,7 @@ function drawFirstGraphic() {
   var $firstGraphic = $("#firstGraphic");
 
   var aspect_width = 30;
-  var aspect_height = 23;
+  var aspect_height = 25;
   var margin = { top: 0, right: 0, bottom: 10, left: 32 };
   var width= ($firstGraphic.width() - margin.left - margin.right); 
   var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
@@ -99,9 +99,9 @@ function drawFirstGraphic() {
   function FirstGraphic(states) { 
     cell_scale_phone = (IS_PHONE) ? .8 : 1;
     cell_scale_mobile = (IS_MOBILE) ? .7 : 1;
-    phone_width = (IS_PHONE) ? 20 : 0;
-    phone_height = (IS_PHONE) ? 16 : 0;
-    mobile_width = (IS_MOBILE) ? 30 : 0;
+    phone_height = (IS_PHONE) ? 0: 0;
+    phone_width = (IS_PHONE) ? 38 : 0;
+    mobile_width = (IS_MOBILE) ? 32 : 0;
     mobile_height = (IS_MOBILE) ? 70 : 0;
 
 
@@ -118,7 +118,7 @@ function drawFirstGraphic() {
         })
         .attr("height", function(){
           if ((IS_PHONE) || (IS_MOBILE))  {
-            return height + phone_height + mobile_height
+            return height + mobile_height + phone_height
             console.log('hi')
           } else {
             return height}
@@ -129,34 +129,34 @@ function drawFirstGraphic() {
                   .attr("transform", "translate(0,0)")
 
     xLabel = chart.svg.append("g")
-    .attr("transform", "translate(20,0)")
+      .attr("transform", "translate(20,0)")
 
     xLabel
-    .append('text')
-    .attr("text-anchor", "start")
-    .attr('class', 'xlabel')
-    .attr('x', function() {
-      if (IS_PHONE)  {
-        return '-.5em'
-      } else { 
-        if (IS_MOBILE) {
-          console.log('hi')
-          return '1.5em'
-          } return '6.5em'
-      }
-    })
-    .attr('y', function() {
-      if (IS_PHONE) {
-        return '16em'
-      } else { 
-        if (IS_MOBILE) {
-          return '19.5em'
-        }
-        return '27em'
-      }
-    })
-    .text('Number of Categories with Data Reported')
-    .style('fill', "#9d9d9d")
+      .append('text')
+        .attr("text-anchor", "start")
+        .attr('class', 'xlabel')
+        .attr('x', function() {
+          if (IS_PHONE)  {
+            return '2em'
+          } else { 
+            if (IS_MOBILE) {
+              console.log('hi')
+              return '1.5em'
+              } return '6.5em'
+          }
+        })
+        .attr('y', function() {
+          if (IS_PHONE) {
+            return '20.5em'
+          } else { 
+            if (IS_MOBILE) {
+              return '19.5em'
+            }
+            return '27em'
+          }
+        })
+        .text('Number of Categories with Data Reported')
+        .style('fill', "#9d9d9d")
 
       //ADDING GROUPS
 
@@ -293,11 +293,11 @@ function drawFirstGraphic() {
     .attr("transform", function(d, i){ 
       if (i == 5) {
         if ((IS_PHONE) || (IS_MOBILE)){
-        return "translate(" + (i*100 + 15*cell_scale_phone*cell_scale_mobile*2)*cell_scale_phone*cell_scale_mobile +" , " + 410*cell_scale_phone*cell_scale_mobile +")"; //label 5 needs to  be aligned under one cell
+        return "translate(" + (i*100 + 15*cell_scale_phone*cell_scale_mobile*1.7)*cell_scale_phone*cell_scale_mobile +" , " + 410*cell_scale_phone*cell_scale_mobile +")"; //label 5 needs to  be aligned under one cell
       } return "translate(" + (i*100 + 15) +" , " + 410 +")"; //label 5 needs to  be aligned under one cell
     } else { 
       if ((IS_PHONE)|| (IS_MOBILE)){
-        return "translate(" + (i*100 + 36*cell_scale_phone*cell_scale_mobile*2)*cell_scale_phone*cell_scale_mobile +" ," + 410*cell_scale_phone*cell_scale_mobile +")"
+        return "translate(" + (i*100 + 36*cell_scale_phone*cell_scale_mobile*1.6)*cell_scale_phone*cell_scale_mobile +" ," + 410*cell_scale_phone*cell_scale_mobile +")"
       }
         return "translate(" + (i*100 + 36)+" ," + 410+")"
       }
@@ -329,28 +329,30 @@ function drawFirstGraphic() {
    //    });
    //  }
 
-  tooltip_phone_width = (IS_PHONE) ? .3 : 1;
-   tooltip_phone_height = (IS_PHONE) ? 73 : 0;
-  chart.tooltip = d3.select("#tooltip")
-    .append("div")
-    .classed("tooltip-div", true)
+  tooltip_phone_width = (IS_PHONE) ? 2.8 : 1;
+   tooltip_phone_height = (IS_PHONE) ? 40 : 0;
+   tooltip_right_phone_width = (IS_PHONE) ? 0 : 1;
+   tooltip_mobile_width = (IS_MOBILE) ? 2.5 : 1;
+   tooltip_mobile_height = (IS_MOBILE) ? 80 : 0;
+   tooltip_right_mobile_width = (IS_MOBILE) ? 0 : 1;
+  // chart.tooltip = d3.select("#tooltip")
+  //   .append("svg")
+  //   .attr("width", width)
+  //   .attr("height", height/2.3 + tooltip_phone_height*2)
+
+  chart.tooltipLeft = d3.select(".tooltip-div-left")
     .append("svg")
-    .attr("width", width)
-    .attr("height", height/2.3 + tooltip_phone_height*2)
+    .attr("width", width/2.5 *tooltip_phone_width*tooltip_mobile_width)
+    .attr("height", height/2.4 - (tooltip_mobile_height/2) + (tooltip_phone_height/1.4))
+  chart.tooltipLeft= chart.tooltipLeft.append("g")
+    .attr("transform", "translate("+ (.1*width)/tooltip_phone_width + ",0)");
 
-  chart.tooltipLeft = chart.tooltip
-    .append("g")
-    .classed("tooltip-div-left", true)
-    .attr("width", width/1.7*tooltip_phone_width)
-    .attr("height", height/2 + tooltip_phone_height)
-    .attr("transform", "translate("+ (.05*width) + ",0)");
-
-  chart.tooltipRight = chart.tooltip
-    .append("g")
-    .classed("tooltip-div-right", true)
-    .attr("width", width/2.3*tooltip_phone_width)
-    .attr("height", height + tooltip_phone_height)
-    .attr("transform", "translate("+ (width/6)*tooltip_phone_width +", " + 0 + tooltip_phone_height +")");
+  chart.tooltipRight = d3.select(".tooltip-div-right")
+    .append("svg")
+    .attr("width", width/2*tooltip_phone_width*tooltip_mobile_width)
+    .attr("height", height/2.4 + tooltip_phone_height + tooltip_mobile_height)
+  chart.tooltipRight = chart.tooltipRight.append("g")
+    .attr("transform", "translate("+ -140*tooltip_right_phone_width +", " + 0 +")");
   
   for (var i = 0; i < tooltipCatNames.length; i++) {
   var imgs = chart.tooltipRight.selectAll("img").data([0]);

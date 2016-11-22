@@ -42,7 +42,7 @@ if (IS_PHONE) {
   var projection = d3.geoEquirectangular()
       .scale(1100)
       .center([-96.03542,41.69553])
-      .translate([(width / 1.8), (height / 2)]);
+      .translate([(width / 2), (height / 2)]);
 } else if (IS_MOBILE) {
   var projection = d3.geoEquirectangular()
       .scale(1550)
@@ -231,15 +231,19 @@ function wrapText(text, width) {
   });
 }
 
-legend_scale_x = (IS_PHONE) ? 0 : 1;
+legend_scale_x = (IS_PHONE) || (IS_MOBILE) ? 0 : 1;
 legend_scale_y = (IS_PHONE) ? 1.8 : 1;
+legend_height = (IS_PHONE) || (IS_MOBILE) ? 2 : 1;
+legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
+
+
 
   chartMap.legend = d3.select("#legend")
       .append("div")
       .classed("map-legend", true)
       .append("svg")
       .attr("width", width)
-      .attr("height", (height/2.5)*legend_scale_y);
+      .attr("height", (height/2.5)*legend_height);
 
 /*FIRST*/
     chartMap.legend
@@ -253,14 +257,20 @@ legend_scale_y = (IS_PHONE) ? 1.8 : 1;
     chartMap.legend
       .append("text")
       .attr("class",function(d){
-        if (IS_PHONE) {
+        if ((IS_PHONE) || (IS_MOBILE)) {
           return "legend-text-mobile"
         } else {
           return "legend-text"
         }
       })
       .attr("dy", 0)
-      .attr("y", "3.7em")
+      .attr("y",function(d){
+        if (IS_PHONE){
+          return 2.2*legend_scale_y + "em"
+        } else {
+          return "3.7em"
+        }
+      })
       .attr("x","2em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -276,15 +286,15 @@ legend_scale_y = (IS_PHONE) ? 1.8 : 1;
       .attr("y",function(d){
         if (IS_PHONE) {
           return 2*legend_scale_y + "em"
-        } else {
-          return "2em"
-        }
+        } else  if (IS_MOBILE) {
+            return 2*legend_mobile_scale_y + "em"
+          } return "2em"
       })
       .attr("width", 16)
       .attr("height", 16)
     chartMap.legend.append("text")
       .attr("class",function(d){
-        if (IS_PHONE) {
+        if ((IS_PHONE) || (IS_MOBILE))  {
           return "legend-text-mobile"
         } else {
           return "legend-text"
@@ -292,7 +302,7 @@ legend_scale_y = (IS_PHONE) ? 1.8 : 1;
       })
       .attr("dy", 0)
       .attr("x", function() {
-        if(IS_PHONE) {
+       if ((IS_PHONE) || (IS_MOBILE)) {
         return '2em';} 
           else {
           return '11.5em'
@@ -300,11 +310,11 @@ legend_scale_y = (IS_PHONE) ? 1.8 : 1;
       })
 
       .attr("y",function(d){
-        if (IS_PHONE) {
-          return 3.3*legend_scale_y + "em"
-        } else {
-          return "3.7em"
-        }
+       if (IS_PHONE) {
+          return 3.5*legend_scale_y + "em"
+        } else if (IS_MOBILE) {
+          return 3.5*legend_mobile_scale_y + "em"
+        } return "3.7em"
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -318,17 +328,17 @@ legend_scale_y = (IS_PHONE) ? 1.8 : 1;
       .attr("class", "legend-icon")
       .attr("x", 14*legend_scale_x + "em")
       .attr("y",function(d){
-        if (IS_PHONE) {
+         if (IS_PHONE) {
           return 3*legend_scale_y + "em"
-        } else {
-          return "2em"
-        }
+        } else if (IS_MOBILE) {
+          return 3*legend_mobile_scale_y + "em"
+        } return "2em"
       })
       .attr("width", 16)
       .attr("height", 16)
     chartMap.legend.append("text")
       .attr("class",function(d){
-        if (IS_PHONE) {
+        if ((IS_PHONE) || (IS_MOBILE))  {
           return "legend-text-mobile"
         } else {
           return "legend-text"
@@ -336,18 +346,18 @@ legend_scale_y = (IS_PHONE) ? 1.8 : 1;
       })
       .attr("dy", 0)
       .attr("x", function() {
-        if(IS_PHONE) {
+        if((IS_PHONE) || (IS_MOBILE))  {
         return '2em';} 
           else {
           return '20.4em'
         }
       })
       .attr("y",function(d){
-        if (IS_PHONE) {
-          return 4.6*legend_scale_y + "em"
-        } else {
-          return "3.7em"
-        }
+        if (IS_PHONE)  {
+          return 4.9*legend_scale_y+ "em"
+        } else if (IS_MOBILE) {
+          return 4.9*legend_mobile_scale_y + "em"
+        } return "3.7em"
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -362,16 +372,16 @@ legend_scale_y = (IS_PHONE) ? 1.8 : 1;
       .attr("x", 20.6*legend_scale_x + "em")
       .attr("y",function(d){
         if (IS_PHONE) {
-          return 4*legend_scale_y + "em"
-        } else {
-          return "2em"
-        }
+          return 4*legend_scale_y+ "em"
+        } else if (IS_MOBILE) {
+          return 4*legend_mobile_scale_y + "em"
+        } return "2em"
       })
       .attr("width", 16)
       .attr("height", 16)
     chartMap.legend.append("text")
       .attr("class",function(d){
-        if (IS_PHONE) {
+        if ((IS_PHONE) || (IS_MOBILE))  {
           return "legend-text-mobile"
         } else {
           return "legend-text"
@@ -379,18 +389,18 @@ legend_scale_y = (IS_PHONE) ? 1.8 : 1;
       })
       .attr("dy", 0)
       .attr("x", function() {
-        if(IS_PHONE) {
+        if((IS_PHONE) || (IS_MOBILE)) {
         return '2em';} 
           else {
           return '29em'
         }
       })
       .attr("y",function(d){
-        if (IS_PHONE) {
-          return 5.9*legend_scale_y + "em"
-        } else {
-          return "3.7em"
-        }
+        if (IS_PHONE)  {
+          return 6.4*legend_scale_y + "em"
+        } else if (IS_MOBILE) {
+          return 6.4*legend_mobile_scale_y + "em"
+        } return "3.7em"
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -405,16 +415,16 @@ legend_scale_y = (IS_PHONE) ? 1.8 : 1;
       .attr("x", 27*legend_scale_x + "em")
       .attr("y",function(d){
         if (IS_PHONE) {
-          return 5*legend_scale_y + "em"
-        } else {
-          return "2em"
-        }
+          return 5*legend_scale_y+ "em"
+        } else if (IS_MOBILE) {
+          return 5*legend_mobile_scale_y + "em"
+        } return "2em"
       })
       .attr("width", 16)
       .attr("height", 16)
     chartMap.legend.append("text")
       .attr("class",function(d){
-        if (IS_PHONE) {
+        if ((IS_PHONE) || (IS_MOBILE))  {
           return "legend-text-mobile"
         } else {
           return "legend-text"
@@ -422,18 +432,18 @@ legend_scale_y = (IS_PHONE) ? 1.8 : 1;
       })
       .attr("dy", 0)
       .attr("x", function() {
-        if(IS_PHONE) {
+        if((IS_PHONE) || (IS_MOBILE))  {
         return '2em';} 
           else {
           return '37.8em'
         }
       })
        .attr("y",function(d){
-        if (IS_PHONE) {
-          return 7.1*legend_scale_y + "em"
-        } else {
-          return "3.7em"
-        }
+       if (IS_PHONE) {
+          return 7.9*legend_scale_y + "em"
+        } else if (IS_MOBILE) {
+          return 7.9*legend_mobile_scale_y + "em"
+        } return "3.7em"
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {

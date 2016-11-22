@@ -52,7 +52,7 @@
         float: left;
         width: 100% !important;
       }
-      
+
       li {
          width: 90%;
       }
@@ -117,14 +117,21 @@
         font-size: 30px !important;
         line-height: 36px !important;
       }
-  .wrapper {
+    .wrapper {
     width: auto !important;
     padding-right: 20px;
     padding-left: 20px;
-  }
-  .graphic-container {
-    padding-left: 0% !important;
-  }
+    }
+    .graphic-container {
+      padding-left: 0% !important;
+    }
+    #measures-button {
+        width: 14em !important;
+      }
+
+      .ui-selectmenu-text {
+        font-size: 14px !important ;
+      }
 
 
 }
@@ -348,7 +355,7 @@ body {
 
 .tooltip-div-right {
     position: relative;
-    padding-left: 18px;
+    padding-left: 10px;
     float: left;
     border-left: 1px solid #555;
 }
@@ -652,8 +659,9 @@ select#measures-menu{
  }
 
 .ui-selectmenu-text {
-	font-size: 17px !important ;
-  margin-right: 2px;
+	font-size: 17px;
+  margin-right: 1px;
+  margin-left: 1px;
   overflow: visible !important;
 }
 

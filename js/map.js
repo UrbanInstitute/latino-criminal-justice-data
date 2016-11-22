@@ -5,6 +5,8 @@ function drawMap(){
 //map is forked from a combination of https://github.com/githamm/us-state-squares and https://github.com/lvonlanthen/data-map-d3
 cell_scale = (IS_PHONE) ? .6 : 1;
 var IS_PHONE = d3.select("#isPhone").style("display") == "block"
+var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
+
 
 
 var filteredData = [];
@@ -31,17 +33,24 @@ var $map = $("#map");
 var aspect_width = 30;
 var aspect_height = 25;
 var margin = { top: 5, right: 0, bottom: 10, left: 32 };
-var width= ($map.width() - margin.left - margin.right); 
+var width= ($map.width()); 
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
 console.log(height)
 
 
 if (IS_PHONE) {
   var projection = d3.geoEquirectangular()
-      .scale(1200)
+      .scale(1100)
+      .center([-96.03542,41.69553])
+      .translate([(width / 1.8), (height / 2)]);
+} else if (IS_MOBILE) {
+  var projection = d3.geoEquirectangular()
+      .scale(1550)
       .center([-96.03542,41.69553])
       .translate([(width / 2), (height / 2)]);
-} else {
+} 
+
+else {
       var projection = d3.geoEquirectangular()
       .scale(2300)
       .center([-96.03542,41.69553])

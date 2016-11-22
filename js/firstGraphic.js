@@ -329,10 +329,10 @@ function drawFirstGraphic() {
    //    });
    //  }
 
-  tooltip_phone_width = (IS_PHONE) ? 2.8 : 1;
+  tooltip_phone_width = (IS_PHONE) ? 1.5 : 1;
    tooltip_phone_height = (IS_PHONE) ? 40 : 0;
    tooltip_right_phone_width = (IS_PHONE) ? 0 : 1;
-   tooltip_mobile_width = (IS_MOBILE) ? 2.5 : 1;
+   tooltip_mobile_width = (IS_MOBILE) ? 1.7 : 1;
    tooltip_mobile_height = (IS_MOBILE) ? 80 : 0;
    tooltip_right_mobile_width = (IS_MOBILE) ? 0 : 1;
   // chart.tooltip = d3.select("#tooltip")
@@ -342,17 +342,17 @@ function drawFirstGraphic() {
 
   chart.tooltipLeft = d3.select(".tooltip-div-left")
     .append("svg")
-    .attr("width", width/2.5 *tooltip_phone_width*tooltip_mobile_width)
+    .attr("width", width/2.5 *(tooltip_phone_width*1.2)*tooltip_mobile_width)
     .attr("height", height/2.4 - (tooltip_mobile_height/2) + (tooltip_phone_height/1.4))
   chart.tooltipLeft= chart.tooltipLeft.append("g")
     .attr("transform", "translate("+ (.1*width)/tooltip_phone_width + ",0)");
 
   chart.tooltipRight = d3.select(".tooltip-div-right")
     .append("svg")
-    .attr("width", width/2*tooltip_phone_width*tooltip_mobile_width)
+    .attr("width", width/2*(tooltip_phone_width)*tooltip_mobile_width)
     .attr("height", height/2.4 + tooltip_phone_height + tooltip_mobile_height)
   chart.tooltipRight = chart.tooltipRight.append("g")
-    .attr("transform", "translate("+ -140*tooltip_right_phone_width +", " + 0 +")");
+    .attr("transform", "translate("+ -140*(tooltip_right_phone_width) +", " + 0 +")");
   
   for (var i = 0; i < tooltipCatNames.length; i++) {
   var imgs = chart.tooltipRight.selectAll("img").data([0]);

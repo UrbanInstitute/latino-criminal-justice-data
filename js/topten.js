@@ -85,7 +85,7 @@ function Grid(gridStates) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e7
 
  //states = states.properties.filter(function(d) {return d.state='NJ'})
 
-cell_scale = (IS_PHONE) ? .7 : 1;
+cell_scale_phone = (IS_PHONE) ? .7 : 1;
 height_phone = (IS_PHONE)? 1.5 : 1;
 width_phone = (IS_PHONE)? 2 : 1;
 
@@ -109,7 +109,7 @@ var filteredData = gridStates.features.filter(function(d){
     .attr("class", "row")
     .attr("width", 500)
     .attr("height", 49)
-    .attr("transform", function(d, i){ return "translate(" + cellWidth +" ," + (i*49)*cell_scale + ")"})
+    .attr("transform", function(d, i){ return "translate(" + cellWidth +" ," + (i*49)*cell_scale_phone + ")"})
 
   
 gridColumns = ["number_prison", "number_prison_ct", "arrests", "probation", "parole"]
@@ -117,11 +117,11 @@ gridColumns = ["number_prison", "number_prison_ct", "arrests", "probation", "par
     var gridColumn = gridColumns[i]; 
     chartTen.row
       .append("rect")
-      .attr("width",cellWidth *cell_scale)
-      .attr("height",cellWidth * cell_scale)
+      .attr("width",cellWidth *cell_scale_phone)
+      .attr("height",cellWidth * cell_scale_phone)
       .attr("x", function() {
         if (IS_PHONE) {
-          return "x", (i*49)*cell_scale
+          return "x", (i*49)*cell_scale_phone
         } else {
         return (40+i*49)
        }
@@ -177,7 +177,7 @@ label_side_phone = (IS_PHONE) ? -25.2 : 1;
     last_row.selectAll("rect").each(function(d, i) {
       last_row.append("text")
       .attr("class", "grid-cat-labels")
-      .attr("transform", "translate(" + (i*52+ 70*cell_scale)*cell_scale+ ","+55*cell_scale+") rotate(-45)" )
+      .attr("transform", "translate(" + (i*52+ 70*cell_scale_phone)*cell_scale_phone+ ","+55*cell_scale_phone+") rotate(-45)" )
       .attr("text-anchor", "end")
 
       .text(function () { 

@@ -1,6 +1,11 @@
 
 function drawFirstGraphic() {
 
+  var options = {
+  filter: 'step1-regular'
+
+}
+
   cell_scale_phone = (IS_PHONE) ? .6 : 1;
   cell_scale_mobile = (IS_MOBILE) ? .66 : 1;
 
@@ -11,7 +16,8 @@ function drawFirstGraphic() {
   var selectTooltip = d3.select('.tooltip-div')
   var selectedData = 'num_crime_cat_2'
 
-  tooltipCatNames = ["all_number_prison", "all_number_prison_ct", "all_arrests", "all_probation", "all_parole"]
+  tooltipCatNames_all = ["all_number_prison", "all_number_prison_ct", "all_arrests", "all_probation", "all_parole"]
+  tooltipCatNames_reg = ["reg_number_prison", "reg_number_prison_ct", "reg_arrests", "reg_probation", "reg_parole"]
 
   $tooltip = $("tooltip")
   yBase = 350
@@ -58,8 +64,9 @@ function drawFirstGraphic() {
       d3.selectAll(".step1_button.active").classed("active", false);
       d3.select(this).classed("active", true);
       selectedData = d3.select(this).attr("value");
+      options.filter = d3.select(this).attr("id");
       firstGraphic.update(states);
-      console.log(selectedData);
+      console.log(options.filter);
 
   }) 
 
@@ -354,8 +361,11 @@ function drawFirstGraphic() {
   chart.tooltipRight = chart.tooltipRight.append("g")
     .attr("transform", "translate("+ -140*(tooltip_right_phone_width) +", " + 0 +")");
   
-  for (var i = 0; i < tooltipCatNames.length; i++) {
-  var imgs = chart.tooltipRight.selectAll("img").data([0]);
+  
+
+
+  for (var i = 0; i < 5; i++) { 
+   var imgs = chart.tooltipRight.selectAll("img").data([0]);
     imgs.enter()
     .append("svg:image")
     .attr("xlink:href", "images/uncheckedbox.svg") 
@@ -368,7 +378,9 @@ function drawFirstGraphic() {
     .attr("y",  2 + 1.7*i + "em")
     .attr("width","20")
     .attr("height", "20");
+    
   }
+
 
   function addMeasures() {
     for(var i = 0; i < MEASURES_TOOLTIP[GLOBAL_LANGUAGE].length; i++){
@@ -424,6 +436,14 @@ chart.states = states
 
 
 function tooltip(mystate) {
+
+    tooltipCatNames_switch = function() {
+    if (options.filter== 'step1-regular') {
+      return tooltipCatNames_reg;
+    } return tooltipCatNames_all;
+  }
+
+  var tooltipCatNames = tooltipCatNames_switch()
 
     for (var i = 0; i < tooltipCatNames.length; i++) {
       

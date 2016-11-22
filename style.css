@@ -133,6 +133,18 @@
         font-size: 14px !important ;
       }
 
+    #legend{
+      padding-left: 20px;
+    }
+    #grid {
+      width: 100% !important;
+    }
+    #legend3{
+      float: left !important;
+      padding-left: 45px;
+      margin-top: 5px !important;
+    }
+
 
 }
 

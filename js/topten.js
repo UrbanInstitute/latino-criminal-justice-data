@@ -20,7 +20,7 @@ var color = d3.scaleThreshold()
 
 var $grid = $("#grid");
 var aspect_width = 23;
-var aspect_height = 38;
+var aspect_height = 40;
 var margin = { top: 0, right: 0, bottom: 10, left: 32 };
 var width= ($grid.width())
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
@@ -86,8 +86,8 @@ function Grid(gridStates) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e7
  //states = states.properties.filter(function(d) {return d.state='NJ'})
 
 cell_scale_phone = (IS_PHONE) ? .7 : 1;
-height_phone = (IS_PHONE)? 1.5 : 1;
 width_phone = (IS_PHONE)? 2 : 1;
+height_mobile = (IS_MOBILE)? .9 : 1;
 
 
 chartTen.svg = d3.select("#grid")
@@ -95,7 +95,7 @@ chartTen.svg = d3.select("#grid")
     .classed("svg-container", true)
     .append("svg")
     .attr("width", width*width_phone)
-    .attr("height", height*height_phone)
+    .attr("height", height*height_mobile)
 
 
 var filteredData = gridStates.features.filter(function(d){
@@ -217,13 +217,14 @@ function wrapText(text, width) {
 
 legend_scale_x = (IS_PHONE) ? 2 : 0;
 legend_scale_y = (IS_PHONE) ? .9 : 1;
+legend_height_mobile = (IS_MOBILE) ? .3 : 1;
 
   chartTen.legend = d3.select("#legend3")
       .append("div")
       .classed("grid-legend", true)
       .append("svg")
       .attr("width", width)
-      .attr("height", height);
+      .attr("height", height*legend_height_mobile);
 
     chartTen.legend
       .append("rect")

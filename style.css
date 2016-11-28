@@ -91,7 +91,7 @@
 
 @media (max-width: 768px){
   #isMobile {
-    display: block !important;
+    display: block;
   }
   .tooltip-div-left {
     width: 100% !important;

@@ -6,7 +6,7 @@ function drawFirstGraphic() {
 
 }
 
-  cell_scale_phone = (IS_PHONE) ? .6 : 1;
+  cell_scale_phone = (IS_PHONE) ? .56 : 1;
   cell_scale_mobile = (IS_MOBILE) ? .66 : 1;
 
     var IS_PHONE = d3.select("#isPhone").style("display") == "block"
@@ -104,7 +104,7 @@ function drawFirstGraphic() {
   });
 
   function FirstGraphic(states) { 
-    cell_scale_phone = (IS_PHONE) ? .8 : 1;
+    cell_scale_phone = (IS_PHONE) ? .56 : 1;
     cell_scale_mobile = (IS_MOBILE) ? .7 : 1;
     phone_height = (IS_PHONE) ? 0: 0;
     phone_width = (IS_PHONE) ? 38 : 0;
@@ -509,7 +509,7 @@ function tooltip(mystate) {
 
  FirstGraphic.prototype.update = function(states) {
 
-    cell_scale_phone = (IS_PHONE) ? .8 : 1;
+    cell_scale_phone = (IS_PHONE) ? .56 : 1;
     cell_scale_mobile = (IS_MOBILE) ? .7 : 1;
     phone_height = (IS_PHONE) ? 0: 0;
     phone_width = (IS_PHONE) ? 38 : 0;
@@ -560,17 +560,17 @@ function tooltip(mystate) {
           .duration(2000)
           .attr("x", function() {
             if (i%2 !== 0) {
-              return (xOddcell + j*100)*cell_scale_phone*cell_scale_mobile;
+              return (xOddcell + j*100)*cell_scale_phone;
             } 
-              return (xEvencell + j*100)*cell_scale_phone*cell_scale_mobile;
+              return (xEvencell + j*100)*cell_scale_phone;
           })
           .attr("y", function() {
             if (i%2 == 0){
-              return (ybaseCell - ((i/2)*squareDim))*cell_scale_phone*cell_scale_mobile;
+              return (ybaseCell - ((i/2)*squareDim))*cell_scale_phone;
             } else if (i == 1) {
-              return ybaseCell*cell_scale_phone*cell_scale_mobile;
+              return ybaseCell*cell_scale_phone;
             } else{
-              return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale_phone*cell_scale_mobile;
+              return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale_phone;
 
             }
            }) //so that all columns start from the bottom up  
@@ -582,18 +582,18 @@ function tooltip(mystate) {
           .attr("x", function() {
             if (i%2 !== 0) {
               console.log('hi')
-             return (xOddcell + j*100)*cell_scale_phone;
+             return (xOddcell + j*100)*cell_scale_mobile;
             } else {
-              return (xEvencell + j*100)*cell_scale_phone;
+              return (xEvencell + j*100)*cell_scale_mobile;
             }
           })
           .attr("y", function() {
             if (i%2 == 0){
-              return (ybaseCell - ((i/2)*squareDim))*cell_scale_phone;
+              return (ybaseCell - ((i/2)*squareDim))*cell_scale_mobile;
             } else if (i == 1) {
-              return ybaseCell*cell_scale_phone;
+              return ybaseCell*cell_scale_mobile;
             } else{
-              return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale_phone;
+              return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale_mobile;
             }
            }) //so that all columns start from the bottom up  
 

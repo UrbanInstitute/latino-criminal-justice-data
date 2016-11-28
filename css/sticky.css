@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.left-col {
+  float: left;
+  width: 40%;
+  padding-right:15px;
+
+}
+
+
+
+
+.right-col {
+  float: right;
+  width: 60%;
+  padding-left: 25px;
+  padding-right: 70px;
+ 
+  
+}
+
+.container {
+
+    margin-bottom: 80px;
+    padding:0px 30px;
+ 
+}
+
+
+@media  (max-width: 900px) {
+  .right-col { float: none; width: 100%; padding:0px;}
+  .left-col { float: none; width: 100%; padding:0px;}
+  
+    .container {margin-bottom: 40px;}
+    .responsivequote { margin:40px 0px 30px 0px}
+    h2{font-weight:700;}
+}
+
+@media  (min-width: 901px) {
+  
+  .responsivequote {display:none;}
+    
+
+}
+
+@media  (max-width: 600px) {
+    
+   h2{font-size:24px;}   
+    
+}
+

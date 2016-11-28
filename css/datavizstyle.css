@@ -1,6 +1,13 @@
 /*ADJUSTING FOR SCREEN WIDTHS */
 
  @media (max-width: 600px) {
+
+        .mobile-text {
+          display: block !important;
+      }
+      .non-mobile-text {
+        display: none !important;
+      }
       .graphic-container {
         float: none !important;
       }
@@ -56,7 +63,7 @@
       }
 
       li.li-list {
-        width: 80% !important;
+        width: 90% !important;
         padding-left: 10px;
       }
       .section-banner {

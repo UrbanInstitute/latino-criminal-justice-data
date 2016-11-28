@@ -26,6 +26,9 @@
       .xlabel {
         font-size: 12px;
       }
+      .place-label {
+        font-size: 10px !important;
+      }
       
       #isPhone{
         display: block !important;
@@ -74,8 +77,9 @@
       }
 
       .main-title {
-        font-size: 28px !important;
+        font-size: 24px !important;
         line-height: 32px !important;
+        margin-top: 2px !important;
       }
 
       .large {
@@ -102,20 +106,18 @@
   .main-content {
     width: auto;
   }
-  .title-area {
-        width: 720px !important;
-  }
+
    .section-banner {
         height: 300px;
         width: 100%;
       }
    .title-area {
-        width: 720px !important;
+        width: 720px;
       }
 
    .main-title {
-        font-size: 30px !important;
-        line-height: 36px !important;
+        font-size: 30px;
+        line-height: 36px;
       }
     .wrapper {
     width: auto !important;
@@ -181,6 +183,10 @@
   margin-right: .2em;
 
 
+}
+
+#header-pinned {
+  z-index: 50;
 }
 
 

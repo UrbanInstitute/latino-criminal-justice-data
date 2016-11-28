@@ -23,8 +23,8 @@ function drawFirstGraphic() {
   yBase = 350
   ybaseCell = 373
   squareDim = 43
-  xEvencell= 60
-  xOddcell= 19
+  xEvencell= 19
+  xOddcell= 60
 
   var chart=this;
 
@@ -170,18 +170,22 @@ function drawFirstGraphic() {
     
     for(var j = 0; j < 6; j++){
 
-    var data = states.features.filter(function(d) {return d.properties[selectedData]== String(j)})
-    cells = chart.group.selectAll("cell")
-        .data(data)
-        .enter()
 
+
+    var data = states.features.filter(function(d) {return d.properties[selectedData]== String(j)})
+
+    cells = chart.group.selectAll("cell")
+        .data(data.sort(function (a,b) {return d3.descending(a.properties.abbr, b.properties.abbr); }))
+        .enter()
     cells.append("rect")
         .style("fill", "#1696d2")
         .attr("class",function(d){
-          return "cell " + d.properties.abbr
+          return "cell " + d.properties.abbr;
         })
         .attr("width",38*cell_scale_phone*cell_scale_mobile)
         .attr("height",38*cell_scale_phone*cell_scale_mobile)
+   // cells.selectAll(".cell ")
+   //     .sort(function(a, b) {return d3.descending(a.d["properties"][])})
         .attr("x", function(d,i) {
           if (i%2 !== 0) {
             return (squareDim + j*100) *cell_scale_phone*cell_scale_mobile;
@@ -201,7 +205,7 @@ function drawFirstGraphic() {
             return (yBase - (((i-1)/2)*squareDim)) * cell_scale_phone*cell_scale_mobile;
           }
          }) //so that all columns start from the bottom up
-    
+     
       cells.append("text")
         .attr("class",function(d){
           if (IS_PHONE) {
@@ -212,11 +216,12 @@ function drawFirstGraphic() {
   //  .attr("class", "cell-label")
    // .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
         .attr("x", function(d,i) {
-          if (i%2 !== 0) {
-            return (xEvencell + j*100)*cell_scale_phone*cell_scale_mobile;
-          } else {
+          if (i== data.length && i%2 !== 0) {
+            return (10)}
+          else if (i%2 !== 0) {
             return (xOddcell + j*100)*cell_scale_phone*cell_scale_mobile;
-          }
+          } 
+            return (xEvencell + j*100)*cell_scale_phone*cell_scale_mobile;
         })
         .transition()
         .duration(800)
@@ -234,6 +239,7 @@ function drawFirstGraphic() {
           return d.properties.abbr;
         })      
         .attr("text-anchor", "middle");
+
       
 
       }
@@ -241,8 +247,6 @@ function drawFirstGraphic() {
 
       chart.group.selectAll(".cell")
           .on("mouseover", function(mystate) {
-            console.log(mystate)
-
             d3.select(this)         
               .style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
               .classed("hover", true ) // should then accept fill from CSS
@@ -453,7 +457,6 @@ function tooltip(mystate) {
          .append("svg:image")
           .attr("xlink:href", function(d, j) {
             if (mystate.properties[tooltipCatName] == "1") { 
-              console.log(tooltipCatName)
               return "images/checkbox.svg";
             }
             else {
@@ -505,6 +508,15 @@ function tooltip(mystate) {
 
 
  FirstGraphic.prototype.update = function(states) {
+
+    cell_scale_phone = (IS_PHONE) ? .8 : 1;
+    cell_scale_mobile = (IS_MOBILE) ? .7 : 1;
+    phone_height = (IS_PHONE) ? 0: 0;
+    phone_width = (IS_PHONE) ? 38 : 0;
+    mobile_width = (IS_MOBILE) ? 32 : 0;
+    mobile_height = (IS_MOBILE) ? 70 : 0;
+
+
     //chart.states = states
 
 
@@ -513,27 +525,32 @@ function tooltip(mystate) {
 
 
     var data = states.features.filter(function(d) {return d.properties[selectedData]== String(j)})
+                              .sort(function (a,b) {return d3.descending(a.properties.abbr, b.properties.abbr); });
+
+
+
     // console.log(states.features.length)
     // console.log(data)
       for(var i = 0; i < data.length; i++){
+
+
       chart.group.selectAll(".cell." + data[i].properties.abbr)
-  //      .data(data)
         .transition()
         .duration(2000)
           .attr("x", function() {
             if (i%2 !== 0) {
-              return (squareDim + j*100) *cell_scale_phone;
+              return (squareDim + j*100) *cell_scale_phone*cell_scale_mobile
             } else {
-              return (j*100) *cell_scale_phone
+              return (j*100) *cell_scale_phone*cell_scale_mobile
             }
           })
           .attr("y", function() {
             if (i%2 == 0){
-              return (yBase - ((i/2)*squareDim)) * cell_scale_phone;
+              return (yBase - ((i/2)*squareDim)) * cell_scale_phone*cell_scale_mobile;
             } else if (i == 1) {
-              return yBase*cell_scale_phone;
+              return yBase*cell_scale_phone*cell_scale_mobile;
             } else{
-              return (yBase - (((i-1)/2)*squareDim)) * cell_scale_phone;
+              return (yBase - (((i-1)/2)*squareDim)) * cell_scale_phone*cell_scale_mobile;
             }
           }) //so that all columns start from the bottom up
         
@@ -543,19 +560,18 @@ function tooltip(mystate) {
           .duration(2000)
           .attr("x", function() {
             if (i%2 !== 0) {
-              console.log('hi')
-             return (xEvencell + j*100)*cell_scale_phone;
-            } else {
-              return (xOddcell + j*100)*cell_scale_phone;
-            }
+              return (xOddcell + j*100)*cell_scale_phone*cell_scale_mobile;
+            } 
+              return (xEvencell + j*100)*cell_scale_phone*cell_scale_mobile;
           })
           .attr("y", function() {
             if (i%2 == 0){
-              return (ybaseCell - ((i/2)*squareDim))*cell_scale_phone;
+              return (ybaseCell - ((i/2)*squareDim))*cell_scale_phone*cell_scale_mobile;
             } else if (i == 1) {
-              return ybaseCell*cell_scale_phone;
+              return ybaseCell*cell_scale_phone*cell_scale_mobile;
             } else{
-              return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale_phone;
+              return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale_phone*cell_scale_mobile;
+
             }
            }) //so that all columns start from the bottom up  
 
@@ -566,9 +582,9 @@ function tooltip(mystate) {
           .attr("x", function() {
             if (i%2 !== 0) {
               console.log('hi')
-             return (xEvencell + j*100)*cell_scale_phone;
+             return (xOddcell + j*100)*cell_scale_phone;
             } else {
-              return (xOddcell + j*100)*cell_scale_phone;
+              return (xEvencell + j*100)*cell_scale_phone;
             }
           })
           .attr("y", function() {

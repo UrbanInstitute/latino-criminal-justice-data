@@ -38,7 +38,7 @@ function drawFirstGraphic() {
   var $firstGraphic = $("#firstGraphic");
 
   var aspect_width = 30;
-  var aspect_height = 25;
+  var aspect_height = 28;
   var margin = { top: 0, right: 0, bottom: 10, left: 32 };
   var width= ($firstGraphic.width() - margin.left - margin.right); 
   var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
@@ -52,23 +52,35 @@ function drawFirstGraphic() {
 
   //EVENT HANDLERS
  
-  d3.select(".cell .HI").classed("hover", true)
 
 
-  //TOGGLES
-  d3.selectAll(".step1_button").classed("active", false);
-  d3.select("#step1-regular").classed("active", true)
+
+ // d3.selectAll(".step1_button").classed("active", false);
+ // d3.select("#step1-regular").classed("active", true)
+
+  d3.select("#step1-regular").classed("on", true)
   d3.select("#mobile-text").text("")
-  d3.selectAll('.step1_button')
+ // d3.selectAll('.step1_button')
+ d3.select("#step1-regular")
     .on('click', function() {
-      d3.selectAll(".step1_button.active").classed("active", false);
-      d3.select(this).classed("active", true);
-      selectedData = d3.select(this).attr("value");
-      options.filter = d3.select(this).attr("id");
-      firstGraphic.update(states);
-      console.log(options.filter);
+    //  d3.selectAll(".step1_button.active").classed("active", false);
+    //  d3.select(this).classed("active", true);
+    options.filter = d3.select(this).attr("id");
+      if(d3.select(this).classed("on")){
+        d3.select(this).classed("on", false)
+        d3.select(this).classed("off", true)
+        selectedData = "num_crime_cat_all";
+        firstGraphic.update(states);
+      }
+      else {
+        d3.select(this).classed("on", true)
+        d3.select(this).classed("off", false)
+        selectedData = "num_crime_cat_2";
+        firstGraphic.update(states);
+      }
 
-  }) 
+    }) 
+
 
   console.log(selectedData);
   /*DATA SOURCES*/

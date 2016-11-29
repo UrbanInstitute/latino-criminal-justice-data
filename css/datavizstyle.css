@@ -261,6 +261,12 @@ hr {
     float: left;
 }
 
+.div-no-float {
+    position: relative;
+    text-align: center;
+    float: left;
+}
+
 .div-toggle-inline {
     position: relative;
     display: inline-block;

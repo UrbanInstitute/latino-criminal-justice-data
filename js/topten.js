@@ -27,21 +27,44 @@ var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - ma
 
 
 
-//EVENT HANDLERS
 
-//TOGGLES
-d3.selectAll(".step3_button").classed("active", false);
-d3.select("#step3-regular").classed("active", true)
+
+//TOGGLE
+d3.select("#step3-regular").classed("on", true)
 d3.select("#mobile-text").text("")
-d3.selectAll('.step3_button')
+d3.select("#step3-regular")
   .on('click', function() {
-    d3.selectAll(".step3_button.active").classed("active", false);
-    d3.select(this).classed("active", true);
-    options.filter = d3.select(this).attr("id");
-    grid.update(gridStates);
-    console.log(options.filter);
+      if(d3.select(this).classed("on")){
+        d3.select(this).classed("on", false)
+        d3.select(this).classed("off", true)
+        options.filter = "step3-all";
+        grid.update(gridStates);
+        console.log(options.filter)
+      }
+      else {
+        d3.select(this).classed("on", true)
+        d3.select(this).classed("off", false)
+        options.filter = d3.select(this).attr("id");
+        grid.update(gridStates);
+        console.log(options.filter)
+
+      }
 
 }) 
+
+// //TOGGLES
+// d3.selectAll(".step3_button").classed("active", false);
+// d3.select("#step3-regular").classed("active", true)
+// d3.select("#mobile-text").text("")
+// d3.selectAll('.step3_button')
+//   .on('click', function() {
+//     d3.selectAll(".step3_button.active").classed("active", false);
+//     d3.select(this).classed("active", true);
+//     options.filter = d3.select(this).attr("id");
+//     grid.update(gridStates);
+//     console.log(options.filter);
+
+// }) 
 
 /*DATA SOURCES*/
 

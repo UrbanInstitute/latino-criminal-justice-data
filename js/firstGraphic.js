@@ -38,7 +38,7 @@ function drawFirstGraphic() {
   var $firstGraphic = $("#firstGraphic");
 
   var aspect_width = 30;
-  var aspect_height = 28;
+  var aspect_height = 26;
   var margin = { top: 0, right: 0, bottom: 10, left: 32 };
   var width= ($firstGraphic.width() - margin.left - margin.right); 
   var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
@@ -134,7 +134,7 @@ function drawFirstGraphic() {
           if ((IS_PHONE) || (IS_MOBILE)) {
             return width + phone_width + mobile_width
           } else {
-            return width}
+            return width*1.1}
         })
         .attr("height", function(){
           if ((IS_PHONE) || (IS_MOBILE))  {
@@ -146,7 +146,7 @@ function drawFirstGraphic() {
 
     chart.group = chart.svg.append('g')
                   .attr("class", "g")
-                  .attr("transform", "translate(0,0)")
+                  .attr("transform", "translate(15,0)")
 
     xLabel = chart.svg.append("g")
       .attr("transform", "translate(20,0)")
@@ -317,13 +317,13 @@ function drawFirstGraphic() {
     .attr("transform", function(d, i){ 
       if (i == 5) {
         if ((IS_PHONE) || (IS_MOBILE)){
-        return "translate(" + (i*100 + 15*cell_scale_phone*cell_scale_mobile*1.7)*cell_scale_phone*cell_scale_mobile +" , " + 410*cell_scale_phone*cell_scale_mobile +")"; //label 5 needs to  be aligned under one cell
-      } return "translate(" + (i*100 + 15) +" , " + 410 +")"; //label 5 needs to  be aligned under one cell
+        return "translate(" + (i*100 + 30*cell_scale_phone*cell_scale_mobile*1.7)*cell_scale_phone*cell_scale_mobile +" , " + 410*cell_scale_phone*cell_scale_mobile +")"; //label 5 needs to  be aligned under one cell
+      } return "translate(" + (i*100 + 30) +" , " + 410 +")"; //label 5 needs to  be aligned under one cell
     } else { 
       if ((IS_PHONE)|| (IS_MOBILE)){
-        return "translate(" + (i*100 + 36*cell_scale_phone*cell_scale_mobile*1.6)*cell_scale_phone*cell_scale_mobile +" ," + 410*cell_scale_phone*cell_scale_mobile +")"
+        return "translate(" + (i*100 + 51*cell_scale_phone*cell_scale_mobile*1.6)*cell_scale_phone*cell_scale_mobile +" ," + 410*cell_scale_phone*cell_scale_mobile +")"
       }
-        return "translate(" + (i*100 + 36)+" ," + 410+")"
+        return "translate(" + (i*100 + 51)+" ," + 410+")"
       }
     })
    

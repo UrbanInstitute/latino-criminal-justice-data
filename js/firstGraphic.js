@@ -65,17 +65,18 @@ function drawFirstGraphic() {
     .on('click', function() {
     //  d3.selectAll(".step1_button.active").classed("active", false);
     //  d3.select(this).classed("active", true);
-    options.filter = d3.select(this).attr("id");
       if(d3.select(this).classed("on")){
         d3.select(this).classed("on", false)
         d3.select(this).classed("off", true)
         selectedData = "num_crime_cat_all";
         firstGraphic.update(states);
+        options.filter = "#step1-all";
       }
       else {
         d3.select(this).classed("on", true)
         d3.select(this).classed("off", false)
         selectedData = "num_crime_cat_2";
+        options.filter = d3.select(this).attr("id");
         firstGraphic.update(states);
       }
 

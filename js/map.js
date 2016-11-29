@@ -77,17 +77,55 @@ var frequency = "_frequency";
 
  //EVENT HANDLERS
 
+
+
+ // d3.select("#step1-regular")
+ //    .on('click', function() {
+ //    //  d3.selectAll(".step1_button.active").classed("active", false);
+ //    //  d3.select(this).classed("active", true);
+ //    options.filter = d3.select(this).attr("id");
+ //      if(d3.select(this).classed("on")){
+ //        d3.select(this).classed("on", false)
+ //        d3.select(this).classed("off", true)
+ //        selectedData = "num_crime_cat_all";
+ //        firstGraphic.update(states);
+ //      }
+ //      else {
+ //        d3.select(this).classed("on", true)
+ //        d3.select(this).classed("off", false)
+ //        selectedData = "num_crime_cat_2";
+ //        firstGraphic.update(states);
+ //      }
+
+ //    }) 
+
 //TOGGLES
-d3.selectAll(".step2_button").classed("active", false);
-d3.select("#step2-regular").classed("active", true)
+d3.select("#step2-regular").classed("on", true)
 d3.select("#mobile-text").text("")
-d3.selectAll('.step2_button')
+d3.select("#step2-regular")
   .on('click', function() {
-    d3.selectAll(".step2_button.active").classed("active", false);
-    d3.select(this).classed("active", true);
-    options.filter = d3.select(this).attr("id");
-    choropleth.update(mapStates);
-    console.log(options.filter);
+      if(d3.select(this).classed("on")){
+        d3.select(this).classed("on", false)
+        d3.select(this).classed("off", true)
+        options.filter = "step2-all";
+        choropleth.update(mapStates)
+        console.log(options.filter)
+      }
+      else {
+        d3.select(this).classed("on", true)
+        d3.select(this).classed("off", false)
+        options.filter = d3.select(this).attr("id");
+        choropleth.update(mapStates)
+        console.log(options.filter)
+
+      }
+
+
+    // d3.selectAll(".step2_button.active").classed("active", false);
+    // d3.select(this).classed("active", true);
+    // options.filter = d3.select(this).attr("id");
+    // choropleth.update(mapStates);
+    // console.log(options.filter);
 
 }) 
 
@@ -478,15 +516,8 @@ Choropleth.prototype.update = function(mapStates) {
    		.transition()
       	.delay(function(d,i) { return i * 10; })
     	.duration(1250)
-     	.style("opacity", function(d) {
-     		if (options.filter == 'step2-regular') {
-       		if (d.properties[Cat + frequency] == 2){
-            return '1';
-        	} else {
-        		return '1';
-        	}
-      	} 
-		   }) 
+     	.style("opacity", "1")
+		   // }) 
      	// .style("stroke-opacity", function(d) {
      	// 	if (options.filter == 'step2-regular') {
       //  		if (d.properties[Cat + frequency] == 2){
@@ -497,11 +528,15 @@ Choropleth.prototype.update = function(mapStates) {
 	    .style("fill", function(d) {
         if (options.filter == 'step2-regular') {
           if (d.properties[Cat + frequency] == 2) {
+            console.log('regular')
 	         return color(d.properties[Cat + rating]);
-          } return "#ffffff"
+
+          } 
         } else if (options.filter == 'step2-all') {
+          console.log('all')
             return color(d.properties[Cat + rating]);
-        }
+            
+        } return "#ffffff"
 	    })
 
 	    .style("stroke", function(d) {

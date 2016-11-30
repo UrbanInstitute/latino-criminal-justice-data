@@ -103,7 +103,7 @@ var HEADERTEXT = {
 
 }
 
-var FIRSTSECTION {
+var FIRSTSECTION = {
   english:[],
   spanish:["first section- spanish text"]
 }
@@ -142,9 +142,9 @@ var FIRSTSECTION {
 // })
 
 
-$("#spanish")  //$(".language_option")  isn't working
+$(".language_option")
 .on("click", function() {
-    GLOBAL_LANGUAGE = d3.select(this).attr("id");
+    GLOBAL_LANGUAGE = d3.select(this).select("a").attr("id");
     console.log(GLOBAL_LANGUAGE)
 
   var measures = $('.measure_type')

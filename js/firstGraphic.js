@@ -160,7 +160,6 @@ function drawFirstGraphic() {
             return '2em'
           } else { 
             if (IS_MOBILE) {
-              console.log('hi')
               return '1.5em'
               } return '6.5em'
           }
@@ -175,7 +174,7 @@ function drawFirstGraphic() {
             return '27em'
           }
         })
-        .text('Number of Categories with Data Reported')
+        .text(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
         .style('fill', "#9d9d9d")
 
       //ADDING GROUPS
@@ -431,7 +430,7 @@ function drawFirstGraphic() {
         } else return "12em"
       })
     .attr("text-anchor", "start")
-    .text("data on latinos has been reported for");
+    .text(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][1][1])
   chart.tooltipLeft
     .append("text")
     .attr("class", "tooltip-header")
@@ -443,7 +442,7 @@ function drawFirstGraphic() {
     } else return "-2.3em"
     })
     .attr("text-anchor", "start")
-    .text("state");
+    .text(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][0][1]);
 
   }
   addHeaders()

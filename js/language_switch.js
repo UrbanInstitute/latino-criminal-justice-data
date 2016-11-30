@@ -125,7 +125,12 @@ var SECONDSECTION = {
   – 38 states report data on Latinos in prison, while 20 report ethnicity of parole population, 18 report ethnicity of probation population, 15 report ethnicity of arrested individuals and just 1 reports on ethnicity of prison population by offense. Even for prison and data, though, \
   hardly any states report at our highest standard. North Carolina reports data at our highest standard, tracking both race and ethnicity, and then reporting them in combination (e.g. Hispanic white, non-Hispanic black) for prison population. Only New Hampshire and Vermont match this \
   highest standard, both for their reported data on arrests.</p>"],
-  spanish: ["second section- spanish text"]
+  spanish: ["second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text\
+  second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text\
+  second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text\
+  second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text\
+  second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text\
+  second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text"]
 }
 
 var SECOND_HEADER = {
@@ -163,6 +168,58 @@ var CONCLUSION ={
   spanish:["<h1 class=\"last-header\">Conclusion header- spanish</h1> <p>Conclusion- spanish text</p>"]
 }
 
+//DATA VIZ
+
+var TOGGLE_TEXT = {
+  english: ["Regularly and Recently Reported Data"],
+  spanish: ["Reguarly and Recently Reported Data- spanish"]
+}
+
+var FIRSTGRAPHIC_XLABEL = {
+  english: ["Number of Categories with Data Reported"],
+  spanish: ["Number of Categories with Data Reported- spanish"]
+}
+
+var FIRSTGRAPHIC_TOOLTIPHEADER = {
+  english: [
+  ["header1","state"],
+  ["header2","data on latinos has been reported for"]
+  ],
+  spanish:[
+  ["header1","state-spanish"],
+  ["header2","data on latinos has been reported for-spanish"]
+  ]
+}
+
+
+//FOOTER
+
+var FOOTER_TEXT = {
+  english: ["<h2>About the data</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"],
+  spanish: ["<h2>About the data- spanish</h2><p>Footer text-spanish</p>"]
+}
+
+var PROJECT_CREDITS = {
+  english: ["<h2>Project credits</h2><div class=\"urbanstatement\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>\
+                    <h3 class=\"job\">Research</h3>\
+                    Sarah Eppler-Epstein and Annie Gurvis\
+                    <h3 class=\"job\">Design and Development</h3>\
+                    Vivian Hou and John Wehmann\
+                    <h3 class=\"job\">Photography</h3>  \<a href=\"http:\/\/www.urban.org\/author\/matthew-johnson\">Lydia Thompson</a>\
+                    <h3 class=\"job\">Editorial</h3>\
+                    <a href=\"http:\/\/www.urban.org\/author\/???\">???</a>\
+                    <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/race_ethnicity\" target=\"_blank\">View this project on Github.</a></div>"],
+  spanish: ["<h2>Project credits-spanish</h2><div class=\"urbanstatement\">Spanish text </div>\
+                    <h3 class=\"job\">Research- spanish</h3>\
+                    Sarah Eppler-Epstein and Annie Gurvis\
+                    <h3 class=\"job\">Design and Development- spanish</h3>\
+                    Vivian Hou and John Wehmann\
+                    <h3 class=\"job\">Photography- spanish</h3>  \
+                    <a href=\"http:\/\/www.urban.org\/author\/matthew-johnson\">Lydia Thompson</a>\
+                    <h3 class=\"job\">Editorial- spanish</h3>\
+                    <a href=\"http:\/\/www.urban.org\/author\/???\">???</a>\
+                    <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/race_ethnicity\" target=\"_blank\">View this project on Github-spanish.</a></div>"]
+}
 
 
 
@@ -201,35 +258,13 @@ var CONCLUSION ={
 // })
 
 
-$(".language_option")
-.on("click", function() {
-    GLOBAL_LANGUAGE = d3.select(this).select("a").attr("id");
-    console.log(GLOBAL_LANGUAGE)
-
-  var measures = $('.measure_type')
-  d3.select(this).classed("active", true)
- // d3.selectAll(".measure_type").each(function(d, i) {
-  for (var i=0; i<measures.length; i++){
-      console.log(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
-      console.log(measures.eq(i).text())
-       if (measures.eq(i).text() == (MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])) {
-        console.log('1')
-    //   } else {
-    //     $(".measure_type").data(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1], $(".measure_type").text());
-    //     $(".measure_type").text(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
-    //     console.log(  $(".measure_type").text())
-    }
-    else {
-      measures.eq(i).data(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1]), measures.eq(i).text();
-      measures.eq(i).text(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
-    }
-  } 
+//WHEN PAGE LOADS, USE ENGLISH TEXT
+$(window).load(function() { 
+  $('#first-section-text').html(FIRSTSECTION[GLOBAL_LANGUAGE])
   $('#heroimage').find('h1').html(TITLE[GLOBAL_LANGUAGE])
   $('#header_text').html(HEADERTEXT[GLOBAL_LANGUAGE])
-  $('#first-section-text').html(FIRSTSECTION[GLOBAL_LANGUAGE])
   if ((IS_MOBILE) || (IS_PHONE)) {
     $('.mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
-    console.log('1')
   } else {
     $('.non-mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
     console.log(GLOBAL_LANGUAGE)
@@ -237,6 +272,77 @@ $(".language_option")
   $('#second-header').html(SECOND_HEADER[GLOBAL_LANGUAGE])
   $('#third-section-text').html(THIRDSECTION[GLOBAL_LANGUAGE])
   $('#conclusion-text').html(CONCLUSION[GLOBAL_LANGUAGE])
+  $('#left').html(FOOTER_TEXT[GLOBAL_LANGUAGE])
+  $('#right').html(PROJECT_CREDITS[GLOBAL_LANGUAGE])
+
+
+
+
+})
+
+
+//WHEN CLICKING ON A LANGUAGE OPTION
+$(".language_option")
+.on("click", function() {
+    GLOBAL_LANGUAGE = d3.select(this).select("a").attr("id");
+    console.log(GLOBAL_LANGUAGE)
+
+
+  //MAIN TEXT CONTAINERS//
+  $('#heroimage').find('h1').html(TITLE[GLOBAL_LANGUAGE])
+  $('#header_text').html(HEADERTEXT[GLOBAL_LANGUAGE])
+  $('#first-section-text').html(FIRSTSECTION[GLOBAL_LANGUAGE])
+  if ((IS_MOBILE) || (IS_PHONE)) {
+    $('.mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
+  } else {
+    $('.non-mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
+    console.log(GLOBAL_LANGUAGE)
+  }
+  $('#second-header').html(SECOND_HEADER[GLOBAL_LANGUAGE])
+  $('#third-section-text').html(THIRDSECTION[GLOBAL_LANGUAGE])
+  $('#conclusion-text').html(CONCLUSION[GLOBAL_LANGUAGE])
+  $('#left').html(FOOTER_TEXT[GLOBAL_LANGUAGE])
+  $('#right').html(PROJECT_CREDITS[GLOBAL_LANGUAGE])
+
+
+  //ALL DATA VIZ TEXT
+  $('.toggle_text').html(TOGGLE_TEXT[GLOBAL_LANGUAGE])
+
+  //FIRST DATA VIZ TEXT
+  $('.xlabel').html(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
+  var tooltip_header = $('.tooltip-header')
+  for (var i=0; i<tooltip_header.length; i++) {
+      tooltip_header.eq(i).data(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][i][1]), tooltip_header.eq(i).text();
+      tooltip_header.eq(i).text(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][i][1])
+      console.log(GLOBAL_LANGUAGE)
+      console.log(tooltip_header.text())
+
+  }
+  //SECOND DATA VIZ DROPDOWN TEXT NOT WORKING
+  var measures = $('.measure_type')
+  d3.select(this).classed("active", true)
+  for (var i=0; i<measures.length; i++){
+
+    if (measures.eq(i).text() == (MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])) {
+      console.log('1')
+    } else {
+      measures.eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
+      console.log(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
+    }
+  } 
+  var legend_text = $('.legend_text')
+  console.log(legend_text.find('tspan').text())
+  for (var i=0; i<legend_text; i++){
+
+    if (legend_text.eq(i).text() == (DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])) {
+      console.log('1')
+    } else {
+      legend_text.eq(i).html(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])
+      console.log(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])
+    }
+  } 
+
+
 
 })
 

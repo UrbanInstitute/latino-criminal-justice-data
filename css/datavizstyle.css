@@ -567,6 +567,7 @@ text.legend-text-mobile {
   float: left;
   height: 2.5em;
   padding-top: 15px;
+  border: black;
 
 }
 

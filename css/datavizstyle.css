@@ -553,10 +553,23 @@ text.legend-text {
 
 }
 
+text.grid-legend-text {
+  font-size: 12px;
+  word-wrap: break-word;
+   width: 2em;
+
+}
+
 text.legend-text-mobile {
   font-size: 11px;
 
 }
+
+text.grid-legend-text-mobile {
+  font-size: 11px;
+
+}
+
 
 
 

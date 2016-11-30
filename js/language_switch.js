@@ -32,6 +32,23 @@ var DATA_QUALITY_LABELS= {
   }
 }
 
+var DATA_QUALITY_LABELS2= {
+  english: [
+    ['no_data', 'No data on race or ethnicity'],
+    ['data_no_cat', 'Data, but no Latino category'],
+    ['combined', 'Race/Ethnicity combined'],
+    ['separate', 'Race/Ethnicity separate'],
+    ['cross_tabbed', 'Race/Ethnicity cross-tabbed']
+  ],
+  spanish: [
+   ['no_data', 'No data on race or ethnicity-spanish'],
+    ['data_no_cat', 'Data, but no Latino category-spanish'],
+    ['combined', 'Race/Ethnicity combined-spanish'],
+    ['separate', 'Race/Ethnicity separate-spanish'],
+    ['cross_tabbed', 'Race/Ethnicity cross-tabbed-spanish']
+  ]
+}
+
 var MEASURES = {
   english: [
     ["prison","Prison"], 
@@ -318,7 +335,14 @@ $(".language_option")
       console.log(tooltip_header.text())
 
   }
-  //SECOND DATA VIZ DROPDOWN TEXT NOT WORKING
+  var tooltip_text = $('.tooltip-text')
+  console.log(tooltip)
+   for (var i=0; i<tooltip_text.length; i++) {
+      tooltip_text.eq(i).data(MEASURES_TOOLTIP[GLOBAL_LANGUAGE][i][1]), tooltip_text.eq(i).text();
+      tooltip_text.eq(i).text(MEASURES_TOOLTIP[GLOBAL_LANGUAGE][i][1])
+
+  }
+  //SECOND DATA VIZ    ******DROPDOWN TEXT NOT WORKING EVERYTIME
   var measures = $('.measure_type')
   d3.select(this).classed("active", true)
   for (var i=0; i<measures.length; i++){
@@ -330,17 +354,30 @@ $(".language_option")
       console.log(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
     }
   } 
-  var legend_text = $('.legend_text')
-  console.log(legend_text.find('tspan').text())
-  for (var i=0; i<legend_text; i++){
+  var legend_text = $('.legend-text')
+    //for (var i=0; i<legend_text.length; i++){
+    //     console.log(DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][i][1]) //**********WHY IS THIS PRODUCING AN ERROR?
+    // if (legend_text.eq(i).text() == (DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][i][1])) {
+    //    console.log(legend_text.eq(i).text())
+    // } else {
+    //   legend_text.eq(i).html(DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][i][1])
 
-    if (legend_text.eq(i).text() == (DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])) {
-      console.log('1')
+
+
+    // }
+  //} 
+
+  //THIRD DATA VIZ
+
+  var grid_legend_text = $('.grid-legend-text')
+  for (var i=0; i<grid_legend_text.length; i++){
+    if (grid_legend_text.eq(i).text() == (DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][i][1])) {
+      console.log(grid_legend_text.eq(i).text())
     } else {
-      legend_text.eq(i).html(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])
-      console.log(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])
+      grid_legend_text.eq(i).html(DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][i][1])
+
     }
-  } 
+  }
 
 
 

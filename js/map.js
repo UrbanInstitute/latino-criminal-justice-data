@@ -1,4 +1,29 @@
+//FOR WRAPPING TEXT IN LEGEND
 
+function wrapText(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.1, // ems
+        y = text.attr("y"),
+        x = text.attr("x"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+      }
+    }
+  });
+}
 
 
 function drawMap(){
@@ -244,31 +269,6 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
   //LEGEND
 
 
-function wrapText(text, width) {
-  text.each(function() {
-    var text = d3.select(this),
-        words = text.text().split(/\s+/).reverse(),
-        word,
-        line = [],
-        lineNumber = 0,
-        lineHeight = 1.1, // ems
-        y = text.attr("y"),
-        x = text.attr("x"),
-        dy = parseFloat(text.attr("dy")),
-        tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
-    while (word = words.pop()) {
-      line.push(word);
-      tspan.text(line.join(" "));
-      if (tspan.node().getComputedTextLength() > width) {
-        line.pop();
-        tspan.text(line.join(" "));
-        line = [word];
-        tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-      }
-    }
-  });
-}
-
 legend_scale_x = (IS_PHONE) || (IS_MOBILE) ? 0 : 1;
 legend_scale_y = (IS_PHONE) ? 1.8 : 1;
 legend_height = (IS_PHONE) || (IS_MOBILE) ? 2 : 1;
@@ -312,7 +312,7 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       .attr("x","2em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-         return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["no_data"];
+         return DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][0][1]
       });
 
 /*SECOND*/   
@@ -356,7 +356,7 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["data_no_cat"];
+          return DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][1][1];
       });
 
 /*THIRD*/
@@ -399,7 +399,7 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["combined"];
+          return DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][2][1];
       });
 
 /*FOURTH*/
@@ -442,7 +442,7 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["separate"];
+          return DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][3][1];
       });
 
 /*FIFTH*/
@@ -485,7 +485,7 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["cross_tabbed"];
+          return DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][4][1];
       });
 
      chartMap.legend.selectAll('.legend-text').call(wrapText,90)

@@ -262,9 +262,9 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
     chartTen.legend.append("text")
        .attr("class",function(d){
         if (IS_PHONE) {
-          return "legend-text-mobile"
+          return "grid-legend-text-mobile"
         } else {
-          return "legend-text"
+          return "grid-legend-text"
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
@@ -286,9 +286,9 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
     chartTen.legend.append("text")
       .attr("class",function(d){
         if (IS_PHONE) {
-          return "legend-text-mobile"
+          return "grid-legend-text-mobile"
         } else {
-          return "legend-text"
+          return "grid-legend-text"
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
@@ -310,9 +310,9 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
     chartTen.legend.append("text")
       .attr("class",function(d){
         if (IS_PHONE) {
-          return "legend-text-mobile"
+          return "grid-legend-text-mobile"
         } else {
-          return "legend-text"
+          return "grid-legend-text"
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
@@ -334,9 +334,9 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
     chartTen.legend.append("text")
       .attr("class",function(d){
         if (IS_PHONE) {
-          return "legend-text-mobile"
+          return "grid-legend-text-mobile"
         } else {
-          return "legend-text"
+          return "grid-legend-text"
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
@@ -358,9 +358,9 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
     chartTen.legend.append("text")
       .attr("class",function(d){
         if (IS_PHONE) {
-          return "legend-text-mobile"
+          return "grid-legend-text-mobile"
         } else {
-          return "legend-text"
+          return "grid-legend-text"
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
@@ -371,7 +371,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["cross_tabbed"];
       });
 
-      chartTen.legend.selectAll('.legend-text-mobile').call(wrapText,80)
+      chartTen.legend.selectAll('.grid-legend-text-mobile').call(wrapText,80)
 
     chartTen.gridStates = gridStates
 

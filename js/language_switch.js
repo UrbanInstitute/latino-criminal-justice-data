@@ -1,4 +1,7 @@
 var GLOBAL_LANGUAGE = "english";
+var IS_PHONE = d3.select("#isPhone").style("display") == "block"
+var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
+
 
 var BUTTON_NAMES= {
     english: {
@@ -103,10 +106,66 @@ var HEADERTEXT = {
 
 }
 
-var FIRSTSECTION = {
-  english:[],
-  spanish:["first section- spanish text"]
+var FIRSTSECTION ={
+  english:["<h1>The Number of Categories with Data on Latinos <strong>by State</strong></h1> <p>We tracked all the race and ethnicity information we could find online for each state and D.C., across five categories: prison population; prison \
+  population by offense; arrest; probation population; and parole population. We only found one state that regularly reported data on Latinos in all five categories. While 75 percent of states regularly report data on any of the five measures we tracked, \
+  nearly half of states (24) have no ethnicity data or only report ethnicity in one category.</p> <p>Most states collect and report data on Latinos for some, but not all, of the categories we measured. States’ lack of consistency across the criminal justice \
+  system illustrates the fact that these data are collected by a variety of state agencies, which may not be well-coordinated. To ensure that Latinos are counted across the criminal justice system, states will have to make sure all of the relevant agencies \
+  – from law enforcement, to the department of corrections, to the parole board – are collecting the same data.  These systems are connected and policy decisions in one affect another; so, if states are not collecting accurate and complete data, it is \
+  impossible to design effective and responsive public policy.</p>"],
+  spanish:["<h1>FIRST SECTION SPANISH HEADER</h1><p>first section- spanish text</p>"]
 }
+
+var SECONDSECTION = {
+  english: ["<p>In addition to whether or not a state publishes data on Latinos, we also looked at the quality of state-published race and ethnicity categories. There is not universal agreement on the best way to collect data on \“race\” and \“ethnicity,\” \
+  or whether those should even be <a href=\"http:\/\/www.usccr.gov\/pubs\/RC2010Web_Version.pdf\" target=\"_blank\">separate categories</a>. In fact, <a href=\"http:\/\/www.pewresearch.org\/fact-tank\/2015\/06\/15\/is-being-hispanic-a-matter-of-race-ethnicity-or-both\/\" \
+  target=\"_blank\">many Latinos</a> think of their race as \“Hispanic\” or \“Latin American,\” as opposed to self-identifying their race as \“White\” or \“Black\” and their ethnicity as \“Latino\” or \“Hispanic.\” For this project, though, we followed the current federal policy \
+  and census <a href=\"https:\/\/www.census.gov\/quickfacts\/meta\/long_RHI425215.htm\" target=\"_blank\">definitions</a> of race and ethnicity when rating states’ demographic data quality.<ul> </p><p>Although Alaska reports data on Latinos in all five categories we examined, none \
+  of the data are at the highest standard. Alaska combines race and ethnicity in this way, precluding Latino people from being counted in more than one racial or ethnic group. </p><p>States report data on Latinos in their prison population far more than in the other categories we tracked \
+  – 38 states report data on Latinos in prison, while 20 report ethnicity of parole population, 18 report ethnicity of probation population, 15 report ethnicity of arrested individuals and just 1 reports on ethnicity of prison population by offense. Even for prison and data, though, \
+  hardly any states report at our highest standard. North Carolina reports data at our highest standard, tracking both race and ethnicity, and then reporting them in combination (e.g. Hispanic white, non-Hispanic black) for prison population. Only New Hampshire and Vermont match this \
+  highest standard, both for their reported data on arrests.</p>"],
+  spanish: ["second section- spanish text"]
+}
+
+var SECOND_HEADER = {
+  english: ["How Well Do States Report Data On Latinos In"],
+  spanish: ["Spanish header 2"]
+}
+
+var THIRDSECTION = {
+  english:["<h1>Top 10 States with Highest Hispanic Population</h1> \
+      <p>75 percent of the total U.S. Hispanic population lives in the ten states with the largest Latino populations. While we might expect the states with the largest Latino populations to be better at reporting ethnicity in their criminal justice data, many of them have significant gaps \
+      in data reporting. Florida, New Mexico and California all report less ethnicity data than the average state. Data reporting in these states is especially important, as states with larger numbers of Latinos in the general population are statistically likely to have larger numbers of Latinos \
+      in the criminal justice system. Latinos in the justice system in states that do not report data may have unique needs that are not being considered in policy development, because states do not know how many Latinos their policies may impact. We see this pattern repeat across policy issues; \
+      as <a href=\"http:\/\/www.nytimes.com\/2015\/09\/23\/business\/economy\/education-gap-between-rich-and-poor-is-growing-wider.html\" target=\"_blank\">inequities in educational outcomes by race</a> were revealed, <a href=\"http:\/\/www.ncsl.org\/research\/human-services\/child-care-and-early-education-legislation-databas.aspx\" \
+      target=\"_blank\">more bills focused on early childhood and kindergarten each year</a> from 2009-2013, with the goal of supporting students who were less likely to come into school highly prepared.\
+      </p>"],
+  spanish: ["<h1>Third section header-spanish</h1> \
+      <p>spanish text\
+      </p>"]
+}
+
+var CONCLUSION ={
+  english: ["<h1 class=\"last-header\">Establishing a higher standard for data</h1>\
+    <p>Data matter because they impact policy. We’ve seen this across the United States, where increased tracking of police killings of citizens, fueled in part by the 2014 shooting of Michael Brown in Ferguson, MO, have in part led to significant data tracking of police shootings and a \
+    national conversation around community-police relations. Having numbers to illustrate issues can change conversation, policy and practice.</p>\
+    <p>Leaving justice-system involved Latinos out of data leaves them out of policy as well. Right now, there is inconsistent and incomplete reporting. 34 states do not report data from three or more sections of the justice system on Latinos at all, while 11 states report useful data in \
+    some years and not others. Reporting varies in quality as well – some states count \“Latino\” as a unique racial category, which doesn’t allow for the possibility of someone being both \“Black\” and \“Latino.\” Without these critical data, we have no real information about how many Latinos \
+    are impact by the criminal justice system.</p>\
+    <p>In an ideal world, every state would collect and regularly report data on Latinos at every point in the criminal justice system. It is possible that states would like to report these data, but are not able to easily capture ethnicity. For instance, in one of these states, a Minority \
+    Overrepresentation Committee recommended separating race and ethnicity in data collection on arrests, but then realized it was too difficult to do.  For now, the state continues to report arrest data by race and ethnicity as a combined category: individuals are listed as White, African American, \
+    Hispanic or one of a few other categories.</p>\
+    <p>However, as United States demographics become increasingly racially and ethnically diverse, it is critical that all people are considered when policy is developed. This helps ensure just treatment within the criminal justice system, and is inclusive of all populations. As has happened since data \
+    on police shootings and educational inequities was highlighted, an increase in information on Latinos in the criminal justice system could lead to increased awareness and policy change. But before data can be reported, it must be collected. Here, we note some important components of high-quality, \
+    representative data:\
+      <ul>"],
+  spanish:["<h1 class=\"last-header\">Conclusion header- spanish</h1> <p>Conclusion- spanish text</p>"]
+}
+
+
+
+
 
 
 
@@ -154,7 +213,6 @@ $(".language_option")
       console.log(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
       console.log(measures.eq(i).text())
        if (measures.eq(i).text() == (MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])) {
-        
         console.log('1')
     //   } else {
     //     $(".measure_type").data(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1], $(".measure_type").text());
@@ -167,9 +225,19 @@ $(".language_option")
     }
   } 
   $('#heroimage').find('h1').html(TITLE[GLOBAL_LANGUAGE])
-   $('#header_text').html(HEADERTEXT[GLOBAL_LANGUAGE])
+  $('#header_text').html(HEADERTEXT[GLOBAL_LANGUAGE])
+  $('#first-section-text').html(FIRSTSECTION[GLOBAL_LANGUAGE])
+  if ((IS_MOBILE) || (IS_PHONE)) {
+    $('.mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
+    console.log('1')
+  } else {
+    $('.non-mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
+    console.log(GLOBAL_LANGUAGE)
+  }
+  $('#second-header').html(SECOND_HEADER[GLOBAL_LANGUAGE])
+  $('#third-section-text').html(THIRDSECTION[GLOBAL_LANGUAGE])
+  $('#conclusion-text').html(CONCLUSION[GLOBAL_LANGUAGE])
 
-console.log(TITLE[GLOBAL_LANGUAGE])
 })
 
 

@@ -630,8 +630,8 @@ Choropleth.prototype.update = function(mapStates) {
             
         } return "#ffffff"
   }
-
-  var getSquareColor = squareColor();
+  // console.log(this.datum())
+  // var getSquareColor = squareColor(this);
 
    chartMap.map
    		.transition()
@@ -647,7 +647,7 @@ Choropleth.prototype.update = function(mapStates) {
      	//    }
 	     // })
 	    .style("fill", function(d) {
-        return getSquareColor;
+        return squareColor(d);
 	    })
 
 	    .style("stroke", function(d) {

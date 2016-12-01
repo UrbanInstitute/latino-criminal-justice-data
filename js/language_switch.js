@@ -1,4 +1,21 @@
-var GLOBAL_LANGUAGE = "english";
+function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " ")).toLowerCase();
+}
+
+console.log("URL = " + window.location.href)
+var GLOBAL_LANGUAGE = getParameterByName("language", window.location.href)
+console.log(GLOBAL_LANGUAGE)
+if (GLOBAL_LANGUAGE != "spanish" && GLOBAL_LANGUAGE != "english") {
+  GLOBAL_LANGUAGE = "english";
+}
 var IS_PHONE = d3.select("#isPhone").style("display") == "block"
 var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
 

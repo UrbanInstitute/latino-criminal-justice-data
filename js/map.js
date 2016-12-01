@@ -279,7 +279,6 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
               .classed("hover", true ) // should then accept fill from CSS
             tooltip(mystate)
             selectedState = d3.select(this).attr('class').split(' ')[0]
-            console.log(selectedState)
             // if(IS_PHONE) {
             //    d3.selectAll('.cell-text-mobile.' + selectedState)
             //   .style('fill', '#ffffff')
@@ -289,7 +288,6 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
             // }
             d3.select('.rating-' + tooltipRating)
               .style('font-weight', '900')
-            console.log(tooltipRating)
     })
 
     .on("mouseout",  function() {
@@ -298,12 +296,18 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
            .style("fill", function(d){
             return squareColor(d)
            })
+           .style("stroke", function(d) {
+            return strokeColor(d);
+          })
           // if(IS_PHONE) {
           //   d3.selectAll('.cell-text-mobile.' + selectedState)
           //   .style('fill', '#000000')
           // } else {
-          d3.selectAll('.place-label.' + selectedState)
-            .style('fill', '#000000')
+          d3.select('.place-label.' + selectedState)
+           .style("fill", function(d) { 
+            return squareText(d);
+          })
+          
           // }
         chartMap.tooltipMap.selectAll('text')
             .remove()
@@ -315,27 +319,32 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
  chartMap.tooltipMapsvg= d3.select(".tooltip-map")
     .append("svg")
     .attr("width", width*(tooltip_phone_width)*tooltip_mobile_width)
-    .attr("height", height/2 - (tooltip_mobile_height/2) + (tooltip_phone_height/1.4))
+    .attr("height", height/5 - (tooltip_mobile_height/2) + (tooltip_phone_height/1.4))
   chartMap.tooltipMap= chartMap.tooltipMapsvg.append("g")
     .attr("transform", "translate("+ (.1*width)+ ",0)");
 
 
 
-   function tooltip(mystate) {
+  function tooltip(mystate) {
+
+var getCat = function(){  
+  return options.category;
+}
+
+  var Cat = getCat();
+
 
   tooltipRatingSwitch = function() {
-     console.log(mystate.properties[Cat + frequency])
-     console.log(mystate.properties[Cat + rating])
     if (options.filter == 'step2-regular') {
        if (mystate.properties[Cat + frequency] == "2") {
-        console.log(mystate.properties[Cat + rating])
-           return (mystate.properties[Cat + rating]);
-          } else if (options.filter !== 'step2-regular') {
-             console.log(mystate.properties[Cat + rating])
-            return mystate.properties[Cat + rating];     
-          } console.log("0"); return "0"
-        } 
-      }
+        console.log('hi')
+           return mystate.properties[Cat + rating];
+          } return "0"
+    } else if (options.filter == 'step2-all') {
+         console.log(Cat)
+        return mystate.properties[Cat + rating];     
+      } 
+  }
 
    tooltipRating = tooltipRatingSwitch()
           
@@ -349,7 +358,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
               return "0em"
           } else return "-1em"
           })
-          .attr("text-anchor", "center")
+          .attr("text-anchor", "start")
           .text(function() {
             if (tooltipRating == "0") {
               return mystate.properties.name + "  does not report race or ethnicity in its " + $('.ui-selectmenu-text').text() + " data";//mystate.properties.name;
@@ -389,7 +398,7 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       .classed("map-legend", true)
       .append("svg")
       .attr("width", width)
-      .attr("height", (height/2.5)*legend_height);
+      .attr("height", (height/5)*legend_height);
 
 /*FIRST*/
     chartMap.legend
@@ -612,9 +621,14 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
 
 
 Choropleth.prototype.update = function(mapStates) {
-  console.log('hello')
+
+  var getCat = function(){  
+  return options.category;
+}
 
   var Cat = getCat();
+
+console.log(Cat)
 
   frequency = "_frequency";
   rating = "_rating";
@@ -631,6 +645,33 @@ Choropleth.prototype.update = function(mapStates) {
             return color(d.properties[Cat + rating]);
             
         } return "#ffffff"
+  }
+
+  strokeColor = function(d) {
+         if (options.filter == 'step2-regular' && d.properties[Cat+frequency] != 2) {
+            return '#9d9d9d'
+          } else if (options.filter == 'step2-all' && d.properties[Cat + rating] == 0) {
+           return '#9d9d9d'
+         }
+  }
+
+  squareText = function(d) {  
+      if (options.filter == 'step2-regular') {
+        if (d.properties[Cat + frequency] == 2) {
+          if (d.properties[Cat + rating] == 4 | d.properties[Cat + rating] == 3) {
+            return "#cfe8f3"
+          } else if (d.properties[Cat + rating] == 2 | d.properties[Cat + rating] == 1) {
+              return "#000000";
+            } 
+        } return "#d2d2d2";
+            
+      } else if (options.filter == 'step2-all') {
+          if (d.properties[Cat + rating] == 4 | d.properties[Cat + rating] == 3) {
+            return "#cfe8f3"
+          } else if (d.properties[Cat + rating] == 2 | d.properties[Cat + rating] == 1) {
+              return "#000000";
+            } 
+        } return "#d2d2d2";
   }
   // console.log(this.datum())
   // var getSquareColor = squareColor(this);
@@ -653,11 +694,7 @@ Choropleth.prototype.update = function(mapStates) {
 	    })
 
 	    .style("stroke", function(d) {
-	       if (options.filter == 'step2-regular' && d.properties[Cat+frequency] != 2) {
-            return '#9d9d9d'
-          } else if (options.filter == 'step2-all' && d.properties[Cat + rating] == 0) {
-           return '#9d9d9d'
-         }
+        return strokeColor(d);
 	     })
 	    .style("stroke-width", function(d) {
 	        if (d.properties[Cat + rating] == 0) {
@@ -681,22 +718,7 @@ Choropleth.prototype.update = function(mapStates) {
         } return 1;
       }) */
       .style("fill", function(d) { 
-        if (options.filter == 'step2-regular') {
-          if (d.properties[Cat + frequency] == 2) {
-            if (d.properties[Cat + rating] == 4 | d.properties[Cat + rating] == 3) {
-              return "#cfe8f3"
-            } else if (d.properties[Cat + rating] == 2 | d.properties[Cat + rating] == 1) {
-                return "#000000";
-              } 
-          } return "#d2d2d2";
-              
-        } else if (options.filter == 'step2-all') {
-            if (d.properties[Cat + rating] == 4 | d.properties[Cat + rating] == 3) {
-              return "#cfe8f3"
-            } else if (d.properties[Cat + rating] == 2 | d.properties[Cat + rating] == 1) {
-                return "#000000";
-              } 
-          } return "#d2d2d2";
+        return squareText(d);
       });
       
  //     stateText.style("text-anchor", "start")

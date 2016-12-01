@@ -205,7 +205,7 @@ label_side_phone = (IS_PHONE) ? -25.2 : 1;
       .attr("text-anchor", "end")
 
       .text(function () { 
-           return MEASURES[GLOBAL_LANGUAGE][i][1] 
+           return MEASURES_GRID[GLOBAL_LANGUAGE][i][1] 
 
        });
     })

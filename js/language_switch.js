@@ -67,30 +67,30 @@ var DATA_QUALITY_LABELS2= {
   ]
 }
 
-var MEASURES = {
+var MEASURES_GRID= {
   english: [
     ["prison","Prison"], 
-    ["prison_pop","Prison Pop"], 
+    ["prison_pop","By offense"], 
     ["arrests","Arrests"], 
     ["probation","Probation"], 
     ["parole","Parole"]
   ],
   spanish: [
-    ["prison","Prison"], 
-    ["prison_pop","Prison Pop"], 
-    ["arrests","Arrests"], 
-    ["probation","Probation"], 
-    ["parole","Parole"]
+    ["prison","Prison-spanish"], 
+    ["prison_pop","By offense-spanish"], 
+    ["arrests","Arrests-spanish"], 
+    ["probation","Probation-spanish"], 
+    ["parole","Parole-spanish"]
   ]
 }
 
 var MEASURES_DROPDOWN = {
   english: [
-    ["prison","The Prison Population"], 
-    ["prison_pop","The Prison Population by Office"], 
+    ["prison","Prison population"], 
+    ["prison_pop","Prison population by offense"], 
     ["arrests","Arrests"], 
-    ["probation","The Probation Population"], 
-    ["parole","The Parole Population"]
+    ["probation","Probation opulation"], 
+    ["parole","Parole population"]
   ],
   spanish: [
     ["prison","the prison population-spanish"], 
@@ -101,22 +101,7 @@ var MEASURES_DROPDOWN = {
   ]
 }
 
-var MEASURES_TOOLTIP = {
-  english: [
-    ["prison","The Prison Population"], 
-    ["prison_pop","The Prison Population by office"], 
-    ["arrests","Arrest records"], 
-    ["probation","The Probation Population"], 
-    ["parole","The Parole Population"]
-  ],
-  spanish: [
-    ["prison","the prison population-spanish"], 
-    ["prison_pop","the prison population by office-spanish"], 
-    ["arrests","arrests-spanish"], 
-    ["probation","the probation population-spanish"], 
-    ["parole","the parole population-spanish"]
-  ]
-}
+
 
 var TITLE = {
   english: ["The Lack of Race and Ethnicity Data in Criminal Justice is Dangerous"],
@@ -141,7 +126,7 @@ var HEADERTEXT = {
 }
 
 var FIRSTSECTION ={
-  english:["<h1>Few states included Latinos in most categories of criminal justice data</h1> <p>WWe tracked all the race and ethnicity information we could find through publically and readily accessible online sources for each state and D.C. across five categories: prison population; prison population by offense; arrest; probation population; and parole population. \
+  english:["<h1>Few states included Latinos in most criminal justice data</h1> <p>WWe tracked all the race and ethnicity information we could find through publically and readily accessible online sources for each state and D.C. across five categories: prison population; prison population by offense; arrest; probation population; and parole population. \
   </p> <p>Only one state—Alaska—consistently included data on Latinos in regularly and recently released reports on prison, arrest, probation, and parole populations. Although it is possible that more states collect these data routinely, we only considered those that make it publicly accessible. 75 percent of states regularly and recently reported data\
    by ethnicity on at least one of the five measures we tracked, but only 39 percent did so for two or more measures. This means that while most states reported some ethnicity data routinely, they do not make a habit of reporting ethnicity on multiple measures.\
 </p><p>That a given state might collect ethnicity data for arrests but not probation reflects the fact that these data are collected by a variety of state agencies, which may not be well coordinated. To ensure that Latinos are counted across the criminal justice system, states will have to make sure all the relevant agencies – from law enforcement,\
@@ -205,8 +190,8 @@ var TOGGLE_TEXT = {
 }
 
 var FIRSTGRAPHIC_XLABEL = {
-  english: ["Number of Categories with Data Reported"],
-  spanish: ["Number of Categories with Data Reported- spanish"]
+  english: ["Number of criminal justice data categories that include Latinos"],
+  spanish: ["Number of criminal justice data categories that include Latinos- spanish"]
 }
 
 var FIRSTGRAPHIC_TOOLTIPHEADER = {

@@ -157,11 +157,11 @@ function drawFirstGraphic() {
         .attr('class', 'xlabel')
         .attr('x', function() {
           if (IS_PHONE)  {
-            return '2em'
+            return '1.5em'
           } else { 
             if (IS_MOBILE) {
-              return '1.5em'
-              } return '6.5em'
+              return '1em'
+              } return '3.5em'
           }
         })
         .attr('y', function() {
@@ -399,7 +399,7 @@ function drawFirstGraphic() {
 
 
   function addMeasures() {
-    for(var i = 0; i < MEASURES_TOOLTIP[GLOBAL_LANGUAGE].length; i++){
+    for(var i = 0; i < MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++){
       chart.tooltipRight
         .append("text")
         .attr("class", "tooltip-text")
@@ -412,7 +412,7 @@ function drawFirstGraphic() {
         })
         .attr("text-anchor", "start")
         .text(function () {
-            return MEASURES_TOOLTIP[GLOBAL_LANGUAGE][i][1]
+            return MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1]
           });
       }
   }

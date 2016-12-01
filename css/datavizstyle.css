@@ -767,6 +767,7 @@ select#measures-menu{
     font-weight: bold;
     font-size: 12px;
     cursor: pointer;
+    pointer-events: none;
  }
 
  path {

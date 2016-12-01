@@ -254,8 +254,8 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
     })
     .style("opacity", 0)
 
-  chartMap.svg
-    .selectAll(".place-label")
+  chartMap.map
+    .select(".place-label")
     .data(mapStates.features)
     .enter().append("text")
     .attr("class",function(d){
@@ -287,6 +287,9 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
             d3.selectAll('.place-label.' + selectedState)
               .style('fill', '#ffffff')
             // }
+            d3.select('.rating-' + tooltipRating)
+              .style('font-weight', '900')
+            console.log(tooltipRating)
     })
 
     .on("mouseout",  function() {
@@ -300,9 +303,10 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
           d3.selectAll('.place-label.' + selectedState)
             .style('fill', '#000000')
           // }
-          
         chartMap.tooltipMap.selectAll('text')
             .remove()
+        d3.select('.rating-' + tooltipRating)
+              .style('font-weight', '400')
         })
 
 
@@ -314,9 +318,10 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
     .attr("transform", "translate("+ (.1*width)+ ",0)");
 
 
+
    function tooltip(mystate) {
 
-  tooltipRatingsSwitch = function() {
+  tooltipRatingSwitch = function() {
      console.log(mystate.properties[Cat + frequency])
      console.log(mystate.properties[Cat + rating])
     if (options.filter == 'step2-regular') {
@@ -330,9 +335,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
         } 
       }
 
-  var tooltipRatings = tooltipRatingsSwitch()
-
-
+   tooltipRating = tooltipRatingSwitch()
           
         chartMap.tooltipMap
           .append("text")
@@ -346,15 +349,15 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
           })
           .attr("text-anchor", "center")
           .text(function() {
-            if (tooltipRatings == "0") {
+            if (tooltipRating == "0") {
               return mystate.properties.name + "  does not report race or ethnicity in its " + $('.ui-selectmenu-text').text() + " data";//mystate.properties.name;
-            } else  if (tooltipRatings == "1"){
+            } else  if (tooltipRating == "1"){
               return mystate.properties.name + " reports race but not ethnicity in its " + $('.ui-selectmenu-text').text() + " data";
-            } else  if (tooltipRatings == "2"){
+            } else  if (tooltipRating == "2"){
               return mystate.properties.name + " combines race and ethnicity into one category in its " + $('.ui-selectmenu-text').text() + " data";
-            } else  if (tooltipRatings == "3"){
+            } else  if (tooltipRating == "3"){
               return mystate.properties.name + " reports both race and ethnicity in it " + $('.ui-selectmenu-text').text() + " data";
-            }  else  if (tooltipRatings == "4"){
+            }  else  if (tooltipRating == "4"){
               return mystate.properties.name + " collects both race and ethnicity and reports combined racial-ethnic categories in its " + $('.ui-selectmenu-text').text() + " data";
             }
 
@@ -399,9 +402,9 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       .append("text")
       .attr("class",function(d){
         if ((IS_PHONE) || (IS_MOBILE)) {
-          return "legend-text-mobile"
+          return "legend-text-mobile rating-0"
         } else {
-          return "legend-text"
+          return "legend-text rating-0"
         }
       })
       .attr("dy", 0)
@@ -436,9 +439,9 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
     chartMap.legend.append("text")
       .attr("class",function(d){
         if ((IS_PHONE) || (IS_MOBILE))  {
-          return "legend-text-mobile"
+          return "legend-text-mobile rating-1"
         } else {
-          return "legend-text"
+          return "legend-text rating-1"
         }
       })
       .attr("dy", 0)
@@ -480,9 +483,9 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
     chartMap.legend.append("text")
       .attr("class",function(d){
         if ((IS_PHONE) || (IS_MOBILE))  {
-          return "legend-text-mobile"
+          return "legend-text-mobile rating-2"
         } else {
-          return "legend-text"
+          return "legend-text rating-2"
         }
       })
       .attr("dy", 0)
@@ -523,9 +526,9 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
     chartMap.legend.append("text")
       .attr("class",function(d){
         if ((IS_PHONE) || (IS_MOBILE))  {
-          return "legend-text-mobile"
+          return "legend-text-mobile rating-3"
         } else {
-          return "legend-text"
+          return "legend-text rating-3"
         }
       })
       .attr("dy", 0)
@@ -566,9 +569,9 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
     chartMap.legend.append("text")
       .attr("class",function(d){
         if ((IS_PHONE) || (IS_MOBILE))  {
-          return "legend-text-mobile"
+          return "legend-text-mobile rating-4"
         } else {
-          return "legend-text"
+          return "legend-text rating-4"
         }
       })
       .attr("dy", 0)

@@ -766,6 +766,11 @@ select#measures-menu{
     font-family: "Lato", sans-serif;
     font-weight: bold;
     font-size: 12px;
+    cursor: pointer;
+ }
+
+ path {
+   cursor: pointer;
  }
 
 .ui-selectmenu-text {
@@ -802,7 +807,9 @@ select#measures-menu{
   z-index: 3;
 }
 
-
+.cell {
+  cursor: pointer;
+}
 .cell-text {
   font-size: 12px;
   pointer-events: none;

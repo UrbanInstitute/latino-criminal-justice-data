@@ -49,6 +49,7 @@ var color = d3.scaleThreshold()
     .range(["#ffffff", " #cfe8f3", "#46abdb", "#12719e", "#0a4c6a"]);
 
 
+
 //var margin = { top: 5, right: 15, bottom: 5, left: 15 } ; 
 
 //var width = 500 - margin.right - margin.left;
@@ -248,14 +249,18 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
   	.data(mapStates.features)
   	.enter().append('path')
   	.attr('d', path)
+    .attr("class",function(d){
+          return d.properties.abbr;
+    })
     .style("opacity", 0)
-
 
   chartMap.svg
     .selectAll(".place-label")
     .data(mapStates.features)
     .enter().append("text")
-    .attr("class", "place-label")
+    .attr("class",function(d){
+          return "place-label " + d.properties.abbr;
+    })
     .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
     .style("text-anchor", "middle")
     .attr("dy", ".5em")
@@ -264,7 +269,105 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
       return d.properties.abbr;
     });
 
-    
+
+  //HOVERING
+
+  chartMap.svg.selectAll('path')
+   .on("mouseover", function(mystate) {
+            d3.select(this)         
+              .style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
+              .classed("hover", true ) // should then accept fill from CSS
+            tooltip(mystate)
+            selectedState = d3.select(this).attr('class').split(' ')[0]
+            console.log(selectedState)
+            // if(IS_PHONE) {
+            //    d3.selectAll('.cell-text-mobile.' + selectedState)
+            //   .style('fill', '#ffffff')
+            // } else {
+            d3.selectAll('.place-label.' + selectedState)
+              .style('fill', '#ffffff')
+            // }
+    })
+
+    .on("mouseout",  function() {
+          d3.select(this)
+           .classed("hover", false)
+           .style('fill', "#1696d2") // Re-sets the "explicit" fill
+          // if(IS_PHONE) {
+          //   d3.selectAll('.cell-text-mobile.' + selectedState)
+          //   .style('fill', '#000000')
+          // } else {
+          d3.selectAll('.place-label.' + selectedState)
+            .style('fill', '#000000')
+          // }
+          
+        chartMap.tooltipMap.selectAll('text')
+            .remove()
+        })
+
+
+ chartMap.tooltipMapsvg= d3.select(".tooltip-map")
+    .append("svg")
+    .attr("width", width*(tooltip_phone_width)*tooltip_mobile_width)
+    .attr("height", height/2 - (tooltip_mobile_height/2) + (tooltip_phone_height/1.4))
+  chartMap.tooltipMap= chartMap.tooltipMapsvg.append("g")
+    .attr("transform", "translate("+ (.1*width)+ ",0)");
+
+
+   function tooltip(mystate) {
+
+  tooltipRatingsSwitch = function() {
+     console.log(mystate.properties[Cat + frequency])
+     console.log(mystate.properties[Cat + rating])
+    if (options.filter == 'step2-regular') {
+       if (mystate.properties[Cat + frequency] == "2") {
+        console.log(mystate.properties[Cat + rating])
+           return (mystate.properties[Cat + rating]);
+          } else if (options.filter !== 'step2-regular') {
+             console.log(mystate.properties[Cat + rating])
+            return mystate.properties[Cat + rating];     
+          } console.log("0"); return "0"
+        } 
+      }
+
+  var tooltipRatings = tooltipRatingsSwitch()
+
+
+          
+        chartMap.tooltipMap
+          .append("text")
+          .attr("class", "tooltip-map-text")
+          .attr("dy", 0)
+          .attr("y", "2em")
+          .attr("x", function() {
+            if (IS_PHONE) {
+              return "0em"
+          } else return "-1em"
+          })
+          .attr("text-anchor", "center")
+          .text(function() {
+            if (tooltipRatings == "0") {
+              return mystate.properties.name + "  does not report race or ethnicity in its " + $('.ui-selectmenu-text').text() + " data";//mystate.properties.name;
+            } else  if (tooltipRatings == "1"){
+              return mystate.properties.name + " reports race but not ethnicity in its " + $('.ui-selectmenu-text').text() + " data";
+            } else  if (tooltipRatings == "2"){
+              return mystate.properties.name + " combines race and ethnicity into one category in its " + $('.ui-selectmenu-text').text() + " data";
+            } else  if (tooltipRatings == "3"){
+              return mystate.properties.name + " reports both race and ethnicity in it " + $('.ui-selectmenu-text').text() + " data";
+            }  else  if (tooltipRatings == "4"){
+              return mystate.properties.name + " collects both race and ethnicity and reports combined racial-ethnic categories in its " + $('.ui-selectmenu-text').text() + " data";
+            }
+
+          });
+
+           chartMap.tooltipMap.selectAll('.tooltip-map-text').call(wrapText,500)
+     
+
+          // var width = $tooltip.width() - margin.left - margin.right,
+          // height = height/2 - margin.top - margin.bottom;
+   }
+
+
 
   //LEGEND
 
@@ -488,7 +591,7 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
           return DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][4][1];
       });
 
-     chartMap.legend.selectAll('.legend-text').call(wrapText,90)
+     chartMap.legend.selectAll('.legend-text').call(wrapText,85)
   
   chartMap.mapStates = mapStates;
 

@@ -32,13 +32,14 @@ var BUTTON_NAMES= {
 }
 
 
+
 var DATA_QUALITY_LABELS= {
   english: {
-    no_data: 'No data on race or ethnicity',
-    data_no_cat: 'Data, but no Latino category',
-    combined: 'Race/Ethnicity combined',
-    separate: 'Race/Ethnicity separate',
-    cross_tabbed: 'Race/Ethnicity cross-tabbed'
+    no_data: 'No race/ethnicity data',
+    data_no_cat: 'Race data only, no Latino category',
+    combined: 'Race data only, with Latino category',
+    separate: 'Data on race and ethnicity',
+    cross_tabbed: 'Data by racial-ethnic groups'
   },
   spanish: {
     no_data: 'No data- spanish',
@@ -51,11 +52,11 @@ var DATA_QUALITY_LABELS= {
 
 var DATA_QUALITY_LABELS2= {
   english: [
-    ['no_data', 'No data on race or ethnicity'],
-    ['data_no_cat', 'Data, but no Latino category'],
-    ['combined', 'Race/Ethnicity combined'],
-    ['separate', 'Race/Ethnicity separate'],
-    ['cross_tabbed', 'Race/Ethnicity cross-tabbed']
+    ['no_data', 'No race/ethnicity data'],
+    ['data_no_cat', 'Race data only, no Latino category'],
+    ['combined', 'Race data only, with Latino category'],
+    ['separate',  'Data on race and ethnicity'],
+    ['cross_tabbed', 'Data by racial-ethnic groups']
   ],
   spanish: [
    ['no_data', 'No data on race or ethnicity-spanish'],
@@ -140,7 +141,7 @@ var HEADERTEXT = {
 }
 
 var FIRSTSECTION ={
-  english:["<h1>Different agencies collect different data</h1> <p>WWe tracked all the race and ethnicity information we could find through publically and readily accessible online sources for each state and D.C. across five categories: prison population; prison population by offense; arrest; probation population; and parole population. \
+  english:["<h1>Few states included Latinos in most categories of criminal justice data</h1> <p>WWe tracked all the race and ethnicity information we could find through publically and readily accessible online sources for each state and D.C. across five categories: prison population; prison population by offense; arrest; probation population; and parole population. \
   </p> <p>Only one state—Alaska—consistently included data on Latinos in regularly and recently released reports on prison, arrest, probation, and parole populations. Although it is possible that more states collect these data routinely, we only considered those that make it publicly accessible. 75 percent of states regularly and recently reported data\
    by ethnicity on at least one of the five measures we tracked, but only 39 percent did so for two or more measures. This means that while most states reported some ethnicity data routinely, they do not make a habit of reporting ethnicity on multiple measures.\
 </p><p>That a given state might collect ethnicity data for arrests but not probation reflects the fact that these data are collected by a variety of state agencies, which may not be well coordinated. To ensure that Latinos are counted across the criminal justice system, states will have to make sure all the relevant agencies – from law enforcement,\
@@ -166,7 +167,7 @@ var SECONDSECTION = {
 }
 
 var SECOND_HEADER = {
-  english: ["The quality of ethnicity data varies across states and across agencies"],
+  english: ["How do states include Latinos in data on:"],
   spanish: ["Spanish header 2"]
 }
 
@@ -199,8 +200,8 @@ var CONCLUSION ={
 //DATA VIZ
 
 var TOGGLE_TEXT = {
-  english: ["Regularly and Recently Reported Data"],
-  spanish: ["Reguarly and Recently Reported Data- spanish"]
+  english: ["Show only regularly and recently reported data?"],
+  spanish: ["Show only regularly and recently reported data?- spanish"]
 }
 
 var FIRSTGRAPHIC_XLABEL = {
@@ -288,6 +289,7 @@ var PROJECT_CREDITS = {
 
 //WHEN PAGE LOADS, USE ENGLISH TEXT
 $(window).load(function() { 
+  $('.toggle_text').html(TOGGLE_TEXT[GLOBAL_LANGUAGE])
   $('#first-section-text').html(FIRSTSECTION[GLOBAL_LANGUAGE])
   $('#heroimage').find('h1').html(TITLE[GLOBAL_LANGUAGE])
   $('#header_text').html(HEADERTEXT[GLOBAL_LANGUAGE])

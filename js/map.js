@@ -617,6 +617,21 @@ Choropleth.prototype.update = function(mapStates) {
   frequency = "_frequency";
   rating = "_rating";
 
+  squareColor = function(d) {
+          if (options.filter == 'step2-regular') {
+          if (d.properties[Cat + frequency] == 2) {
+            console.log('regular')
+           return color(d.properties[Cat + rating]);
+
+          } 
+        } else if (options.filter == 'step2-all') {
+          console.log('all')
+            return color(d.properties[Cat + rating]);
+            
+        } return "#ffffff"
+  }
+
+  var getSquareColor = squareColor();
 
    chartMap.map
    		.transition()
@@ -632,17 +647,7 @@ Choropleth.prototype.update = function(mapStates) {
      	//    }
 	     // })
 	    .style("fill", function(d) {
-        if (options.filter == 'step2-regular') {
-          if (d.properties[Cat + frequency] == 2) {
-            console.log('regular')
-	         return color(d.properties[Cat + rating]);
-
-          } 
-        } else if (options.filter == 'step2-all') {
-          console.log('all')
-            return color(d.properties[Cat + rating]);
-            
-        } return "#ffffff"
+        return getSquareColor;
 	    })
 
 	    .style("stroke", function(d) {

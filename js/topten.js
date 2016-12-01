@@ -106,7 +106,8 @@ function Grid(gridStates) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e7
 
 
 
- //states = states.properties.filter(function(d) {return d.state='NJ'})
+var frequency = "_frequency"
+var rating = "_rating"
 
 cell_scale_phone = (IS_PHONE) ? .7 : 1;
 width_phone = (IS_PHONE)? 2 : 1;
@@ -122,10 +123,19 @@ chartTen.svg = d3.select("#grid")
     .attr("height", height*height_mobile*height_phone)
 
 
-var filteredData = gridStates.features.filter(function(d){
+var filteredData_unsorted = gridStates.features.filter(function(d){
     return parseFloat(d.properties.hispanic.replace(/\,/g,"")) > 900000
   })
 
+var parseHispanic = function(i) {
+  return parseFloat(i.properties.hispanic.replace(/\,/g,""))
+};
+
+
+filteredData = filteredData_unsorted.sort(function(a,b) {
+    return d3.descending(parseHispanic(a),parseHispanic(b));
+});
+console.log(filteredData)
 
   chartTen.row = chartTen.svg.selectAll(".row")
     .data(filteredData)
@@ -152,19 +162,14 @@ gridColumns = ["number_prison", "number_prison_ct", "arrests", "probation", "par
       })
       .attr("y", 0)
       .attr("class",function(d){
-        return "gridSquare " + "gridSquare" + "_"+ gridColumn
+        return "gridSquare " + d["properties"]["abbr"] + " gridSquare" + "_"+ gridColumn
       })
       .style("opacity", 0)
   }
+ 
 
 
-var parseHispanic = function(i) {
-  return parseFloat(i.properties.hispanic.replace(/\,/g,""))
-};
 
-filteredData = filteredData.sort(function(a,b) {
-    return d3.descending(parseHispanic(a),parseHispanic(b));
-});
 
 
 label_side_phone = (IS_PHONE) ? -25.2 : 1;
@@ -239,6 +244,7 @@ function wrapText(text, width) {
   });
 }
 
+
 legend_scale_x = (IS_PHONE) ? 2 : 0;
 legend_scale_y = (IS_PHONE) ? .9 : 1;
 legend_height_mobile = (IS_MOBILE) ? .3 : 1;
@@ -249,7 +255,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
       .classed("grid-legend", true)
       .append("svg")
       .attr("width", width)
-      .attr("height", height*legend_height_mobile*legend_height_phone);
+      .attr("height", height/2.5*legend_height_mobile*legend_height_phone);
 
     chartTen.legend
       .append("rect")
@@ -262,9 +268,9 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
     chartTen.legend.append("text")
        .attr("class",function(d){
         if (IS_PHONE) {
-          return "grid-legend-text-mobile"
+          return "grid-legend-text-mobile rating-0"
         } else {
-          return "grid-legend-text"
+          return "grid-legend-text rating-0"
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
@@ -286,9 +292,9 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
     chartTen.legend.append("text")
       .attr("class",function(d){
         if (IS_PHONE) {
-          return "grid-legend-text-mobile"
+          return "grid-legend-text-mobile rating-1"
         } else {
-          return "grid-legend-text"
+          return "grid-legend-text rating-1"
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
@@ -310,9 +316,9 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
     chartTen.legend.append("text")
       .attr("class",function(d){
         if (IS_PHONE) {
-          return "grid-legend-text-mobile"
+          return "grid-legend-text-mobile rating-2"
         } else {
-          return "grid-legend-text"
+          return "grid-legend-text rating-2"
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
@@ -334,9 +340,9 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
     chartTen.legend.append("text")
       .attr("class",function(d){
         if (IS_PHONE) {
-          return "grid-legend-text-mobile"
+          return "grid-legend-text-mobile rating-3"
         } else {
-          return "grid-legend-text"
+          return "grid-legend-text rating-3"
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
@@ -358,9 +364,9 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
     chartTen.legend.append("text")
       .attr("class",function(d){
         if (IS_PHONE) {
-          return "grid-legend-text-mobile"
+          return "grid-legend-text-mobile rating-4"
         } else {
-          return "grid-legend-text"
+          return "grid-legend-text rating-4"
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
@@ -374,6 +380,88 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
       chartTen.legend.selectAll('.grid-legend-text-mobile').call(wrapText,80)
 
     chartTen.gridStates = gridStates
+
+
+
+   chartTen.tooltipGridsvg= d3.select(".tooltip-grid")
+    .append("svg")
+    .attr("width", width*(tooltip_phone_width)*tooltip_mobile_width)
+    .attr("height", height/2 - (tooltip_mobile_height/2) + (tooltip_phone_height/1.4))
+  chartTen.tooltipGrid= chartTen.tooltipGridsvg.append("g")
+    .attr("transform", "translate("+ (.1*width)+ ",0)");
+
+
+  //HOVERING
+    d3.selectAll(".gridSquare")
+      .on("mouseover", function(mystate) {
+            d3.select(this)         
+              .style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
+              .classed("hover", true ) // should then accept fill from CSS
+            tooltip(mystate)
+            selectedState = d3.select(this).attr('class').split(' ')[1]
+            console.log(selectedState)
+            d3.select('.rating-' + tooltipRating)
+              .style('font-weight', '900')
+    })
+
+
+   function tooltip(mystate) {
+
+
+    tooltipRatingSwitch = function() {
+    for(var i = 0; i < gridColumns.length; i++){
+
+
+      console.log(mystate)
+      if (options.filter == 'step3-regular') {
+        console.log(gridColumn)
+         console.log(mystate.properties[gridColumn + rating])
+         if (mystate.properties[gridColumn + frequency] == 2) {
+          console.log(options.filter)
+             return mystate.properties[gridColumn + rating];
+            } return "0"
+      } else if (options.filter == 'step3-all') {
+           console.log(mystate.properties[gridColumn + frequency])
+          return mystate.properties[gridColumn + rating];     
+        } 
+    }
+  }
+
+     tooltipRating = tooltipRatingSwitch()
+            
+          // chartTen.tooltipGrid
+          //   .append("text")
+          //   .attr("class", "tooltip-map-text")
+          //   .attr("dy", 0)
+          //   .attr("y", "2em")
+          //   .attr("x", function() {
+          //     if (IS_PHONE) {
+          //       return "0em"
+          //   } else return "-1em"
+          //   })
+          //   .attr("text-anchor", "start")
+          //   .text(function() {
+          //     if (tooltipRating == "0") {
+          //       return mystate.properties.name + "  does not report race or ethnicity in its " + $('.ui-selectmenu-text').text() + " data";//mystate.properties.name;
+          //     } else  if (tooltipRating == "1"){
+          //       return mystate.properties.name + " reports race but not ethnicity in its " + $('.ui-selectmenu-text').text() + " data";
+          //     } else  if (tooltipRating == "2"){
+          //       return mystate.properties.name + " combines race and ethnicity into one category in its " + $('.ui-selectmenu-text').text() + " data";
+          //     } else  if (tooltipRating == "3"){
+          //       return mystate.properties.name + " reports both race and ethnicity in it " + $('.ui-selectmenu-text').text() + " data";
+          //     }  else  if (tooltipRating == "4"){
+          //       return mystate.properties.name + " collects both race and ethnicity and reports combined racial-ethnic categories in its " + $('.ui-selectmenu-text').text() + " data";
+          //     }
+
+          //   });
+
+          //    chartMap.tooltipMap.selectAll('.tooltip-map-text').call(wrapText,500)
+       
+
+            // var width = $tooltip.width() - margin.left - margin.right,
+            // height = height/2 - margin.top - margin.bottom;
+   }
+
 
 }
 

@@ -327,58 +327,54 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
   function tooltip(mystate) {
 
-var getCat = function(){  
-  return options.category;
-}
-
-  var Cat = getCat();
 
 
-  tooltipRatingSwitch = function() {
-    if (options.filter == 'step2-regular') {
-       if (mystate.properties[Cat + frequency] == "2") {
-        console.log('hi')
-           return mystate.properties[Cat + rating];
-          } return "0"
-    } else if (options.filter == 'step2-all') {
-         console.log(Cat)
-        return mystate.properties[Cat + rating];     
-      } 
-  }
 
-   tooltipRating = tooltipRatingSwitch()
-          
-        chartMap.tooltipMap
-          .append("text")
-          .attr("class", "tooltip-map-text")
-          .attr("dy", 0)
-          .attr("y", "2em")
-          .attr("x", function() {
-            if (IS_PHONE) {
-              return "0em"
-          } else return "-1em"
-          })
-          .attr("text-anchor", "start")
-          .text(function() {
-            if (tooltipRating == "0") {
-              return mystate.properties.name + "  does not report race or ethnicity in its " + $('.ui-selectmenu-text').text() + " data";//mystate.properties.name;
-            } else  if (tooltipRating == "1"){
-              return mystate.properties.name + " reports race but not ethnicity in its " + $('.ui-selectmenu-text').text() + " data";
-            } else  if (tooltipRating == "2"){
-              return mystate.properties.name + " combines race and ethnicity into one category in its " + $('.ui-selectmenu-text').text() + " data";
-            } else  if (tooltipRating == "3"){
-              return mystate.properties.name + " reports both race and ethnicity in it " + $('.ui-selectmenu-text').text() + " data";
-            }  else  if (tooltipRating == "4"){
-              return mystate.properties.name + " collects both race and ethnicity and reports combined racial-ethnic categories in its " + $('.ui-selectmenu-text').text() + " data";
-            }
+    tooltipRatingSwitch = function() {
+      if (options.filter == 'step2-regular') {
+         if (mystate.properties[Cat + frequency] == "2") {
+          console.log('hi')
+             return mystate.properties[Cat + rating];
+            } return "0"
+      } else if (options.filter == 'step2-all') {
+           console.log(Cat)
+          return mystate.properties[Cat + rating];     
+        } 
+    }
 
-          });
+     tooltipRating = tooltipRatingSwitch()
+            
+          chartMap.tooltipMap
+            .append("text")
+            .attr("class", "tooltip-map-text")
+            .attr("dy", 0)
+            .attr("y", "2em")
+            .attr("x", function() {
+              if (IS_PHONE) {
+                return "0em"
+            } else return "-1em"
+            })
+            .attr("text-anchor", "start")
+            .text(function() {
+              if (tooltipRating == "0") {
+                return mystate.properties.name + "  does not report race or ethnicity in its " + $('.ui-selectmenu-text').text() + " data";//mystate.properties.name;
+              } else  if (tooltipRating == "1"){
+                return mystate.properties.name + " reports race but not ethnicity in its " + $('.ui-selectmenu-text').text() + " data";
+              } else  if (tooltipRating == "2"){
+                return mystate.properties.name + " combines race and ethnicity into one category in its " + $('.ui-selectmenu-text').text() + " data";
+              } else  if (tooltipRating == "3"){
+                return mystate.properties.name + " reports both race and ethnicity in it " + $('.ui-selectmenu-text').text() + " data";
+              }  else  if (tooltipRating == "4"){
+                return mystate.properties.name + " collects both race and ethnicity and reports combined racial-ethnic categories in its " + $('.ui-selectmenu-text').text() + " data";
+              }
 
-           chartMap.tooltipMap.selectAll('.tooltip-map-text').call(wrapText,500)
-     
+            });
 
-          // var width = $tooltip.width() - margin.left - margin.right,
-          // height = height/2 - margin.top - margin.bottom;
+             chartMap.tooltipMap.selectAll('.tooltip-map-text').call(wrapText,500)
+       
+
+            // var width = $tooltip.width() - margin.left - margin.right,
+            // height = height/2 - margin.top - margin.bottom;
    }
 
 

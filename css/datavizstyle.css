@@ -791,6 +791,12 @@ select#measures-menu{
 
 }
 
+.tooltip-grid {
+    position: relative;
+    float: right;
+    width: 45%;
+}
+
 #grid {
   position: relative;
   width:55%;

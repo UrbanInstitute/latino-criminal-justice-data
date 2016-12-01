@@ -295,7 +295,9 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
     .on("mouseout",  function() {
           d3.select(this)
            .classed("hover", false)
-           .style('fill', "#1696d2") // Re-sets the "explicit" fill
+           .style("fill", function(d){
+            return squareColor(d)
+           })
           // if(IS_PHONE) {
           //   d3.selectAll('.cell-text-mobile.' + selectedState)
           //   .style('fill', '#000000')

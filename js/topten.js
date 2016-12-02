@@ -180,7 +180,9 @@ label_side_phone = (IS_PHONE) ? -25.2 : 1;
     chartTen.svg.selectAll(".row")
       .data(filteredData)
       .append("text")
-      .attr("class", "grid-state-labels")
+      .attr("class", function(d) {
+        return "grid-state-labels " + d["properties"]["abbr"]
+      })
       .attr("transform", function(d, i){
         if (IS_PHONE) {
           return  "translate(" + label_side_phone +" ,"+ 2 + i + ")"
@@ -400,65 +402,63 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
               .classed("hover", true ) // should then accept fill from CSS
             // tooltip(mystate)
             selectedState = d3.select(this).attr('class').split(' ')[1]
-            selectedColumn = d3.select(this).attr('class').split('gridSquare_')[1].split(" ")[0] + "_"
+            console.log(selectedState)
+            selectedColumn = d3.select(this).attr('class').split('gridSquare_')[1].split(" ")[0]
+            console.log(selectedColumn)
             tooltip(mystate, selectedState, selectedColumn)
-            console.log(selectedState, selectedColumn)
-            d3.select('.rating-' + tooltipRating)
+            d3.select('.grid-legend-text.rating-' + tooltipRating)
+              .style('font-weight', '900')
+            d3.select('.grid-state-labels.' + selectedState)
               .style('font-weight', '900')
     })
-    // .on("mouseout",  function() {
-    //   d3.select(this)
-    //    .classed("hover", false)
-    //    .style("fill", function(d){
-    //     return squareColor(d)
-    //    })
-    //    .style("stroke", function(d) {
-    //     return strokeColor(d);
-    //   })
-    //   // if(IS_PHONE) {
-    //   //   d3.selectAll('.cell-text-mobile.' + selectedState)
-    //   //   .style('fill', '#000000')
-    //   // } else {
-    //   d3.select('.place-label.' + selectedState)
-    //    .style("fill", function(d) { 
-    //     return squareText(d);
-    //   })
+    .on("mouseout",  function() {
+      d3.select(this)
+       .classed("hover", false)
+       .style("fill", function(d){
+        return squareColor(d)
+       })
+       .style("stroke", function(d) {
+        return strokeColor(d);
+      })
+      // if(IS_PHONE) {
+      //   d3.selectAll('.cell-text-mobile.' + selectedState)
+      //   .style('fill', '#000000')
+      // } else {
+      d3.select('.place-label.' + selectedState)
+       .style("fill", function(d) { 
+        return squareText(d);
+        })
+        .style("stroke", function(d) { 
+          return strokeColor(d);
+        })
+        .style("stroke-width", function(d) { 
+          return strokeWidth(d);
+        })
       
-    //   // }
-    // chartMap.tooltipMap.selectAll('text')
-    //     .remove()
-    // d3.select('.rating-' + tooltipRating)
-    //       .style('font-weight', '400')
-    // })
+      
+      // }
+      d3.select('.grid-legend-text.rating-' + tooltipRating)
+              .style('font-weight', '400')
+      d3.select('.grid-state-labels.' + selectedState)
+              .style('font-weight', '400')
+    })
 
 
    function tooltip(mystate, selectedState, selectedColumn) {
 
+    tooltipRatingSwitch = function() {
+      if (options.filter == 'step3-regular') {
+         if (mystate.properties[selectedColumn + frequency] == "2") {
+          return mystate.properties[selectedColumn + rating]; 
+        } return "0"; 
+          return mystate.properties[selectedColumn + rating];     
+        }
+  }
 
-  //  function tooltip(mystate) {
-  //          //     selectedState = d3.select(this).attr('class').split(' ')[1]
 
 
-  //   tooltipRatingSwitch = function() {
-  //   for(var i = 0; i < gridColumns.length; i++){
 
-
-  //     console.log(mystate)
-  //     if (options.filter == 'step3-regular') {
-  //        if (mystate.properties[selectedColumn + frequency] == 2) {
-  //         console.log(mystate.properties[selectedColumn + frequency])
-  //         console.log(mystate.properties[selectedColumn + rating])
-  //            return mystate.properties[selectedColumn + rating];
-  //           } return "0"
-  //     } else if (options.filter == 'step3-all') {
-  //          console.log(mystate.properties[selectedColumn + frequency])
-  //         console.log(mystate.properties[selectedColumn + rating])
-  //         return mystate.properties[selectedColumn + rating];     
-  //       } 
-  //   }
-  // }
-
-     tooltipRating = tooltipRatingSwitch()
+    tooltipRating = tooltipRatingSwitch();
             
           // chartTen.tooltipGrid
           //   .append("text")
@@ -491,26 +491,48 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
 
             // var width = $tooltip.width() - margin.left - margin.right,
             // height = height/2 - margin.top - margin.bottom;
-   }
+    }
 
 
 }
 
 
-Grid.prototype.update = function(gridStates) {
+Grid.prototype.update = function(gridStates, mystate, selectedColumn) {
 
   var frequency = "_frequency"
   var rating = "_rating"
 
- squareColor = function(d) {
+
+
+
+ squareColor = function(d, mystate) {
         if (options.filter == 'step3-regular') {
           if (d.properties[gridColumn + frequency] == 2) {
+            console.log(selectedColumn)
+         console.log(gridColumn)
            return color(d.properties[gridColumn + rating]);
-          } return "#ffffff"
+          }  
         } else if (options.filter == 'step3-all') {
+           console.log(gridColumn)
             return color(d.properties[gridColumn + rating]);
-        }
+         } return "#ffffff"
+  }
+
+  strokeColor = function(d) {
+       if (options.filter == 'step3-regular' && d.properties[gridColumn+frequency] != 2) {
+          return '#9d9d9d'
+        } else if (options.filter == 'step3-all' && d.properties[gridColumn + rating] == 0) {
+         return '#9d9d9d'
+       }
+  }
+
+  strokeWidth = function(d) {
+      if (options.filter == 'step3-regular' && d.properties[gridColumn+frequency] != 2) {
+        return '1px'
+       } else if (d.properties[gridColumn + rating] == 0) {
+        return '1px'
       }
+  }
 
 
   for(var i = 0; i < gridColumns.length; i++){
@@ -540,29 +562,13 @@ Grid.prototype.update = function(gridStates) {
    .style("fill", function(d) {
       return squareColor(d);
     })
-   
-    // .style("fill", function(d) {
-    //   return color(d["properties"][gridColumn + rating]);
-    // })
-    // .style("stroke", function(d) {
-    //   if (d["properties"][gridColumn + rating] == 0) {
-    //     return "#9d9d9d";
-    //   }
-    // })
+
      .delay(function(d,i) { return i * 50; })
-    .style("stroke", function(d) {
-       if (options.filter == 'step3-regular' && d.properties[gridColumn+frequency] != 2) {
-          return '#9d9d9d'
-        } else if (options.filter == 'step3-all' && d.properties[gridColumn + rating] == 0) {
-         return '#9d9d9d'
-       }
+    .style("stroke", function(d) { 
+      return strokeColor(d);
      })
-    .style("stroke-width", function(d) {
-       if (options.filter == 'step3-regular' && d.properties[gridColumn+frequency] != 2) {
-        return '1px'
-       } else if (d.properties[gridColumn + rating] == 0) {
-        return '1px'
-      }
+    .style("stroke-width", function(d) { 
+      return strokeWidth(d);
     })
 
   }     

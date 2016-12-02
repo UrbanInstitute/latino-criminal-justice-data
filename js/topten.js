@@ -1,6 +1,7 @@
 
 function drawTopten(){
 
+
 var cellWidth= 39
 
 var options = {
@@ -399,7 +400,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
               .classed("hover", true ) // should then accept fill from CSS
             tooltip(mystate)
             selectedState = d3.select(this).attr('class').split(' ')[1]
-            selectedColumn = d3.select(this).attr('class').split('gridSquare_')[1].split(" ")[0]
+            selectedColumn = d3.select(this).attr('class').split('gridSquare_')[1].split(" ")[0] + "_"
             console.log(selectedState, selectedColumn)
             d3.select('.rating-' + tooltipRating)
               .style('font-weight', '900')
@@ -407,6 +408,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
 
 
    function tooltip(mystate) {
+                selectedState = d3.select(this).attr('class').split(' ')[1]
 
 
     tooltipRatingSwitch = function() {
@@ -415,15 +417,15 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
 
       console.log(mystate)
       if (options.filter == 'step3-regular') {
-        console.log(gridColumn)
-         console.log(mystate.properties[gridColumn + rating])
-         if (mystate.properties[gridColumn + frequency] == 2) {
-          console.log(options.filter)
-             return mystate.properties[gridColumn + rating];
+         if (mystate.properties[selectedColumn + frequency] == 2) {
+          console.log(mystate.properties[selectedColumn + frequency])
+          console.log(mystate.properties[selectedColumn + rating])
+             return mystate.properties[selectedColumn + rating];
             } return "0"
       } else if (options.filter == 'step3-all') {
-           console.log(mystate.properties[gridColumn + frequency])
-          return mystate.properties[gridColumn + rating];     
+           console.log(mystate.properties[selectedColumn + frequency])
+          console.log(mystate.properties[selectedColumn + rating])
+          return mystate.properties[selectedColumn + rating];     
         } 
     }
   }

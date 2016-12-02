@@ -248,7 +248,7 @@ hr {
 /***TOGGLES***/
 
 .toggle_text{
-    font-weight: 400;
+    font-weight: 700;
     top: 40%;
     margin-bottom: 9px;
     font-size: 13px;
@@ -499,7 +499,6 @@ div.tooltip-div-left {
   position: relative;
   width: 90%;
   float: left;
-  padding-left: 1em;
   z-index: 10;
   height: 100%;
   padding-bottom: 2em;
@@ -575,7 +574,7 @@ text.grid-legend-text-mobile {
 
 
 #measures-button {
-  width: 23em;
+  width: 20em;
   display: inline;
   float: left;
   height: 2.5em;

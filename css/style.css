@@ -21,8 +21,30 @@ body, html {
 
 }
 
-ol, ul {
+li {
+       width: 90%;
+    }
 
+li.li-list {
+  width: 90% !important;
+  padding-left: 10px;
+}
+.section-banner {
+  height: 200px !important;
+}
+
+.title-area {
+  width: 290px !important;
+}
+
+.banner-area {
+  height: 100% !important;
+}
+
+.main-title {
+  font-size: 24px !important;
+  line-height: 32px !important;
+  margin-top: 2px !important;
 }
 
 blockquote, q {
@@ -150,7 +172,7 @@ h3{
 }
 
 .headerwrapper{
-	padding-top:250px;
+	padding-top:220px;
 }
 
 #heroimage{
@@ -448,7 +470,8 @@ ul#menu {
   width:880px;
   color: #ffffff;
   font-weight: 700;
-  bottom: 5%;
+  line-height: 1em;
+  font-size: 2.3em;
 }
 
 @media (max-width: 768px) {

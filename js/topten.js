@@ -399,7 +399,8 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
               .classed("hover", true ) // should then accept fill from CSS
             tooltip(mystate)
             selectedState = d3.select(this).attr('class').split(' ')[1]
-            console.log(selectedState)
+            selectedColumn = d3.select(this).attr('class').split('gridSquare_')[1].split(" ")[0]
+            console.log(selectedState, selectedColumn)
             d3.select('.rating-' + tooltipRating)
               .style('font-weight', '900')
     })

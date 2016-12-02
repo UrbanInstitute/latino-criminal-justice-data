@@ -26,6 +26,7 @@ var margin = { top: 0, right: 0, bottom: 10, left: 32 };
 var width= ($grid.width())
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
 
+var gridColumns = ["number_prison", "number_prison_ct", "arrests", "probation", "parole"]
 
 
 
@@ -39,15 +40,14 @@ d3.select("#step3-regular")
         d3.select(this).classed("on", false)
         d3.select(this).classed("off", true)
         options.filter = "step3-all";
+
         grid.update(gridStates);
-        console.log(options.filter)
       }
       else {
         d3.select(this).classed("on", true)
         d3.select(this).classed("off", false)
         options.filter = d3.select(this).attr("id");
         grid.update(gridStates);
-        console.log(options.filter)
 
       }
 
@@ -63,7 +63,6 @@ d3.select("#step3-regular")
 //     d3.select(this).classed("active", true);
 //     options.filter = d3.select(this).attr("id");
 //     grid.update(gridStates);
-//     console.log(options.filter);
 
 // }) 
 
@@ -136,7 +135,6 @@ var parseHispanic = function(i) {
 filteredData = filteredData_unsorted.sort(function(a,b) {
     return d3.descending(parseHispanic(a),parseHispanic(b));
 });
-console.log(filteredData)
 
   chartTen.row = chartTen.svg.selectAll(".row")
     .data(filteredData)
@@ -147,7 +145,6 @@ console.log(filteredData)
     .attr("transform", function(d, i){ return "translate(" + cellWidth +" ," + (i*49)*cell_scale_phone + ")"})
 
   
-gridColumns = ["number_prison", "number_prison_ct", "arrests", "probation", "parole"]
   for(var i = 0; i < gridColumns.length; i++){
     var gridColumn = gridColumns[i]; 
     chartTen.row
@@ -401,10 +398,8 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
               .style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
               .classed("hover", true ) // should then accept fill from CSS
             // tooltip(mystate)
-            selectedState = d3.select(this).attr('class').split(' ')[1]
-            console.log(selectedState)
-            selectedColumn = d3.select(this).attr('class').split('gridSquare_')[1].split(" ")[0]
-            console.log(selectedColumn)
+            var selectedState = d3.select(this).attr('class').split(' ')[1]
+            var selectedColumn = d3.select(this).attr('class').split('gridSquare_')[1].split(" ")[0]
             tooltip(mystate, selectedState, selectedColumn)
             d3.select('.grid-legend-text.rating-' + tooltipRating)
               .style('font-weight', '900')
@@ -412,13 +407,16 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
               .style('font-weight', '900')
     })
     .on("mouseout",  function() {
+      var selectedState = d3.select(this).attr('class').split(' ')[1]
+      var selectedColumn = d3.select(this).attr('class').split('gridSquare_')[1].split(" ")[0]
+
       d3.select(this)
        .classed("hover", false)
        .style("fill", function(d){
-        return squareColor(d)
+        return ttSquareColor(d, selectedColumn)
        })
        .style("stroke", function(d) {
-        return strokeColor(d);
+        return ttStrokeColor(d, selectedColumn);
       })
       // if(IS_PHONE) {
       //   d3.selectAll('.cell-text-mobile.' + selectedState)
@@ -429,10 +427,10 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
         return squareText(d);
         })
         .style("stroke", function(d) { 
-          return strokeColor(d);
+          return ttStrokeColor(d, selectedColumn);
         })
         .style("stroke-width", function(d) { 
-          return strokeWidth(d);
+          return ttStrokeWidth(d, selectedColumn);
         })
       
       
@@ -497,43 +495,38 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
 }
 
 
-Grid.prototype.update = function(gridStates, mystate, selectedColumn) {
-
   var frequency = "_frequency"
   var rating = "_rating"
 
 
-
-
- squareColor = function(d, mystate) {
+ ttSquareColor = function(d, column) {
         if (options.filter == 'step3-regular') {
-          if (d.properties[gridColumn + frequency] == 2) {
-            console.log(selectedColumn)
-         console.log(gridColumn)
-           return color(d.properties[gridColumn + rating]);
+          if (d.properties[column + frequency] == 2) {
+           return color(d.properties[column + rating]);
           }  
         } else if (options.filter == 'step3-all') {
-           console.log(gridColumn)
-            return color(d.properties[gridColumn + rating]);
+            return color(d.properties[column + rating]);
          } return "#ffffff"
   }
 
-  strokeColor = function(d) {
-       if (options.filter == 'step3-regular' && d.properties[gridColumn+frequency] != 2) {
+  ttStrokeColor = function(d, column) {
+       if (options.filter == 'step3-regular' && d.properties[column+frequency] != 2) {
           return '#9d9d9d'
-        } else if (options.filter == 'step3-all' && d.properties[gridColumn + rating] == 0) {
+        } else if (options.filter == 'step3-all' && d.properties[column + rating] == 0) {
          return '#9d9d9d'
        }
   }
 
-  strokeWidth = function(d) {
-      if (options.filter == 'step3-regular' && d.properties[gridColumn+frequency] != 2) {
+  ttStrokeWidth = function(d, column) {
+      if (options.filter == 'step3-regular' && d.properties[column+frequency] != 2) {
         return '1px'
-       } else if (d.properties[gridColumn + rating] == 0) {
+       } else if (d.properties[column + rating] == 0) {
         return '1px'
       }
   }
 
+
+Grid.prototype.update = function(gridStates, mystate, selectedColumn) {
 
   for(var i = 0; i < gridColumns.length; i++){
   var gridColumn = gridColumns[i]; 
@@ -560,15 +553,16 @@ Grid.prototype.update = function(gridStates, mystate, selectedColumn) {
    // })
     .delay(function(d,i) { return i * 50; })
    .style("fill", function(d) {
-      return squareColor(d);
+    console.log(gridColumn)
+      return ttSquareColor(d, gridColumn);
     })
 
      .delay(function(d,i) { return i * 50; })
     .style("stroke", function(d) { 
-      return strokeColor(d);
+      return ttStrokeColor(d, gridColumn);
      })
     .style("stroke-width", function(d) { 
-      return strokeWidth(d);
+      return ttStrokeWidth(d, gridColumn);
     })
 
   }     

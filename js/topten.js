@@ -405,30 +405,55 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
             d3.select('.rating-' + tooltipRating)
               .style('font-weight', '900')
     })
+    // .on("mouseout",  function() {
+    //   d3.select(this)
+    //    .classed("hover", false)
+    //    .style("fill", function(d){
+    //     return squareColor(d)
+    //    })
+    //    .style("stroke", function(d) {
+    //     return strokeColor(d);
+    //   })
+    //   // if(IS_PHONE) {
+    //   //   d3.selectAll('.cell-text-mobile.' + selectedState)
+    //   //   .style('fill', '#000000')
+    //   // } else {
+    //   d3.select('.place-label.' + selectedState)
+    //    .style("fill", function(d) { 
+    //     return squareText(d);
+    //   })
+      
+    //   // }
+    // chartMap.tooltipMap.selectAll('text')
+    //     .remove()
+    // d3.select('.rating-' + tooltipRating)
+    //       .style('font-weight', '400')
+    // })
 
 
-   function tooltip(mystate) {
-                selectedState = d3.select(this).attr('class').split(' ')[1]
+
+  //  function tooltip(mystate) {
+  //          //     selectedState = d3.select(this).attr('class').split(' ')[1]
 
 
-    tooltipRatingSwitch = function() {
-    for(var i = 0; i < gridColumns.length; i++){
+  //   tooltipRatingSwitch = function() {
+  //   for(var i = 0; i < gridColumns.length; i++){
 
 
-      console.log(mystate)
-      if (options.filter == 'step3-regular') {
-         if (mystate.properties[selectedColumn + frequency] == 2) {
-          console.log(mystate.properties[selectedColumn + frequency])
-          console.log(mystate.properties[selectedColumn + rating])
-             return mystate.properties[selectedColumn + rating];
-            } return "0"
-      } else if (options.filter == 'step3-all') {
-           console.log(mystate.properties[selectedColumn + frequency])
-          console.log(mystate.properties[selectedColumn + rating])
-          return mystate.properties[selectedColumn + rating];     
-        } 
-    }
-  }
+  //     console.log(mystate)
+  //     if (options.filter == 'step3-regular') {
+  //        if (mystate.properties[selectedColumn + frequency] == 2) {
+  //         console.log(mystate.properties[selectedColumn + frequency])
+  //         console.log(mystate.properties[selectedColumn + rating])
+  //            return mystate.properties[selectedColumn + rating];
+  //           } return "0"
+  //     } else if (options.filter == 'step3-all') {
+  //          console.log(mystate.properties[selectedColumn + frequency])
+  //         console.log(mystate.properties[selectedColumn + rating])
+  //         return mystate.properties[selectedColumn + rating];     
+  //       } 
+  //   }
+  // }
 
      tooltipRating = tooltipRatingSwitch()
             
@@ -474,6 +499,16 @@ Grid.prototype.update = function(gridStates) {
   var frequency = "_frequency"
   var rating = "_rating"
 
+ squareColor = function(d) {
+        if (options.filter == 'step3-regular') {
+          if (d.properties[gridColumn + frequency] == 2) {
+           return color(d.properties[gridColumn + rating]);
+          } return "#ffffff"
+        } else if (options.filter == 'step3-all') {
+            return color(d.properties[gridColumn + rating]);
+        }
+      }
+
 
   for(var i = 0; i < gridColumns.length; i++){
   var gridColumn = gridColumns[i]; 
@@ -499,15 +534,10 @@ Grid.prototype.update = function(gridStates) {
    //   }
    // })
     .delay(function(d,i) { return i * 50; })
-    .style("fill", function(d) {
-        if (options.filter == 'step3-regular') {
-          if (d.properties[gridColumn + frequency] == 2) {
-           return color(d.properties[gridColumn + rating]);
-          } return "#ffffff"
-        } else if (options.filter == 'step3-all') {
-            return color(d.properties[gridColumn + rating]);
-        }
+   .style("fill", function(d) {
+      return squareColor(d);
     })
+   
     // .style("fill", function(d) {
     //   return color(d["properties"][gridColumn + rating]);
     // })

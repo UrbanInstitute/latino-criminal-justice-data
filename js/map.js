@@ -326,8 +326,14 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
 
   function tooltip(mystate) {
+  var getCat = function(){  
+    console.log(options.category)
+  return options.category;
+}
 
+  var Cat = getCat();
 
+console.log(Cat)
 
 
     tooltipRatingSwitch = function() {

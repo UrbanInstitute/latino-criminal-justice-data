@@ -31,7 +31,7 @@
         border-left-style: none !important;
       }
       .xlabel {
-        font-size: 12px;
+        font-size: 14px;
       }
       .place-label {
         font-size: 10px !important;
@@ -440,6 +440,16 @@ h1 {
 
 }
 
+#firstGraphic > rect {
+   fill: #ffffff;
+}
+
+.cell.selected {
+  fill: #231f20;
+}
+.cell.deselected {
+  fill: #1696d2;
+}
 
 #tooltip {
   position: relative;
@@ -459,7 +469,7 @@ h1 {
 
 div.tooltip-div-left {
     position: relative;
-    padding-right: 30px;
+    padding-right: 0px;
     float: left;
    
 }
@@ -488,6 +498,8 @@ div.tooltip-div-left {
   text-transform: uppercase;
 }
 
+
+
 .bottomRow-mobile{
   font-size: 12px;
 
@@ -497,11 +509,18 @@ div.tooltip-div-left {
 
 #dropdown {
   position: relative;
-  width: 90%;
+  width: 80%;
   float: left;
   z-index: 10;
   height: 100%;
   padding-bottom: 2em;
+}
+#dropdown-side-label{
+  float: left;
+  width: 15%;
+  text-align: right;
+  margin-top: .8em;
+  margin-right: 1em;
 }
 
 /*MAP LEGEND*/

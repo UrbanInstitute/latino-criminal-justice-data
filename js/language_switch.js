@@ -33,37 +33,22 @@ var BUTTON_NAMES= {
 
 
 
-var DATA_QUALITY_LABELS= {
-  english: {
-    no_data: 'No race/ethnicity data',
-    data_no_cat: 'Race data only, no Latino category',
-    combined: 'Race data only, with Latino category',
-    separate: 'Data on race and ethnicity',
-    cross_tabbed: 'Data by racial-ethnic groups'
-  },
-  spanish: {
-    no_data: 'No data- spanish',
-    data_no_cat: 'Data, no latino- spanish',
-    combined: 'Race/Ethnicity combined - spanish',
-    separate: 'Race/Ethnicity separate- spanish',
-    cross_tabbed: 'Race/Ethnicity cross-tabbed- spanish'
-  }
-}
 
-var DATA_QUALITY_LABELS2= {
+
+var DATA_QUALITY_LABELS= {
   english: [
     ['no_data', 'No race/ethnicity data'],
-    ['data_no_cat', 'Race data only, no Latino category'],
-    ['combined', 'Race data only, with Latino category'],
-    ['separate',  'Data on race and ethnicity'],
-    ['cross_tabbed', 'Data by racial-ethnic groups']
+    ['data_no_cat', 'Race data only, no Latino/Hispanic category'],
+    ['combined', 'Latino/Hispanic included as a race'],
+    ['separate',  'Latino/Hispanic ethnicity reported in addition to race'],
+    ['cross_tabbed', 'Race broken into subgroups by ethnicity']
   ],
   spanish: [
-   ['no_data', 'No data on race or ethnicity-spanish'],
-    ['data_no_cat', 'Data, but no Latino category-spanish'],
-    ['combined', 'Race/Ethnicity combined-spanish'],
-    ['separate', 'Race/Ethnicity separate-spanish'],
-    ['cross_tabbed', 'Race/Ethnicity cross-tabbed-spanish']
+    ['no_data', 'No race/ethnicity data-SPANISH'],
+    ['data_no_cat', 'Race data only, no Latino/Hispanic category-SPANISH'],
+    ['combined', 'Latino/Hispanic included as a race-SPANISH'],
+    ['separate',  'Latino/Hispanic ethnicity reported in addition to race-SPANISH'],
+    ['cross_tabbed', 'Race broken into subgroups by ethnicity-SPANISH']
   ]
 }
 
@@ -114,7 +99,6 @@ var HEADERTEXT = {
    target=\"_blank\">28.6% Latino by 2060</a>, Latinos are the group mostly likely to be missed when states ignore ethnicity. </p>\
    There is considerable<a href=\"http:\/\/www.urban.org\/sites\/default\/files\/alfresco\/publication-pdfs\/413174-Examining-Racial-and-Ethnic-Disparities-in-Probation-Revocation.PDF\" target=\"_blank\"> evidence</a> that people of color are involved with the criminal justice system at\
    <a href=\"http:\/\/www.sentencingproject.org\/issues\/racial-disparity\/\"target=\"_blank\">disproportionate rates</a>. But without comprehensive data, policymakers, community members, and advocates cannot know how much of a problem mass incarceration is for Latinos specifically, and ethnic disparities cannot be accurately tracked. </p>\
-   color at highon rates with questionable positive effects on public safety. But wWithout accurate data on who is imprisoned or supervised by the system, appropriate policy interventions unique to Latino populations cannot be devised.\
    <p>A state’s failure to collect and report ethnicity data can also mask racial disparities in the criminal justice system. A state that only counts people as “black” or “white” would <a href=\"http:\/\/www.sentencingproject.org\/wp-content\/uploads\/2016\/06\/The-Color-of-Justice-Racial-and-Ethnic-Disparity-in-State-Prisons.pdf\"target=\"_blank\"> likely label most of its Latino prison population \"white\"</a>\
    artificially inflating the number of “white” people in prison and making white/black disparities appear less extreme than they actually are. The lack of comprehensive ethnicity data doesn’t just affect Latinos; it affects the entire criminal justice system.</p>"],
   spanish: ["Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text\
@@ -154,6 +138,12 @@ var SECONDSECTION = {
   second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text"]
 }
 
+var SECONDSECTION_DROPDOWN_SIDE = {
+  english: ["Data on:"],
+  spanish: ["Data on-spanish: "]
+
+}
+
 var SECOND_HEADER = {
   english: ["How do states include Latinos in data on:"],
   spanish: ["Spanish header 2"]
@@ -174,7 +164,7 @@ var CONCLUSION ={
     fueled in part by the <a href\"http://www.nytimes.com/interactive/2014/08/13/us/ferguson-missouri-town-under-siege-after-police-shooting.html\" target=\"_blank\">2014 shooting of Michael Brown in Ferguson, MO</a>, sparked a national conversation around <a href=\"http://www.iacp.org/CommunityPoliceRelations\" target=\"_blank\">community-police relations</a>.\
     Having numbers to illustrate issues can change conversation, policy, and practice. Leaving justice-system involved Latinos out of data leaves them out of policy.</p>\
     <p>Right now, there is inconsistent and incomplete data collection and reporting. Our recommendations to improve the quality—and utility—of race and ethnicity data in the criminal justice system include:\
-    <ul><li>States should, at the very least, meet the current U.S. Census standards by collecting data separately by race and ethnicity, and then combining it. This results in more descriptive and accurate sub-categories, such as \“non-Hispanic white\” and \“Hispanic black.\”</li>\
+    <ul class=\"inside\"><li>States should, at the very least, meet the current U.S. Census standards by collecting data separately by race and ethnicity, and then combining it. This results in more descriptive and accurate sub-categories, such as \“non-Hispanic white\” and \“Hispanic black.\”</li>\
     <li>Data should be collected and publicly reported frequently, on a biannual basis at least. This provides information on demographic changes, which is especially important for Latinos, one of the nation’s fastest growing demographic groups.</li>\
     <li>Race and ethnicity data should be self-reported, not determined by state employees. This is important because it allows people to self-identify and not be boxed into identities they do not claim as their own. Self-reporting is also consistent with the data collection standards used for the U.S. Census.</li>\
     </ul>\
@@ -289,6 +279,7 @@ $(window).load(function() {
     console.log(GLOBAL_LANGUAGE)
   }
   $('#second-header').html(SECOND_HEADER[GLOBAL_LANGUAGE])
+  $('#dropdown-side-label').html(SECONDSECTION_DROPDOWN_SIDE[GLOBAL_LANGUAGE])
   $('#third-section-text').html(THIRDSECTION[GLOBAL_LANGUAGE])
   $('#conclusion-text').html(CONCLUSION[GLOBAL_LANGUAGE])
   $('#left').html(FOOTER_TEXT[GLOBAL_LANGUAGE])
@@ -311,6 +302,11 @@ $(".language_option")
   $('#heroimage').find('h1').html(TITLE[GLOBAL_LANGUAGE])
   $('#header_text').html(HEADERTEXT[GLOBAL_LANGUAGE])
   $('#first-section-text').html(FIRSTSECTION[GLOBAL_LANGUAGE])
+  for (var i=0; i<MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++) {
+    $('.tooltip-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
+  }
+  $('.xlabel').html(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
+
   if ((IS_MOBILE) || (IS_PHONE)) {
     $('.mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
   } else {
@@ -318,7 +314,9 @@ $(".language_option")
     console.log(GLOBAL_LANGUAGE)
   }
   $('#second-header').html(SECOND_HEADER[GLOBAL_LANGUAGE])
+  $('#dropdown-side-label').html(SECONDSECTION_DROPDOWN_SIDE[GLOBAL_LANGUAGE])
   $('#third-section-text').html(THIRDSECTION[GLOBAL_LANGUAGE])
+  $('.grid-cat-labels').html(MEASURES_GRID[GLOBAL_LANGUAGE])
   $('#conclusion-text').html(CONCLUSION[GLOBAL_LANGUAGE])
   $('#left').html(FOOTER_TEXT[GLOBAL_LANGUAGE])
   $('#right').html(PROJECT_CREDITS[GLOBAL_LANGUAGE])
@@ -328,6 +326,7 @@ $(".language_option")
   $('.toggle_text').html(TOGGLE_TEXT[GLOBAL_LANGUAGE])
 
   //FIRST DATA VIZ TEXT
+  console.log(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
   $('.xlabel').html(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
   var tooltip_header = $('.tooltip-header')
   for (var i=0; i<tooltip_header.length; i++) {
@@ -337,12 +336,9 @@ $(".language_option")
       console.log(tooltip_header.text())
 
   }
-  var tooltip_text = $('.tooltip-text')
-  console.log(tooltip)
-   for (var i=0; i<tooltip_text.length; i++) {
-      tooltip_text.eq(i).data(MEASURES_TOOLTIP[GLOBAL_LANGUAGE][i][1]), tooltip_text.eq(i).text();
-      tooltip_text.eq(i).text(MEASURES_TOOLTIP[GLOBAL_LANGUAGE][i][1])
 
+  for (var i=0; i<MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++) {
+    $('.tooltip-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
   }
   //SECOND DATA VIZ    ******DROPDOWN TEXT NOT WORKING EVERYTIME
   var measures = $('.measure_type')
@@ -373,10 +369,10 @@ $(".language_option")
 
   var grid_legend_text = $('.grid-legend-text')
   for (var i=0; i<grid_legend_text.length; i++){
-    if (grid_legend_text.eq(i).text() == (DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][i][1])) {
+    if (grid_legend_text.eq(i).text() == (DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])) {
       console.log(grid_legend_text.eq(i).text())
     } else {
-      grid_legend_text.eq(i).html(DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][i][1])
+      grid_legend_text.eq(i).html(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])
 
     }
   }

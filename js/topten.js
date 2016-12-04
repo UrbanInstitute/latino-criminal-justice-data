@@ -278,7 +278,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["no_data"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][0][1];
       });
 
     chartTen.legend
@@ -302,7 +302,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["data_no_cat"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][1][1];
       });
 
     chartTen.legend
@@ -326,7 +326,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["combined"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][2][1];
       });
 
     chartTen.legend
@@ -350,7 +350,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["separate"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][3][1];
       });
 
     chartTen.legend
@@ -374,28 +374,23 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE]["cross_tabbed"];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][4][1];
       });
 
       chartTen.legend.selectAll('.grid-legend-text-mobile').call(wrapText,80)
+      chartTen.legend.selectAll('.grid-legend-text').call(wrapText,150)
+
 
     chartTen.gridStates = gridStates
 
 
-
-   chartTen.tooltipGridsvg= d3.select(".tooltip-grid")
-    .append("svg")
-    .attr("width", width*(tooltip_phone_width)*tooltip_mobile_width)
-    .attr("height", height/2 - (tooltip_mobile_height/2) + (tooltip_phone_height/1.4))
-  chartTen.tooltipGrid= chartTen.tooltipGridsvg.append("g")
-    .attr("transform", "translate("+ (.1*width)+ ",0)");
 
 
   //HOVERING
     d3.selectAll(".gridSquare")
       .on("mouseover", function(mystate) {
             d3.select(this)         
-              .style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
+            //  .style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
               .classed("hover", true ) // should then accept fill from CSS
             // tooltip(mystate)
             var selectedState = d3.select(this).attr('class').split(' ')[1]
@@ -412,12 +407,12 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
 
       d3.select(this)
        .classed("hover", false)
-       .style("fill", function(d){
-        return ttSquareColor(d, selectedColumn)
-       })
-       .style("stroke", function(d) {
-        return ttStrokeColor(d, selectedColumn);
-      })
+      //  .style("fill", function(d){
+      //   return ttSquareColor(d, selectedColumn)
+      //  })
+      //  .style("stroke", function(d) {
+      //   return ttStrokeColor(d, selectedColumn);
+      // })
       // if(IS_PHONE) {
       //   d3.selectAll('.cell-text-mobile.' + selectedState)
       //   .style('fill', '#000000')
@@ -426,12 +421,12 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
        .style("fill", function(d) { 
         return squareText(d);
         })
-        .style("stroke", function(d) { 
-          return ttStrokeColor(d, selectedColumn);
-        })
-        .style("stroke-width", function(d) { 
-          return ttStrokeWidth(d, selectedColumn);
-        })
+        // .style("stroke", function(d) { 
+        //   return ttStrokeColor(d, selectedColumn);
+        // })
+        // .style("stroke-width", function(d) { 
+        //   return ttStrokeWidth(d, selectedColumn);
+        // })
       
       
       // }

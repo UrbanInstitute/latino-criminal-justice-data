@@ -108,7 +108,9 @@ h3{
 }
 
 
-
+#conclusion-text {
+  margin-top: 15px;
+}
 
 
 /***********structure***********/
@@ -121,7 +123,7 @@ h3{
 
 .content{
     width:100%;
-    margin: 0 auto;
+    margin: 0 auto;å
     padding: 0px 30px;
 
 }
@@ -141,6 +143,11 @@ h3{
     font-size: 11px;
     padding-left: 1%;
 
+}
+
+ul.inside {
+  margin-left: 40px;
+}
 }
 
 
@@ -518,8 +525,7 @@ ul#menu {
 }
 
 .container {
-
-    margin-bottom: 80px;
+    margin-bottom: 50px;
     padding:0px 30px;
  
 }

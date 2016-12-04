@@ -316,12 +316,12 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
         })
 
 
- chartMap.tooltipMapsvg= d3.select(".tooltip-map")
-    .append("svg")
-    .attr("width", width*(tooltip_phone_width)*tooltip_mobile_width)
-    .attr("height", height/5 - (tooltip_mobile_height/2) + (tooltip_phone_height/1.4))
-  chartMap.tooltipMap= chartMap.tooltipMapsvg.append("g")
-    .attr("transform", "translate("+ (.1*width)+ ",0)");
+ // chartMap.tooltipMapsvg= d3.select(".tooltip-map")
+ //    .append("svg")
+ //    .attr("width", width*(tooltip_phone_width)*tooltip_mobile_width)
+ //    .attr("height", height/5 - (tooltip_mobile_height/2) + (tooltip_phone_height/1.4))
+ //  chartMap.tooltipMap= chartMap.tooltipMapsvg.append("g")
+ //    .attr("transform", "translate("+ (.1*width)+ ",0)");
 
 
 
@@ -431,7 +431,7 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       .attr("x","2em")
       .attr("text-anchor", "start")
       .text(function (d, i) {
-         return DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][0][1]
+         return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][0][1]
       });
 
 /*SECOND*/   
@@ -475,7 +475,7 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][1][1];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][1][1];
       });
 
 /*THIRD*/
@@ -518,7 +518,7 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][2][1];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][2][1];
       });
 
 /*FOURTH*/
@@ -561,7 +561,7 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][3][1];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][3][1];
       });
 
 /*FIFTH*/
@@ -604,7 +604,7 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
-          return DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][4][1];
+          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][4][1];
       });
 
      chartMap.legend.selectAll('.legend-text').call(wrapText,85)

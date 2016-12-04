@@ -155,15 +155,6 @@
 </div>
   <div class="text-container">
     <h1 id="second-header"> <!--TEXT --></h1> 
-    <div id="dropdown"> 
-        <select id = "measures" name = "measures-menu">
-          <option id="number_prison" class="measure_type" value="number_prison">Prison population</option>
-            <option id="number_prison_ct" class="measure_type" value="number_prison_ct">Prison population by offense</option>
-            <option id="arrests" class="measure_type" value="arrests">Arrests</option>
-            <option id="probation" class="measure_type" value="probation">Probation population</option>
-            <option id="parole" class="measure_type" value="parole">Parole population</option>
-        </select>
-      </div>
     <article>
     <div class="non-mobile-text" id="second-section-text">
     <!--TEXT -->
@@ -171,12 +162,24 @@
     </article>
   </div>
   <div class="graphic-container">
+    <div id="dropdown-side-label">
+    <!--TEXT-->
+    </div>
+    <div id="dropdown"> 
+      <select id = "measures" name = "measures-menu">
+        <option id="number_prison" class="measure_type" value="number_prison">Prison population</option>
+          <option id="number_prison_ct" class="measure_type" value="number_prison_ct">Prison population by offense</option>
+          <option id="arrests" class="measure_type" value="arrests">Arrests</option>
+          <option id="probation" class="measure_type" value="probation">Probation population</option>
+          <option id="parole" class="measure_type" value="parole">Parole population</option>
+      </select>
+    </div>
     <div id="map">
     </div>
     <div id="legend">
     </div>
-    <div class="tooltip-map">
-    </div>
+   <!-- <div class="tooltip-map">
+    </div> -->
     <!--<div id="step2">
       <ul>
       <div id ="step2-regular" class = "step2_button reg_button active">Regularly and Recently Reported Data</div>
@@ -213,47 +216,46 @@
 
 <!--THIRD GRAPH -->
 
-<section class="container clearfix">  
-    <div style="border-top:#1696d2 solid 6px; width:200px;"></div>
+  <section class="container clearfix">  
+      <div style="border-top:#1696d2 solid 6px; width:200px;"></div>
 
-<div id="container3" class="svg-container">
-  <div class= "text-container" id="third-section-text">
-  <!--TEXT -->
-    </div>
-  </div>
-  <div class="graphic-container">
-    <div id="grid">
-    </div>
-    <div id="legend3">
-    </div>
-    <div class="tooltip-grid">
-    </div>
-  <!--  <div id="step3">
-      <ul>
-      <div id ="step3-regular" class = "step3_button reg_button active">Regularly and Recently Reported Data</div>
-      <div id ="step3-all" class = "step3_button all_button">All Data Reported</div>
-      </ul>
-    </div>  -->
-  <div class="div-no-float">
-    <div class="div-toggle-inline">
-      <div class = "toggle_text"><!--TEXT--></div>
-      <div class="urban-switch blue large">
-        <div id="step3-regular" class="button_toggle switch large on"></div>
+    <div id="container3" class="svg-container">
+      <div class= "text-container" id="third-section-text">
+        <!--TEXT -->
       </div>
     </div>
-  </div>
-  </div>
-</div>
-</section>
+    <div class="graphic-container">
+      <div id="grid">
+      </div>
+      <div id="legend3">
+      </div>
 
-<section class="container clearfix">  
-<div class="row">
-<div style="border-top:#1696d2 solid 6px; width:200px;"></div>
- <div id="conclusion-text">
-   <!--TEXT -->
+    <!--  <div id="step3">
+        <ul>
+        <div id ="step3-regular" class = "step3_button reg_button active">Regularly and Recently Reported Data</div>
+        <div id ="step3-all" class = "step3_button all_button">All Data Reported</div>
+        </ul>
+      </div>  -->
+    <div class="div-no-float">
+      <div class="div-toggle-inline">
+        <div class = "toggle_text"><!--TEXT--></div>
+        <div class="urban-switch blue large">
+          <div id="step3-regular" class="button_toggle switch large on"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <section class="container clearfix">  
+  <div class="row">
+  <div style="border-top:#1696d2 solid 6px; width:200px;"></div>
+   <div id="conclusion-text">
+     <!--TEXT -->
+    </div>
   </div>
+  </section>
 </div>
-</section>
+
 
 </div>
 </div>

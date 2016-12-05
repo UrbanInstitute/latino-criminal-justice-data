@@ -94,7 +94,7 @@ var TITLE = {
 }
 
 var HEADERTEXT = {
-  english:  ["<p><strong>No one knows exactly how many Latinos are in prison, on probation or parole, or being arrested. </strong> \
+  english:  ["<p class=\"full-width-col\"><strong>No one knows exactly how many Latinos are in prison, on probation or parole, or being arrested. </strong> \
    While 40 states report race (e.g. white, black, other) in their arrest records, only 15 states report ethnicity. Although ethnicity encompasses populations other than Latinos, in a country that will be <a href=\"http:\/\/www.census.gov/content\/dam\/Census\/library\/publications\/2015\/demo\25-1143.pdf\" \
    target=\"_blank\">28.6% Latino by 2060</a>, Latinos are the group mostly likely to be missed when states ignore ethnicity. </p>\
    There is considerable<a href=\"http:\/\/www.urban.org\/sites\/default\/files\/alfresco\/publication-pdfs\/413174-Examining-Racial-and-Ethnic-Disparities-in-Probation-Revocation.PDF\" target=\"_blank\"> evidence</a> that people of color are involved with the criminal justice system at\
@@ -374,15 +374,17 @@ $(".language_option")
 
   //THIRD DATA VIZ
 
-  var grid_legend_text = $('.grid-legend-text')
+  var grid_legend_text = ((IS_MOBILE) || (IS_PHONE))? $('.grid-legend-text-mobile') : $('.grid-legend-text')
   for (var i=0; i<grid_legend_text.length; i++){
     if (grid_legend_text.eq(i).text() == (DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])) {
-      console.log(grid_legend_text.eq(i).text())
     } else {
       grid_legend_text.eq(i).html(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])
 
     }
   }
+  d3.selectAll(grid_legend_text).call(wrapText,80)
+
+
 
 
 

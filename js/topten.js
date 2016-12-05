@@ -111,9 +111,10 @@ var frequency = "_frequency"
 var rating = "_rating"
 
 cell_scale_phone = (IS_PHONE) ? .7 : 1;
-width_phone = (IS_PHONE)? 2 : 1;
+width_phone = (IS_PHONE)? 1 : 1;
 height_mobile = (IS_MOBILE)? .9 : 1;
-height_phone= (IS_PHONE)? .8 : 1;
+height_phone= (IS_PHONE)? 1.15 : 1;
+row_x_phone = (IS_PHONE)? 3.5: 0;
 
 
 chartTen.svg = d3.select("#grid")
@@ -143,7 +144,7 @@ filteredData = filteredData_unsorted.sort(function(a,b) {
     .attr("class", "row")
     .attr("width", 500)
     .attr("height", 49)
-    .attr("transform", function(d, i){ return "translate(" + 8 +" ," + (i*49)*cell_scale_phone + ")"})
+    .attr("transform", function(d, i){ return "translate(" + 8*row_x_phone + " ," + (i*49)*cell_scale_phone + ")"})
 
   
   for(var i = 0; i < gridColumns.length; i++){
@@ -247,21 +248,23 @@ function wrapText(text, width) {
 
 
 legend_scale_x = (IS_PHONE) ? 2 : 0;
-legend_scale_y = (IS_PHONE) ? .9 : 1;
-legend_height_mobile = (IS_MOBILE) ? .3 : 1;
-legend_height_phone = (IS_PHONE) ? .3 : 1;
+legend_scale_y = (IS_PHONE) ? 1.5 : 1;
+legend_height_mobile = (IS_MOBILE) ? 1.5 : 1;
+legend_height_phone = (IS_PHONE) ? 2: 1;
+legend_width_phone=(IS_PHONE)?.8: 1;
+legend_text_y_phone = (IS_PHONE)? .2:0;
 
   chartTen.legendSVG = d3.select("#legend3")
       .append("div")
       .classed("grid-legend", true)
       .append("svg")
-      .attr("width", width)
-      .attr("height", height/2.5*legend_height_mobile*legend_height_phone);
+      .attr("width", width*legend_width_phone)
+      .attr("height", height/2*legend_height_mobile*legend_height_phone);
   chartTen.legend = chartTen.legendSVG
       .append('g')
       .attr("transform", function(){
         if (IS_PHONE) {
-          return  "translate(-10 ,0)"
+          return  "translate(-40 ,0)"
         } else {
           return "translate(-10 ,0)"
         }
@@ -286,7 +289,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", .8*legend_scale_y + "em")
+      .attr("y", .8+ (legend_text_y_phone*.3) + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -298,7 +301,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
       .attr("id", "data-no-cat")
       .attr("class", "legend-icon")
       .attr("x", 1 + legend_scale_x + "em")
-      .attr("y", 2.2*legend_scale_y + "em")
+      .attr("y", 3.2*legend_scale_y + "em")
       .attr("width", 16)
       .attr("height", 16)
     chartTen.legend.append("text")
@@ -310,7 +313,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", 3.65*legend_scale_y + "em")
+      .attr("y", 4.95*legend_scale_y + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -322,7 +325,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
       .attr("id", "combined")
       .attr("class", "legend-icon")
       .attr("x", 1 + legend_scale_x + "em")
-      .attr("y", 4.4*legend_scale_y + "em")
+      .attr("y", 6.3*legend_scale_y + "em")
       .attr("width", 16)
       .attr("height", 16)
     chartTen.legend.append("text")
@@ -334,7 +337,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", 6.6*legend_scale_y + "em")
+      .attr("y", (9 + legend_text_y_phone)*legend_scale_y + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -346,7 +349,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
       .attr("id", "separate")
       .attr("class", "legend-icon")
       .attr("x", 1 + legend_scale_x + "em")
-      .attr("y", 6.6*legend_scale_y + "em")
+      .attr("y", 9.3*legend_scale_y + "em")
       .attr("width", 16)
       .attr("height", 16)
     chartTen.legend.append("text")
@@ -358,7 +361,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", 9.5*legend_scale_y + "em")
+      .attr("y", (13+legend_text_y_phone*2.5)*legend_scale_y + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -370,7 +373,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
       .attr("id", "cross-tabbed")
       .attr("class", "legend-icon")
       .attr("x", 1 + legend_scale_x + "em")
-      .attr("y", 8.8*legend_scale_y + "em")
+      .attr("y", 12.5*legend_scale_y + "em")
       .attr("width", 16)
       .attr("height", 16)
     chartTen.legend.append("text")
@@ -382,15 +385,19 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", 12.45*legend_scale_y + "em")
+      .attr("y", (17.3 + (legend_text_y_phone*4))*legend_scale_y + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][4][1];
       });
 
-      chartTen.legend.selectAll('.grid-legend-text-mobile').call(wrapText,80)
-      chartTen.legend.selectAll('.grid-legend-text').call(wrapText,150)
+      var grid_legend_text = ((IS_MOBILE) || (IS_PHONE))? ('.grid-legend-text-mobile') : ('.grid-legend-text')
+      var grid_legend_text_wrap = ((IS_MOBILE) || (IS_PHONE))? "80" : "140"
+      console.log(grid_legend_text_wrap)
+
+      chartTen.legend.selectAll(grid_legend_text).call(wrapText,grid_legend_text_wrap)
+
 
 
     chartTen.gridStates = gridStates

@@ -70,7 +70,10 @@
       #measures-button {
         width: 17em !important;
       }
-
+      /*GRID*/
+      #grid {
+        margin-top: 0em !important;
+      }
  
       #step1, #step2, #step3 {
         float: left;
@@ -154,12 +157,12 @@
 
 
     #grid {
-      width: 100% !important;
+      width: 65% !important;
     }
     #legend3{
       float: left !important;
-      padding-left: 45px;
       margin-top: 5px !important;
+      width: 30% !important;
     }
 
 

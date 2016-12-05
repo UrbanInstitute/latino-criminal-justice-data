@@ -425,7 +425,7 @@ function drawFirstGraphic() {
    //  }
 
   tooltipLeft_phone_width = (IS_PHONE) ? 3 : 1;
-   tooltipRight_phone_width = (IS_PHONE) ? 2.3 : 1;
+   tooltipRight_phone_width = (IS_PHONE) ? 1.9 : 1;
    tooltip_mobile_width = (IS_MOBILE) ? 1.7 : 1;
    tooltip_phone_height = (IS_PHONE)? 80: 0;
    tooltipRight_mobile_height = (IS_MOBILE) ? 80 : 0;
@@ -609,8 +609,11 @@ function tooltip(mystate, selectedState) {
           height = height/2 - margin.top - margin.bottom;
    }
 
-
-
+if (IS_MOBILE) {
+  console.log('hello')
+} else {
+  console.log('hi')
+} 
  
 
 

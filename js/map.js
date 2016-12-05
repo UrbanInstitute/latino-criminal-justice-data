@@ -385,8 +385,10 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
 legend_scale_x = (IS_PHONE) || (IS_MOBILE) ? 0 : 1;
 legend_scale_y = (IS_PHONE) ? 1.8 : 1;
-legend_height = (IS_PHONE) || (IS_MOBILE) ? 2 : 1;
+legend_height = (IS_PHONE) || (IS_MOBILE) ? 4 : 1;
 legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
+legendSquareX = "1.6em"
+legendTextX = "4em"
 
 
 
@@ -395,14 +397,14 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       .classed("map-legend", true)
       .append("svg")
       .attr("width", width)
-      .attr("height", (height/5)*legend_height);
+      .attr("height", (height/2)*legend_height);
 
 /*FIRST*/
     chartMap.legend
       .append("rect")
       .attr("id", "no-data")
       .attr("class", "legend-icon")
-      .attr("x", .2*legend_scale_x + "em")
+      .attr("x", legendSquareX)
       .attr("y", "2em")
       .attr("width", 16)
       .attr("height", 16)
@@ -420,10 +422,10 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
         if (IS_PHONE){
           return 2.2*legend_scale_y + "em"
         } else {
-          return "3.7em"
+          return "3.4em"
         }
       })
-      .attr("x","2em")
+      .attr("x",legendTextX)
       .attr("text-anchor", "start")
       .text(function (d, i) {
          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][0][1]
@@ -434,13 +436,13 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       .append("rect")
       .attr("id", "data-no-cat")
       .attr("class", "legend-icon")
-      .attr("x", 7.3*legend_scale_x + "em")
+      .attr("x", legendSquareX)
       .attr("y",function(d){
         if (IS_PHONE) {
           return 2*legend_scale_y + "em"
         } else  if (IS_MOBILE) {
             return 2*legend_mobile_scale_y + "em"
-          } return "2em"
+          } return "4em"
       })
       .attr("width", 16)
       .attr("height", 16)
@@ -453,20 +455,14 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
         }
       })
       .attr("dy", 0)
-      .attr("x", function() {
-       if ((IS_PHONE) || (IS_MOBILE)) {
-        return '2em';} 
-          else {
-          return '11.5em'
-        }
-      })
+      .attr("x", legendTextX)
 
       .attr("y",function(d){
        if (IS_PHONE) {
           return 3.5*legend_scale_y + "em"
         } else if (IS_MOBILE) {
           return 3.5*legend_mobile_scale_y + "em"
-        } return "3.7em"
+        } return "6.1em"
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -478,13 +474,13 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       .append("rect")
       .attr("id", "combined")
       .attr("class", "legend-icon")
-      .attr("x", 14*legend_scale_x + "em")
+      .attr("x", legendSquareX)
       .attr("y",function(d){
          if (IS_PHONE) {
           return 3*legend_scale_y + "em"
         } else if (IS_MOBILE) {
           return 3*legend_mobile_scale_y + "em"
-        } return "2em"
+        } return "6em"
       })
       .attr("width", 16)
       .attr("height", 16)
@@ -497,19 +493,13 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
         }
       })
       .attr("dy", 0)
-      .attr("x", function() {
-        if((IS_PHONE) || (IS_MOBILE))  {
-        return '2em';} 
-          else {
-          return '20.4em'
-        }
-      })
+      .attr("x", legendTextX)
       .attr("y",function(d){
         if (IS_PHONE)  {
           return 4.9*legend_scale_y+ "em"
         } else if (IS_MOBILE) {
           return 4.9*legend_mobile_scale_y + "em"
-        } return "3.7em"
+        } return "8.8em"
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -521,13 +511,13 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       .append("rect")
       .attr("id", "separate")
       .attr("class", "legend-icon")
-      .attr("x", 20.6*legend_scale_x + "em")
+      .attr("x", legendSquareX)
       .attr("y",function(d){
         if (IS_PHONE) {
           return 4*legend_scale_y+ "em"
         } else if (IS_MOBILE) {
           return 4*legend_mobile_scale_y + "em"
-        } return "2em"
+        } return "8em"
       })
       .attr("width", 16)
       .attr("height", 16)
@@ -540,19 +530,13 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
         }
       })
       .attr("dy", 0)
-      .attr("x", function() {
-        if((IS_PHONE) || (IS_MOBILE)) {
-        return '2em';} 
-          else {
-          return '29em'
-        }
-      })
+      .attr("x", legendTextX)
       .attr("y",function(d){
         if (IS_PHONE)  {
           return 6.4*legend_scale_y + "em"
         } else if (IS_MOBILE) {
           return 6.4*legend_mobile_scale_y + "em"
-        } return "3.7em"
+        } return "11.5em"
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -564,13 +548,13 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
       .append("rect")
       .attr("id", "cross-tabbed")
       .attr("class", "legend-icon")
-      .attr("x", 27*legend_scale_x + "em")
+      .attr("x", legendSquareX)
       .attr("y",function(d){
         if (IS_PHONE) {
           return 5*legend_scale_y+ "em"
         } else if (IS_MOBILE) {
           return 5*legend_mobile_scale_y + "em"
-        } return "2em"
+        } return "10em"
       })
       .attr("width", 16)
       .attr("height", 16)
@@ -583,26 +567,19 @@ legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
         }
       })
       .attr("dy", 0)
-      .attr("x", function() {
-        if((IS_PHONE) || (IS_MOBILE))  {
-        return '2em';} 
-          else {
-          return '37.8em'
-        }
-      })
+      .attr("x", legendTextX)
        .attr("y",function(d){
        if (IS_PHONE) {
           return 7.9*legend_scale_y + "em"
         } else if (IS_MOBILE) {
           return 7.9*legend_mobile_scale_y + "em"
-        } return "3.7em"
+        } return "14.2em"
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][4][1];
       });
 
-     chartMap.legend.selectAll('.legend-text').call(wrapText,85)
   
   chartMap.mapStates = mapStates;
 

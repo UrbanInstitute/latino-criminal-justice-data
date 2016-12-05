@@ -1,4 +1,5 @@
 
+
 function drawTopten(){
 
 
@@ -142,7 +143,7 @@ filteredData = filteredData_unsorted.sort(function(a,b) {
     .attr("class", "row")
     .attr("width", 500)
     .attr("height", 49)
-    .attr("transform", function(d, i){ return "translate(" + cellWidth +" ," + (i*49)*cell_scale_phone + ")"})
+    .attr("transform", function(d, i){ return "translate(" + 8 +" ," + (i*49)*cell_scale_phone + ")"})
 
   
   for(var i = 0; i < gridColumns.length; i++){
@@ -250,12 +251,23 @@ legend_scale_y = (IS_PHONE) ? .9 : 1;
 legend_height_mobile = (IS_MOBILE) ? .3 : 1;
 legend_height_phone = (IS_PHONE) ? .3 : 1;
 
-  chartTen.legend = d3.select("#legend3")
+  chartTen.legendSVG = d3.select("#legend3")
       .append("div")
       .classed("grid-legend", true)
       .append("svg")
       .attr("width", width)
       .attr("height", height/2.5*legend_height_mobile*legend_height_phone);
+  chartTen.legend = chartTen.legendSVG
+      .append('g')
+      .attr("transform", function(){
+        if (IS_PHONE) {
+          return  "translate(-10 ,0)"
+        } else {
+          return "translate(-10 ,0)"
+        }
+      })
+
+
 
     chartTen.legend
       .append("rect")
@@ -274,7 +286,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", 1*legend_scale_y + "em")
+      .attr("y", .8*legend_scale_y + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -298,7 +310,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", 4*legend_scale_y + "em")
+      .attr("y", 3.65*legend_scale_y + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -322,7 +334,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", 7*legend_scale_y + "em")
+      .attr("y", 6.6*legend_scale_y + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -346,7 +358,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", 10*legend_scale_y + "em")
+      .attr("y", 9.5*legend_scale_y + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -370,7 +382,7 @@ legend_height_phone = (IS_PHONE) ? .3 : 1;
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", 13*legend_scale_y + "em")
+      .attr("y", 12.45*legend_scale_y + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {

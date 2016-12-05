@@ -17,9 +17,6 @@
       .graphic-container {
         width: 100% !important;
       }
-      .urban-switch.large {
-        float: right !important;
-      }
  
       #tooltip {
         float: left !important;
@@ -35,7 +32,12 @@
         border-left-style: none !important;
       }
       .xlabel {
-        font-size: 14px;
+        font-size: 12px;
+        word-break:break-all;
+      }
+
+      .toggle_text {
+        padding-left: 1em !important;
       }
       .place-label {
         font-size: 10px !important;
@@ -122,7 +124,7 @@
         line-height: 36px;
       }
     .wrapper {
-    width: auto !important;
+    width: auto;
     padding-right: 20px;
     padding-left: 20px;
     }
@@ -256,6 +258,10 @@ hr {
     top: 40%;
     font-size: 13px;
     position: relative;
+    width: 55%;
+    text-align: left;
+    float: left;
+    padding-left: 1.8em;
 }
 
 .div-center {
@@ -275,8 +281,6 @@ hr {
     position: relative;
     display: inline-block;
     height: 50px;
-
-    margin-top: 25px;
     margin-right: auto;
     margin-left: auto;
     width: 100%;
@@ -284,20 +288,18 @@ hr {
 }
 
 .urban-switch.large {
-    /*position: absolute;*/
-    /*top: 22px;*/
-    /*left: 212px;*/
     font-size: 13px;
     font-family: Lato, sans-serif;
     height: 26px;
     border: none;
     color: #ffffff;
-    float: right;
+    float: left;
+    position: relative;
     line-height: 12px;
     text-align: left;
     border-radius: 10px;
-    margin-bottom: 18px;
-    padding-left: 5px;
+    padding-top: 1.2em;
+    width: 20%;
 }
 
 .switch.large {
@@ -404,15 +406,20 @@ hr {
   pointer-events: all;
 }
 
+#xlabel-div {
+  padding-top: 1em;
+  position: relative;
+  float: left;
+  word-wrap: break-word;
+}
 #firstGraphic {
   position: relative;
   float: right;
-  margin-top: 2em;
   width: 100%;
   height: 100%;
 
-
 }
+
 
 #firstGraphic > rect {
    fill: #ffffff;
@@ -461,6 +468,12 @@ div.tooltip-div-left {
 }
 
 .tooltip-text-state {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 400;
+}
+
+.tooltip-text-state-mobile {
   font-size: 28px;
   line-height: 36px;
   font-weight: 400;

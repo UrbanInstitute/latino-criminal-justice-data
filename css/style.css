@@ -389,81 +389,6 @@ footer h3, footer h4{
 
 
 
-/*browser windows smaller than 850px*/
-@media (max-width: 900px) {
- 
-  .content {width:auto; padding:0px 30px}
-  .container {width:auto; padding:0px 30px; margin-bottom: 40px;}
-  ul {margin-left: 10px;}
-  li {padding-left:0px;}
-    .overhalf{margin-right:0px; margin-left:30px; width:70%;}
-    
-.subnav {
-display: none;
-}
-    
-#mobilenavcontainer {
-width: 100%;
-position: fixed;
-top: 0px;
-height: 45px;
-display: block;  
-    z-index: 11;
-}
-    
-.show-menu{
-    display: block;
-    width: 100%;
-    position: fixed;
-    text-decoration: none;
-    color: #fff;
-    background: #0096d2;
-    text-align: center;
-    padding: 10px 0;   
-    } 
-    
-    
-/*Hide checkbox*/
-input[type=checkbox]:unchecked ~ #menu{
-display: none;
-visibility:hidden;
-
-    
-}
-
-/*Show menu when invisible checkbox is checked*/
-input[type=checkbox]:checked ~ #menu{
-    display: block;
-    position: absolute;
-    top: 85px;
-    width: 100%;
-    height: 150px;
-       z-index: 10;
-   
-}
-    
-ul#menu {
-    float:none;
-    display: none; 
-    text-align: center;
-    list-style:none;
-    margin:0px;
-}
-
-#menu li{
-    margin-bottom:0px;
-    list-style:none;
-    padding-left:0px; 
-}
-
-/*.headerimage{
-        top:44px;
-    }*/
-    
-    
-    #left{ width:100%;}
-    #right{ width:100%; margin-top:30px;}
-}
 
 .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
@@ -513,10 +438,7 @@ h1 {
   margin: auto;
 }
 
-@media (max-width: 768px) {
-   .headerimage{ height:250px;}
-    .overhalf{width:100%;}
-}
+
 
 /*browser windows smaller than 850px*/
 @media (max-width: 600px) {

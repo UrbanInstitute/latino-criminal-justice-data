@@ -39,7 +39,7 @@ function drawFirstGraphic() {
   var $firstGraphic = $("#firstGraphic");
 
   var aspect_width = 30;
-  var aspect_height = 26;
+  var aspect_height = 24;
   var margin = { top: 0, right: 0, bottom: 10, left: 32 };
   var width= ($firstGraphic.width() - margin.left - margin.right); 
   var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
@@ -138,45 +138,61 @@ function drawFirstGraphic() {
             return width*1.1}
         })
         .attr("height", function(){
-          if ((IS_PHONE) || (IS_MOBILE))  {
+          if (IS_PHONE) {
+            return height + phone_height
+          }  else if (IS_MOBILE) {
             return height + mobile_height 
-            console.log('hi')
-          } else {
+          }
+          else {
             return height}
         })
 
     chart.group = chart.svg.append('g')
                   .attr("class", "g")
-                  .attr("transform", "translate(-10, "+ 40 - phone_height +")")
-    xLabel = chart.svg.append("g")
-      .attr("transform", "translate(20,-410)")
+                  .attr("transform", "translate(15, 12)")
+    xLabel = chart.d3.select("#xlabel-div")
+                  .append("svg")
+                  .attr("width", function(){
+                      if ((IS_PHONE) || (IS_MOBILE)) {
+                        console.log(width + phone_width + mobile_width);
+                        return width + phone_width + mobile_width
+                        console.log(width + phone_width + mobile_width)
+                      } else {
+                                                console.log(width + phone_width + mobile_width);
+
+                        return width*1.1}
+                  })
+                  .attr("height", height/8)
 
 
+  //wrapText_mobile = (IS_PHONE) || (IS_MOBILE) ? 300: 1000;
     xLabel
       .append('text')
         .attr("text-anchor", "start")
         .attr('class', 'xlabel')
         .attr('x', function() {
           if (IS_PHONE)  {
-            return '1.5em'
+            return '.7em'
           } else { 
             if (IS_MOBILE) {
+              console.log('hello')
               return '1em'
-              } return '3.5em'
+              } return '.5em'
           }
         })
         .attr('y', function() {
           if (IS_PHONE) {
-            return '26.5em'
+            return '1em'
           } else { 
             if (IS_MOBILE) {
-              return '19.5em'
+              return '1em'
             }
-            return '27em'
+            return '2.5em'
           }
         })
         .text(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
         .style('fill', "#000000")
+    //  xLabel.selectAll('.xlabel').call(wrapText, wrapText_mobile)
 
       //ADDING GROUPS
 
@@ -206,9 +222,6 @@ function drawFirstGraphic() {
             return (j*100) *cell_scale_phone*cell_scale_mobile;
           }
         })
-        .transition()
-        .duration(800)
-        .delay(function(d, i) { return i*15; })
         .attr("y", function(d,i) {
           if (i%2 == 0){
             return (yBase - ((i/2)*squareDim)) * cell_scale_phone*cell_scale_mobile;
@@ -240,9 +253,6 @@ function drawFirstGraphic() {
           } 
             return (xEvencell + j*100)*cell_scale_phone*cell_scale_mobile;
         })
-        .transition()
-        .duration(800)
-        .delay(function(d, i) { return i*15; })
         .attr("y", function(d,i) {
           if (i%2 == 0){
             return (ybaseCell - ((i/2)*squareDim))*cell_scale_phone*cell_scale_mobile;
@@ -314,6 +324,10 @@ function drawFirstGraphic() {
             d3.select(this)         
               //.style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
               .classed("hover", true ) // should then accept fill from CSS
+            chart.tooltipLeft.selectAll('.tooltip-text-state')
+            .remove()
+            chart.tooltipLeft.selectAll('.tooltip-text-state-mobile')
+            .remove()
             tooltip(mystate, selectedState)
             var selectedState = d3.select(this).attr('class').split(' ')[1]
             if(IS_PHONE) {
@@ -356,6 +370,10 @@ function drawFirstGraphic() {
 
 //ADDING COLUMN LABELS
   var label_height = 416
+  var label_5_x_phone = (IS_PHONE) ? -227: 0;
+  var label_y_phone = (IS_PHONE) ? .58: 1;
+  var label_x_phone_start = (IS_PHONE) ? 9: 0;
+  var label_x_phone = (IS_PHONE) ? .56: 1;
 
    chart.bottomRow = chart.svg.selectAll(".bottomRow")
     .data(CATEGORY_LABELS)
@@ -371,14 +389,11 @@ function drawFirstGraphic() {
     .attr("height", 45)
     .attr("transform", function(d, i){ 
       if (i == 5) {
-        if ((IS_PHONE) || (IS_MOBILE)){
-        return "translate(" + (i*100 + 30*cell_scale_phone*cell_scale_mobile*1.7)*cell_scale_phone*cell_scale_mobile +" , " + label_height*cell_scale_phone*cell_scale_mobile +")"; //label 5 needs to  be aligned under one cell
-      } return "translate(" + (i*100 + 30) +" , " + label_height +")"; //label 5 needs to  be aligned under one cell
+        return "translate(" + (i*100 + 30 + label_5_x_phone)+" , " + label_height*label_y_phone  +")"; //label 5 needs to  be aligned under one cell
+    //   return "translate(" + (i*100 + 30) +" , " + label_height +")"; //label 5 needs to  be aligned under one cell
     } else { 
-      if ((IS_PHONE)|| (IS_MOBILE)){
-        return "translate(" + (i*100 + 51*cell_scale_phone*cell_scale_mobile*1.6)*cell_scale_phone*cell_scale_mobile +" ," + label_height*cell_scale_phone*cell_scale_mobile +")"
-      }
-        return "translate(" + (i*100 + 51)+" ," + label_height+")"
+    
+        return "translate(" + (i*100 + 51 + label_x_phone_start)*label_x_phone+" ," + label_height*label_y_phone +")"
       }
     })
    
@@ -424,16 +439,16 @@ function drawFirstGraphic() {
 
   chart.tooltipLeft = d3.select(".tooltip-div-left")
     .append("svg")
-    .attr("width", width/2.6 *(tooltipLeft_phone_width)*tooltip_mobile_width)
-    .attr("height", height/2.4 - (tooltipLeft_mobile_height/2)-tooltip_phone_height/2)
+    .attr("width", width/2.3 *(tooltipLeft_phone_width)*tooltip_mobile_width)
+    .attr("height", height/2.4 - (tooltipLeft_mobile_height/2)-tooltip_phone_height/3)
   chart.tooltipLeft= chart.tooltipLeft.append("g")
     .attr("transform", "translate("+ (.1*width)/tooltipLeft_phone_width + ",0)");
 
 
   chart.tooltipRight = d3.select(".tooltip-div-right")
     .append("svg")
-    .attr("width", width/2*(tooltipRight_phone_width)*tooltip_mobile_width)
-    .attr("height", height/2.90 + tooltipRight_mobile_height + tooltip_phone_height)
+    .attr("width", width/1.7*(tooltipRight_phone_width)*tooltip_mobile_width)
+    .attr("height", height/2.7 + tooltipRight_mobile_height + tooltip_phone_height)
   chart.tooltipRight = chart.tooltipRight.append("g")
     .attr("transform", "translate("+ -140*(tooltipRight_x) +", " + 0 +")");
   
@@ -499,13 +514,32 @@ function drawFirstGraphic() {
     .attr("x", function() {
       if (IS_PHONE) {
         return "0em"
-    } else return "-2.3em"
+    } else return "-3.2em"
     })
     .attr("text-anchor", "start")
     .text(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][0][1]);
 
   }
   addHeaders()
+
+  chart.tooltipLeft
+      .append("text")
+      .attr("class", function() {
+        if ((IS_MOBILE) || (IS_PHONE)) {
+          return "tooltip-text-state-mobile" 
+        } else {
+          return "tooltip-text-state"
+        }
+      })
+      .attr("dy", 0)
+      .attr("y", "2em")
+      .attr("x", function() {
+          if (IS_PHONE) {
+            return "0em"
+        } else return "-1.4em"
+        })
+        .attr("text-anchor", "start")
+        .text(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE])
 
 
 chart.states = states
@@ -548,25 +582,26 @@ function tooltip(mystate, selectedState) {
           
         chart.tooltipLeft
           .append("text")
-          .attr("class", "tooltip-text-state")
+           .attr("class", function() {
+            if ((IS_MOBILE) || (IS_PHONE)) {
+              return "tooltip-text-state-mobile" 
+            } else {
+              return "tooltip-text-state"
+            }
+          })
           .attr("dy", 0)
           .attr("y", "2em")
           .attr("x", function() {
             if (IS_PHONE) {
               return "0em"
-          } else return "-1em"
+          } else return "-1.4em"
           })
           .attr("text-anchor", "start")
           .text(function() {
             return mystate.properties.name;
           })
-          .call(wrapText, function(d) {
-            if (IS_PHONE) {
-              return 0;
-            } else {
-              return 200;
-            }
-            });
+          chart.tooltipLeft.selectAll('.tooltip-text-state').call(wrapText,190)
+
 
 
      

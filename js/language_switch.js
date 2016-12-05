@@ -199,6 +199,12 @@ var FIRSTGRAPHIC_TOOLTIPHEADER = {
   ]
 }
 
+var FIRSTGRAPHIC_SELECTSTATE = {
+  english:["Select a State"],
+  spanish: ["Select a State-spanish"]
+}
+
+
 
 //FOOTER
 
@@ -328,6 +334,7 @@ $(".language_option")
   //FIRST DATA VIZ TEXT
   console.log(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
   $('.xlabel').html(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
+  $('.tooltip-text-state').html(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE])
   var tooltip_header = $('.tooltip-header')
   for (var i=0; i<tooltip_header.length; i++) {
       tooltip_header.eq(i).data(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][i][1]), tooltip_header.eq(i).text();

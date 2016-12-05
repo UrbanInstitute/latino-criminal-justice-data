@@ -473,7 +473,12 @@ div.tooltip-div-left {
   height: 100%;
 
 }
-
+.map-legend{
+  z-index: -1;
+}
+.div-center{
+  z-index: 1;
+}
 .tooltip-text {
   font-size: 12px;
 }

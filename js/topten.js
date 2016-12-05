@@ -111,9 +111,9 @@ var frequency = "_frequency"
 var rating = "_rating"
 
 cell_scale_phone = (IS_PHONE) ? .7 : 1;
-width_phone = (IS_PHONE)? 1 : 1;
+width_phone = (IS_PHONE)? 1.1 : 1;
 height_mobile = (IS_MOBILE)? .9 : 1;
-height_phone= (IS_PHONE)? 1.15 : 1;
+height_phone= (IS_PHONE)? 1.3 : 1;
 row_x_phone = (IS_PHONE)? 3.5: 0;
 
 
@@ -208,7 +208,7 @@ label_side_phone = (IS_PHONE) ? -25.2 : 1;
     last_row.selectAll("rect").each(function(d, i) {
       last_row.append("text")
       .attr("class", "grid-cat-labels")
-      .attr("transform", "translate(" + (i*52+ 70*cell_scale_phone)*cell_scale_phone+ ","+55*cell_scale_phone+") rotate(-45)" )
+      .attr("transform", "translate(" + (i*52+ 60*cell_scale_phone)*cell_scale_phone+ ","+55*cell_scale_phone+") rotate(-45)" )
       .attr("text-anchor", "end")
 
       .text(function () { 
@@ -248,8 +248,8 @@ function wrapText(text, width) {
 
 
 legend_scale_x = (IS_PHONE) ? 2 : 0;
-legend_scale_y = (IS_PHONE) ? 1.5 : 1;
-legend_height_mobile = (IS_MOBILE) ? 1.5 : 1;
+legend_scale_y = (IS_PHONE) ? 1 : 1;
+legend_height_mobile = (IS_MOBILE) ? 1.1 : 1;
 legend_height_phone = (IS_PHONE) ? 2: 1;
 legend_width_phone=(IS_PHONE)?.8: 1;
 legend_text_y_phone = (IS_PHONE)? .2:0;

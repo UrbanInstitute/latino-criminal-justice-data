@@ -118,12 +118,12 @@ function drawFirstGraphic() {
   });
 
   function FirstGraphic(states) { 
-    cell_scale_phone = (IS_PHONE) ? .56 : 1;
+    cell_scale_phone = (IS_PHONE) ? .8 : 1;
     cell_scale_mobile = (IS_MOBILE) ? .7 : 1;
     phone_height = (IS_PHONE) ? 35: 0;
     phone_width = (IS_PHONE) ? 40 : 0;
-    mobile_width = (IS_MOBILE) ? 32 : 0;
-    mobile_height = (IS_MOBILE) ? 70 : 0;
+    mobile_width = (IS_MOBILE) ? 42 : 0;
+    mobile_height = (IS_MOBILE) ? 30 : 0;
 
 
 
@@ -371,9 +371,13 @@ function drawFirstGraphic() {
 //ADDING COLUMN LABELS
   var label_height = 416
   var label_5_x_phone = (IS_PHONE) ? -227: 0;
+  var label_5_x_mobile = (IS_MOBILE) ? -155: 0;
   var label_y_phone = (IS_PHONE) ? .58: 1;
+  var label_y_mobile = (IS_MOBILE) ? .72: 1;
+  var label_x_mobile_start = (IS_MOBILE) ? 7: 0;
   var label_x_phone_start = (IS_PHONE) ? 9: 0;
   var label_x_phone = (IS_PHONE) ? .56: 1;
+  var label_x_mobile = (IS_MOBILE) ? .7: 1;
 
    chart.bottomRow = chart.svg.selectAll(".bottomRow")
     .data(CATEGORY_LABELS)
@@ -389,11 +393,11 @@ function drawFirstGraphic() {
     .attr("height", 45)
     .attr("transform", function(d, i){ 
       if (i == 5) {
-        return "translate(" + (i*100 + 30 + label_5_x_phone)+" , " + label_height*label_y_phone  +")"; //label 5 needs to  be aligned under one cell
+        return "translate(" + (i*100 + 30 + label_5_x_phone + label_5_x_mobile)+" , " + label_height*label_y_phone*label_y_mobile  +")"; //label 5 needs to  be aligned under one cell
     //   return "translate(" + (i*100 + 30) +" , " + label_height +")"; //label 5 needs to  be aligned under one cell
     } else { 
     
-        return "translate(" + (i*100 + 51 + label_x_phone_start)*label_x_phone+" ," + label_height*label_y_phone +")"
+        return "translate(" + (i*100 + 51 + label_x_phone_start + label_x_mobile_start)*label_x_phone*label_x_mobile+" ," + label_height*label_y_phone*label_y_mobile  +")"
       }
     })
    
@@ -440,14 +444,14 @@ function drawFirstGraphic() {
   chart.tooltipLeft = d3.select(".tooltip-div-left")
     .append("svg")
     .attr("width", width/2.3 *(tooltipLeft_phone_width)*tooltip_mobile_width)
-    .attr("height", height/2.4 - (tooltipLeft_mobile_height/2)-tooltip_phone_height/3)
+    .attr("height", height/2.4 - (tooltipLeft_mobile_height/2)-tooltip_phone_height/7)
   chart.tooltipLeft= chart.tooltipLeft.append("g")
     .attr("transform", "translate("+ (.1*width)/tooltipLeft_phone_width + ",0)");
 
 
   chart.tooltipRight = d3.select(".tooltip-div-right")
     .append("svg")
-    .attr("width", width/1.7*(tooltipRight_phone_width)*tooltip_mobile_width)
+    .attr("width", width/1.7*(tooltipRight_phone_width)*tooltip_mobile_width/1.7)
     .attr("height", height/2.7 + tooltipRight_mobile_height + tooltip_phone_height)
   chart.tooltipRight = chart.tooltipRight.append("g")
     .attr("transform", "translate("+ -140*(tooltipRight_x) +", " + 0 +")");

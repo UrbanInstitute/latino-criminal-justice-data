@@ -278,7 +278,7 @@ $(window).load(function() {
   $('#first-section-text').html(FIRSTSECTION[GLOBAL_LANGUAGE])
   $('#heroimage').find('h1').html(TITLE[GLOBAL_LANGUAGE])
   $('#header_text').html(HEADERTEXT[GLOBAL_LANGUAGE])
-  if ((IS_MOBILE) || (IS_PHONE)) {
+  if (IS_PHONE) {
     $('.mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
   } else {
     $('.non-mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
@@ -313,7 +313,7 @@ $(".language_option")
   }
   $('.xlabel').html(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
 
-  if ((IS_MOBILE) || (IS_PHONE)) {
+  if (IS_PHONE) {
     $('.mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
   } else {
     $('.non-mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);

@@ -609,6 +609,8 @@ function tooltip(mystate, selectedState) {
           height = height/2 - margin.top - margin.bottom;
    }
 
+
+console.log(IS_MOBILE)
 if (IS_MOBILE) {
   console.log('hello')
 } else {

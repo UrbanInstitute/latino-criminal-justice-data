@@ -109,6 +109,16 @@
 
   }
 
+#isPhone, #isMobile{
+    display: none;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
 @media (max-width: 768px){
   #isMobile {
     display: block;
@@ -184,15 +194,7 @@
   display: none;
 }
 
-#isPhone, #isMobile{
-    display: none;
-    pointer-events: none;
-    width: 0;
-    height: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
+
 
 .svg-container article {
 

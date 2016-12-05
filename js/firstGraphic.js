@@ -120,8 +120,8 @@ function drawFirstGraphic() {
   function FirstGraphic(states) { 
     cell_scale_phone = (IS_PHONE) ? .56 : 1;
     cell_scale_mobile = (IS_MOBILE) ? .7 : 1;
-    phone_height = (IS_PHONE) ? 0: 0;
-    phone_width = (IS_PHONE) ? 38 : 0;
+    phone_height = (IS_PHONE) ? 35: 0;
+    phone_width = (IS_PHONE) ? 40 : 0;
     mobile_width = (IS_MOBILE) ? 32 : 0;
     mobile_height = (IS_MOBILE) ? 70 : 0;
 
@@ -139,7 +139,7 @@ function drawFirstGraphic() {
         })
         .attr("height", function(){
           if ((IS_PHONE) || (IS_MOBILE))  {
-            return height + mobile_height + phone_height
+            return height + mobile_height 
             console.log('hi')
           } else {
             return height}
@@ -147,7 +147,7 @@ function drawFirstGraphic() {
 
     chart.group = chart.svg.append('g')
                   .attr("class", "g")
-                  .attr("transform", "translate(15,40)")
+                  .attr("transform", "translate(-10, "+ 40 - phone_height +")")
     xLabel = chart.svg.append("g")
       .attr("transform", "translate(20,-410)")
 
@@ -167,7 +167,7 @@ function drawFirstGraphic() {
         })
         .attr('y', function() {
           if (IS_PHONE) {
-            return '20.5em'
+            return '26.5em'
           } else { 
             if (IS_MOBILE) {
               return '19.5em'
@@ -355,7 +355,7 @@ function drawFirstGraphic() {
    var CATEGORY_LABELS = ["0", "1", "2", "3", "4", "5"]
 
 //ADDING COLUMN LABELS
-  var label_height = 445
+  var label_height = 416
 
    chart.bottomRow = chart.svg.selectAll(".bottomRow")
     .data(CATEGORY_LABELS)
@@ -409,31 +409,33 @@ function drawFirstGraphic() {
    //    });
    //  }
 
-  tooltip_phone_width = (IS_PHONE) ? 1.5 : 1;
-   tooltip_phone_height = (IS_PHONE) ? 40 : 0;
-   tooltip_right_phone_width = (IS_PHONE) ? 0 : 1;
+  tooltipLeft_phone_width = (IS_PHONE) ? 3 : 1;
+   tooltipRight_phone_width = (IS_PHONE) ? 2.3 : 1;
    tooltip_mobile_width = (IS_MOBILE) ? 1.7 : 1;
-   tooltip_mobile_height = (IS_MOBILE) ? 80 : 0;
-   tooltip_right_mobile_width = (IS_MOBILE) ? 0 : 1;
+   tooltip_phone_height = (IS_PHONE)? 80: 0;
+   tooltipRight_mobile_height = (IS_MOBILE) ? 80 : 0;
+   tooltipLeft_mobile_height = (IS_MOBILE)? 40: 0;
+   tooltipRight_x = (IS_MOBILE) || (IS_PHONE) ? 0 : 1;
   // chart.tooltip = d3.select("#tooltip")
   //   .append("svg")
   //   .attr("width", width)
   //   .attr("height", height/2.3 + tooltip_phone_height*2)
+  console.log(width)
 
   chart.tooltipLeft = d3.select(".tooltip-div-left")
     .append("svg")
-    .attr("width", width/2.6 *(tooltip_phone_width*1.2)*tooltip_mobile_width)
-    .attr("height", height/2.4 - (tooltip_mobile_height/2) + (tooltip_phone_height/1.4))
+    .attr("width", width/2.6 *(tooltipLeft_phone_width)*tooltip_mobile_width)
+    .attr("height", height/2.4 - (tooltipLeft_mobile_height/2)-tooltip_phone_height/2)
   chart.tooltipLeft= chart.tooltipLeft.append("g")
-    .attr("transform", "translate("+ (.1*width)/tooltip_phone_width + ",0)");
+    .attr("transform", "translate("+ (.1*width)/tooltipLeft_phone_width + ",0)");
 
 
   chart.tooltipRight = d3.select(".tooltip-div-right")
     .append("svg")
-    .attr("width", width/2*(tooltip_phone_width)*tooltip_mobile_width)
-    .attr("height", height/2.90 + tooltip_phone_height + tooltip_mobile_height)
+    .attr("width", width/2*(tooltipRight_phone_width)*tooltip_mobile_width)
+    .attr("height", height/2.90 + tooltipRight_mobile_height + tooltip_phone_height)
   chart.tooltipRight = chart.tooltipRight.append("g")
-    .attr("transform", "translate("+ -140*(tooltip_right_phone_width) +", " + 0 +")");
+    .attr("transform", "translate("+ -140*(tooltipRight_x) +", " + 0 +")");
   
   
 
@@ -558,7 +560,13 @@ function tooltip(mystate, selectedState) {
           .text(function() {
             return mystate.properties.name;
           })
-          .call(wrapText,200);
+          .call(wrapText, function(d) {
+            if (IS_PHONE) {
+              return 0;
+            } else {
+              return 200;
+            }
+            });
 
 
      

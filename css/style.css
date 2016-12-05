@@ -468,17 +468,49 @@ ul#menu {
 .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
 
+
+/*TITLE */
+
+h1.main-title {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 35px;
+    line-height: 50px;
+    font-weight: 700;
+} 
+
+/*p.large {
+    font: 20px Lato, sans-serif;
+    font-weight: 400;
+    line-height: 1.3;
+} */
+
+
+
+h1 {
+    text-align: left;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 400;
+    line-height: 1.4em;
+    float: left;
+    clear: left;
+    font-size: 1.9em;
+    margin: .3em 0;
+} 
+
 .div-title-block
 {
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 30px;
   background-color: rgba(0, 0, 0, 0.5);
-  width:880px;
+  width:90%;
   color: #ffffff;
   font-weight: 700;
-  line-height: 1em;
+  line-height: 1.4em;
   font-size: 2.3em;
+  margin: auto;
 }
 
 @media (max-width: 768px) {
@@ -489,13 +521,15 @@ ul#menu {
 /*browser windows smaller than 850px*/
 @media (max-width: 600px) {
    .headerimage{ height:250px;}
-    .overhalf{width:100%;}
+   .div-title-block {
+    font-size: 1.6em !important;
+   }
+
 }
 
 @media (max-width: 991px) {
    h1 { font-size:32.5px; text-align:center;}
    
-   .div-title-block { margin:auto; padding-left:0px; width:685px; padding-top: 8px; padding-bottom: 8px;}
    .headerimage{width: 100%; height: 360px;}
    .headerwrapper{padding-top:225px;}
    
@@ -531,14 +565,13 @@ ul#menu {
 }
 
 
-@media  (max-width: 767px) {
+@media  (max-width: 768px) {
   .right-col { float: none; width: 100%; padding:0px;}
   .left-col { float: none; width: 100%; padding:0px;}
  .container {margin-bottom: 40px; padding:0px 30px;}
     h2{font-weight:700;}
 	.wrapper {width:100%;}
 	h1 { font-size:28px; text-align:left; }
-	.div-title-block { margin:auto; padding-left:0px; width:450px; padding-top: 8px; padding-bottom: 8px; padding-left:15px;}
    .headerimage{width: 100%; height: 370px;}
    .headerwrapper{padding-top:150px;}
 }
@@ -546,8 +579,6 @@ ul#menu {
 @media  (max-width: 479px) {
 	.full-width-col { font-size:18px;}
 	 .container {margin-bottom: 40px; padding:0px 4px;}
-	 h1 { font-size:28px; text-align:left; }
-	.div-title-block { margin:auto; padding-left:0px; width:280px; padding-top: 8px; padding-bottom: 8px; padding-left:15px;}
    .headerimage{width: 100%; height: 300px;}
    .headerwrapper{padding-top:100px;}
  
@@ -558,80 +589,15 @@ ul#menu {
 
 @media  (max-width: 600px) {
     
-   h2{font-size:24px;}   
+   h2{font-size:24px;}  
+   .toggle_text {
+    width: 50%;
+    margin-left: 0px;
+   } 
     
 }
 
 
-/*toggle*/
-
-.toggle_text{
-  font-weight: 900;
-    margin-left: 60px;
-    margin-top: -14px;
-    margin-bottom: 9px;
-    font-size: 18px;
-    float: left;
-}
-.urban-switch.large {
-    /*position: absolute;*/
-    /*top: 22px;*/
-    /*left: 212px;*/
-    font-size: 13px;
-    font-family: Lato, sans-serif;
-    height: 26px;
-    border: none;
-    color: #ffffff;
-    display: inline-block;
-    line-height: 12px;
-    text-align: left;
-    border-radius: 10px;
-    padding-right: 10px;
-
-    margin-bottom: 18px;
-}
-
-.switch.large {
-    background-image: url(../images/off-on.png);
-    background-color: #696969;
-    background-repeat: no-repeat;
-    /*width: 55px;*/
-    /*height: 18px;*/
-    /*border-radius: 10px;*/
-
-
-    width: 83px;
-    height: 26px;
-    border-radius: 20px;
-    margin-left: 60px;
 
 
 
-
-
-
-    display: inline-block;
-    background-size: cover;
-    cursor: pointer;
-    margin-right: 9px;
-/*    top: 4px;
-    left: 4px;
-*/
-    position: relative;
-
-    -webkit-transition:background-position .1s ease-in;  
-    -moz-transition:background-position .1s ease-in;  
-    -o-transition:background-position .1s ease-in;  
-    transition:background-position .1s ease-in; 
-
-}
-
-.switch.large.off {
-    background-position: -68px 0px;
-    background-color: #696969;
-}
-
-.switch.large.on {
-    background-position: -10px 0px;
-    background-color: #1696d2;
-}

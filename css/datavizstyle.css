@@ -17,7 +17,7 @@
       .graphic-container {
         width: 100% !important;
       }
- 
+    /*FIRST GRAPHIC*/
       #tooltip {
         float: left !important;
       }
@@ -34,6 +34,19 @@
       .xlabel {
         font-size: 12px;
         word-break:break-all;
+      }
+
+      /*SECOND GRAPHIC*/
+
+      #dropdown {
+        width: 70% !important;
+      }
+      #dropdown-side-label {
+        width: 20% !important;
+      }
+
+      .ui-widget {
+        font-size: .8em !important;
       }
 
       .toggle_text {
@@ -139,9 +152,7 @@
         font-size: 14px !important ;
       }
 
-    #legend{
-      padding-left: 20px;
-    }
+
     #grid {
       width: 100% !important;
     }

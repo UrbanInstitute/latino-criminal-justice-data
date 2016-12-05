@@ -66,9 +66,9 @@ console.log(height)
 
 if (IS_PHONE) {
   var projection = d3.geoEquirectangular()
-      .scale(1100)
+      .scale(1350)
       .center([-96.03542,41.69553])
-      .translate([(width / 2), (height / 2)]);
+      .translate([(width / 2.05), (height / 2.5)]);
 } else if (IS_MOBILE) {
   var projection = d3.geoEquirectangular()
       .scale(1550)
@@ -130,6 +130,7 @@ d3.select("#step2-regular").classed("on", true)
 d3.select("#mobile-text").text("")
 d3.select("#step2-regular")
   .on('click', function() {
+    console.log('hi')
       if(d3.select(this).classed("on")){
         d3.select(this).classed("on", false)
         d3.select(this).classed("off", true)
@@ -215,7 +216,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
 
 
-    var height_scale = (IS_PHONE) ? 1.01 : 1;
+    var height_scale = (IS_PHONE) ? .9 : 1;
     cell_scale = (IS_PHONE) ? .6 : 1;
 
 
@@ -233,7 +234,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
           if (IS_PHONE) {
             return height*height_scale
           } else {
-            return height}
+            return height-45}
         })
 
 
@@ -385,19 +386,24 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
 legend_scale_x = (IS_PHONE) || (IS_MOBILE) ? 0 : 1;
 legend_scale_y = (IS_PHONE) ? 1.8 : 1;
-legend_height = (IS_PHONE) || (IS_MOBILE) ? 4 : 1;
+legend_height = (IS_PHONE) || (IS_MOBILE) ? 1.6 : 1;
 legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
 legendSquareX = "1.6em"
-legendTextX = "4em"
+legendTextX = "4.5em"
+legend_phone_x = (IS_PHONE) ? -10: 0;
 
 
 
-  chartMap.legend = d3.select("#legend")
+  chartMap.legendSVG = d3.select("#legend")
       .append("div")
       .classed("map-legend", true)
       .append("svg")
       .attr("width", width)
       .attr("height", (height/2)*legend_height);
+
+  chartMap.legend = chartMap.legendSVG
+      .append("g")
+      .attr("transform", "translate("+ (legend_phone_x)+ ",0)");
 
 /*FIRST*/
     chartMap.legend
@@ -422,7 +428,7 @@ legendTextX = "4em"
         if (IS_PHONE){
           return 2.2*legend_scale_y + "em"
         } else {
-          return "3.4em"
+          return "3.6em"
         }
       })
       .attr("x",legendTextX)
@@ -462,7 +468,7 @@ legendTextX = "4em"
           return 3.5*legend_scale_y + "em"
         } else if (IS_MOBILE) {
           return 3.5*legend_mobile_scale_y + "em"
-        } return "6.1em"
+        } return "6.3em"
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -499,7 +505,7 @@ legendTextX = "4em"
           return 4.9*legend_scale_y+ "em"
         } else if (IS_MOBILE) {
           return 4.9*legend_mobile_scale_y + "em"
-        } return "8.8em"
+        } return "9em"
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -536,7 +542,7 @@ legendTextX = "4em"
           return 6.4*legend_scale_y + "em"
         } else if (IS_MOBILE) {
           return 6.4*legend_mobile_scale_y + "em"
-        } return "11.5em"
+        } return "11.7em"
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -573,7 +579,7 @@ legendTextX = "4em"
           return 7.9*legend_scale_y + "em"
         } else if (IS_MOBILE) {
           return 7.9*legend_mobile_scale_y + "em"
-        } return "14.2em"
+        } return "14.4em"
       })
       .attr("text-anchor", "start")
       .text(function (d, i) {

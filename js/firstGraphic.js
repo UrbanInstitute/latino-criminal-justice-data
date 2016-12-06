@@ -430,7 +430,7 @@ function drawFirstGraphic() {
    //  }
 
   tooltipLeft_mobile_width = (IS_MOBILE) ? 3 : 1;
-   tooltipRight_mobile_width = (IS_MOBILE) ? 1.9 : 1;
+   tooltipRight_mobile_width = (IS_MOBILE) ? 120 : 0;
    tooltip_mobile_width = (IS_MOBILE) ? 1.7 : 1;
    tooltip_mobile_height = (IS_MOBILE)? 80: 0;
    tooltipRight_mobile_height = (IS_MOBILE) ? 80 : 0;
@@ -454,7 +454,7 @@ function drawFirstGraphic() {
 
   chart.tooltipRight = d3.select(".tooltip-div-right")
     .append("svg")
-    .attr("width", width/1.2*(tooltipRight_mobile_width)*tooltip_mobile_width/1.7)
+    .attr("width", width/1.7 + (tooltipRight_mobile_width))
     .attr("height", height/2.7 + tooltipRight_mobile_height )
   chart.tooltipRight = chart.tooltipRight.append("g")
     .attr("transform", "translate("+ -140*(tooltipRight_x) +", " + 0 +")");

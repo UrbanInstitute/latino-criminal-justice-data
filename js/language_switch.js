@@ -209,19 +209,24 @@ var FIRSTGRAPHIC_SELECTSTATE = {
 //FOOTER
 
 var FOOTER_TEXT = {
-  english: ["<h2>About the data</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"],
+  english: ["<h2>About the data</h2><p>The data used in this feature are from a range of publicly available state-level sources, across 50 states and Washington, D.C. In addition to conducting a scan of state-level agency websites, we reviewed Google search results for each data category for each state, using search terms that focused on annual reporting, statistics, race and ethnicity.</p>\
+  <p>We created a database of the most recent and complete data available for each data category within the criminal justice system, for each state and DC. Data collection occurred between June and September 2016; all sources used in this feature were available as of September 2016.  The data found using our search protocol may not reflect all data collected or reported by each state, agency or department.</p>\
+  <p>States are classified as including Latinos in their data reporting when they have categories including the terms ‘Hispanic,’ ‘Latino,’ or other similar terms, reported as part of racial or ethnic demographics. Latinos may be reported as a distinct ethnic or racial group, or combined with a racial group (e.g., Hispanic Black, Non-Hispanic White). While ‘Hispanic’ and ‘Latino’ have different meanings, in this feature we use the term ‘Latino’ when referring to people, communities, or populations. We use the term ‘Hispanic’ when referring to data, because that is the term most states use when reporting data</p>\
+  <p>We define regularly and recently reported data as data that has been publicly reported at least twice, at least every other year, and at least as recently as 2014.</p>\
+  <p>Please contact xxxxx@urban.org with any quesitons about this project or associated data.</p>"],
   spanish: ["<h2>About the data- spanish</h2><p>Footer text-spanish</p>"]
 }
 
 var PROJECT_CREDITS = {
   english: ["<h2>Project credits</h2><div class=\"urbanstatement\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>\
                     <h3 class=\"job\">Research</h3>\
-                    Sarah Eppler-Epstein and Annie Gurvis\
+                    <a href=\"http:\/\/www.urban.org\/author\/ryan-king\">Ryan King</a>, <a href=\"http:\/\/www.urban.org\/author\/sarah-eppler-epstein\">Sarah Epstein</a> and <a href=\"http:\/\/www.urban.org\/author\/annie-gurvis\">Annie Gurvis</a>\
                     <h3 class=\"job\">Design and Development</h3>\
-                    Vivian Hou and John Wehmann\
-                    <h3 class=\"job\">Photography</h3>  \<a href=\"http:\/\/www.urban.org\/author\/matthew-johnson\">Lydia Thompson</a>\
+                    <a href=\"http:\/\/www.urban.org\/author\/john-wehmann\">John Wehmann</a> and <a href=\"http:\/\/www.urban.org\/author\/vivian-hou\">Vivian Hou</a>\
+                    <h3 class=\"job\">Photography</h3>  \
+                    <a href=\"http:\/\/www.urban.org\/author\/lydia-thompson\">Lydia Thompson</a>\
                     <h3 class=\"job\">Editorial</h3>\
-                    <a href=\"http:\/\/www.urban.org\/author\/???\">???</a>\
+                    <a href=\"http:\/\/www.urban.org\/author\/alexandra-tilsley\">Alex Tilsley</a> and <a href=\"http:\/\/www.urban.org\/author\/daniel-matos\">Daniel Matos</a> \
                     <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/race_ethnicity\" target=\"_blank\">View this project on Github.</a></div>"],
   spanish: ["<h2>Project credits-spanish</h2><div class=\"urbanstatement\">Spanish text </div>\
                     <h3 class=\"job\">Research- spanish</h3>\

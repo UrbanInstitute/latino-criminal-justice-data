@@ -8,8 +8,8 @@ var cellWidth= 39
 var options = {
   filter: 'step3-regular'
 }
-var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
-var IS_PHONE = d3.select("#isPhone").style("display") == "block"
+// var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
+// var IS_PHONE = d3.select("#isPhone").style("display") == "block"
 
 var chartTen=this;
 
@@ -597,4 +597,21 @@ Grid.prototype.update = function(gridStates, mystate, selectedColumn) {
 
 }
 
-drawTopten()
+
+drawTopten();
+function drawAllGraphics(){
+  $("#firstGraphic").empty();
+  $("#container1 .tooltip-div-left").empty();
+  $("#container1 .tooltip-div-right").empty();
+  $("#container1 #xlabel-div").empty();
+  $("#map").empty();
+  $("#container2 #legend").empty();
+  $("#grid").empty();
+  $("#legend3").empty();
+
+
+    drawFirstGraphic();
+    drawMap();
+    drawTopten();
+}
+window.onresize = drawAllGraphics;

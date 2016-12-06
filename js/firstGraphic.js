@@ -1,6 +1,11 @@
 STATESELECT= null;
+var IS_PHONE, IS_MOBILE;
 
 function drawFirstGraphic() {
+  $("#firstGraphic").empty()
+  $("#container1 .tooltip-div-left").empty()
+  $("#container1 .tooltip-div-right").empty()
+  $("#container1 #xlabel-div").empty()
 
   var options = {
   filter: 'step1-regular'
@@ -10,9 +15,8 @@ function drawFirstGraphic() {
   cell_scale_phone = (IS_PHONE) ? .56 : 1;
   cell_scale_mobile = (IS_MOBILE) ? .66 : 1;
 
-    var IS_PHONE = d3.select("#isPhone").style("display") == "block"
-    var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
-
+    IS_PHONE = d3.select("#isPhone").style("display") == "block"
+    IS_MOBILE = d3.select("#isMobile").style("display") == "block"
 
   var selectTooltip = d3.select('.tooltip-div')
   var selectedData = 'num_crime_cat_2'
@@ -21,6 +25,7 @@ function drawFirstGraphic() {
   tooltipCatNames_reg = ["reg_number_prison", "reg_number_prison_ct", "reg_arrests", "reg_probation", "reg_parole"]
 
   $tooltip = $("tooltip")
+  
   yBase = 350
   ybaseCell = 373
   squareDim = 43
@@ -37,6 +42,7 @@ function drawFirstGraphic() {
 
 
   var $firstGraphic = $("#firstGraphic");
+  $firstGraphic.empty();
 
   var aspect_width = 30;
   var aspect_height = 24;
@@ -782,6 +788,5 @@ if (IS_MOBILE) {
 }
 
 drawFirstGraphic();
- window.onresize = drawFirstGraphic
 
 

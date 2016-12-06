@@ -27,10 +27,12 @@ function wrapText(text, width) {
 
 
 function drawMap(){
+  $("#map").empty()
+  $("#container2 #legend").empty()
 //map is forked from a combination of https://github.com/githamm/us-state-squares and https://github.com/lvonlanthen/data-map-d3
 cell_scale = (IS_PHONE) ? .6 : 1;
-var IS_PHONE = d3.select("#isPhone").style("display") == "block"
-var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
+// var IS_PHONE = d3.select("#isPhone").style("display") == "block"
+// var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
 
 
 
@@ -211,8 +213,8 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
   function Choropleth(mapStates) {
 
-    var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
-    var IS_PHONE = d3.select("#isPhone").style("display") == "block"
+    // var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
+    // var IS_PHONE = d3.select("#isPhone").style("display") == "block"
 
 
 
@@ -590,11 +592,6 @@ legend_phone_x = (IS_PHONE) ? -10: 0;
   chartMap.mapStates = mapStates;
 
 
-
-  window.onresize = function(){
-    IS_MOBILE = $("#isMobile").css("display") == "block"
-  }
-
 }
 
 
@@ -712,6 +709,5 @@ console.log(Cat)
 
 drawMap();
 
-window.onresize = drawMap
 
 

@@ -371,13 +371,13 @@ function drawFirstGraphic() {
 //ADDING COLUMN LABELS
   var label_height = 416
   var label_5_x_phone = (IS_PHONE) ? -227: 0;
-  var label_5_x_mobile = (IS_MOBILE) ? -155: 0;
+  var label_5_x_mobile = (IS_MOBILE) && ! (IS_PHONE) ? -155: 0;
   var label_y_phone = (IS_PHONE) ? .58: 1;
-  var label_y_mobile = (IS_MOBILE) ? .72: 1;
-  var label_x_mobile_start = (IS_MOBILE) ? 7: 0;
+  var label_y_mobile = (IS_MOBILE) && ! (IS_PHONE) ? .72: 1;
+  var label_x_mobile_start = (IS_MOBILE) && ! (IS_PHONE) ? 7: 0;
   var label_x_phone_start = (IS_PHONE) ? 9: 0;
   var label_x_phone = (IS_PHONE) ? .56: 1;
-  var label_x_mobile = (IS_MOBILE) ? .7: 1;
+  var label_x_mobile = (IS_MOBILE) && ! (IS_PHONE) ? .7: 1;
 
    chart.bottomRow = chart.svg.selectAll(".bottomRow")
     .data(CATEGORY_LABELS)
@@ -396,8 +396,9 @@ function drawFirstGraphic() {
         return "translate(" + (i*100 + 30 + label_5_x_phone + label_5_x_mobile)+" , " + label_height*label_y_phone*label_y_mobile  +")"; //label 5 needs to  be aligned under one cell
     //   return "translate(" + (i*100 + 30) +" , " + label_height +")"; //label 5 needs to  be aligned under one cell
     } else { 
+      console.log(label_y_mobile)
     
-        return "translate(" + (i*100 + 51 + label_x_phone_start + label_x_mobile_start)*label_x_phone*label_x_mobile+" ," + label_height*label_y_phone*label_y_mobile  +")"
+        return "translate(" + (i*100 + 51 + label_x_phone_start + label_x_mobile_start)*label_x_phone*label_x_mobile+" ," + label_height*label_y_phone*label_y_mobile +")"
       }
     })
    
@@ -428,13 +429,15 @@ function drawFirstGraphic() {
    //    });
    //  }
 
-  tooltipLeft_phone_width = (IS_PHONE) ? 3 : 1;
-   tooltipRight_phone_width = (IS_PHONE) ? 1.9 : 1;
+  tooltipLeft_mobile_width = (IS_MOBILE) ? 3 : 1;
+   tooltipRight_mobile_width = (IS_MOBILE) ? 1.9 : 1;
    tooltip_mobile_width = (IS_MOBILE) ? 1.7 : 1;
-   tooltip_phone_height = (IS_PHONE)? 80: 0;
+   tooltip_mobile_height = (IS_MOBILE)? 80: 0;
    tooltipRight_mobile_height = (IS_MOBILE) ? 80 : 0;
-   tooltipLeft_mobile_height = (IS_MOBILE)? 40: 0;
-   tooltipRight_x = (IS_MOBILE) || (IS_PHONE) ? 0 : 1;
+   tooltipLeft_mobile_height = (IS_MOBILE)? 50: 0;
+   tooltipLeft_phone_height = (IS_PHONE)? 20: 0;
+
+   tooltipRight_x = (IS_MOBILE)? 0 : 1;
   // chart.tooltip = d3.select("#tooltip")
   //   .append("svg")
   //   .attr("width", width)
@@ -443,16 +446,16 @@ function drawFirstGraphic() {
 
   chart.tooltipLeft = d3.select(".tooltip-div-left")
     .append("svg")
-    .attr("width", width/2.3 *(tooltipLeft_phone_width)*tooltip_mobile_width)
-    .attr("height", height/2.4 - (tooltipLeft_mobile_height/2)-tooltip_phone_height/7)
+    .attr("width", width/2.3 *(tooltipLeft_mobile_width)*tooltip_mobile_width)
+    .attr("height", height/2.4 - tooltipLeft_mobile_height + tooltipLeft_phone_height)
   chart.tooltipLeft= chart.tooltipLeft.append("g")
-    .attr("transform", "translate("+ (.1*width)/tooltipLeft_phone_width + ",0)");
+    .attr("transform", "translate("+ (.1*width)/tooltipLeft_mobile_width + ",0)");
 
 
   chart.tooltipRight = d3.select(".tooltip-div-right")
     .append("svg")
-    .attr("width", width/1.7*(tooltipRight_phone_width)*tooltip_mobile_width/1.7)
-    .attr("height", height/2.7 + tooltipRight_mobile_height + tooltip_phone_height)
+    .attr("width", width/1.7*(tooltipRight_mobile_width)*tooltip_mobile_width/1.7)
+    .attr("height", height/2.7 + tooltipRight_mobile_height )
   chart.tooltipRight = chart.tooltipRight.append("g")
     .attr("transform", "translate("+ -140*(tooltipRight_x) +", " + 0 +")");
   
@@ -466,8 +469,8 @@ function drawFirstGraphic() {
     .attr("xlink:href", "images/uncheckedbox.svg") 
     .attr('class', 'checkbox_initial')
     .attr("x", function() {
-        if (IS_PHONE) {
-          return "0em"
+        if (IS_MOBILE) {
+          return ".7em"
         } else return "10em"
       })
     .attr("y",  2 + 1.7*i + "em")
@@ -485,8 +488,8 @@ function drawFirstGraphic() {
         .attr("dy", 0)
         .attr("y", 3.8+ 2.3*i +"em")
         .attr("x", function() {
-          if (IS_PHONE) {
-            return "2em"
+          if (IS_MOBILE) {
+            return "2.8em"
           } else return "16em"
         })
         .attr("text-anchor", "start")
@@ -504,8 +507,8 @@ function drawFirstGraphic() {
     .attr("dy", 0)
     .attr("y", "1em")
     .attr("x", function() {
-        if (IS_PHONE) {
-          return "0em"
+        if (IS_MOBILE) {
+          return ".7em"
         } else return "13.1em"
       })
     .attr("text-anchor", "start")
@@ -516,7 +519,7 @@ function drawFirstGraphic() {
     .attr("dy", 0)
     .attr("y", "1em")
     .attr("x", function() {
-      if (IS_PHONE) {
+      if (IS_MOBILE) {
         return "0em"
     } else return "-3.2em"
     })
@@ -529,7 +532,7 @@ function drawFirstGraphic() {
   chart.tooltipLeft
       .append("text")
       .attr("class", function() {
-        if ((IS_MOBILE) || (IS_PHONE)) {
+        if (IS_MOBILE) {
           return "tooltip-text-state-mobile" 
         } else {
           return "tooltip-text-state"
@@ -538,7 +541,7 @@ function drawFirstGraphic() {
       .attr("dy", 0)
       .attr("y", "2em")
       .attr("x", function() {
-          if (IS_PHONE) {
+          if (IS_MOBILE) {
             return "0em"
         } else return "-1.4em"
         })
@@ -575,8 +578,8 @@ function tooltip(mystate, selectedState) {
           }) 
           .attr('class', 'checkbox')
           .attr("x", function() {
-            if (IS_PHONE) {
-              return "0em"
+            if (IS_MOBILE) {
+              return ".7em"
             } else return "10em"
           })
           .attr("y",  2 + 1.7*i + "em")
@@ -587,7 +590,7 @@ function tooltip(mystate, selectedState) {
         chart.tooltipLeft
           .append("text")
            .attr("class", function() {
-            if ((IS_MOBILE) || (IS_PHONE)) {
+            if (IS_MOBILE) {
               return "tooltip-text-state-mobile" 
             } else {
               return "tooltip-text-state"
@@ -596,7 +599,7 @@ function tooltip(mystate, selectedState) {
           .attr("dy", 0)
           .attr("y", "2em")
           .attr("x", function() {
-            if (IS_PHONE) {
+            if (IS_MOBILE) {
               return "0em"
           } else return "-1.4em"
           })

@@ -54,8 +54,8 @@ var DATA_QUALITY_LABELS= {
 
 var MEASURES_GRID= {
   english: [
-    ["prison","Prison"], 
-    ["prison_pop","By offense"], 
+    ["number_prison","Prison"], 
+    ["number_prison_ct","By offense"], 
     ["arrests","Arrests"], 
     ["probation","Probation"], 
     ["parole","Parole"]

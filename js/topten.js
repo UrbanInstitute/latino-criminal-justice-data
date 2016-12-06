@@ -110,19 +110,20 @@ function Grid(gridStates) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e7
 var frequency = "_frequency"
 var rating = "_rating"
 
-cell_scale_phone = (IS_PHONE) ? .7 : 1;
+cell_scale_phone = (IS_PHONE) ? .65 : 1;
+cell_scale_mobile = (IS_MOBILE) && !(IS_PHONE) ? .8 : 1;
+cell_scale_categories = (IS_MOBILE) ? 45. : 0;
 width_phone = (IS_PHONE)? 1.1 : 1;
-height_mobile = (IS_MOBILE)? .9 : 1;
-height_phone= (IS_PHONE)? 1.3 : 1;
-row_x_phone = (IS_PHONE)? 3.5: 0;
-
+height_mobile= (IS_MOBILE)? 1.1 : 1;
+row_x_phone = (IS_PHONE)? 25.5: 1;
+row_x_mobile = (IS_MOBILE) && !(IS_PHONE) ? 60: 1;
 
 chartTen.svg = d3.select("#grid")
     .append("div")
     .classed("svg-container", true)
     .append("svg")
     .attr("width", width*width_phone)
-    .attr("height", height*height_mobile*height_phone)
+    .attr("height", height*height_mobile)
 
 
 var filteredData_unsorted = gridStates.features.filter(function(d){
@@ -144,18 +145,18 @@ filteredData = filteredData_unsorted.sort(function(a,b) {
     .attr("class", "row")
     .attr("width", 500)
     .attr("height", 49)
-    .attr("transform", function(d, i){ return "translate(" + 8*row_x_phone + " ," + (i*49)*cell_scale_phone + ")"})
-
+    .attr("transform", function(d, i){ return "translate(" + row_x_phone*row_x_mobile + " ," + (i*49)*cell_scale_phone*cell_scale_mobile + ")"})
+console.log(row_x_phone*row_x_mobile)
   
   for(var i = 0; i < gridColumns.length; i++){
     var gridColumn = gridColumns[i]; 
     chartTen.row
       .append("rect")
-      .attr("width",cellWidth *cell_scale_phone)
-      .attr("height",cellWidth * cell_scale_phone)
+      .attr("width",cellWidth *cell_scale_phone*cell_scale_mobile)
+      .attr("height",cellWidth * cell_scale_phone*cell_scale_mobile)
       .attr("x", function() {
-        if (IS_PHONE) {
-          return "x", (i*49)*cell_scale_phone
+        if (IS_MOBILE) {
+          return "x", (i*49)*cell_scale_phone*cell_scale_mobile
         } else {
         return (40+i*49)
        }
@@ -185,6 +186,8 @@ label_side_phone = (IS_PHONE) ? -25.2 : 1;
       .attr("transform", function(d, i){
         if (IS_PHONE) {
           return  "translate(" + label_side_phone +" ,"+ 2 + i + ")"
+        } else  if (IS_MOBILE) {
+          return  "translate(" + -27 +" ,"+ 2 + i + ")"
         } else {
           return "translate(" + 15 +" ,"+ 2 + i + ")"
         }
@@ -194,7 +197,6 @@ label_side_phone = (IS_PHONE) ? -25.2 : 1;
       .text(function (d) {
           return d["properties"]["abbr"];
       });
-
 
 
   last_row = chartTen.svg.selectAll('.row')
@@ -207,8 +209,8 @@ label_side_phone = (IS_PHONE) ? -25.2 : 1;
   
     last_row.selectAll("rect").each(function(d, i) {
       last_row.append("text")
-      .attr("class", "grid-cat-labels")
-      .attr("transform", "translate(" + (i*52+ 60*cell_scale_phone)*cell_scale_phone+ ","+55*cell_scale_phone+") rotate(-45)" )
+      .attr("class", "grid-cat-labels " + MEASURES_GRID[GLOBAL_LANGUAGE][i][0])
+      .attr("transform", "translate(" + ((i*52*cell_scale_phone*cell_scale_mobile)+ 60 - cell_scale_categories)+ ","+55*cell_scale_phone+") rotate(-45)" )
       .attr("text-anchor", "end")
 
       .text(function () { 
@@ -247,12 +249,12 @@ function wrapText(text, width) {
 }
 
 
-legend_scale_x = (IS_PHONE) ? 2 : 0;
-legend_scale_y = (IS_PHONE) ? 1 : 1;
+legend_scale_x = (IS_MOBILE) ? 2 : 0;
+legend_scale_y = (IS_MOBILE) ? 1 : 1;
 legend_height_mobile = (IS_MOBILE) ? 1.1 : 1;
 legend_height_phone = (IS_PHONE) ? 2: 1;
 legend_width_phone=(IS_PHONE)?.8: 1;
-legend_text_y_phone = (IS_PHONE)? .2:0;
+legend_text_y_phone = (IS_MOBILE)? .2:0;
 
   chartTen.legendSVG = d3.select("#legend3")
       .append("div")
@@ -265,6 +267,8 @@ legend_text_y_phone = (IS_PHONE)? .2:0;
       .attr("transform", function(){
         if (IS_PHONE) {
           return  "translate(-40 ,0)"
+        }  else if (IS_MOBILE) {
+          return  "translate(20 ,0)"
         } else {
           return "translate(-10 ,0)"
         }
@@ -282,7 +286,7 @@ legend_text_y_phone = (IS_PHONE)? .2:0;
       .attr("height", 15)
     chartTen.legend.append("text")
        .attr("class",function(d){
-        if (IS_PHONE) {
+        if (IS_MOBILE) {
           return "grid-legend-text-mobile rating-0"
         } else {
           return "grid-legend-text rating-0"
@@ -306,7 +310,7 @@ legend_text_y_phone = (IS_PHONE)? .2:0;
       .attr("height", 16)
     chartTen.legend.append("text")
       .attr("class",function(d){
-        if (IS_PHONE) {
+        if (IS_MOBILE) {
           return "grid-legend-text-mobile rating-1"
         } else {
           return "grid-legend-text rating-1"
@@ -330,7 +334,7 @@ legend_text_y_phone = (IS_PHONE)? .2:0;
       .attr("height", 16)
     chartTen.legend.append("text")
       .attr("class",function(d){
-        if (IS_PHONE) {
+        if (IS_MOBILE) {
           return "grid-legend-text-mobile rating-2"
         } else {
           return "grid-legend-text rating-2"
@@ -354,7 +358,7 @@ legend_text_y_phone = (IS_PHONE)? .2:0;
       .attr("height", 16)
     chartTen.legend.append("text")
       .attr("class",function(d){
-        if (IS_PHONE) {
+        if (IS_MOBILE) {
           return "grid-legend-text-mobile rating-3"
         } else {
           return "grid-legend-text rating-3"
@@ -378,7 +382,7 @@ legend_text_y_phone = (IS_PHONE)? .2:0;
       .attr("height", 16)
     chartTen.legend.append("text")
       .attr("class",function(d){
-        if (IS_PHONE) {
+        if (IS_MOBILE) {
           return "grid-legend-text-mobile rating-4"
         } else {
           return "grid-legend-text rating-4"
@@ -392,17 +396,19 @@ legend_text_y_phone = (IS_PHONE)? .2:0;
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][4][1];
       });
 
-      var grid_legend_text = ((IS_MOBILE) || (IS_PHONE))? ('.grid-legend-text-mobile') : ('.grid-legend-text')
-      var grid_legend_text_wrap = ((IS_MOBILE) || (IS_PHONE))? "80" : "140"
-      console.log(grid_legend_text_wrap)
-
+      var grid_legend_text = (IS_MOBILE)? ('.grid-legend-text-mobile') : ('.grid-legend-text')
+      var grid_legend_text_wrap = (IS_PHONE)? "80" : "140"
       chartTen.legend.selectAll(grid_legend_text).call(wrapText,grid_legend_text_wrap)
+            console.log(grid_legend_text_wrap)
+
+
 
 
 
     chartTen.gridStates = gridStates
 
 
+  var grid_legend_text = (IS_MOBILE)? ('.grid-legend-text-mobile') : ('.grid-legend-text')
 
 
   //HOVERING
@@ -414,10 +420,13 @@ legend_text_y_phone = (IS_PHONE)? .2:0;
             // tooltip(mystate)
             var selectedState = d3.select(this).attr('class').split(' ')[1]
             var selectedColumn = d3.select(this).attr('class').split('gridSquare_')[1].split(" ")[0]
+            console.log(selectedColumn)
             tooltip(mystate, selectedState, selectedColumn)
-            d3.select('.grid-legend-text.rating-' + tooltipRating)
+            d3.select(grid_legend_text + '.rating-' + tooltipRating)
               .style('font-weight', '900')
             d3.select('.grid-state-labels.' + selectedState)
+              .style('font-weight', '900')
+            d3.select('.grid-cat-labels.' + selectedColumn)
               .style('font-weight', '900')
     })
     .on("mouseout",  function() {
@@ -449,9 +458,11 @@ legend_text_y_phone = (IS_PHONE)? .2:0;
       
       
       // }
-      d3.select('.grid-legend-text.rating-' + tooltipRating)
+      d3.select(grid_legend_text + '.rating-' + tooltipRating)
               .style('font-weight', '400')
       d3.select('.grid-state-labels.' + selectedState)
+              .style('font-weight', '400')
+      d3.select('.grid-cat-labels.' + selectedColumn)
               .style('font-weight', '400')
     })
 

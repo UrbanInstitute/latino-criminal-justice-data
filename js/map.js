@@ -71,9 +71,9 @@ if (IS_PHONE) {
       .translate([(width / 2.05), (height / 2.5)]);
 } else if (IS_MOBILE) {
   var projection = d3.geoEquirectangular()
-      .scale(1550)
+      .scale(1450)
       .center([-96.03542,41.69553])
-      .translate([(width / 2), (height / 2)]);
+      .translate([(width / 2), (height / 2.5)]);
 } 
 
 else {

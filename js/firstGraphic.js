@@ -454,7 +454,7 @@ function drawFirstGraphic() {
 
   chart.tooltipRight = d3.select(".tooltip-div-right")
     .append("svg")
-    .attr("width", width/1.7*(tooltipRight_mobile_width)*tooltip_mobile_width/1.7)
+    .attr("width", width/1.2*(tooltipRight_mobile_width)*tooltip_mobile_width/1.7)
     .attr("height", height/2.7 + tooltipRight_mobile_height )
   chart.tooltipRight = chart.tooltipRight.append("g")
     .attr("transform", "translate("+ -140*(tooltipRight_x) +", " + 0 +")");

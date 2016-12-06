@@ -40,7 +40,8 @@ function drawFirstGraphic() {
 
   var aspect_width = 30;
   var aspect_height = 24;
-  var margin = { top: 0, right: 0, bottom: 10, left: 32 };
+  var bottomMargin = (IS_PHONE) ? 20 : 10
+  var margin = { top: 0, right: 0, bottom: bottomMargin, left: 32 };
   var width= ($firstGraphic.width() - margin.left - margin.right); 
   var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
   console.log(height)
@@ -429,12 +430,12 @@ function drawFirstGraphic() {
    //    });
    //  }
 
-  tooltipLeft_mobile_width = (IS_MOBILE) ? 3 : 1;
-   tooltipRight_mobile_width = (IS_MOBILE) ? 1.9 : 1;
-   tooltip_mobile_width = (IS_MOBILE) ? 1.7 : 1;
-   tooltip_mobile_height = (IS_MOBILE)? 80: 0;
-   tooltipRight_mobile_height = (IS_MOBILE) ? 80 : 0;
-   tooltipLeft_mobile_height = (IS_MOBILE)? 50: 0;
+  tooltipLeft_mobile_width = (IS_MOBILE && !IS_PHONE) ? 3 : 1;
+   tooltipRight_mobile_width = (IS_MOBILE&& !IS_PHONE) ? 1.9 : 1;
+   tooltip_mobile_width = (IS_MOBILE&& !IS_PHONE) ? 1.7 : 1;
+   tooltip_mobile_height = (IS_MOBILE&& !IS_PHONE)? 80: 0;
+   tooltipRight_mobile_height = (IS_MOBILE&& !IS_PHONE) ? 80 : 0;
+   tooltipLeft_mobile_height = (IS_MOBILE&& !IS_PHONE)? 50: 0;
    tooltipLeft_phone_height = (IS_PHONE)? 20: 0;
 
    tooltipRight_x = (IS_MOBILE)? 0 : 1;
@@ -637,11 +638,11 @@ if (IS_MOBILE) {
  FirstGraphic.prototype.update = function(states) {
 
     cell_scale_phone = (IS_PHONE) ? .56 : 1;
-    cell_scale_mobile = (IS_MOBILE) ? .7 : 1;
+    cell_scale_mobile = (IS_MOBILE && !IS_PHONE) ? .7 : 1;
     phone_height = (IS_PHONE) ? 0: 0;
     phone_width = (IS_PHONE) ? 38 : 0;
-    mobile_width = (IS_MOBILE) ? 32 : 0;
-    mobile_height = (IS_MOBILE) ? 70 : 0;
+    mobile_width = (IS_MOBILE && !IS_PHONE) ? 32 : 0;
+    mobile_height = (IS_MOBILE && !IS_PHONE) ? 70 : 0;
 
 
     //chart.states = states

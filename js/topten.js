@@ -114,7 +114,7 @@ cell_scale_phone = (IS_PHONE) ? .65 : 1;
 cell_scale_mobile = (IS_MOBILE) && !(IS_PHONE) ? .8 : 1;
 cell_scale_categories = (IS_MOBILE) ? 45. : 0;
 width_phone = (IS_PHONE)? 1.1 : 1;
-height_mobile= (IS_MOBILE)? 1.1 : 1;
+height_mobile= (IS_MOBILE)? 1.05 : 1;
 row_x_phone = (IS_PHONE)? 25.5: 1;
 row_x_mobile = (IS_MOBILE) && !(IS_PHONE) ? 60: 1;
 

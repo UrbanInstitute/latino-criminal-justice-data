@@ -96,7 +96,7 @@ hr {
     width: 55%;
     text-align: left;
     float: left;
-    padding-left: 1.8em;
+    padding-left: 1em;
 }
 
 .div-center {
@@ -355,6 +355,10 @@ div.tooltip-div-left {
 #legend {
   position: relative;
 
+}
+
+#toggle2{
+  padding-left: 2.8em;
 }
 
 svg.legend-text-div {
@@ -618,6 +622,10 @@ select#measures-menu{
 
 /*GRID*/
 
+#toggle-mobile {
+  display: none;
+}
+
 #legend3 {
   position: relative;
   float: right;
@@ -717,9 +725,7 @@ select#measures-menu{
         font-size: .8em !important;
       }
 
-      .toggle_text {
-        padding-left: 1em !important;
-      }
+   
       .place-label {
         font-size: 10px !important;
       }
@@ -739,6 +745,7 @@ select#measures-menu{
         width: 17em !important;
       }
       /*GRID*/
+
       #grid {
         margin-top: 0em !important;
       }
@@ -825,7 +832,19 @@ select#measures-menu{
       .ui-selectmenu-text {
         font-size: 14px !important ;
       }
+    #toggle-mobile {
+        display: block;
+        padding-bottom: 20px;
+        margin-left: 1.2em;
+    }
 
+    #toggle-nonmobile {
+      display: none;
+    }
+
+   .toggle_text_mobile {
+    width: 45%;
+   }
 
     #grid {
       width: 65% !important;
@@ -840,10 +859,4 @@ select#measures-menu{
 }
 
 
-@media (min-width: 769px) and (max-width: 1100px) {
-  .wrapper {
-    width: 95%;
-  }
 
-
-}

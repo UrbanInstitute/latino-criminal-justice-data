@@ -2,10 +2,6 @@ STATESELECT= null;
 var IS_PHONE, IS_MOBILE;
 
 function drawFirstGraphic() {
-  $("#firstGraphic").empty()
-  $("#container1 .tooltip-div-left").empty()
-  $("#container1 .tooltip-div-right").empty()
-  $("#container1 #xlabel-div").empty()
 
   var options = {
   filter: 'step1-regular'
@@ -42,7 +38,6 @@ function drawFirstGraphic() {
 
 
   var $firstGraphic = $("#firstGraphic");
-  $firstGraphic.empty();
 
   var aspect_width = 30;
   var aspect_height = 24;

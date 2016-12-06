@@ -207,7 +207,6 @@ function drawFirstGraphic() {
         .data(data.sort(function (a,b) {return d3.descending(a.properties.abbr, b.properties.abbr); }))
         .enter()
     cells.append("rect")
-        .style("fill", "#1696d2")
         .attr("class",function(d){
           return "cell " + d.properties.abbr;
         })
@@ -231,10 +230,21 @@ function drawFirstGraphic() {
             return (yBase - (((i-1)/2)*squareDim)) * cell_scale_phone*cell_scale_mobile;
           }
          }) //so that all columns start from the bottom up
-    d3.selectAll("rect")
+         d3.selectAll(".cell")
          .on("click", function (d) {
             dispatch.call("clickState", this, (d3.select(this).attr('class').split(' ')[1]));
         })
+        .on("mouseover", function (d) {
+           dispatch.call("hoverState", this, (d3.select(this).attr('class').split(' ')[1]))
+        })
+        .on("mouseout", function (d) {
+            dispatch.call("dehoverState");
+        })
+        // .on("click", function(d){
+        //     dispatch.clickState(d3.select(this).attr('class').split(' ')[1])
+        //     console.log('hi')
+        // })
+
      
       cells.append("text")
         .attr("class",function(d){
@@ -271,27 +281,30 @@ function drawFirstGraphic() {
 
       }
 
-      function clickState(selectedState) {
-        d3.selectAll(".cell." + selectedState)
-         .classed('deselected', true)
+      function selectState(selectedState) {
+      var cellText = (IS_PHONE) ? ('.cell-text-mobile') : ('.cell-text')
+        d3.selectAll(".cell")
+          .classed('deselected', true)
           .classed('selected', false)
         d3.select(".cell." + selectedState)
           .classed('selected', true)
           .classed("deselected", false)
+        d3.selectAll(cellText)
+          .classed('deselected-text', true)
+          .classed('selected-text', false)
+        d3.select(cellText + "." + selectedState)
+          .classed('selected-text', true)
+          .classed("deselected-text", false)
 
       }
 
-       var dispatch = d3.dispatch("clickState");
-       dispatch
-        .on("clickState", function (selectedState) {
-          console.log(STATESELECT)
+       var dispatch = d3.dispatch("clickState", "hoverState", "dehoverState");
+
+       dispatch.on("clickState", function (selectedState) {
         if (STATESELECT != selectedState) {
-          console.log('hi')
             STATESELECT = selectedState;
-            clickState(selectedState);
-            if (!isMobile) {
-                tooltip(selectedState, selectedState)
-            }
+            selectState(selectedState);
+            tooltip(selectedState) //, selectedState)
         } else {
             //deselect the state
             STATESELECT = null;
@@ -300,6 +313,32 @@ function drawFirstGraphic() {
             d3.selectAll(".deselected")
                 .classed("deselected", false);
         }
+      });
+      dispatch.on("hoverState", function (selectedState) {
+      var cellText = (IS_PHONE) ? ('.cell-text-mobile') : ('.cell-text')
+        d3.select(".cell." + selectedState)
+            .classed("highlight", true)
+        d3.select(cellText + "." + selectedState)
+            .classed("highlight-text", true)
+        chart.tooltipLeft.selectAll('.tooltip-text-state')
+             .remove()
+        chart.tooltipLeft.selectAll('.tooltip-text-state-mobile')
+             .remove()
+            tooltip(selectedState)
+        
+      });
+      dispatch.on("dehoverState", function () {
+        //no lowlighting
+        d3.selectAll(".highlight")
+            .classed("highlight", false);
+        d3.selectAll(".highlight-text")
+            .classed("highlight-text", false)
+
+            // if (STATESELECT == null) {
+            //     $tooltipgraph.empty();
+            // } else {
+            //     tooltip(STATESELECT)
+            // }
       });
 
        
@@ -319,52 +358,53 @@ function drawFirstGraphic() {
              //  }
        
 
-        chart.group.selectAll(".cell")
-          .on("mouseover", function(mystate) {
-            d3.select(this)         
-              //.style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
-              .classed("hover", true ) // should then accept fill from CSS
-            chart.tooltipLeft.selectAll('.tooltip-text-state')
-            .remove()
-            chart.tooltipLeft.selectAll('.tooltip-text-state-mobile')
-            .remove()
-            tooltip(mystate, selectedState)
-            var selectedState = d3.select(this).attr('class').split(' ')[1]
-            if(IS_PHONE) {
-               d3.selectAll('.cell-text-mobile.' + selectedState)
-              .style('fill', '#ffffff')
-            } else {
-            d3.selectAll('.cell-text.' + selectedState)
-              .style('fill', '#ffffff')
-            }
+        // chart.group.selectAll(".cell")
+        //   .on("mouseover", function(selectedState) {
+  
+        //     d3.select(this)         
+        //       //.style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
+        //       .classed("hover", true ) // should then accept fill from CSS
+        //     chart.tooltipLeft.selectAll('.tooltip-text-state')
+        //     .remove()
+        //     chart.tooltipLeft.selectAll('.tooltip-text-state-mobile')
+        //     .remove()
+        //     tooltip(selectedState) //, selectedState)
+        //     var selectedState = d3.select(this).attr('class').split(' ')[1]
+        //     if(IS_PHONE) {
+        //        d3.selectAll('.cell-text-mobile.' + selectedState)
+        //       .style('fill', '#ffffff')
+        //     } else {
+        //     d3.selectAll('.cell-text.' + selectedState)
+        //       .style('fill', '#ffffff')
+        //     }
 
-        })
-        .on("mouseout",  function() {
-         var selectedState = d3.select(this).attr('class').split(' ')[1]
+        // })
+        // .on("mouseout",  function() {
+        //  var selectedState = d3.select(this).attr('class').split(' ')[1]
 
-          d3.select(this)
-           .classed("hover", false)
-           .style('fill', "#1696d2") // Re-sets the "explicit" fill
-          if(IS_PHONE) {
-            d3.selectAll('.cell-text-mobile.' + selectedState)
-            .style('fill', '#000000')
-          } else {
-          d3.selectAll('.cell-text.' + selectedState)
-            .style('fill', '#000000')
-          }
+          // d3.select(this)
+          //  .classed("hover", false)
+          //  .style('fill', "#1696d2") // Re-sets the "explicit" fill
+          // if(IS_PHONE) {
+          //   d3.selectAll('.cell-text-mobile')
+          //   .style('fill', '#000000')
+          // } else {
+          // d3.selectAll('.cell-text')
+          //   .style('fill', '#000000')
+          // }
 
           
-        chart.tooltipLeft.selectAll('text')
-            .remove()
-        chart.tooltipRight.selectAll('text')
-            .remove()
-        chart.tooltipRight.selectAll('.checkbox')
-            .remove()
-        addHeaders();
-        addMeasures();
+        // chart.tooltipLeft.selectAll('text')
+        //     .remove()
+        // chart.tooltipRight.selectAll('text')
+        //     .remove()
+        // chart.tooltipRight.selectAll('.checkbox')
+        //     .remove()
+        // addHeaders();
+        // addMeasures();
 
 
-        })
+        // })
       
    var CATEGORY_LABELS = ["0", "1", "2", "3", "4", "5"]
 
@@ -552,7 +592,7 @@ function drawFirstGraphic() {
 chart.states = states
 
 
-function tooltip(mystate, selectedState) {
+function tooltip(mystate) {
 
     tooltipCatNames_switch = function() {
     if (options.filter== 'step1-regular') {
@@ -568,7 +608,8 @@ function tooltip(mystate, selectedState) {
         var imgs = chart.tooltipRight.selectAll("img").data([0]);
           imgs.enter()
          .append("svg:image")
-          .attr("xlink:href", function(d, j) {
+          .attr("xlink:href", function(mystate) {
+            console.log(mystate.properties)
             if (mystate.properties[tooltipCatName] == "1") { 
               return "images/checkbox.svg";
             }
@@ -586,6 +627,7 @@ function tooltip(mystate, selectedState) {
           .attr("width", "20")
           .attr("height", "20");
       }
+      console.log(mystate)
           
         chart.tooltipLeft
           .append("text")

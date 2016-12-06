@@ -259,13 +259,29 @@ hr {
 #firstGraphic > rect {
    fill: #ffffff;
 }
-
+.cell {
+  fill: #1696d2;
+}
 .cell.selected {
   fill: #231f20;
 }
 .cell.deselected {
   fill: #1696d2;
 }
+.selected-text {
+  fill: #ffffff;
+}
+.deselected-text {
+  fill: #000000;
+}
+.cell.highlight {
+  fill: #231f20;
+}
+
+.highlight-text {
+  fill: #ffffff;
+}
+
 
 #tooltip {
   position: relative;

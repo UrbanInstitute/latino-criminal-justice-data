@@ -753,8 +753,6 @@ select#measures-menu{
       }
       .wrapper {
         width: auto !important;
-        padding-right: 20px;
-        padding-left: 20px;
       }
       #measures-button {
         width: 17em !important;
@@ -871,6 +869,17 @@ select#measures-menu{
     }
 
 
+}
+
+@media (max-width: 1060px) {
+
+  .tooltip-div-right {
+    margin-top: 15px;
+    padding-top: 15px;
+    padding-left: 0px;
+    border-top: 1px solid #555;
+    border-left-style: none !important;
+  }
 }
 
 

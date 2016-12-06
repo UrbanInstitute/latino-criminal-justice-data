@@ -31,6 +31,20 @@ var BUTTON_NAMES= {
     }
 }
 
+var LANGUAGE_OPTIONS_HEADER= {
+  english: [ "LANGUAGE OPTIONS"],
+  spanish: ["LANGUAGE OPTIONS-spanish"]
+}
+
+var LANGUAGE_ENGLISH= {
+  english: [ "English"],
+  spanish: ["English (spanish)"]
+}
+
+var LANGUAGE_SPANISH= {
+  english: [ "Spanish"],
+  spanish: ["Spanish (spanish)"]
+}
 
 
 
@@ -218,7 +232,7 @@ var FOOTER_TEXT = {
 }
 
 var PROJECT_CREDITS = {
-  english: ["<h2>Project credits</h2><div class=\"urbanstatement\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>\
+  english: ["<h2>Project credits</h2><div class=\"urbanstatement\">As an organization, the Urban Institute does not take positions on issues, but it does empower and support its experts in sharing their own evidence-based views and policy recommendations that have been shaped by scholarship.</div>\
                     <h3 class=\"job\">Research</h3>\
                     <a href=\"http:\/\/www.urban.org\/author\/ryan-king\">Ryan King</a>, <a href=\"http:\/\/www.urban.org\/author\/sarah-eppler-epstein\">Sarah Epstein</a> and <a href=\"http:\/\/www.urban.org\/author\/annie-gurvis\">Annie Gurvis</a>\
                     <h3 class=\"job\">Design and Development</h3>\
@@ -239,6 +253,8 @@ var PROJECT_CREDITS = {
                     <a href=\"http:\/\/www.urban.org\/author\/???\">???</a>\
                     <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/race_ethnicity\" target=\"_blank\">View this project on Github-spanish.</a></div>"]
 }
+
+
 
 
 
@@ -279,16 +295,20 @@ var PROJECT_CREDITS = {
 
 //WHEN PAGE LOADS, USE ENGLISH TEXT
 $(window).load(function() { 
+  $('#language_option_header').html(LANGUAGE_OPTIONS_HEADER[GLOBAL_LANGUAGE])
   $('.toggle_text').html(TOGGLE_TEXT[GLOBAL_LANGUAGE])
   $('#first-section-text').html(FIRSTSECTION[GLOBAL_LANGUAGE])
   $('#heroimage').find('h1').html(TITLE[GLOBAL_LANGUAGE])
   $('#header_text').html(HEADERTEXT[GLOBAL_LANGUAGE])
+  $ ('#english').html(LANGUAGE_ENGLISH[GLOBAL_LANGUAGE])
+  $('#spanish').html(LANGUAGE_SPANISH[GLOBAL_LANGUAGE])
   if (IS_PHONE) {
     $('.mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
   } else {
     $('.non-mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
     console.log(GLOBAL_LANGUAGE)
   }
+  $('.ui-selectmenu-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][0][1])
   $('#second-header').html(SECOND_HEADER[GLOBAL_LANGUAGE])
   $('#dropdown-side-label').html(SECONDSECTION_DROPDOWN_SIDE[GLOBAL_LANGUAGE])
   $('#third-section-text').html(THIRDSECTION[GLOBAL_LANGUAGE])
@@ -311,11 +331,15 @@ $(".language_option")
 
   //MAIN TEXT CONTAINERS//
   $('#heroimage').find('h1').html(TITLE[GLOBAL_LANGUAGE])
+  $('#language_option_header').html(LANGUAGE_OPTIONS_HEADER[GLOBAL_LANGUAGE])
+  $ ('#english').html(LANGUAGE_ENGLISH[GLOBAL_LANGUAGE])
+  $('#spanish').html(LANGUAGE_SPANISH[GLOBAL_LANGUAGE])
   $('#header_text').html(HEADERTEXT[GLOBAL_LANGUAGE])
   $('#first-section-text').html(FIRSTSECTION[GLOBAL_LANGUAGE])
   for (var i=0; i<MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++) {
     $('.tooltip-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
   }
+  $('.ui-selectmenu-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][0][1])
   $('.xlabel').html(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
 
   if (IS_PHONE) {

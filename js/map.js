@@ -27,8 +27,7 @@ function wrapText(text, width) {
 
 
 function drawMap(){
-  $("#map").empty()
-  $("#container2 #legend").empty()
+
 //map is forked from a combination of https://github.com/githamm/us-state-squares and https://github.com/lvonlanthen/data-map-d3
 cell_scale = (IS_PHONE) ? .6 : 1;
 // var IS_PHONE = d3.select("#isPhone").style("display") == "block"

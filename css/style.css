@@ -461,7 +461,6 @@ h1 {
 }
 
 @media (max-width: 991px) {
-   h1 { font-size:32.5px; text-align:center;}
    
    .headerwrapper{padding-top:125px;}
    

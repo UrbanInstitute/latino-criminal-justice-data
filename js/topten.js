@@ -1,7 +1,15 @@
 
 
 function drawTopten(){
-
+  $("#firstGraphic").empty();
+  $("#container1 .tooltip-div-left").empty();
+  $("#container1 .tooltip-div-right").empty();
+  $("#container1 #xlabel-div").empty();
+  $("#map").empty();
+  $("#container2 #legend").empty();
+  $("#grid").empty();
+  $("#legend3-mobile").empty();
+  $("#legend3-nonmobile").empty();
 cellScale = (IS_MOBILE) && !(IS_PHONE)? .1 : .14
 var cellWidth= cellScale*$('#grid').width()
 var cellGap = .17*cellWidth
@@ -96,7 +104,9 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
         }
       })
       filteredData = jsonResults.features
-
+      $("#grid").empty();
+      $("#legend3-mobile").empty();
+      $("#legend3-nonmobile").empty();
       grid = new Grid(jsonResults)
       grid.update(jsonResults);
 	});
@@ -148,7 +158,6 @@ filteredData = filteredData_unsorted.sort(function(a,b) {
     .attr("width", 500)
     .attr("height", cellWidth + cellGap)
     .attr("transform", function(d, i){ return "translate(" + row_x_phone*row_x_mobile + " ," + (i*(cellWidth + cellGap))*cell_scale_phone*cell_scale_mobile + ")"})
-console.log(row_x_phone*row_x_mobile)
   
   for(var i = 0; i < gridColumns.length; i++){
     var gridColumn = gridColumns[i]; 
@@ -259,7 +268,6 @@ legend_width_phone=(IS_PHONE)?.8: 1;
 legend_text_y_phone = (IS_MOBILE)? .2:0;
 
 legend3 = (IS_MOBILE) && !(IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
-console.log(legend3)
 
   chartTen.legendSVG = d3.select(legend3)
       .append("div")
@@ -404,7 +412,6 @@ console.log(legend3)
       var grid_legend_text = (IS_MOBILE)? ('.grid-legend-text-mobile') : ('.grid-legend-text')
       var grid_legend_text_wrap = (IS_PHONE)? "80" : "140"
       chartTen.legend.selectAll(grid_legend_text).call(wrapText,grid_legend_text_wrap)
-            console.log(grid_legend_text_wrap)
 
 
 
@@ -425,7 +432,6 @@ console.log(legend3)
             // tooltip(mystate)
             var selectedState = d3.select(this).attr('class').split(' ')[1]
             var selectedColumn = d3.select(this).attr('class').split('gridSquare_')[1].split(" ")[0]
-            console.log(selectedColumn)
             tooltip(mystate, selectedState, selectedColumn)
             d3.select(grid_legend_text + '.rating-' + tooltipRating)
               .style('font-weight', '900')
@@ -583,7 +589,6 @@ Grid.prototype.update = function(gridStates, mystate, selectedColumn) {
    // })
     .delay(function(d,i) { return i * 50; })
    .style("fill", function(d) {
-    console.log(gridColumn)
       return ttSquareColor(d, gridColumn);
     })
 
@@ -604,25 +609,23 @@ Grid.prototype.update = function(gridStates, mystate, selectedColumn) {
 
 
 drawTopten();
-function drawAllGraphics(){
-  function removeElements(callback){
-    $("#firstGraphic").empty();
-    $("#container1 .tooltip-div-left").empty();
-    $("#container1 .tooltip-div-right").empty();
-    $("#container1 #xlabel-div").empty();
-    $("#map").empty();
-    $("#container2 #legend").empty();
-    $("#grid").empty();
-    $("#legend3-mobile").empty();
-    $("#legend3-nonmobile").empty();
-    callback();
-  }
-
-  function redrawElements(){
-    drawFirstGraphic();
-    drawMap();
-    drawTopten();
-  }
-  removeElements(redrawElements)
+function removeElements(callback){
+  $("#firstGraphic").empty();
+  $("#container1 .tooltip-div-left").empty();
+  $("#container1 .tooltip-div-right").empty();
+  $("#container1 #xlabel-div").empty();
+  $("#map").empty();
+  $("#container2 #legend").empty();
+  $("#grid").empty();
+  $("#legend3-mobile").empty();
+  $("#legend3-nonmobile").empty();
+  callback();
 }
-window.onresize = drawAllGraphics;
+
+function redrawElements(){
+  drawFirstGraphic();
+  drawMap();
+  drawTopten();
+}
+
+window.onresize = function(){ removeElements(redrawElements) };

@@ -10,9 +10,7 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " ")).toLowerCase();
 }
 
-console.log("URL = " + window.location.href)
 var GLOBAL_LANGUAGE = getParameterByName("language", window.location.href)
-console.log(GLOBAL_LANGUAGE)
 if (GLOBAL_LANGUAGE != "spanish" && GLOBAL_LANGUAGE != "english") {
   GLOBAL_LANGUAGE = "english";
 }
@@ -305,7 +303,6 @@ $(window).load(function() {
     $('.mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
   } else {
     $('.non-mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
-    console.log(GLOBAL_LANGUAGE)
   }
   $('.ui-selectmenu-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][0][1])
   $('#second-header').html(SECOND_HEADER[GLOBAL_LANGUAGE])
@@ -325,7 +322,6 @@ $(window).load(function() {
 $(".language_option")
 .on("click", function() {
     GLOBAL_LANGUAGE = d3.select(this).select("a").attr("id");
-    console.log(GLOBAL_LANGUAGE)
 
 
   //MAIN TEXT CONTAINERS//
@@ -345,7 +341,6 @@ $(".language_option")
     $('.mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
   } else {
     $('.non-mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
-    console.log(GLOBAL_LANGUAGE)
   }
   $('#second-header').html(SECOND_HEADER[GLOBAL_LANGUAGE])
   $('#dropdown-side-label').html(SECONDSECTION_DROPDOWN_SIDE[GLOBAL_LANGUAGE])
@@ -360,15 +355,13 @@ $(".language_option")
   $('.toggle_text').html(TOGGLE_TEXT[GLOBAL_LANGUAGE])
 
   //FIRST DATA VIZ TEXT
-  console.log(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
   $('.xlabel').html(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
   $('.tooltip-text-state').html(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE])
   var tooltip_header = $('.tooltip-header')
   for (var i=0; i<tooltip_header.length; i++) {
       tooltip_header.eq(i).data(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][i][1]), tooltip_header.eq(i).text();
       tooltip_header.eq(i).text(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][i][1])
-      console.log(GLOBAL_LANGUAGE)
-      console.log(tooltip_header.text())
+
 
   }
 
@@ -381,10 +374,8 @@ $(".language_option")
   for (var i=0; i<measures.length; i++){
 
     if (measures.eq(i).text() == (MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])) {
-      console.log('1')
     } else {
       measures.eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
-      console.log(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
     }
   } 
   var legend_text = $('.legend-text')

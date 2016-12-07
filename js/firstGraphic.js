@@ -3,6 +3,8 @@ var IS_PHONE, IS_MOBILE;
 
 function drawFirstGraphic() {
 
+
+
   var options = {
   filter: 'step1-regular'
 
@@ -39,7 +41,6 @@ function drawFirstGraphic() {
 
 
   var $firstGraphic = $("#firstGraphic");
-console.log($firstGraphic.width())
 
 
   var aspect_width = 30;
@@ -48,13 +49,11 @@ console.log($firstGraphic.width())
   var margin = { top: 0, right: 0, bottom: bottomMargin, left: 32 };
   var width= ($firstGraphic.width() - margin.left - margin.right); 
   var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
-  console.log(width)
-  console.log(height)
+
   var getFilter1 = function(){
     return selectedData;
   }
   Filter1 = getFilter1();
-  console.log(Filter1)
 
 
   //EVENT HANDLERS
@@ -90,7 +89,6 @@ console.log($firstGraphic.width())
     }) 
 
 
-  console.log(selectedData);
   /*DATA SOURCES*/
 
 
@@ -117,6 +115,10 @@ console.log($firstGraphic.width())
           }
         })
       
+  $("#firstGraphic").empty();
+  $("#container1 .tooltip-div-left").empty();
+  $("#container1 .tooltip-div-right").empty();
+    $("#container1 #xlabel-div").empty();
 
         firstGraphic = new FirstGraphic(jsonResults)
         // firstGraphic.update(jsonResults)
@@ -160,11 +162,8 @@ console.log($firstGraphic.width())
                   .append("svg")
                   .attr("width", function(){
                       if ((IS_PHONE) || (IS_MOBILE)) {
-                        console.log(width + phone_width + mobile_width);
                         return width + phone_width + mobile_width
-                        console.log(width + phone_width + mobile_width)
                       } else {
-                                                console.log(width + phone_width + mobile_width);
 
                         return width*1.1}
                   })
@@ -181,7 +180,6 @@ console.log($firstGraphic.width())
             return '.7em'
           } else { 
             if (IS_MOBILE) {
-              console.log('hello')
               return '1em'
               } return '.5em'
           }
@@ -442,7 +440,6 @@ console.log($firstGraphic.width())
         return "translate(" + (i*100 + 30 + label_5_x_phone + label_5_x_mobile)+" , " + label_height*label_y_phone*label_y_mobile  +")"; //label 5 needs to  be aligned under one cell
     //   return "translate(" + (i*100 + 30) +" , " + label_height +")"; //label 5 needs to  be aligned under one cell
     } else { 
-      console.log(label_y_mobile)
     
         return "translate(" + (i*100 + 51 + label_x_phone_start + label_x_mobile_start)*label_x_phone*label_x_mobile+" ," + label_height*label_y_phone*label_y_mobile +")"
       }
@@ -489,7 +486,6 @@ console.log($firstGraphic.width())
   //   .append("svg")
   //   .attr("width", width)
   //   .attr("height", height/2.3 + tooltip_phone_height*2)
-  console.log(width)
 
   chart.tooltipLeft = d3.select(".tooltip-div-left")
     .append("svg")
@@ -632,7 +628,6 @@ function tooltip(mystate) {
           .attr("width", "20")
           .attr("height", "20");
       }
-      console.log(mystate)
           
         chart.tooltipLeft
           .append("text")
@@ -664,12 +659,7 @@ function tooltip(mystate) {
    }
 
 
-console.log(IS_MOBILE)
-if (IS_MOBILE) {
-  console.log('hello')
-} else {
-  console.log('hi')
-} 
+
  
 
 
@@ -755,7 +745,6 @@ if (IS_MOBILE) {
           .duration(2000)
           .attr("x", function() {
             if (i%2 !== 0) {
-              console.log('hi')
              return (xOddcell + j*100)*cell_scale_mobile;
             } else {
               return (xEvencell + j*100)*cell_scale_mobile;

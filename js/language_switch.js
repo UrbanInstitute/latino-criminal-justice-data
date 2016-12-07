@@ -110,9 +110,9 @@ var TITLE = {
 var HEADERTEXT = {
   english:  ["<p class=\"full-width-col\"><strong>No one knows exactly how many Latinos are arrested each year or how many are in prison, on probation, or on parole. </strong> \
   Forty states reported race (e.g., “white,” “black,” “other”) in their arrest records, but only 15 states reported ethnicity. Although Latinos are just one of many ethnic groups in the United States, the population is projected to be <a href=\"http:\/\/www.census.gov/content\/dam\/Census\/library\/publications\/2015\/demo\25-1143.pdf\" \
-   target=\"_blank\">28.6% Latino by 2060</a>, and Latinos are the group most affected when states ignore ethnicity. </p>\
+   target=\"_blank\">28.6 percent Latino by 2060</a>, and Latinos are the group most affected when states ignore ethnicity. </p>\
    Considerable <a href=\"http:\/\/www.urban.org\/sites\/default\/files\/alfresco\/publication-pdfs\/413174-Examining-Racial-and-Ethnic-Disparities-in-Probation-Revocation.PDF\" target=\"_blank\">evidence</a> shows that our criminal justice system has \
-   <a href=\"http:\/\/www.sentencingproject.org\/issues\/racial-disparity\/\"target=\"_blank\">significant disproportionate rates</a>. But without comprehensive data, policymakers, community members, and advocates cannot know how mass incarceration affects Latinos specifically, and ethnic disparities cannot be accurately tracked. </p>\
+   <a href=\"http:\/\/www.sentencingproject.org\/issues\/racial-disparity\/\"target=\"_blank\">significant racial disparities</a>. But without comprehensive data, policymakers, community members, and advocates cannot know how mass incarceration affects Latinos specifically, and ethnic disparities cannot be accurately tracked. </p>\
    <p>A state’s failure to collect and report ethnicity data affects not only Latinos but the entire criminal justice system. States that only count people as “black” or “white” <a href=\"http:\/\/www.sentencingproject.org\/wp-content\/uploads\/2016\/06\/The-Color-of-Justice-Racial-and-Ethnic-Disparity-in-State-Prisons.pdf\"target=\"_blank\"> likely label most of their Latino prison population \"white\"</a>,\
    artificially inflating the number of “white” people in prison and masking the white/black disparity in the criminal justice system.</p>"],
   spanish: ["Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text\
@@ -173,19 +173,19 @@ var THIRDSECTION = {
 
 var CONCLUSION ={
   english: ["<h1 class=\"last-header\">Establishing a higher standard for data</h1>\
-    <p>Data matter because they impact policy. We’ve seen this across the United States, where increased <a href=\"http:\/\/www.washingtonpost.com\/sf\/investigative\/2015\/12\/26\/a-year-of-reckoning-police-fatally-shoot-nearly-1000\" target=\"_blank\">tracking of police shootings</a>,\
-    fueled in part by the <a href\"http://www.nytimes.com/interactive/2014/08/13/us/ferguson-missouri-town-under-siege-after-police-shooting.html\" target=\"_blank\">2014 shooting of Michael Brown in Ferguson, MO</a>, sparked a national conversation around <a href=\"http://www.iacp.org/CommunityPoliceRelations\" target=\"_blank\">community-police relations</a>.\
-    Having numbers to illustrate issues can change conversation, policy, and practice. Leaving justice-system involved Latinos out of data leaves them out of policy.</p>\
-    <p>Right now, there is inconsistent and incomplete data collection and reporting. Our recommendations to improve the quality—and utility—of race and ethnicity data in the criminal justice system include:\
-    <ul class=\"inside\"><li>States should, at the very least, meet the current U.S. Census standards by collecting data separately by race and ethnicity, and then combining it. This results in more descriptive and accurate sub-categories, such as \“non-Hispanic white\” and \“Hispanic black.\”</li>\
-    <li>Data should be collected and publicly reported frequently, on a biannual basis at least. This provides information on demographic changes, which is especially important for Latinos, one of the nation’s fastest growing demographic groups.</li>\
-    <li>Race and ethnicity data should be self-reported, not determined by state employees. This is important because it allows people to self-identify and not be boxed into identities they do not claim as their own. Self-reporting is also consistent with the data collection standards used for the U.S. Census.</li>\
+    <p>Data matter because they affect policy. We have seen this across the country as increased <a href=\"http:\/\/www.washingtonpost.com\/sf\/investigative\/2015\/12\/26\/a-year-of-reckoning-police-fatally-shoot-nearly-1000\" target=\"_blank\">tracking of police shootings</a>,\
+    fueled in part by the <a href=\"http://www.nytimes.com/interactive/2014/08/13/us/ferguson-missouri-town-under-siege-after-police-shooting.html\" target=\"_blank\">2014 shooting of Michael Brown</a> in Ferguson, Missouri, sparked a national conversation about <a href=\"http://www.iacp.org/CommunityPoliceRelations\" target=\"_blank\">community-police relations</a>.\
+    Using data to illustrate issues can change the conversation and influence policy and practice. Excluding justice system–involved Latinos from data excludes them from policy. </p>\
+    <p>Data collection and reporting in the criminal justice system is inconsistent and incomplete. We present the following recommendations to improve the quality and utility of race and ethnicity data:\
+    <ul class=\"inside\"><li>States should, at the very least, meet current Census Bureau standards and collect race and ethnicity data separately before combining them. This would result in more descriptive and accurate subcategories, such as \“non-Hispanic white\” and \“Hispanic black.\”</li>\
+    <li>Data should be collected and publicly reported at least once every two years. This would provide more frequent data on Latinos, one of the nation’s fastest-growing demographic groups.</li>\
+    <li>Race and ethnicity data should be self-reported, not determined by state employees. Self-identification would prevent people from being boxed into identities they do not claim as their own and is consistent with Census Bureau data collection standards.</li>\
     </ul>\
-    </p>If states follow the federal government’s <a href=\"http:\/\/www.pewresearch.org\/fact-tank\/2016\/10\/04\/federal-officials-may-revamp-how-americans-identify-race-ethnicity-on-census-and-other-forms/\">proposed 2020 Census changes by combining race and ethnicity in one question</a>, \
-    people in the justice system must be allowed to check off more than one box. In addition, while states should, at a minimum, include a category for \“Hispanic\” or \“Latino\” people, Latinos are not a monolith. \
-    <a href=\"http:\/\/www.pewsocialtrends.org\/2015\/06\/11\/chapter-7-the-many-dimensions-of-hispanic-racial-identity\" target=\"_blank\">Many Latinos identify</a> as “mixed race,” “indigenous,” and “Afro-Latino.” Hispanic or Latino ethnicities can be split out further \
-    <a href=\"http:\/\/www.pewhispanic.org/2012\/04/04\/when-labels-dont-fit-hispanics-and-their-views-of-identity/\" target=\"_blank\">country of origin</a> (e.g. \“Mexican\” or \“Cuban\”).</p>\
-    <p>It is possible that states would like to include a category for Latinos in their data, but are not able to easily capture ethnicity due to funding issues, time limits or other constraints. Still, it is critical that states work toward such solutions. As the United States becomes more racially and ethnically diverse, it is increasingly important that all people are counted and considered when policy is developed.</p>"],
+    </p>If states follow the federal government’s <a href=\"http:\/\/www.pewresearch.org\/fact-tank\/2016\/10\/04\/federal-officials-may-revamp-how-americans-identify-race-ethnicity-on-census-and-other-forms/\" target=\"_blank\">proposed 2020 Census changes</a>, by combining race and \
+    ethnicity in one question, justice system–involved people must be allowed to check more than one box. And although states should, at a minimum, include a “Hispanic” or “Latino” category, Latinos are not a monolith. \
+    <a href=\"http:\/\/www.pewsocialtrends.org\/2015\/06\/11\/chapter-7-the-many-dimensions-of-hispanic-racial-identity\" target=\"_blank\">Many Latinos identify</a> as mixed race, indigenous, or Afro-Latino. Hispanic or Latino ethnicities can be split further \
+    <a href=\"http:\/\/www.pewhispanic.org/2012\/04/04\/when-labels-dont-fit-hispanics-and-their-views-of-identity/\" target=\"_blank\">by country of origin</a> (e.g. \“Mexican\” or \“Cuban\”).</p>\
+    <p>Some states may want to capture ethnicity data but cannot easily do so because of funding issues, time limits, or other constraints. But as the United States becomes more racially and ethnically diverse, states must work to ensure that all people are counted and considered when developing policy.</p>"],
   spanish:["<h1 class=\"last-header\">Conclusion header- spanish</h1> <p>Conclusion- spanish text</p>"]
 }
 
@@ -233,13 +233,13 @@ var FOOTER_TEXT = {
 var PROJECT_CREDITS = {
   english: ["<h2>Project credits</h2><div class=\"urbanstatement\">As an organization, the Urban Institute does not take positions on issues, but it does empower and support its experts in sharing their own evidence-based views and policy recommendations that have been shaped by scholarship.</div>\
                     <h3 class=\"job\">Research</h3>\
-                    <a href=\"http:\/\/www.urban.org\/author\/ryan-king\">Ryan King</a>, <a href=\"http:\/\/www.urban.org\/author\/sarah-eppler-epstein\">Sarah Epstein</a> and <a href=\"http:\/\/www.urban.org\/author\/annie-gurvis\">Annie Gurvis</a>\
+                    <a href=\"http:\/\/www.urban.org\/author\/ryan-king\" target=\"_blank\">Ryan King</a>, <a href=\"http:\/\/www.urban.org\/author\/sarah-eppler-epstein\" target=\"_blank\">Sarah Eppler-Epstein</a> and <a href=\"http:\/\/www.urban.org\/author\/annie-gurvis\" target=\"_blank\">Annie Gurvis</a>\
                     <h3 class=\"job\">Design and Development</h3>\
-                    <a href=\"http:\/\/www.urban.org\/author\/john-wehmann\">John Wehmann</a> and <a href=\"http:\/\/www.urban.org\/author\/vivian-hou\">Vivian Hou</a>\
+                    <a href=\"http:\/\/www.urban.org\/author\/john-wehmann\" target=\"_blank\">John Wehmann</a> and <a href=\"http:\/\/www.urban.org\/author\/vivian-hou\" target=\"_blank\">Vivian Hou</a>\
                     <h3 class=\"job\">Photography</h3>  \
-                    <a href=\"http:\/\/www.urban.org\/author\/lydia-thompson\">Lydia Thompson</a>\
+                    <a href=\"http:\/\/www.urban.org\/author\/lydia-thompson\" target=\"_blank\">Lydia Thompson</a>\
                     <h3 class=\"job\">Editorial</h3>\
-                    <a href=\"http:\/\/www.urban.org\/author\/alexandra-tilsley\">Alex Tilsley</a> and <a href=\"http:\/\/www.urban.org\/author\/daniel-matos\">Daniel Matos</a> \
+                    <a href=\"http:\/\/www.urban.org\/author\/alexandra-tilsley\" target=\"_blank\">Alex Tilsley</a> and <a href=\"http:\/\/www.urban.org\/author\/daniel-matos\" target=\"_blank\">Daniel Matos</a> \
                     <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/race_ethnicity\" target=\"_blank\">View this project on Github.</a></div>"],
   spanish: ["<h2>Project credits-spanish</h2><div class=\"urbanstatement\">Spanish text </div>\
                     <h3 class=\"job\">Research- spanish</h3>\

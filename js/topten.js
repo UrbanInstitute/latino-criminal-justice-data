@@ -262,12 +262,12 @@ function wrapText(text, width) {
 
 legend_scale_x = (IS_MOBILE) ? 2 : 0;
 legend_scale_y = (IS_MOBILE) ? 1 : 1;
-legend_height_mobile = (IS_MOBILE) ? .5 : 1;
-legend_height_phone = (IS_PHONE) ? 1.5: 1;
+legend_height_mobile = (IS_MOBILE) && !(IS_PHONE) ? .7 : 1;
+legend_height_phone = (IS_PHONE) ? .8: 1;
 legend_width_phone=(IS_PHONE)?.8: 1;
 legend_text_y_phone = (IS_MOBILE)? .2:0;
 
-legend3 = (IS_MOBILE) && !(IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
+legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
 
   chartTen.legendSVG = d3.select(legend3)
       .append("div")
@@ -280,11 +280,8 @@ legend3 = (IS_MOBILE) && !(IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile
       .attr("transform", function(){
         if (IS_PHONE) {
           return  "translate(-40 ,0)"
-        }  else if (IS_MOBILE) {
-          return  "translate(20 ,0)"
-        } else {
+        }  else 
           return "translate(-10 ,0)"
-        }
       })
 
 
@@ -410,7 +407,7 @@ legend3 = (IS_MOBILE) && !(IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile
       });
 
       var grid_legend_text = (IS_MOBILE)? ('.grid-legend-text-mobile') : ('.grid-legend-text')
-      var grid_legend_text_wrap = (IS_PHONE)? "80" : "140"
+      var grid_legend_text_wrap = (IS_PHONE)? "1000" : "100"
       chartTen.legend.selectAll(grid_legend_text).call(wrapText,grid_legend_text_wrap)
 
 

@@ -360,6 +360,14 @@ div.tooltip-div-left {
   z-index: 10;
   height: 100%;
 }
+
+#dropdown-div{
+  margin: 2em 0em;
+  position: relative;
+  text-align: center;
+  float: left;
+  width: 100%;
+}
 #dropdown-side-label{
   float: left;
   width: 15%;
@@ -643,11 +651,11 @@ select#measures-menu{
 
 
 #legend3-nonmobile {
-  display: block;
+   display: block;
   position: relative;
   float: right;
   margin-top: 2em;
-  width: 45%;
+  width: 35%;
 
 }
 
@@ -749,14 +757,14 @@ select#measures-menu{
       }
       /*GRID*/
         #legend3-nonmobile {
-          width:30% !important;
+          display: none !important;
+  
+        }
+      #legend3-mobile {
           display: block !important;
           float: left !important;
           margin-top: 5px !important;
-          width: 90%;
-        }
-        #legend3-mobile {
-          display: none !important;
+          width: 90% !important;
         }
 
  
@@ -830,16 +838,7 @@ select#measures-menu{
     font-size: 12px;
     word-break:break-all;
   }
-  #legend3-mobile {
-    width:30% !important;
-    display: block;
-    float: left !important;
-    margin-top: 5px !important;
-    width: 90%;
-  }
-  #legend3-nonmobile {
-    display: none;
-  }
+
 
    .section-banner {
         height: 300px;
@@ -887,6 +886,17 @@ select#measures-menu{
       width: 65% !important;
     }
 
+    #legend3-nonmobile {
+   display: block;
+  position: relative;
+  float: right;
+  margin-top: 2em;
+  width: 35%;
+
+}
+
+
+
 
 }
   
@@ -906,6 +916,10 @@ select#measures-menu{
    border-top: 1px solid #555;
 
   }
+
+  #measures-button {
+        width: 18em !important;
+      }
   }
 
 

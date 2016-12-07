@@ -200,9 +200,18 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
         }
       })
 
-
+    $("#map").empty();
+    $("#container2 #legend").empty();
       filteredData = jsonResults.features;
-      choropleth = new Choropleth(jsonResults);
+    while( true ){
+      if($("#map").contents().length != 0 || $("#container2 #legend").contents().length != 0){
+        continue;
+      }else{
+        choropleth = new Choropleth(jsonResults);
+        break;
+      }
+    }
+      
       choropleth.update(jsonResults);
 
 	});

@@ -1,4 +1,4 @@
-#isPhone, #isMobile{
+#isPhone, #isMobile {
     display: none;
     pointer-events: none;
     width: 0;
@@ -891,6 +891,9 @@ select#measures-menu{
 }
   
   @media (max-width: 990px) {
+    #is990 {
+      display: block;
+    }
   .tooltip-div-left {
     width: 100% !important;
     border-right-style: none !important;

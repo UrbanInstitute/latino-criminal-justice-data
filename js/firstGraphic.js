@@ -1,5 +1,5 @@
 STATESELECT= null;
-var IS_PHONE, IS_MOBILE;
+var IS_PHONE, IS_MOBILE, IS_990; 
 
 function drawFirstGraphic() {
 
@@ -15,6 +15,8 @@ function drawFirstGraphic() {
 
     IS_PHONE = d3.select("#isPhone").style("display") == "block"
     IS_MOBILE = d3.select("#isMobile").style("display") == "block"
+   // IS_990 = d3.select("#is990").style("display") == "block"
+
 
   var selectTooltip = d3.select('.tooltip-div')
   var selectedData = 'num_crime_cat_2'
@@ -24,9 +26,12 @@ function drawFirstGraphic() {
 
   $tooltip = $("tooltip")
   
-  yBase = 350
-  ybaseCell = 373
-  squareDim = 43
+  yBase = .975*$('#firstGraphic').height()
+  ybaseCell = .975*$('#firstGraphic').height()
+  squareDim = .07517*$('#firstGraphic').width()
+  squareGap = .00874*$('#firstGraphic').width()
+  columnGap = .1748*$('#firstGraphic').width()
+
   xEvencell= 19
   xOddcell= 60
 
@@ -214,15 +219,15 @@ function drawFirstGraphic() {
         .attr("class",function(d){
           return "cell " + d.properties.abbr;
         })
-        .attr("width",38*cell_scale_phone*cell_scale_mobile)
-        .attr("height",38*cell_scale_phone*cell_scale_mobile)
+        .attr("width",(squareDim-squareGap)*cell_scale_phone*cell_scale_mobile)
+        .attr("height",(squareDim-squareGap)*cell_scale_phone*cell_scale_mobile)
    // cells.selectAll(".cell ")
    //     .sort(function(a, b) {return d3.descending(a.d["properties"][])})
         .attr("x", function(d,i) {
           if (i%2 !== 0) {
-            return (squareDim + j*100) *cell_scale_phone*cell_scale_mobile;
+            return (squareDim + j*columnGap) *cell_scale_phone*cell_scale_mobile;
           } else {
-            return (j*100) *cell_scale_phone*cell_scale_mobile;
+            return (j*columnGap) *cell_scale_phone*cell_scale_mobile;
           }
         })
         .attr("y", function(d,i) {
@@ -472,6 +477,8 @@ function drawFirstGraphic() {
    //    });
    //  }
 
+
+   tooltip_990_max_screen = ($firstGraphic.width() < 512) ? 90: 0
   tooltipLeft_mobile_width = (IS_MOBILE && !IS_PHONE) ? 3 : 1;
    tooltipRight_mobile_width = (IS_MOBILE&& !IS_PHONE) ? 60 : 1;
    tooltip_mobile_width = (IS_MOBILE&& !IS_PHONE) ? 1.7 : 1;
@@ -489,8 +496,8 @@ function drawFirstGraphic() {
 
   chart.tooltipLeft = d3.select(".tooltip-div-left")
     .append("svg")
-    .attr("width", width/2.3 )
-    .attr("height", height/2.4 - tooltipLeft_mobile_height + tooltipLeft_phone_height)
+    .attr("width", width/2.3 + tooltip_990_max_screen)
+    .attr("height", height/2.7 - tooltipLeft_mobile_height + tooltipLeft_phone_height - tooltip_990_max_screen/2)
   chart.tooltipLeft= chart.tooltipLeft.append("g")
     .attr("transform", "translate("+ (.1*width)/tooltipLeft_mobile_width + ",0)");
 
@@ -649,7 +656,13 @@ function tooltip(mystate) {
           .text(function() {
             return mystate.properties.name;
           })
-          chart.tooltipLeft.selectAll('.tooltip-text-state').call(wrapText,190)
+
+          if ($firstGraphic.width() < 512) {
+            console.log('1')
+            chart.tooltipLeft.selectAll('.tooltip-text-state').call(wrapText,500)
+            } else {
+            chart.tooltipLeft.selectAll('.tooltip-text-state').call(wrapText,190)
+            }
 
 
 

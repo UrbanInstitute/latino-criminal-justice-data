@@ -310,7 +310,7 @@ console.log($firstGraphic.width())
         if (STATESELECT != selectedState) {
             STATESELECT = selectedState;
             selectState(selectedState);
-            tooltip(selectedState) //, selectedState)
+            tooltip(d3.select(this).datum()) //, selectedState)
         } else {
             //deselect the state
             STATESELECT = null;
@@ -330,7 +330,7 @@ console.log($firstGraphic.width())
              .remove()
         chart.tooltipLeft.selectAll('.tooltip-text-state-mobile')
              .remove()
-            tooltip(selectedState)
+            tooltip(d3.select(this).datum())
         
       });
       dispatch.on("dehoverState", function () {
@@ -599,7 +599,7 @@ chart.states = states
 
 
 function tooltip(mystate) {
-
+  d3.selectAll(".checkbox").remove()
     tooltipCatNames_switch = function() {
     if (options.filter== 'step1-regular') {
       return tooltipCatNames_reg;
@@ -609,13 +609,11 @@ function tooltip(mystate) {
   var tooltipCatNames = tooltipCatNames_switch()
 
     for (var i = 0; i < tooltipCatNames.length; i++) {
-      
         tooltipCatName = tooltipCatNames[i]
         var imgs = chart.tooltipRight.selectAll("img").data([0]);
           imgs.enter()
          .append("svg:image")
-          .attr("xlink:href", function(mystate) {
-            console.log(mystate.properties)
+          .attr("xlink:href", function() {
             if (mystate.properties[tooltipCatName] == "1") { 
               return "images/checkbox.svg";
             }

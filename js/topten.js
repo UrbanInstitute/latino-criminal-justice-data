@@ -612,7 +612,9 @@ function drawAllGraphics(){
   $("#map").empty();
   $("#container2 #legend").empty();
   $("#grid").empty();
-  legend3.empty();
+  $("#legend3-mobile").empty();
+  $("#legend3-nonmobile").empty();
+
 
 
     drawFirstGraphic();

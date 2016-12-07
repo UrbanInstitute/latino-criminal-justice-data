@@ -88,7 +88,7 @@ var MEASURES_DROPDOWN = {
     ["prison","Prison population"], 
     ["prison_pop","Prison population by offense"], 
     ["arrests","Arrests"], 
-    ["probation","Probation opulation"], 
+    ["probation","Probation population"], 
     ["parole","Parole population"]
   ],
   spanish: [

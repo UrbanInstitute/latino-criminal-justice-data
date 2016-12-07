@@ -476,12 +476,13 @@ console.log($firstGraphic.width())
    //  }
 
   tooltipLeft_mobile_width = (IS_MOBILE && !IS_PHONE) ? 3 : 1;
-   tooltipRight_mobile_width = (IS_MOBILE&& !IS_PHONE) ? 1.9 : 1;
+   tooltipRight_mobile_width = (IS_MOBILE&& !IS_PHONE) ? 60 : 1;
    tooltip_mobile_width = (IS_MOBILE&& !IS_PHONE) ? 1.7 : 1;
    tooltip_mobile_height = (IS_MOBILE&& !IS_PHONE)? 80: 0;
-   tooltipRight_mobile_height = (IS_MOBILE&& !IS_PHONE) ? 80 : 0;
-   tooltipLeft_mobile_height = (IS_MOBILE&& !IS_PHONE)? 50: 0;
+   tooltipRight_mobile_height = (IS_MOBILE&& !IS_PHONE) ? 20 : 0;
+   tooltipLeft_mobile_height = (IS_MOBILE&& !IS_PHONE)? 100: 0;
    tooltipLeft_phone_height = (IS_PHONE)? 20: 0;
+   tooltipRight_width = $('#firstGraphic').width() <511.6 ? 60 : 0;
 
    tooltipRight_x = (IS_MOBILE)? 0 : 1;
   // chart.tooltip = d3.select("#tooltip")
@@ -492,16 +493,16 @@ console.log($firstGraphic.width())
 
   chart.tooltipLeft = d3.select(".tooltip-div-left")
     .append("svg")
-    .attr("width", width/2.3 *(tooltipLeft_mobile_width)*tooltip_mobile_width)
-    .attr("height", height/2.75 - tooltipLeft_mobile_height + tooltipLeft_phone_height)
+    .attr("width", width/2.3 )
+    .attr("height", height/2.4 - tooltipLeft_mobile_height + tooltipLeft_phone_height)
   chart.tooltipLeft= chart.tooltipLeft.append("g")
     .attr("transform", "translate("+ (.1*width)/tooltipLeft_mobile_width + ",0)");
 
 
   chart.tooltipRight = d3.select(".tooltip-div-right")
     .append("svg")
-    .attr("width", width/1.7 + (tooltipRight_mobile_width))
-    .attr("height",1.33*(width/1.7) + tooltipRight_mobile_height )
+    .attr("width", width/1.7 + (tooltipRight_mobile_width + tooltipRight_width))
+    .attr("height",width/2.2 )
   chart.tooltipRight = chart.tooltipRight.append("g")
     .attr("transform", "translate("+ -140*(tooltipRight_x) +", " + 0 +")");
   

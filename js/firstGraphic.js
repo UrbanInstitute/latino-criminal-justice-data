@@ -26,11 +26,10 @@ function drawFirstGraphic() {
 
   $tooltip = $("tooltip")
   
-  yBase = .975*$('#firstGraphic').height()
-  ybaseCell = .975*$('#firstGraphic').height()
-  squareDim = .07517*$('#firstGraphic').width()
-  squareGap = .00874*$('#firstGraphic').width()
-  columnGap = .1748*$('#firstGraphic').width()
+
+
+
+
 
   xEvencell= 19
   xOddcell= 60
@@ -54,6 +53,13 @@ function drawFirstGraphic() {
   var margin = { top: 0, right: 0, bottom: bottomMargin, left: 32 };
   var width= ($firstGraphic.width() - margin.left - margin.right); 
   var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
+
+  yBase = .795*height
+  ybaseCell = .795*height
+
+  squareDim = .07517*width
+  squareGap = .00874*width
+  columnGap = .1748*width
 
   var getFilter1 = function(){
     return selectedData;
@@ -265,20 +271,19 @@ function drawFirstGraphic() {
   //  .attr("class", "cell-label")
    // .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
         .attr("x", function(d,i) {
-          if (i== data.length && i%2 !== 0) {
-            return (10)}
-          else if (i%2 !== 0) {
-            return (xOddcell + j*100)*cell_scale_phone*cell_scale_mobile;
-          } 
-            return (xEvencell + j*100)*cell_scale_phone*cell_scale_mobile;
+          if (i%2 !== 0) {
+            return (squareDim + j*columnGap) *cell_scale_phone*cell_scale_mobile+ squareDim*.45;
+          } else {
+            return (j*columnGap) *cell_scale_phone*cell_scale_mobile + squareDim*.45;
+          }
         })
         .attr("y", function(d,i) {
           if (i%2 == 0){
-            return (ybaseCell - ((i/2)*squareDim))*cell_scale_phone*cell_scale_mobile;
+            return (yBase - ((i/2)*squareDim)) * cell_scale_phone*cell_scale_mobile+ squareDim*.55;
           } else if (i == 1) {
-            return ybaseCell*cell_scale_phone*cell_scale_mobile;
+            return yBase * cell_scale_phone*cell_scale_mobile+ squareDim*.55;
           } else{
-            return (ybaseCell - (((i-1)/2)*squareDim))*cell_scale_phone*cell_scale_mobile;
+            return (yBase - (((i-1)/2)*squareDim)) * cell_scale_phone*cell_scale_mobile+ squareDim*.55;
           }
          }) //so that all columns start from the bottom up
         .text(function(d) { 

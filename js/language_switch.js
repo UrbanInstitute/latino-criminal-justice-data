@@ -109,7 +109,7 @@ var TITLE = {
 
 var HEADERTEXT = {
   english:  ["<p><strong>No one knows exactly how many Latinos are arrested each year or how many are in prison, on probation, or on parole. </strong></p> \
-  <p>Forty states reported race (e.g., “white,” “black,” “other”) in their arrest records, but only 15 states reported ethnicity. Although Latinos are just one of many ethnic groups in the United States, the population is projected to be <a href=\"http:\/\/www.census.gov\/content\/dam\/Census\/library\/publications\/2015\/demo\/p25-1143.pdf\" \
+  <p>A survey of state criminal justice data showed that 40 states reported race (e.g., “white,” “black,” “other”) in their arrest records, but only 15 states reported ethnicity. Although Latinos are just one of many ethnic groups in the United States, the population is projected to be <a href=\"http:\/\/www.census.gov\/content\/dam\/Census\/library\/publications\/2015\/demo\/p25-1143.pdf\" \
    target=\"_blank\">28.6 percent Latino by 2060</a>, and Latinos are the group most affected when states ignore ethnicity. </p>\
    <a href=\"http:\/\/www.urban.org\/sites\/default\/files\/alfresco\/publication-pdfs\/413174-Examining-Racial-and-Ethnic-Disparities-in-Probation-Revocation.PDF\" target=\"_blank\">Evidence</a> shows that our criminal justice system has \
    <a href=\"http:\/\/www.sentencingproject.org\/issues\/racial-disparity\/\"target=\"_blank\">significant racial disparities</a>. But without comprehensive data, policymakers, community members, and advocates cannot know how mass incarceration affects Latinos specifically and ethnic disparities cannot be accurately tracked. </p>\
@@ -184,7 +184,7 @@ var CONCLUSION ={
     </p>If states follow the federal government’s <a href=\"http:\/\/www.pewresearch.org\/fact-tank\/2016\/10\/04\/federal-officials-may-revamp-how-americans-identify-race-ethnicity-on-census-and-other-forms/\" target=\"_blank\">proposed 2020 Census changes</a> and combine race and \
     ethnicity in one question, justice system–involved people must be allowed to check more than one box. And although states should, at a minimum, include a “Hispanic” or “Latino” category, Latinos are not a monolith. \
     <a href=\"http:\/\/www.pewsocialtrends.org\/2015\/06\/11\/chapter-7-the-many-dimensions-of-hispanic-racial-identity\" target=\"_blank\">Many Latinos identify</a> as mixed race, indigenous, or Afro-Latino. Hispanic or Latino ethnicities can be split further \
-    <a href=\"http:\/\/www.pewhispanic.org/2012\/04/04\/when-labels-dont-fit-hispanics-and-their-views-of-identity/\" target=\"_blank\">by country of origin</a> (e.g. Mexican or Cuban).</p>\
+    <a href=\"http:\/\/www.pewhispanic.org/2012\/04/04\/when-labels-dont-fit-hispanics-and-their-views-of-identity/\" target=\"_blank\">by country of origin</a> (e.g., Mexican or Cuban).</p>\
     <p>Some states may want to capture ethnicity data but cannot easily do so because of funding issues, time limits, or other constraints. But as the United States becomes more racially and ethnically diverse, states must work to ensure that all people are counted and considered when developing policy.</p>"],
   spanish:["<h1 class=\"last-header\">Conclusion header- spanish</h1> <p>Conclusion- spanish text</p>"]
 }
@@ -223,7 +223,7 @@ var FIRSTGRAPHIC_SELECTSTATE = {
 
 var FOOTER_TEXT = {
   english: ["<h2>About the data</h2><p>We collected the data used in this feature from publicly available state-level sources in all 50 states and Washington, DC. In addition to a scan of state agency websites, we reviewed Google search results for each data category and each state using search terms focused on annual reporting, statistics, race, and ethnicity. From this, we created a database of the most recent and \
-  complete data available. Data collection occurred between June and September 2016, and all sources used in this feature were available as of September 2016. The data found using our search protocol may not reflect all data collected or reported by each state, agency, or department.</p>\
+  complete data available. Data collection occurred between June and September 2016, and all sources used in this feature were available during that period. The data found using our search protocol may not reflect all data collected or reported by each state, agency, or department.</p>\
   <p>States are considered to include Latinos in their data reporting when their racial or ethnic demographic reporting includes categories such as “Hispanic” or “Latino.” Latinos may be reported as a distinct ethnic or racial group or combined with a racial group (e.g., “Hispanic black” or “non-Hispanic white”). We recognize that “Hispanic” and “Latino” have different meanings. This feature uses “Latino” when \
   referring to people, communities, or populations and “Hispanic” when referring to data because that is the term most states use when reporting data.</p>\
   <p>We define regularly and recently reported data as data that has been publicly reported at least twice, at least every other year, and at least as recently as 2014.</p> \

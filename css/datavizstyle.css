@@ -120,6 +120,7 @@ hr {
     margin-left: auto;
     width: 100%;
     background-color: #fff;
+    margin-bottom: 1.5em;
 }
 
 .urban-switch.large {
@@ -705,32 +706,11 @@ select#measures-menu{
       .non-mobile-text {
         display: none !important;
       }
-      .graphic-container {
-        float: none !important;
-      }
+  
       .text-container {
         width: 100% !important;
       }
-      .graphic-container {
-        width: 100% !important;
-      }
-    /*FIRST GRAPHIC*/
-      #tooltip {
-        float: left !important;
-      }
-      .tooltip-div-left {
-        width: 100% !important;
 
-      }
-      .tooltip-div-right {
-        margin-top: 15px;
-        padding-top: 15px;
-        padding-left: 0px;
-      }
-      .xlabel {
-        font-size: 12px;
-        word-break:break-all;
-      }
 
       /*SECOND GRAPHIC*/
 
@@ -775,9 +755,6 @@ select#measures-menu{
           display: none !important;
         }
 
-      #grid {
-        margin-top: 0em !important;
-      }
  
       #step1, #step2, #step3 {
         float: left;
@@ -819,20 +796,35 @@ select#measures-menu{
   #isMobile {
     display: block;
   }
+
+  .main-content {
+    width: auto;
+  }
+  .graphic-container {
+        float: none !important;
+        width: 100% !important;
+  }
+
+  .text-container {
+    width: 100%;
+    padding-right: 0%;
+  }
+  /*FIRST GRAPHIC*/
+  #tooltip {
+    float: left !important;
+  }
   .tooltip-div-left {
     width: 100% !important;
-    border-right-style: none !important;
 
   }
   .tooltip-div-right {
     margin-top: 15px;
     padding-top: 15px;
     padding-left: 0px;
-   border-top: 1px solid #555;
-
   }
-  .main-content {
-    width: auto;
+  .xlabel {
+    font-size: 12px;
+    word-break:break-all;
   }
   #legend3-mobile {
     width:30% !important;
@@ -884,14 +876,30 @@ select#measures-menu{
    .toggle_text_mobile {
     width: 45%;
    }
-
+  #grid {
+        margin-top: 0em !important;
+      }
     #grid {
       width: 65% !important;
     }
 
 
-
 }
+  
+  @media (max-width: 990px) {
+  .tooltip-div-left {
+    width: 100% !important;
+    border-right-style: none !important;
+
+  }
+  .tooltip-div-right {
+    margin-top: 15px;
+    padding-top: 15px;
+    padding-left: 0px;
+   border-top: 1px solid #555;
+
+  }
+  }
 
 
 

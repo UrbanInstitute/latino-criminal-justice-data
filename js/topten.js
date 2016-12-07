@@ -2,8 +2,8 @@
 
 function drawTopten(){
 
-
-var cellWidth= .14*$('#grid').width()
+cellScale = (IS_MOBILE) && !(IS_PHONE)? .1 : .14
+var cellWidth= cellScale*$('#grid').width()
 var cellGap = .17*cellWidth
 
 var options = {
@@ -115,7 +115,7 @@ cell_scale_phone = (IS_PHONE) ? .95 : 1;
 cell_scale_mobile = (IS_MOBILE) && !(IS_PHONE) ? 1.2 : 1;
 cell_scale_categories = (IS_MOBILE) ? 45. : 0;
 width_phone = (IS_MOBILE)? 1.3 : 1;
-height_mobile= (IS_MOBILE) && !(IS_PHONE) ? 1.2 : 1;
+height_mobile= (IS_MOBILE) && !(IS_PHONE) ? .9 : 1;
 row_x_phone = (IS_PHONE)? 25.5: 1;
 row_x_mobile = (IS_MOBILE) && !(IS_PHONE) ? 60: 1;
 

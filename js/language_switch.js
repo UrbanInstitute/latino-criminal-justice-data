@@ -204,11 +204,11 @@ var FIRSTGRAPHIC_XLABEL = {
 var FIRSTGRAPHIC_TOOLTIPHEADER = {
   english: [
   ["header1","state"],
-  ["header2","data on latinos has been reported for"]
+  ["header2","data on latinos reported"]
   ],
   spanish:[
   ["header1","state-spanish"],
-  ["header2","data on latinos has been reported for-spanish"]
+  ["header2","data on latinos reported-spanish"]
   ]
 }
 
@@ -222,11 +222,12 @@ var FIRSTGRAPHIC_SELECTSTATE = {
 //FOOTER
 
 var FOOTER_TEXT = {
-  english: ["<h2>About the data</h2><p>We collected the data used in this feature from publicly available state-level sources in all 50 states and Washington, DC. In addition to a scan of state agency websites, we reviewed Google search results for each data category and each state using search terms focused on annual reporting, statistics, race, and ethnicity. From this, we created a database of the most recent \
-  and complete data available. Data collection occurred between June and September 2016, and all sources used in this feature were available as of September 2016. The data found using our search protocol may not reflect all data collected or reported by each state, agency, or department.</p>\
-  <p>States are considered to include Latinos in their data reporting when their racial or ethnic demographic reporting includes terms such as “Hispanic,” “Latino,” and so on. Latinos may be reported as a distinct ethnic or racial group or combined with a racial group (e.g., “Hispanic black” or “non-Hispanic white”). “Hispanic” and “Latino” have different meanings, and this feature uses “Latino” when referring to \
-  people, communities, or populations. We use “Hispanic” when referring to data because that is the term most states use when reporting data.</p>\
-  <p>We define regularly and recently reported data as data that has been publicly reported at least twice, at least every other year, and at least as recently as 2014. Please contact <a href=\"mailto:SEppler-Epstein@urban.org\">Sarah Eppler-Esptein</a> and <a href=\"mailto:AGurvis@urban.org\">Annie Gurvis</a> with any questions about this project or the associated data.</p>"],
+  english: ["<h2>About the data</h2><p>We collected the data used in this feature from publicly available state-level sources in all 50 states and Washington, DC. In addition to a scan of state agency websites, we reviewed Google search results for each data category and each state using search terms focused on annual reporting, statistics, race, and ethnicity. From this, we created a database of the most recent and \
+  complete data available. Data collection occurred between June and September 2016, and all sources used in this feature were available as of September 2016. The data found using our search protocol may not reflect all data collected or reported by each state, agency, or department.</p>\
+  <p>States are considered to include Latinos in their data reporting when their racial or ethnic demographic reporting includes categories such as “Hispanic” or “Latino.” Latinos may be reported as a distinct ethnic or racial group or combined with a racial group (e.g., “Hispanic black” or “non-Hispanic white”). We recognize that “Hispanic” and “Latino” have different meanings. This feature uses “Latino” when \
+  referring to people, communities, or populations and “Hispanic” when referring to data because that is the term most states use when reporting data.</p>\
+  <p>We define regularly and recently reported data as data that has been publicly reported at least twice, at least every other year, and at least as recently as 2014.</p> \
+  <p>Please contact <a href=\"mailto:agurvis@urban.org\">agurvis@urban.org</a> and <a href=\"mailto:seppler-epstein@urban.org\">seppler-epstein@urban.org</a> with any questions about this project or the associated data.</p>"],
   spanish: ["<h2>About the data- spanish</h2><p>Footer text-spanish</p>"]
 }
 
@@ -236,21 +237,21 @@ var PROJECT_CREDITS = {
                     <a href=\"http:\/\/www.urban.org\/author\/ryan-king\" target=\"_blank\">Ryan King</a>, <a href=\"http:\/\/www.urban.org\/author\/sarah-eppler-epstein\" target=\"_blank\">Sarah Eppler-Epstein</a> and <a href=\"http:\/\/www.urban.org\/author\/annie-gurvis\" target=\"_blank\">Annie Gurvis</a>\
                     <h3 class=\"job\">Design and Development</h3>\
                     <a href=\"http:\/\/www.urban.org\/author\/john-wehmann\" target=\"_blank\">John Wehmann</a> and <a href=\"http:\/\/www.urban.org\/author\/vivian-hou\" target=\"_blank\">Vivian Hou</a>\
-                    <h3 class=\"job\">Photography</h3>  \
-                    <a href=\"http:\/\/www.urban.org\/author\/lydia-thompson\" target=\"_blank\">Lydia Thompson</a>\
                     <h3 class=\"job\">Editorial</h3>\
                     <a href=\"http:\/\/www.urban.org\/author\/alexandra-tilsley\" target=\"_blank\">Alex Tilsley</a> and <a href=\"http:\/\/www.urban.org\/author\/daniel-matos\" target=\"_blank\">Daniel Matos</a> \
+                    <div>&nbsp;</div>\
+                    <p><em>Photo via Shutterstock</em></p>\
                     <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/race_ethnicity\" target=\"_blank\">View this project on Github.</a></div>"],
-  spanish: ["<h2>Project credits-spanish</h2><div class=\"urbanstatement\">Spanish text </div>\
-                    <h3 class=\"job\">Research- spanish</h3>\
-                    Sarah Eppler-Epstein and Annie Gurvis\
-                    <h3 class=\"job\">Design and Development- spanish</h3>\
-                    Vivian Hou and John Wehmann\
-                    <h3 class=\"job\">Photography- spanish</h3>  \
-                    <a href=\"http:\/\/www.urban.org\/author\/matthew-johnson\">Lydia Thompson</a>\
-                    <h3 class=\"job\">Editorial- spanish</h3>\
-                    <a href=\"http:\/\/www.urban.org\/author\/???\">???</a>\
-                    <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/race_ethnicity\" target=\"_blank\">View this project on Github-spanish.</a></div>"]
+  spanish: ["<h2>Project credits</h2><div class=\"urbanstatement\">As an organization, the Urban Institute does not take positions on issues, but it does empower and support its experts in sharing their own evidence-based views and policy recommendations that have been shaped by scholarship.</div>\
+                    <h3 class=\"job\">Research</h3>\
+                    <a href=\"http:\/\/www.urban.org\/author\/ryan-king\" target=\"_blank\">Ryan King</a>, <a href=\"http:\/\/www.urban.org\/author\/sarah-eppler-epstein\" target=\"_blank\">Sarah Eppler-Epstein</a> and <a href=\"http:\/\/www.urban.org\/author\/annie-gurvis\" target=\"_blank\">Annie Gurvis</a>\
+                    <h3 class=\"job\">Design and Development</h3>\
+                    <a href=\"http:\/\/www.urban.org\/author\/john-wehmann\" target=\"_blank\">John Wehmann</a> and <a href=\"http:\/\/www.urban.org\/author\/vivian-hou\" target=\"_blank\">Vivian Hou</a>\
+                    <h3 class=\"job\">Editorial</h3>\
+                    <a href=\"http:\/\/www.urban.org\/author\/alexandra-tilsley\" target=\"_blank\">Alex Tilsley</a> and <a href=\"http:\/\/www.urban.org\/author\/daniel-matos\" target=\"_blank\">Daniel Matos</a> \
+                    <div>&nbsp;</div>\
+                    <p><em>Photo via Shutterstock</em></p>\
+                    <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/race_ethnicity\" target=\"_blank\">View this project on Github.</a></div>"]
 }
 
 

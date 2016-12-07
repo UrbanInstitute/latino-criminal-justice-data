@@ -79,11 +79,11 @@ if (IS_PHONE) {
 
 else {
       var projection = d3.geoEquirectangular()
-      .scale(2300)
+      .scale(4*$map.width())
       .center([-96.03542,41.69553])
       .translate([(width / 2.1), (height / 2.3)]);
 }
-
+console.log($map.width())
 
 
 
@@ -235,7 +235,7 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
           if (IS_PHONE) {
             return height*height_scale
           } else {
-            return height-45}
+            return height-35}
         })
 
 
@@ -387,7 +387,8 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
 legend_scale_x = (IS_PHONE) || (IS_MOBILE) ? 0 : 1;
 legend_scale_y = (IS_PHONE) ? 1.8 : 1;
-legend_height = (IS_PHONE) || (IS_MOBILE) ? 1.6 : 1;
+legend_height_phone = (IS_PHONE) ? 1.2 : 1;
+legend_height_mobile = (IS_MOBILE) && !(IS_PHONE) ? 1.4 : 1;
 legend_mobile_scale_y = (IS_MOBILE) ? 2.1 : 1;
 legendSquareX = "1.6em"
 legendTextX = "4.5em"
@@ -400,7 +401,7 @@ legend_phone_x = (IS_PHONE) ? -10: 0;
       .classed("map-legend", true)
       .append("svg")
       .attr("width", width)
-      .attr("height", (height/2)*legend_height);
+      .attr("height", (height/2)*legend_height_phone * legend_height_mobile);
 
   chartMap.legend = chartMap.legendSVG
       .append("g")

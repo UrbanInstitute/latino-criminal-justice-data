@@ -28,6 +28,7 @@ function drawFirstGraphic() {
   xEvencell= 19
   xOddcell= 60
 
+
   var chart=this;
 
 
@@ -38,6 +39,8 @@ function drawFirstGraphic() {
 
 
   var $firstGraphic = $("#firstGraphic");
+console.log($firstGraphic.width())
+
 
   var aspect_width = 30;
   var aspect_height = 24;
@@ -45,6 +48,7 @@ function drawFirstGraphic() {
   var margin = { top: 0, right: 0, bottom: bottomMargin, left: 32 };
   var width= ($firstGraphic.width() - margin.left - margin.right); 
   var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
+  console.log(width)
   console.log(height)
   var getFilter1 = function(){
     return selectedData;
@@ -146,7 +150,7 @@ function drawFirstGraphic() {
             return height + mobile_height 
           }
           else {
-            return height}
+            return .81*width}
         })
 
     chart.group = chart.svg.append('g')
@@ -489,7 +493,7 @@ function drawFirstGraphic() {
   chart.tooltipLeft = d3.select(".tooltip-div-left")
     .append("svg")
     .attr("width", width/2.3 *(tooltipLeft_mobile_width)*tooltip_mobile_width)
-    .attr("height", height/2.4 - tooltipLeft_mobile_height + tooltipLeft_phone_height)
+    .attr("height", height/2.75 - tooltipLeft_mobile_height + tooltipLeft_phone_height)
   chart.tooltipLeft= chart.tooltipLeft.append("g")
     .attr("transform", "translate("+ (.1*width)/tooltipLeft_mobile_width + ",0)");
 
@@ -497,7 +501,7 @@ function drawFirstGraphic() {
   chart.tooltipRight = d3.select(".tooltip-div-right")
     .append("svg")
     .attr("width", width/1.7 + (tooltipRight_mobile_width))
-    .attr("height", height/2.7 + tooltipRight_mobile_height )
+    .attr("height",1.33*(width/1.7) + tooltipRight_mobile_height )
   chart.tooltipRight = chart.tooltipRight.append("g")
     .attr("transform", "translate("+ -140*(tooltipRight_x) +", " + 0 +")");
   

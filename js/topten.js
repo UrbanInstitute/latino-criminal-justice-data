@@ -3,7 +3,8 @@
 function drawTopten(){
 
 
-var cellWidth= 39
+var cellWidth= .14*$('#grid').width()
+var cellGap = .17*cellWidth
 
 var options = {
   filter: 'step3-regular'
@@ -110,11 +111,11 @@ function Grid(gridStates) { //https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e7
 var frequency = "_frequency"
 var rating = "_rating"
 
-cell_scale_phone = (IS_PHONE) ? .65 : 1;
-cell_scale_mobile = (IS_MOBILE) && !(IS_PHONE) ? .8 : 1;
+cell_scale_phone = (IS_PHONE) ? .95 : 1;
+cell_scale_mobile = (IS_MOBILE) && !(IS_PHONE) ? 1.2 : 1;
 cell_scale_categories = (IS_MOBILE) ? 45. : 0;
-width_phone = (IS_PHONE)? 1.1 : 1;
-height_mobile= (IS_MOBILE)? 1.05 : 1;
+width_phone = (IS_MOBILE)? 1.3 : 1;
+height_mobile= (IS_MOBILE) && !(IS_PHONE) ? 1.2 : 1;
 row_x_phone = (IS_PHONE)? 25.5: 1;
 row_x_mobile = (IS_MOBILE) && !(IS_PHONE) ? 60: 1;
 
@@ -123,7 +124,8 @@ chartTen.svg = d3.select("#grid")
     .classed("svg-container", true)
     .append("svg")
     .attr("width", width*width_phone)
-    .attr("height", height*height_mobile)
+    .attr("height", 1.85*width*height_mobile)
+
 
 
 var filteredData_unsorted = gridStates.features.filter(function(d){
@@ -144,8 +146,8 @@ filteredData = filteredData_unsorted.sort(function(a,b) {
     .enter().append("g")
     .attr("class", "row")
     .attr("width", 500)
-    .attr("height", 49)
-    .attr("transform", function(d, i){ return "translate(" + row_x_phone*row_x_mobile + " ," + (i*49)*cell_scale_phone*cell_scale_mobile + ")"})
+    .attr("height", cellWidth + cellGap)
+    .attr("transform", function(d, i){ return "translate(" + row_x_phone*row_x_mobile + " ," + (i*(cellWidth + cellGap))*cell_scale_phone*cell_scale_mobile + ")"})
 console.log(row_x_phone*row_x_mobile)
   
   for(var i = 0; i < gridColumns.length; i++){
@@ -156,9 +158,9 @@ console.log(row_x_phone*row_x_mobile)
       .attr("height",cellWidth * cell_scale_phone*cell_scale_mobile)
       .attr("x", function() {
         if (IS_MOBILE) {
-          return "x", (i*49)*cell_scale_phone*cell_scale_mobile
+          return "x", (i*(cellWidth + cellGap))*cell_scale_phone*cell_scale_mobile
         } else {
-        return (40+i*49)
+        return (40+(i*(cellWidth+ cellGap)))
        }
       })
       .attr("y", 0)
@@ -210,7 +212,7 @@ label_side_phone = (IS_PHONE) ? -25.2 : 1;
     last_row.selectAll("rect").each(function(d, i) {
       last_row.append("text")
       .attr("class", "grid-cat-labels " + MEASURES_GRID[GLOBAL_LANGUAGE][i][0])
-      .attr("transform", "translate(" + ((i*52*cell_scale_phone*cell_scale_mobile)+ 60 - cell_scale_categories)+ ","+55*cell_scale_phone+") rotate(-45)" )
+      .attr("transform", "translate(" + ((i*(cellWidth + cellGap)*cell_scale_phone*cell_scale_mobile)+ 60 - cell_scale_categories)+ ","+55*cell_scale_phone+") rotate(-45)" )
       .attr("text-anchor", "end")
 
       .text(function () { 
@@ -251,17 +253,20 @@ function wrapText(text, width) {
 
 legend_scale_x = (IS_MOBILE) ? 2 : 0;
 legend_scale_y = (IS_MOBILE) ? 1 : 1;
-legend_height_mobile = (IS_MOBILE) ? 1.1 : 1;
-legend_height_phone = (IS_PHONE) ? 2: 1;
+legend_height_mobile = (IS_MOBILE) ? .5 : 1;
+legend_height_phone = (IS_PHONE) ? 1.5: 1;
 legend_width_phone=(IS_PHONE)?.8: 1;
 legend_text_y_phone = (IS_MOBILE)? .2:0;
 
-  chartTen.legendSVG = d3.select("#legend3")
+legend3 = (IS_MOBILE) && !(IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
+console.log(legend3)
+
+  chartTen.legendSVG = d3.select(legend3)
       .append("div")
       .classed("grid-legend", true)
       .append("svg")
       .attr("width", width*legend_width_phone)
-      .attr("height", height/2*legend_height_mobile*legend_height_phone);
+      .attr("height", (width*1.2) *legend_height_mobile*legend_height_phone);
   chartTen.legend = chartTen.legendSVG
       .append('g')
       .attr("transform", function(){
@@ -607,7 +612,7 @@ function drawAllGraphics(){
   $("#map").empty();
   $("#container2 #legend").empty();
   $("#grid").empty();
-  $("#legend3").empty();
+  legend3.empty();
 
 
     drawFirstGraphic();

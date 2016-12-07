@@ -103,18 +103,18 @@ var MEASURES_DROPDOWN = {
 
 
 var TITLE = {
-  english: ["The Lack of Race and Ethnicity Data in Criminal Justice is Dangerous"],
+  english: ["The Alarming Lack of Data on Latinos in the Criminal Justice"],
   spanish: ["Spanish title"]
 }
 
 var HEADERTEXT = {
-  english:  ["<p class=\"full-width-col\"><strong>No one knows exactly how many Latinos are in prison, on probation or parole, or being arrested. </strong> \
-   While 40 states report race (e.g. white, black, other) in their arrest records, only 15 states report ethnicity. Although ethnicity encompasses populations other than Latinos, in a country that will be <a href=\"http:\/\/www.census.gov/content\/dam\/Census\/library\/publications\/2015\/demo\25-1143.pdf\" \
-   target=\"_blank\">28.6% Latino by 2060</a>, Latinos are the group mostly likely to be missed when states ignore ethnicity. </p>\
-   There is considerable<a href=\"http:\/\/www.urban.org\/sites\/default\/files\/alfresco\/publication-pdfs\/413174-Examining-Racial-and-Ethnic-Disparities-in-Probation-Revocation.PDF\" target=\"_blank\"> evidence</a> that people of color are involved with the criminal justice system at\
-   <a href=\"http:\/\/www.sentencingproject.org\/issues\/racial-disparity\/\"target=\"_blank\">disproportionate rates</a>. But without comprehensive data, policymakers, community members, and advocates cannot know how much of a problem mass incarceration is for Latinos specifically, and ethnic disparities cannot be accurately tracked. </p>\
-   <p>A state’s failure to collect and report ethnicity data can also mask racial disparities in the criminal justice system. A state that only counts people as “black” or “white” would <a href=\"http:\/\/www.sentencingproject.org\/wp-content\/uploads\/2016\/06\/The-Color-of-Justice-Racial-and-Ethnic-Disparity-in-State-Prisons.pdf\"target=\"_blank\"> likely label most of its Latino prison population \"white\"</a>\
-   artificially inflating the number of “white” people in prison and making white/black disparities appear less extreme than they actually are. The lack of comprehensive ethnicity data doesn’t just affect Latinos; it affects the entire criminal justice system.</p>"],
+  english:  ["<p class=\"full-width-col\"><strong>No one knows exactly how many Latinos are arrested each year or how many are in prison, on probation, or on parole. </strong> \
+  Forty states reported race (e.g., “white,” “black,” “other”) in their arrest records, but only 15 states reported ethnicity. Although Latinos are just one of many ethnic groups in the United States, the population is projected to be <a href=\"http:\/\/www.census.gov/content\/dam\/Census\/library\/publications\/2015\/demo\25-1143.pdf\" \
+   target=\"_blank\">28.6% Latino by 2060</a>, and Latinos are the group most affected when states ignore ethnicity. </p>\
+   Considerable <a href=\"http:\/\/www.urban.org\/sites\/default\/files\/alfresco\/publication-pdfs\/413174-Examining-Racial-and-Ethnic-Disparities-in-Probation-Revocation.PDF\" target=\"_blank\">evidence</a> shows that our criminal justice system has \
+   <a href=\"http:\/\/www.sentencingproject.org\/issues\/racial-disparity\/\"target=\"_blank\">significant disproportionate rates</a>. But without comprehensive data, policymakers, community members, and advocates cannot know how mass incarceration affects Latinos specifically, and ethnic disparities cannot be accurately tracked. </p>\
+   <p>A state’s failure to collect and report ethnicity data affects not only Latinos but the entire criminal justice system. States that only count people as “black” or “white” <a href=\"http:\/\/www.sentencingproject.org\/wp-content\/uploads\/2016\/06\/The-Color-of-Justice-Racial-and-Ethnic-Disparity-in-State-Prisons.pdf\"target=\"_blank\"> likely label most of their Latino prison population \"white\"</a>,\
+   artificially inflating the number of “white” people in prison and masking the white/black disparity in the criminal justice system.</p>"],
   spanish: ["Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text\
   Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text\
   Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text-Spanish header text- Spanish header text- Spanish header text- Spanish header text- Spanish header text"]
@@ -122,12 +122,11 @@ var HEADERTEXT = {
 }
 
 var FIRSTSECTION ={
-  english:["<h1>Few states included Latinos in most criminal justice data</h1> <p>We tracked all the race and ethnicity information we could find through publically and readily accessible online sources for each state and D.C. across five categories: prison population; prison population by offense; arrest; probation population; and parole population.\
-  </p> <p>Only one state—Alaska—consistently included data on Latinos in regularly and recently released reports on prison, arrest, probation, and parole populations. Although it is possible that more states collect these data routinely, we only considered those that make it publicly accessible. 75 percent of states regularly and recently reported data \
-  by ethnicity on at least one of the five measures we tracked, but only 39 percent did so for two or more measures. This means that while most states reported <em>some</em> ethnicity data routinely, they do not make a habit of reporting ethnicity on multiple measures.</p>\
-  <p>That a given state might collect ethnicity data for arrests but not probation reflects the fact that these data are collected by a variety of state agencies, which may not be well coordinated. To ensure that Latinos are counted across the criminal justice system, states will have to make sure all the relevant agencies – from law enforcement, to the \
-   department of corrections, to the parole board – are collecting the same data. If states are not collecting accurate and complete data across the criminal justice system, it is impossible to assess how the system affects Latinos in the United States.\
-</p>"],
+  english:["<h1>Few states include Latinos in most criminal justice data</h1> <p>We tracked all race and ethnicity information we could find through publicly and readily accessible online sources for each state and Washington, DC, across five categories: prison population, prison population by offense, arrests, probation population, and parole population. \
+  </p> <p> Only one state—Alaska—consistently included data on Latinos in regularly and recently released reports on arrests and prison, probation, and parole populations. Although it is possible that more states collected these data routinely, we only considered data that states made publicly accessible. Seventy-five percent of states regularly and recently reported data by ethnicity on at least one of our five measures, \
+  but only 39 percent did so for two or more measures.\
+  </p> <p>States collect criminal justice data through several agencies, and these agencies may not coordinate their efforts. To ensure that Latinos are accurately counted across the criminal justice system, states must make sure all relevant agencies—including law enforcement, the department of corrections, and the parole board—collect the same ethnicity data. \
+  If states do not collect accurate and complete data across all agencies, it is impossible to assess how the system affects Latinos.</p>"],
   spanish:["<h1>FIRST SECTION SPANISH HEADER</h1><p>first section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text\
   second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text\
   second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text\
@@ -137,13 +136,13 @@ var FIRSTSECTION ={
 }
 
 var SECONDSECTION = {
-  english: ["<p>We also looked at the <em>quality</em> of states’ ethnicity data. There is disagreement on the best way to collect data on race and ethnicity, or whether those should be <a href=\"http:\/\/www.usccr.gov\/pubs\/RC2010Web_Version.pdf\" target=\"_blank\">separate categories</a>. In fact, <a href=\"http:\/\/www.pewresearch.org\/fact-tank\/2015\/06\/15\/is-being-hispanic-a-matter-of-race-ethnicity-or-both\/\" \
-  target=\"_blank\">many Latinos</a> think of their race as \“Hispanic\” or \“Latin American\”, as opposed to self-identifying their ethnicity as \“white\” or \“black\” and their ethnicity as \“Latino\” or \“Hispanic\”. When assessing states’ demographic data quality, we followed the current federal policy and U.S. Census definitions of \
+  english: ["<p>We also looked at the <em>quality</em> of states’ ethnicity data. There is disagreement within the field on how to collect data on race and ethnicity and whether those should be <a href=\"http:\/\/www.usccr.gov\/pubs\/RC2010Web_Version.pdf\" target=\"_blank\">separate categories</a>. <a href=\"http:\/\/www.pewresearch.org\/fact-tank\/2015\/06\/15\/is-being-hispanic-a-matter-of-race-ethnicity-or-both\/\" \
+  target=\"_blank\">Many Latinos</a> consider their race as \“Hispanic\” or \“Latin American\”, as opposed to identifying racially as white or black and ethnically as Latino or Hispanic. When assessing demographic data quality, we followed current federal policy and Census Bureau definitions of \
   <a href=\"https:\/\/www.census.gov\/quickfacts\/meta\/long_RHI425215.htm\" target=\"_blank\">race</a> and <a href=\"http:\/\/www.census.gov\/topics\/population\/hispanic-origin\/about.html\">ethnicity</a>, which allow Latinos to identify both as Hispanic and as a particular race.</p>\
-  <p>The agencies with the most thorough collection and reporting of race and ethnicity data followed Census guidelines; they collected race and ethnicity separately, but reported them as combined categories, such as non-Hispanic white or Hispanic black. Some agencies asked about race and ethnicity separately but did not combine them in reporting. With these data, we can determine how many people are reported as Hispanic \
-  separately from how many are black or white, but not whether Hispanic people are black or white. Other states combined everything into one category, so a person could be counted as Hispanic or white, but not both. Still others don’t include a category for Latinos in their publically available data, or didn’t publish accessible race and ethnicity data at all.\
-</p><p>States include Latinos in their prison population data far more than other data categories we tracked. Thirty-eight states report data on Latinos in prison, while only 20 report data on Latinos among the parole population, 18 report data on Latinos among the probation population, 15 report data on Latinos who are arrested, and just 1 reports data on Latinos in prison by offense. \
-</p><p> Hardly any states report data on Latinos in combined categories (e.g. Hispanic white, non-Hispanic black). Only three states—North Carolina, New Hampshire, and Vermont—track both race and ethnicity, and then report them in combination in any category (prison population in North Carolina, arrests in New Hampshire and Vermont).</p>"],
+  <p>State agencies that collected and reported the most thorough race and ethnicity data followed Census guidelines: they collected race and ethnicity data separately but reported them as combined categories, such as “non-Hispanic white” or “Hispanic black.” Some agencies asked about race and ethnicity separately but did not combine them in reporting. With these data, we can determine how many people are reported \
+  as “Hispanic” separately from how many are reported as “black” or “white” but not whether “Hispanic” people are also “black” or “white.” Other agencies combined race and ethnicity into one category: a person can be counted as “Hispanic” or “white” but not both. Still others did not include a category for Latinos in their publicly available data or did not publish accessible race and ethnicity data at all. </p>\
+  <p>States included Latinos in their prison population data far more than in the other data categories we tracked. Thirty-eight states reported data on Latinos in prison compared with only 20 that reported data on Latinos in the parole population, 18 that reported data on Latinos in the probation population, 15 that reported data on Latinos in arrest records, and just 1 that reported data on Latinos in prison by offense.</p>\
+  <p>Hardly any states reported data on Latinos in combined categories (e.g., “Hispanic white,” “non-Hispanic black”). Only three—North Carolina, New Hampshire, and Vermont—tracked both race and ethnicity and reported them in combination in any data category (prison population in North Carolina and arrests in New Hampshire and Vermont).</p>"],
   spanish: ["second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text\
   second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text\
   second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text second section- spanish text\
@@ -159,14 +158,14 @@ var SECONDSECTION_DROPDOWN_SIDE = {
 }
 
 var SECOND_HEADER = {
-  english: ["How do states include Latinos in data on:"],
+  english: ["The quality of ethnicity data varies across states and agencies"],
   spanish: ["Spanish header 2"]
 }
 
 var THIRDSECTION = {
-  english:["<h1>The states with large Latino populations don’t necessarily have better data</h1> \
-      <p>Seventy-five percent of Latinos in the United States live in just ten states. Many of these states have significant gaps in ethnicity data reporting, despite having large numbers of Latino residents. Florida, New Mexico, and California, for example, all report ethnicity data in fewer categories than the average state.\
-      </p> <p>Data reporting in these states is especially important, as states with a larger number of Latino residents are likely to have a larger number of Latinos in the criminal justice system. The effects of criminal justice policies on Latinos can go unseen by the public and policymakers in those states where agencies are not reporting data on ethnicity. </p>"],
+  english:["<h1>States with large Latino populations do not necessarily have better data</h1> \
+      <p>Seventy-five percent of Latinos in the United States live in just 10 states. Many of these states have significant gaps in reported ethnicity data despite their large Latino populations. California, Florida, and New Mexico, for example, all reported ethnicity data in fewer categories than the average state. \
+      </p> <p>Data reporting in these states is especially important because states with more Latino residents are likely to have more Latinos in their criminal justice systems. The effects of criminal justice policies on Latinos can go unseen by the public and policymakers in states where agencies do not report ethnicity data. </p>"],
   spanish: ["<h1>Third section header-spanish</h1> \
       <p>spanish text\
       </p>"]

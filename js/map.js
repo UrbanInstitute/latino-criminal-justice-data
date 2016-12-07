@@ -27,7 +27,15 @@ function wrapText(text, width) {
 
 
 function drawMap(){
-
+  $("#firstGraphic").empty();
+  $("#container1 .tooltip-div-left").empty();
+  $("#container1 .tooltip-div-right").empty();
+  $("#container1 #xlabel-div").empty();
+  $("#map").empty();
+  $("#container2 #legend").empty();
+  $("#grid").empty();
+  $("#legend3-mobile").empty();
+  $("#legend3-nonmobile").empty();
 //map is forked from a combination of https://github.com/githamm/us-state-squares and https://github.com/lvonlanthen/data-map-d3
 cell_scale = (IS_PHONE) ? .6 : 1;
 // var IS_PHONE = d3.select("#isPhone").style("display") == "block"
@@ -62,7 +70,6 @@ var aspect_height = 25;
 var margin = { top: 5, right: 0, bottom: 10, left: 32 };
 var width= ($map.width()); 
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
-console.log(height)
 
 
 if (IS_PHONE) {
@@ -83,7 +90,6 @@ else {
       .center([-96.03542,41.69553])
       .translate([(width / 2.1), (height / 2.3)]);
 }
-console.log($map.width())
 
 
 
@@ -131,20 +137,17 @@ d3.select("#step2-regular").classed("on", true)
 d3.select("#mobile-text").text("")
 d3.select("#step2-regular")
   .on('click', function() {
-    console.log('hi')
       if(d3.select(this).classed("on")){
         d3.select(this).classed("on", false)
         d3.select(this).classed("off", true)
         options.filter = "step2-all";
         choropleth.update(mapStates)
-        console.log(options.filter)
       }
       else {
         d3.select(this).classed("on", true)
         d3.select(this).classed("off", false)
         options.filter = d3.select(this).attr("id");
         choropleth.update(mapStates)
-        console.log(options.filter)
 
       }
 
@@ -162,7 +165,6 @@ $("#measures").selectmenu({
   change: function(event, d){
   options.category = this.value;
   choropleth.update(mapStates);
-  console.log(options.category);
   }
 });
 
@@ -285,7 +287,6 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
             //    d3.selectAll('.cell-text-mobile.' + selectedState)
             //   .style('fill', '#ffffff')
             // } else {
-              console.log(selectedState)
             d3.selectAll('.place-label.' + selectedState)
               .style('fill', '#ffffff')
             // }
@@ -604,7 +605,6 @@ Choropleth.prototype.update = function(mapStates) {
 
   var Cat = getCat();
 
-console.log(Cat)
 
   frequency = "_frequency";
   rating = "_rating";
@@ -612,12 +612,10 @@ console.log(Cat)
   squareColor = function(d) {
           if (options.filter == 'step2-regular') {
           if (d.properties[Cat + frequency] == 2) {
-            console.log('regular')
            return color(d.properties[Cat + rating]);
 
           } 
         } else if (options.filter == 'step2-all') {
-          console.log('all')
             return color(d.properties[Cat + rating]);
             
         } return "#ffffff"
@@ -677,7 +675,6 @@ console.log(Cat)
 	          return '1px'
 	        }
 	     }); 
- console.log('hello', chartMap.svg.node())
  
  var stateText = d3.select(".map-container")
       .selectAll(".place-label")

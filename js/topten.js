@@ -605,20 +605,24 @@ Grid.prototype.update = function(gridStates, mystate, selectedColumn) {
 
 drawTopten();
 function drawAllGraphics(){
-  $("#firstGraphic").empty();
-  $("#container1 .tooltip-div-left").empty();
-  $("#container1 .tooltip-div-right").empty();
-  $("#container1 #xlabel-div").empty();
-  $("#map").empty();
-  $("#container2 #legend").empty();
-  $("#grid").empty();
-  $("#legend3-mobile").empty();
-  $("#legend3-nonmobile").empty();
+  function removeElements(callback){
+    $("#firstGraphic").empty();
+    $("#container1 .tooltip-div-left").empty();
+    $("#container1 .tooltip-div-right").empty();
+    $("#container1 #xlabel-div").empty();
+    $("#map").empty();
+    $("#container2 #legend").empty();
+    $("#grid").empty();
+    $("#legend3-mobile").empty();
+    $("#legend3-nonmobile").empty();
+    callback();
+  }
 
-
-
+  function redrawElements(){
     drawFirstGraphic();
     drawMap();
     drawTopten();
+  }
+  removeElements(redrawElements)
 }
 window.onresize = drawAllGraphics;

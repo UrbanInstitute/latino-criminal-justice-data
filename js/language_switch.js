@@ -103,7 +103,7 @@ var MEASURES_DROPDOWN = {
 
 
 var TITLE = {
-  english: ["The Alarming Lack of Data on Latinos in the Criminal Justice"],
+  english: ["The Alarming Lack of Data on Latinos in the Criminal Justice System"],
   spanish: ["Spanish title"]
 }
 

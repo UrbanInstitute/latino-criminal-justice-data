@@ -473,7 +473,7 @@ function drawFirstGraphic() {
   chart.tooltipRight = d3.select(".tooltip-div-right")
     .append("svg")
     .attr("width", width/1.9)
-    .attr("height",(height/2.1)*tooltipRight_mobile_height)
+
   chart.tooltipRight = chart.tooltipRight.append("g")
     .attr("transform", "translate(2, " + 0 +")");
   
@@ -498,7 +498,7 @@ function drawFirstGraphic() {
     for(var i = 0; i < MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++){
       chart.tooltipRight
         .append("text")
-        .attr("class", "tooltip-text")
+        .attr("class", "tooltip-text num" + i)
         .attr("dy", 0)
         .attr("y", 3.8+ 2.3*i +"em")
         .attr("x", "2.7em")
@@ -530,7 +530,14 @@ function drawFirstGraphic() {
 
   }
   addHeaders()
-
+  d3.select(".tooltip-div-right")
+    .style("height",function(){
+      return Math.abs(d3.select(".tooltip-header").node().getBoundingClientRect().top - d3.select(".tooltip-text.num4").node().getBoundingClientRect().bottom) + "px"
+    })
+  d3.select(".tooltip-div-right svg")
+    .attr("height",function(){
+      return Math.abs(d3.select(".tooltip-header").node().getBoundingClientRect().top - d3.select(".tooltip-text.num4").node().getBoundingClientRect().bottom)
+    })
   chart.tooltipLeft
       .append("text")
       .attr("class", function() {

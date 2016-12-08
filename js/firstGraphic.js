@@ -565,6 +565,7 @@ function tooltip(mystate) {
           .attr("height", "20");
       }
           
+        var wrapWidth = (IS_PHONE) ? 1000 : 190;
         chart.tooltipLeft
           .append("text")
            .attr("class", function() {
@@ -581,12 +582,8 @@ function tooltip(mystate) {
           .text(function() {
             return mystate.properties.name;
           })
+          .call(wrapText,wrapWidth)
 
-          if (IS_PHONE) {
-            chart.tooltipLeft.selectAll('.tooltip-text-state').call(wrapText,1000)
-            } else {
-            chart.tooltipLeft.selectAll('.tooltip-text-state').call(wrapText,190)
-            }
 
 
 

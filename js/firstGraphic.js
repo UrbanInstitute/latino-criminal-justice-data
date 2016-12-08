@@ -313,6 +313,21 @@ function drawFirstGraphic() {
         d3.selectAll(".highlight-text")
             .classed("highlight-text", false)
 
+        if(d3.selectAll("#firstGraphic .selected").nodes().length > 0){
+          d3.selectAll(".tooltip-text-state").remove()
+          d3.selectAll(".tooltip-text-state-mobile").remove()
+          tooltip(d3.select("#firstGraphic .selected").datum())
+        }else{
+          d3.selectAll(".tooltip-text-state").text(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE])
+          d3.selectAll(".tooltip-text-state-mobile").text(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE])
+          d3.selectAll("#firstGraphic .selected-text").classed("selected-text", false).classed("deselected-text", true)
+
+          d3.selectAll("image.checkbox")
+            .attr("xlink:href", function() {
+              return "images/uncheckedbox.svg"
+            }) 
+        }
+
             // if (STATESELECT == null) {
             //     $tooltipgraph.empty();
             // } else {

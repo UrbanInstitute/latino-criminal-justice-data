@@ -251,7 +251,6 @@ hr {
   padding-top: 1em;
   position: relative;
   float: left;
-  word-wrap: break-word;
 }
 #firstGraphic {
   position: relative;
@@ -844,7 +843,6 @@ select#measures-menu{
   .xlabel {
     font-size: 1em !important;
     font-weight: 700;
-    word-break:break-all;
   }
 
 

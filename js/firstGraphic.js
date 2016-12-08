@@ -155,27 +155,26 @@ function drawFirstGraphic() {
                   .attr("class", "g")
                   .attr("transform", "translate(5, " + (.05*height)+ ")")
     xLabel = chart.d3.select("#xlabel-div")
-                  .append("svg")
-                  .attr("width", width) 
-                  .attr("height", width/10)
+                  // .append("svg")
+                  // .attr("width", width) 
+                  // .attr("height", width/10)
 
 
   //wrapText_mobile = (IS_PHONE) || (IS_MOBILE) ? 300: 1000;
     xLabel
-      .append('text')
-        .attr("text-anchor", "start")
-        .attr('class', 'xlabel')
-        .attr('x', '.2em')
-        .attr('y', '2em')
+      // .append('text')
+      //   .attr("text-anchor", "start")
+      //   .attr('class', 'xlabel')
+      //   .attr('x', '.2em')
+      //   .attr('y', '2em')
 
         .text(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
         .style('fill', "#000000")
-     if (IS_PHONE) {
-      console.log('hi')
-            chart.d3.select('.xLabel').call(wrapText,100)
-            } else {
-            chart.d3.select('.xLabel').call(wrapText,1000)
-            }
+     // if (IS_PHONE) {
+     //        chart.d3.select('.xLabel').call(wrapText,100)
+     //        } else {
+     //        chart.d3.select('.xLabel').call(wrapText,1000)
+     //        }
 ///NOT WORKING
       //ADDING GROUPS
 

@@ -125,17 +125,18 @@ cell_scale_phone = (IS_PHONE) ? .95 : 1;
 cell_scale_mobile = (IS_MOBILE) && !(IS_PHONE) ? 1.2 : 1;
 cell_scale_categories = (IS_MOBILE) ? 45. : 0;
 width_phone = (IS_MOBILE)? 1.3 : 1;
-height_mobile= (IS_MOBILE) && !(IS_PHONE) ? .9 : 1;
 row_x_phone = (IS_PHONE)? 25.5: 1;
 row_x_mobile = (IS_MOBILE) && !(IS_PHONE) ? 60: 1;
+grid_height_phone = (IS_PHONE) ? .95 : 1;
+grid_height_mobile = (IS_MOBILE) && !(IS_PHONE) ? .86: 1;
+
 
 chartTen.svg = d3.select("#grid")
     .append("div")
     .classed("svg-container", true)
     .append("svg")
-    .attr("width", width*width_phone)
-    .attr("height", 1.85*width*height_mobile)
-
+    .attr("width", width)
+    .attr("height", height*1.08*grid_height_phone*grid_height_mobile)
 
 
 var filteredData_unsorted = gridStates.features.filter(function(d){
@@ -221,7 +222,7 @@ label_side_phone = (IS_PHONE) ? -25.2 : 1;
     last_row.selectAll("rect").each(function(d, i) {
       last_row.append("text")
       .attr("class", "grid-cat-labels " + MEASURES_GRID[GLOBAL_LANGUAGE][i][0])
-      .attr("transform", "translate(" + ((i*(cellWidth + cellGap)*cell_scale_phone*cell_scale_mobile)+ 60 - cell_scale_categories)+ ","+55*cell_scale_phone+") rotate(-45)" )
+      .attr("transform", "translate(" + ((i*(cellWidth + cellGap)*cell_scale_phone*cell_scale_mobile)+ 60 - cell_scale_categories)+ ","+.1*height+") rotate(-45)" )
       .attr("text-anchor", "end")
 
       .text(function () { 
@@ -260,12 +261,10 @@ function wrapText(text, width) {
 }
 
 
-legend_scale_x = (IS_MOBILE) ? 2 : 0;
-legend_scale_y = (IS_MOBILE) ? 1 : 1;
 legend_height_mobile = (IS_MOBILE) && !(IS_PHONE) ? .7 : 1;
 legend_height_phone = (IS_PHONE) ? .8: 1;
 legend_width_phone=(IS_PHONE)?.8: 1;
-legend_text_y_phone = (IS_MOBILE)? .2:0;
+legend_text_y_phone = (IS_MOBILE) && !(IS_PHONE)? .2:0;
 
 legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
 
@@ -277,12 +276,12 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .attr("height", (width*1.2) *legend_height_mobile*legend_height_phone);
   chartTen.legend = chartTen.legendSVG
       .append('g')
-      .attr("transform", function(){
-        if (IS_PHONE) {
-          return  "translate(-40 ,0)"
-        }  else 
-          return "translate(-10 ,0)"
-      })
+      // .attr("transform", function(){
+      //   if (IS_PHONE) {
+      //     return  "translate(0 ,0)"
+      //   }  else 
+      //     return "translate(-10 ,0)"
+      // })
 
 
 
@@ -290,7 +289,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .append("rect")
       .attr("id", "no-data")
       .attr("class", "legend-icon")
-      .attr("x", 1 + legend_scale_x + "em")
+      .attr("x", "1em")
       .attr("y", "0em")
       .attr("width", 15)
       .attr("height", 15)
@@ -303,7 +302,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", .8+ (legend_text_y_phone*.3) + "em")
+      .attr("y", .8+ "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -314,8 +313,8 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .append("rect")
       .attr("id", "data-no-cat")
       .attr("class", "legend-icon")
-      .attr("x", 1 + legend_scale_x + "em")
-      .attr("y", 3.2*legend_scale_y + "em")
+      .attr("x", "1em")
+      .attr("y", "3.2em")
       .attr("width", 16)
       .attr("height", 16)
     chartTen.legend.append("text")
@@ -327,7 +326,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", 4.95*legend_scale_y + "em")
+      .attr("y", "4.95em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -338,8 +337,8 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .append("rect")
       .attr("id", "combined")
       .attr("class", "legend-icon")
-      .attr("x", 1 + legend_scale_x + "em")
-      .attr("y", 6.3*legend_scale_y + "em")
+      .attr("x", "1em")
+      .attr("y", "6.3em")
       .attr("width", 16)
       .attr("height", 16)
     chartTen.legend.append("text")
@@ -351,7 +350,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", (9 + legend_text_y_phone)*legend_scale_y + "em")
+      .attr("y", (9 + legend_text_y_phone) + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -362,8 +361,8 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .append("rect")
       .attr("id", "separate")
       .attr("class", "legend-icon")
-      .attr("x", 1 + legend_scale_x + "em")
-      .attr("y", 9.3*legend_scale_y + "em")
+      .attr("x", "1em")
+      .attr("y", "9.3em")
       .attr("width", 16)
       .attr("height", 16)
     chartTen.legend.append("text")
@@ -375,7 +374,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", (13+legend_text_y_phone*2.5)*legend_scale_y + "em")
+      .attr("y", (13+legend_text_y_phone*2.5) + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -386,8 +385,8 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .append("rect")
       .attr("id", "cross-tabbed")
       .attr("class", "legend-icon")
-      .attr("x", 1 + legend_scale_x + "em")
-      .attr("y", 12.5*legend_scale_y + "em")
+      .attr("x", "1em")
+      .attr("y",  "12.5em")
       .attr("width", 16)
       .attr("height", 16)
     chartTen.legend.append("text")
@@ -399,7 +398,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
         }
       })
       .attr("x", 3.5 + legend_scale_x*1.5 + "em")
-      .attr("y", (17.3 + (legend_text_y_phone*4))*legend_scale_y + "em")
+      .attr("y", (17.3 + (legend_text_y_phone*4))+ "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {

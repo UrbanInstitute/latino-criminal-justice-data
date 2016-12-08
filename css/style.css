@@ -423,7 +423,6 @@ h1 {
     vertical-align: middle;
     font-weight: 400;
     line-height: 1.4em;
-    float: left;
     clear: left;
     font-size: 1.9em;
     margin: .3em 0;
@@ -489,17 +488,13 @@ h1 {
 
 }
 
-.container {
-    margin-bottom: 50px;
-    padding:0px 30px;
- 
-}
+
 
 
 @media  (max-width: 768px) {
   .right-col { float: none; width: 100%; padding:0px;}
   .left-col { float: none; width: 100%; padding:0px;}
- .container {margin-bottom: 40px; padding:0px 30px;}
+ .container {margin-bottom: 40px;}
     h2{font-weight:700;}
 	.wrapper {width:100%;}
 	h1 { font-size:28px; text-align:left; }
@@ -534,9 +529,9 @@ h1 {
 /** FOOTER MOBILE STYLE **/
 
 @media (max-width: 1100px) {
-  .wrapper {width:100%; }
+  .wrapper {width:100%; padding-left: 15px; padding-right: 15px; }
   .content {width:auto; padding:0px 30px}
-  .container {width:auto; padding:0px 30px; margin-bottom: 40px;}
+  .container {width:auto; margin-bottom: 40px;}
   ul {margin-left: 15px;}
   li {padding-left:0px;}
     #left{ width:100%;}

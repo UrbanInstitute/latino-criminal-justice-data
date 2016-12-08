@@ -1,5 +1,10 @@
 //FOR WRAPPING TEXT IN LEGEND
+//THINGS TO DO: 
 
+//ALIGN DATA VIZ WITH TEXT
+//TITLE-OVERFLOWING
+//EXPAND LANGUAGE OPTIONS
+//JOHNS EDITS
 function wrapText(text, width) {
   text.each(function() {
     var text = d3.select(this),
@@ -79,7 +84,7 @@ if (IS_PHONE) {
       .translate([(width / 2.05), (height / 2.5)]);
 } else if (IS_MOBILE) {
   var projection = d3.geoEquirectangular()
-      .scale(4*$map.width())
+      .scale(4.5*width)
       .center([-96.03542,41.69553])
       .translate([(width / 2), (height / 2.5)]);
 } 
@@ -397,7 +402,6 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
 legend_scale_x = (IS_PHONE) || (IS_MOBILE) ? 0 : 1;
 legend_scale_y = (IS_PHONE) ? 1.8 : 1;
-legend_height_phone = (IS_PHONE) ? 1.2 : 1;
 legend_height_mobile = (IS_MOBILE) && !(IS_PHONE) ? .8 : 1;
 legend_mobile_scale_y = (IS_MOBILE) ? 2 : 1;
 legendSquareX = "1.6em"
@@ -410,7 +414,7 @@ legendTextX = "4.5em"
       .classed("map-legend", true)
       .append("svg")
       .attr("width", width)
-      .attr("height", (height/2)*legend_height_phone * legend_height_mobile);
+      .attr("height", (height/2) * legend_height_mobile);
 
   chartMap.legend = chartMap.legendSVG
       .append("g")

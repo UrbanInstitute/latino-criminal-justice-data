@@ -153,7 +153,7 @@ function drawFirstGraphic() {
 
     chart.group = chart.svg.append('g')
                   .attr("class", "g")
-                  .attr("transform", "translate(15, 12)")
+                  .attr("transform", "translate(5, " + (.05*height)+ ")")
     xLabel = chart.d3.select("#xlabel-div")
                   .append("svg")
                   .attr("width", width) 
@@ -165,13 +165,18 @@ function drawFirstGraphic() {
       .append('text')
         .attr("text-anchor", "start")
         .attr('class', 'xlabel')
-        .attr('x', '.6em')
+        .attr('x', '.2em')
         .attr('y', '2em')
 
         .text(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
         .style('fill', "#000000")
-    //  xLabel.selectAll('.xlabel').call(wrapText, wrapText_mobile)
-
+     if (IS_PHONE) {
+      console.log('hi')
+            chart.d3.select('.xLabel').call(wrapText,100)
+            } else {
+            chart.d3.select('.xLabel').call(wrapText,1000)
+            }
+///NOT WORKING
       //ADDING GROUPS
 
     
@@ -398,11 +403,11 @@ function drawFirstGraphic() {
     })
     .attr("transform", function(d, i){ 
       if (i == 5) {
-        return "translate(" + (i*label_width_scale + label_width_scale/3)+" , " + (.94*height)+ ")"; // + label_5_x_phone + label_5_x_mobile)+" , " + label_height*label_y_phone*label_y_mobile  +")"; //label 5 needs to  be aligned under one cell
+        return "translate(" + (i*label_width_scale + label_width_scale/3)+" , " + (.98*height)+ ")"; // + label_5_x_phone + label_5_x_mobile)+" , " + label_height*label_y_phone*label_y_mobile  +")"; //label 5 needs to  be aligned under one cell
     //   return "translate(" + (i*100 + 30) +" , " + label_height +")"; //label 5 needs to  be aligned under one cell
     } else { 
     
-        return "translate(" + (i*label_width_scale + (width/11.2)) +" ," + (.94*height) +")"
+        return "translate(" + (i*label_width_scale + (width/13)) +" ," + (.98*height) +")"
       }
     })
    
@@ -433,10 +438,9 @@ function drawFirstGraphic() {
 
 
   tooltipLeft_phone_width = (IS_PHONE) ? 1.5 : 1;
-   tooltipRight_phone_height = (IS_PHONE) ? .85 : 1;
    tooltipRight_mobile_height = (IS_MOBILE&& !IS_PHONE) ? .72 : 1;
    tooltipLeft_mobile_height = (IS_MOBILE&& !IS_PHONE)? .8: 1;
-   tooltipLeft_phone_height = (IS_PHONE)? .4: 1;
+   tooltipLeft_phone_height = (IS_PHONE)? .5: 1;
 
   // chart.tooltip = d3.select("#tooltip")
   //   .append("svg")
@@ -455,7 +459,7 @@ function drawFirstGraphic() {
   chart.tooltipRight = d3.select(".tooltip-div-right")
     .append("svg")
     .attr("width", width/1.9)
-    .attr("height",(height/2.1)*tooltipRight_mobile_height*tooltipRight_phone_height)
+    .attr("height",(height/2.1)*tooltipRight_mobile_height)
   chart.tooltipRight = chart.tooltipRight.append("g")
     .attr("transform", "translate(2, " + 0 +")");
   
@@ -498,7 +502,7 @@ function drawFirstGraphic() {
     .attr("class", "tooltip-header")
     .attr("dy", 0)
     .attr("y", "1em")
-    .attr("x", ".5em")
+    .attr("x", ".8em")
     .attr("text-anchor", "start")
     .text(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][1][1])
   chart.tooltipLeft
@@ -506,7 +510,7 @@ function drawFirstGraphic() {
     .attr("class", "tooltip-header")
     .attr("dy", 0)
     .attr("y", "1em")
-    .attr("x", ".5em")
+    .attr("x", ".8em")
     .attr("text-anchor", "start")
     .text(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][0][1]);
 
@@ -524,7 +528,7 @@ function drawFirstGraphic() {
       })
       .attr("dy", 0)
       .attr("y", "2em")
-      .attr("x", ".2em")
+      .attr("x", ".45em")
         .attr("text-anchor", "start")
         .text(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE])
 

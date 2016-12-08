@@ -238,6 +238,11 @@ hr {
 
 /*******FIRST GRAPHIC********/
 
+.xlabel {
+  font-size: 18px;
+}
+
+
 .g {
   pointer-events: all;
 }
@@ -373,6 +378,7 @@ hr {
   text-align: left;
   margin-left: .9em;
   margin-top: .8em;
+  margin-right: .5em;
 }
 
 /*MAP LEGEND*/
@@ -736,7 +742,7 @@ select#measures-menu{
         width: 70% !important;
       }
       #dropdown-side-label {
-        width: 12% !important;
+        width: 15% !important;
       }
 
       .ui-widget {
@@ -917,7 +923,7 @@ select#measures-menu{
     }
 
     .xlabel {
-      font-size: .93em;
+      font-size: .95em;
     }
 
 

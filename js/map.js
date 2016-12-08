@@ -1,10 +1,9 @@
 //FOR WRAPPING TEXT IN LEGEND
 //THINGS TO DO: 
 
-//ALIGN DATA VIZ WITH TEXT
 //TITLE-OVERFLOWING
 //EXPAND LANGUAGE OPTIONS
-//JOHNS EDITS
+
 function wrapText(text, width) {
   text.each(function() {
     var text = d3.select(this),
@@ -404,8 +403,8 @@ legend_scale_x = (IS_PHONE) || (IS_MOBILE) ? 0 : 1;
 legend_scale_y = (IS_PHONE) ? 1.8 : 1;
 legend_height_mobile = (IS_MOBILE) && !(IS_PHONE) ? .8 : 1;
 legend_mobile_scale_y = (IS_MOBILE) ? 2 : 1;
-legendSquareX = "1.6em"
-legendTextX = "4.5em"
+legendSquareX = "1em"
+legendTextX = "4em"
 
 
 
@@ -414,11 +413,16 @@ legendTextX = "4.5em"
       .classed("map-legend", true)
       .append("svg")
       .attr("width", width)
-      .attr("height", (height/2) * legend_height_mobile);
+      .attr("height", (height/1.8) * legend_height_mobile);
 
   chartMap.legend = chartMap.legendSVG
       .append("g")
-      .attr("transform", "translate(10,0)");
+      .attr("transform", function(){
+        if (IS_PHONE) {
+          return  "translate(-15 ,0)"
+        }  else 
+          return "translate(0 ,0)"
+      })
 
 /*FIRST*/
     chartMap.legend

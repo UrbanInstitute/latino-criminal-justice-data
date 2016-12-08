@@ -79,7 +79,7 @@ var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - ma
 
 if (IS_PHONE) {
   var projection = d3.geoEquirectangular()
-      .scale(4*$map.width())
+      .scale(4.5*width)
       .center([-96.03542,41.69553])
       .translate([(width / 2.05), (height / 2.5)]);
 } else if (IS_MOBILE) {
@@ -91,7 +91,7 @@ if (IS_PHONE) {
 
 else {
       var projection = d3.geoEquirectangular()
-      .scale(4*$map.width())
+      .scale(4.1*width)
       .center([-96.03542,41.69553])
       .translate([(width / 2.1), (height / 2.3)]);
 }

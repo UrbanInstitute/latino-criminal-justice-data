@@ -140,7 +140,7 @@ hr {
 }
 
 .switch.large {
-    background-image: url(../images/off-on.png);
+    background-image: url(../images/yes-no-english.png);
     background-color: #696969;
     background-repeat: no-repeat;
     /*width: 55px;*/
@@ -369,10 +369,10 @@ hr {
 }
 #dropdown-side-label{
   float: left;
-  width: 15%;
-  text-align: right;
+  width: 10%;
+  text-align: left;
+  margin-left: .9em;
   margin-top: .8em;
-  margin-right: 1em;
 }
 
 /*MAP LEGEND*/
@@ -382,9 +382,7 @@ hr {
 
 }
 
-#toggle2{
-  padding-left: 2.8em;
-}
+
 
 svg.legend-text-div {
   position: relative;
@@ -452,7 +450,6 @@ text.grid-legend-text-mobile {
   width: 20em;
   display: inline;
   float: left;
-  height: 2.5em;
   border: black;
 
 }
@@ -739,7 +736,7 @@ select#measures-menu{
         width: 70% !important;
       }
       #dropdown-side-label {
-        width: 20% !important;
+        width: 12% !important;
       }
 
       .ui-widget {
@@ -839,7 +836,7 @@ select#measures-menu{
   }
 
   .xlabel {
-    font-size: 16px;
+    font-size: 1em !important;
     font-weight: 700;
     word-break:break-all;
   }
@@ -883,6 +880,11 @@ select#measures-menu{
 
    .toggle_text_mobile {
     width: 45%;
+    padding-left: 0em !important;
+   }
+  .toggle_text{
+    width: 45%;
+    padding-left: 0em !important;
    }
   #grid {
         margin-top: 0em !important;
@@ -899,6 +901,10 @@ select#measures-menu{
   width: 35%;
 
 }
+#dropdown-side-label {
+  margin-left: 0em;
+  margin-right: .5em;
+}
 
 
 
@@ -908,6 +914,10 @@ select#measures-menu{
   @media (max-width: 990px) {
     #is990 {
       display: block;
+    }
+
+    .xlabel {
+      font-size: .93em;
     }
 
 

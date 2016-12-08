@@ -717,6 +717,7 @@ button.ui-button::-moz-focus-inner {
 	font-family: Lato;
 	margin-top: 4px;
 	font-size: 22px;
+	vertical-align: middle;
 }
 .ui-selectmenu-button.ui-button {
 	border: black;

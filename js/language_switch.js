@@ -324,8 +324,8 @@ $(".language_option")
 .on("click", function() {
     GLOBAL_LANGUAGE = d3.select(this).select("a").attr("id");
 
-
   //MAIN TEXT CONTAINERS//
+  d3.selectAll('.switch.large').style('background-image', 'url(images/yes-no-' + GLOBAL_LANGUAGE + '.png)')//('xlink:href', 'images/yes-no-' + [GLOBAL_LANGUAGE] + '.png')//('background-image', 'url(..images/yes-no-' + [GLOBAL_LANGUAGE] + '.png)')
   $('#heroimage').find('h1').html(TITLE[GLOBAL_LANGUAGE])
   $('#language_option_header').html(LANGUAGE_OPTIONS_HEADER[GLOBAL_LANGUAGE])
   $ ('#english').html(LANGUAGE_ENGLISH[GLOBAL_LANGUAGE])
@@ -367,7 +367,10 @@ $(".language_option")
   }
 
   for (var i=0; i<MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++) {
-    $('.tooltip-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
+        if ($('.tooltip-text').eq(i).text() == (MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])) {
+    } else {
+      $('.tooltip-text').eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
+    }
   }
   //SECOND DATA VIZ    ******DROPDOWN TEXT NOT WORKING EVERYTIME
   var measures = $('.measure_type')

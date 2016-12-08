@@ -123,7 +123,6 @@ var rating = "_rating"
 
 cell_scale_phone = (IS_PHONE) ? .95 : 1;
 cell_scale_mobile = (IS_MOBILE) && !(IS_PHONE) ? 1.2 : 1;
-cell_scale_categories = (IS_MOBILE) ? 45. : 0;
 width_phone = (IS_MOBILE)? 1.3 : 1;
 row_x_phone = (IS_PHONE)? 25.5: 1;
 row_x_mobile = (IS_MOBILE) && !(IS_PHONE) ? 60: 1;
@@ -158,7 +157,7 @@ filteredData = filteredData_unsorted.sort(function(a,b) {
     .attr("class", "row")
     .attr("width", 500)
     .attr("height", cellWidth + cellGap)
-    .attr("transform", function(d, i){ return "translate(" + row_x_phone*row_x_mobile + " ," + (i*(cellWidth + cellGap))*cell_scale_phone*cell_scale_mobile + ")"})
+    .attr("transform", function(d, i){ return "translate(" + 2 + " ," + (i*(cellWidth + cellGap))*cell_scale_phone*cell_scale_mobile + ")"})
   
   for(var i = 0; i < gridColumns.length; i++){
     var gridColumn = gridColumns[i]; 
@@ -183,7 +182,7 @@ filteredData = filteredData_unsorted.sort(function(a,b) {
 
 
 
-
+cell_mobile_start = (IS_MOBILE) ? .5 : 1
 
 label_side_phone = (IS_PHONE) ? -25.2 : 1;
 
@@ -222,7 +221,7 @@ label_side_phone = (IS_PHONE) ? -25.2 : 1;
     last_row.selectAll("rect").each(function(d, i) {
       last_row.append("text")
       .attr("class", "grid-cat-labels " + MEASURES_GRID[GLOBAL_LANGUAGE][i][0])
-      .attr("transform", "translate(" + ((i*(cellWidth + cellGap)*cell_scale_phone*cell_scale_mobile)+ 60 - cell_scale_categories)+ ","+.1*height+") rotate(-45)" )
+      .attr("transform", "translate(" + (i*(cellWidth + cellGap) + 70*cell_mobile_start)*cell_scale_phone*cell_scale_mobile + ","+.1*height+") rotate(-45)" )
       .attr("text-anchor", "end")
 
       .text(function () { 

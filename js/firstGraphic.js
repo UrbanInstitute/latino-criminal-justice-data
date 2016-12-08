@@ -156,12 +156,7 @@ function drawFirstGraphic() {
                   .attr("transform", "translate(15, 12)")
     xLabel = chart.d3.select("#xlabel-div")
                   .append("svg")
-                  .attr("width", function(){
-                      if ((IS_PHONE) || (IS_MOBILE)) {
-                        return width + phone_width + mobile_width
-                      } else {
-                        return width*1.1}
-                  }) 
+                  .attr("width", width) 
                   .attr("height", width/10)
 
 
@@ -171,16 +166,8 @@ function drawFirstGraphic() {
         .attr("text-anchor", "start")
         .attr('class', 'xlabel')
         .attr('x', '.6em')
-        .attr('y', function() {
-          if (IS_PHONE) {
-            return '1em'
-          } else { 
-            if (IS_MOBILE) {
-              return '1em'
-            }
-            return '2.5em'
-          }
-        })
+        .attr('y', '2em')
+
         .text(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
         .style('fill', "#000000")
     //  xLabel.selectAll('.xlabel').call(wrapText, wrapText_mobile)
@@ -397,7 +384,7 @@ function drawFirstGraphic() {
    var CATEGORY_LABELS = ["0", "1", "2", "3", "4", "5"]
 
 //ADDING COLUMN LABELS
-  var label_width_scale = .1743*width
+  var label_width_scale = .1775*width
 
    chart.bottomRow = chart.svg.selectAll(".bottomRow")
     .data(CATEGORY_LABELS)
@@ -411,11 +398,11 @@ function drawFirstGraphic() {
     })
     .attr("transform", function(d, i){ 
       if (i == 5) {
-        return "translate(" + (i*label_width_scale + label_width_scale/3)+" , " + (.97*height)+ ")"; // + label_5_x_phone + label_5_x_mobile)+" , " + label_height*label_y_phone*label_y_mobile  +")"; //label 5 needs to  be aligned under one cell
+        return "translate(" + (i*label_width_scale + label_width_scale/3)+" , " + (.94*height)+ ")"; // + label_5_x_phone + label_5_x_mobile)+" , " + label_height*label_y_phone*label_y_mobile  +")"; //label 5 needs to  be aligned under one cell
     //   return "translate(" + (i*100 + 30) +" , " + label_height +")"; //label 5 needs to  be aligned under one cell
     } else { 
     
-        return "translate(" + (i*label_width_scale + (width/10.7)) +" ," + (.97*height) +")"
+        return "translate(" + (i*label_width_scale + (width/11.2)) +" ," + (.94*height) +")"
       }
     })
    
@@ -648,9 +635,9 @@ function tooltip(mystate) {
         .duration(2000)
           .attr("x", function() {
             if (i%2 !== 0) {
-              return (squareDim + j*(width/6)) 
+              return (squareDim + j*columnGap) 
             } else {
-              return (j*(width/6)) 
+              return (j*columnGap) 
             }
           })
           .attr("y", function() {
@@ -663,29 +650,29 @@ function tooltip(mystate) {
             }
           }) //so that all columns start from the bottom up
         
-        if(IS_PHONE) {
-          chart.group.select(".cell-text-mobile." + data[i].properties.abbr)
-          .transition()
-          .duration(2000)
-          .attr("x", function() {
-            if (i%2 !== 0) {
-              return (squareDim + j*columnGap) + squareDim*.45;
-          } else {
-            return (j*columnGap) + squareDim*.45;
-          }
-          })
-          .attr("y", function() {
-            if (i%2 == 0){
-              return (yBase - (i/2))
-            } else if (i == 1) {
-              return yBase
-            } else{
-              return (yBase - (((i-1)/2)*squareDim))
+        // if(IS_PHONE) {
+        //   chart.group.select(".cell-text-mobile." + data[i].properties.abbr)
+        //   .transition()
+        //   .duration(2000)
+        //   .attr("x", function() {
+        //     if (i%2 !== 0) {
+        //       return (squareDim + j*columnGap) + squareDim*.45;
+        //   } else {
+        //     return (j*columnGap) + squareDim*.45;
+        //   }
+        //   })
+        //   .attr("y", function() {
+        //     if (i%2 == 0){
+        //       return (yBase - (i/2))
+        //     } else if (i == 1) {
+        //       return yBase
+        //     } else{
+        //       return (yBase - (((i-1)/2)*squareDim))
 
-            }
-           }) //so that all columns start from the bottom up  
+        //     }
+        //    }) //so that all columns start from the bottom up  
 
-        } else {
+        // } else {
                   chart.group.select(".cell-text." + data[i].properties.abbr)
           .transition()
           .duration(2000)
@@ -698,15 +685,15 @@ function tooltip(mystate) {
         })
           .attr("y", function() {
             if (i%2 == 0){
-              return (yBase - ((i/2)*squareDim))
+              return yBase - (i/2)*squareDim + squareDim*.55
             } else if (i == 1) {
-              return yBase
+              return yBase + squareDim *.55
             } else{
-              return (yBase - (((i-1)/2)*squareDim))
+              return (yBase - (((i-1)/2)*squareDim)) + squareDim*.55;
             }
            }) //so that all columns start from the bottom up  
 
-          }
+          // }
 
 
         

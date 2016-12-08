@@ -722,6 +722,8 @@ button.ui-button::-moz-focus-inner {
 .ui-selectmenu-button.ui-button {
 	border: black;
 	text-align: left;
+	padding-top: .5em;
+	padding-bottom: .5em;
 	white-space: nowrap;
 	width: 14em;
 	height: 45px;

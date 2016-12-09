@@ -329,6 +329,33 @@ ul{
     }
 }
 
+@media(max-width:480px) {
+    #header-pinned .title{
+        font-size: 15px !important;
+		width:350px;
+	 line-height: 20px;
+    white-space: normal;
+    overflow:visible;
+	margin-top:3px;
+	margin-bottom:3px;
+    }
+}
+
+@media(max-width:320px) {
+    #header-pinned .title{
+        font-size: 12px !important;
+        margin-left: 55px !important;
+		width:200px;
+	 line-height: 20px;
+    white-space: normal;
+    overflow:visible;
+	margin-top:3px;
+	margin-bottom:3px;
+    }
+}
+
+
+
 .header-links a {
     color: #fff;
 }

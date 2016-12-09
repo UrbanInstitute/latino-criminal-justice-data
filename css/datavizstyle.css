@@ -361,7 +361,6 @@ hr {
 
 #dropdown {
   position: relative;
-  width: 80%;
   float: left;
   z-index: 10;
   height: 100%;
@@ -380,8 +379,8 @@ hr {
   text-align: left;
   margin-left: .9em;
   margin-top: .5em;
-  margin-bottom: .5em;
-  margin-right: .3em;
+  margin-bottom: .5em;  
+  margin-right: 1em;
 }
 
 #dropdown-side-label-text {
@@ -982,8 +981,7 @@ select#measures-menu{
 }
 #dropdown-side-label {
   margin-left: 0em;
-  margin-right: .5em;
-  width: 11%;
+
 }
 
 

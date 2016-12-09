@@ -52,11 +52,11 @@ var LANGUAGE_OPTIONS_HEADER= {
 
 var LANGUAGE_ENGLISH= {
   english: [ "English"],
-  spanish: ["Inglés"]
+  spanish: ["English"]
 }
 
 var LANGUAGE_SPANISH= {
-  english: [ "Spanish"],
+  english: [ "Español"],
   spanish: ["Español"]
 }
 
@@ -331,6 +331,7 @@ var PROJECT_CREDITS = {
 
 //WHEN PAGE LOADS, USE ENGLISH TEXT
 $(window).load(function() { 
+  d3.selectAll('.switch.large').style('background-image', 'url(images/yes-no-' + GLOBAL_LANGUAGE + '.png)')//('xlink:href', 'images/yes-no-' + [GLOBAL_LANGUAGE] + '.png')//('background-image', 'url(..images/yes-no-' + [GLOBAL_LANGUAGE] + '.png)')
   $('#language_option_header').html(LANGUAGE_OPTIONS_HEADER[GLOBAL_LANGUAGE])
   $('.toggle_text').html(TOGGLE_TEXT[GLOBAL_LANGUAGE])
   $('#first-section-text').html(FIRSTSECTION[GLOBAL_LANGUAGE])
@@ -346,6 +347,8 @@ $(window).load(function() {
   $('#conclusion-text').html(CONCLUSION[GLOBAL_LANGUAGE])
   $('#left').html(FOOTER_TEXT[GLOBAL_LANGUAGE])
   $('#right').html(PROJECT_CREDITS[GLOBAL_LANGUAGE])
+  $('.tooltip-text-state').html(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE])
+
 
 
 

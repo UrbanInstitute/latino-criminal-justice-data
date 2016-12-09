@@ -35,6 +35,10 @@ li.li-list {
 
 }
 
+.container {
+  padding: 0px 30px;
+}
+
 
 
 .last-header {
@@ -373,11 +377,12 @@ hr {
 }
 #dropdown-side-label{
   float: left;
-  width: 10%;
+  width: 15%;
   text-align: left;
   margin-left: .9em;
-  margin-top: .8em;
-  margin-right: .5em;
+  margin-top: .5em;
+  margin-bottom: .5em;
+  margin-right: .3em;
 }
 
 /*MAP LEGEND*/
@@ -764,7 +769,7 @@ select#measures-menu{
       }
 
       #measures-button {
-        width: 17em !important;
+        width: 20em !important;
       }
       /*GRID*/
         #legend3-nonmobile {
@@ -858,15 +863,14 @@ select#measures-menu{
         font-size: 30px;
         line-height: 36px;
       }
-    .wrapper {
-    padding-right: 15px;
-    padding-left: 15px;
+    .container{
+      padding: 0px 15px;
     }
     .graphic-container {
       padding-left: 0% !important;
     }
     #measures-button {
-        width: 14em !important;
+        width: 14em;
       }
 
       .ui-selectmenu-text {
@@ -926,7 +930,7 @@ select#measures-menu{
 
 
   #measures-button {
-        width: 18em !important;
+        width: 18em;
       }
   }
 

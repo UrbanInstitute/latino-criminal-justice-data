@@ -44,6 +44,10 @@ var LINKBACKTEXT = {
 
   }
 }
+var METATEXT = {
+  english: "No one knows exactly how many Latinos are arrested each year or how many are in prison, on probation, or on parole.",
+  spanish: "fake text"
+}
 
 var BUTTON_NAMES= {
     english: {
@@ -366,8 +370,9 @@ $(window).load(function() {
   $('title').html(LINKBACKTEXT[GLOBAL_LANGUAGE]["title"])
   var fig3togglemargin = (GLOBAL_LANGUAGE == "english") ? "-40px" : "0px";
   d3.select(".fig3-toggle").style("margin-top", fig3togglemargin)
-
-
+  d3.select("#header-pinned .share-icons." + GLOBAL_LANGUAGE).style("display","block")
+  d3.select("#header-pinned .share-icons." + other_lang).style("display","none")
+  d3.select("meta[name=description]").attr("content", METATEXT[GLOBAL_LANGUAGE])
 
 })
 
@@ -387,7 +392,7 @@ $(".language_option")
   $('title').html(LINKBACKTEXT[GLOBAL_LANGUAGE]["title"])
   var fig3togglemargin = (GLOBAL_LANGUAGE == "english") ? "-40px" : "0px";
   d3.select(".fig3-toggle").style("margin-top", fig3togglemargin)
-  
+
   $('#heroimage').find('h1').html(TITLE[GLOBAL_LANGUAGE])
   $('#language_option_header').html(LANGUAGE_OPTIONS_HEADER[GLOBAL_LANGUAGE])
   $ ('#english').html(LANGUAGE_ENGLISH[GLOBAL_LANGUAGE])
@@ -407,8 +412,9 @@ $(".language_option")
   $('#conclusion-text').html(CONCLUSION[GLOBAL_LANGUAGE])
   $('#left').html(FOOTER_TEXT[GLOBAL_LANGUAGE])
   $('#right').html(PROJECT_CREDITS[GLOBAL_LANGUAGE])
-
-
+  d3.select("#header-pinned .share-icons." + GLOBAL_LANGUAGE).style("display","block")
+  d3.select("#header-pinned .share-icons." + other_lang).style("display","none")
+  d3.select("meta[name=description]").attr("content", METATEXT[GLOBAL_LANGUAGE])
   //ALL DATA VIZ TEXT
   $('.toggle_text').html(TOGGLE_TEXT[GLOBAL_LANGUAGE])
 

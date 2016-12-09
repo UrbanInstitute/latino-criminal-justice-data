@@ -92,6 +92,11 @@ body{
     width: 60px;
     position: absolute;
     right: 0;
+    display: block;
+}
+#header-pinned .share-icons.spanish {
+    /*display: none;*/
+    display: none; 
 }
 
 #header-pinned .share-icons .shareThisP {

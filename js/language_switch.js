@@ -334,7 +334,9 @@ $(window).load(function() {
 //WHEN CLICKING ON A LANGUAGE OPTION
 $(".language_option")
 .on("click", function() {
-    GLOBAL_LANGUAGE = d3.select(this).select("a").attr("id");
+    GLOBAL_LANGUAGE = d3.select(this).select("span").attr("id");
+
+  history.pushState({}, "", "?language=" + GLOBAL_LANGUAGE);
 
   //MAIN TEXT CONTAINERS//
   d3.selectAll('.switch.large').style('background-image', 'url(images/yes-no-' + GLOBAL_LANGUAGE + '.png)')//('xlink:href', 'images/yes-no-' + [GLOBAL_LANGUAGE] + '.png')//('background-image', 'url(..images/yes-no-' + [GLOBAL_LANGUAGE] + '.png)')

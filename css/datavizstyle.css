@@ -715,7 +715,12 @@ select#measures-menu{
 
 /*ADJUSTING FOR SCREEN WIDTHS */
 
-
+  .language_option span{
+    color: #1696d2;
+    line-height: 14px;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
 @media (max-width: 479px) {
 
@@ -753,6 +758,7 @@ select#measures-menu{
     display: inline-block !important;
     width: 20%;
   }
+
   #spanish {
     padding: 5px 5px 5px 15px !important;
   }

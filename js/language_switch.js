@@ -285,7 +285,7 @@ var FOOTER_TEXT = {
 var PROJECT_CREDITS = {
   english: ["<h2>Project credits</h2><div class=\"urbanstatement\">As an organization, the Urban Institute does not take positions on issues, but it does empower and support its experts in sharing their own evidence-based views and policy recommendations that have been shaped by scholarship.</div>\
                     <h3 class=\"job\">Research</h3>\
-                    <a href=\"http:\/\/www.urban.org\/author\/ryan-king\" target=\"_blank\">Ryan King</a>, <a href=\"http:\/\/www.urban.org\/author\/sarah-eppler-epstein\" target=\"_blank\">Sarah Eppler-Epstein</a> and <a href=\"http:\/\/www.urban.org\/author\/annie-gurvis\" target=\"_blank\">Annie Gurvis</a>\
+                    <a href=\"http:\/\/www.urban.org\/author\/sarah-eppler-epstein\" target=\"_blank\">Sarah Eppler-Epstein</a>, <a href=\"http:\/\/www.urban.org\/author\/annie-gurvis\" target=\"_blank\">Annie Gurvis</a> and <a href=\"http:\/\/www.urban.org\/author\/ryan-king\" target=\"_blank\">Ryan King</a>\
                     <h3 class=\"job\">Design and Development</h3>\
                     <a href=\"http:\/\/www.urban.org\/author\/john-wehmann\" target=\"_blank\">John Wehmann</a> and <a href=\"http:\/\/www.urban.org\/author\/vivian-hou\" target=\"_blank\">Vivian Hou</a>\
                     <h3 class=\"job\">Editorial</h3>\
@@ -295,7 +295,7 @@ var PROJECT_CREDITS = {
                     <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/race_ethnicity\" target=\"_blank\">View this project on Github.</a></div>"],
   spanish: ["<h2>Créditos del proyecto</h2><div class=\"urbanstatement\">Como organización, el Urban Institute no toma posición en los temas, pero sí faculta y apoya a sus expertos para que compartan sus propias opiniones y recomendaciones sobre políticas, las cuales se basan en la evidencia y se enmarcan en trabajos académicos.</div>\
                     <h3 class=\"job\">Investigación</h3>\
-                    <a href=\"http:\/\/www.urban.org\/author\/ryan-king\" target=\"_blank\">Ryan King</a>, <a href=\"http:\/\/www.urban.org\/author\/sarah-eppler-epstein\" target=\"_blank\">Sarah Eppler-Epstein</a> y <a href=\"http:\/\/www.urban.org\/author\/annie-gurvis\" target=\"_blank\">Annie Gurvis</a>\
+                    <a href=\"http:\/\/www.urban.org\/author\/sarah-eppler-epstein\" target=\"_blank\">Sarah Eppler-Epstein</a>, <a href=\"http:\/\/www.urban.org\/author\/annie-gurvis\" target=\"_blank\">Annie Gurvis</a> y <a href=\"http:\/\/www.urban.org\/author\/ryan-king\" target=\"_blank\">Ryan King</a>\
                     <h3 class=\"job\">Diseño y desarrollo</h3>\
                     <a href=\"http:\/\/www.urban.org\/author\/john-wehmann\" target=\"_blank\">John Wehmann</a> y <a href=\"http:\/\/www.urban.org\/author\/vivian-hou\" target=\"_blank\">Vivian Hou</a>\
                     <h3 class=\"job\">Editorial</h3>\

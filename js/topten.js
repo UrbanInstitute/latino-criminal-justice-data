@@ -43,7 +43,7 @@ var color = d3.scaleThreshold()
 var $grid = $("#grid");
 var aspect_width = 23;
 var aspect_height = 40;
-var margin = { top: 0, right: 0, bottom: 10, left: 32 };
+var margin = { top: 0, right: 0, bottom: -22, left: 32 };
 var width= gridWidth
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
 

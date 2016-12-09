@@ -338,11 +338,13 @@ var PROJECT_CREDITS = {
 //    d3.select(".all_button").classed(".step1_button", "true")
 //   }
 // })
-
+var wrapWidth = (IS_PHONE) ? 1000 : 190;
 
 //WHEN PAGE LOADS, USE ENGLISH TEXT
 $(window).load(function() { 
-  d3.selectAll('.switch.large').style('background-image', 'url(images/yes-no-' + GLOBAL_LANGUAGE + '.png)')//('xlink:href', 'images/yes-no-' + [GLOBAL_LANGUAGE] + '.png')//('background-image', 'url(..images/yes-no-' + [GLOBAL_LANGUAGE] + '.png)')
+  var other_lang = (GLOBAL_LANGUAGE == "english") ? "spanish" : "english"
+  d3.selectAll('.switch.large').style('background-image', 'url(images/yes-no-' + GLOBAL_LANGUAGE + '.png)').classed(GLOBAL_LANGUAGE,true).classed(other_lang, false)
+
   $('#language_option_header').html(LANGUAGE_OPTIONS_HEADER[GLOBAL_LANGUAGE])
   $('.toggle_text').html(TOGGLE_TEXT[GLOBAL_LANGUAGE])
   $('#first-section-text').html(FIRSTSECTION[GLOBAL_LANGUAGE])
@@ -360,8 +362,10 @@ $(window).load(function() {
   $('#right').html(PROJECT_CREDITS[GLOBAL_LANGUAGE])
   $(".linkback-home").html(LINKBACKTEXT[GLOBAL_LANGUAGE]["home"])
   $(".linkback-title").html(LINKBACKTEXT[GLOBAL_LANGUAGE]["title"])
-  $('.tooltip-text-state').html(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE])
-
+  d3.select('.tooltip-text-state').html(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE]).call(wrapText, wrapWidth)
+  $('title').html(LINKBACKTEXT[GLOBAL_LANGUAGE]["title"])
+  var fig3togglemargin = (GLOBAL_LANGUAGE == "english") ? "-40px" : "0px";
+  d3.select(".fig3-toggle").style("margin-top", fig3togglemargin)
 
 
 
@@ -372,13 +376,18 @@ $(window).load(function() {
 $(".language_option")
 .on("click", function() {
     GLOBAL_LANGUAGE = d3.select(this).select("span").attr("id");
+  var other_lang = (GLOBAL_LANGUAGE == "english") ? "spanish" : "english"
 
   history.pushState({}, "", "?language=" + GLOBAL_LANGUAGE);
 
   //MAIN TEXT CONTAINERS//
-  d3.selectAll('.switch.large').style('background-image', 'url(images/yes-no-' + GLOBAL_LANGUAGE + '.png)')//('xlink:href', 'images/yes-no-' + [GLOBAL_LANGUAGE] + '.png')//('background-image', 'url(..images/yes-no-' + [GLOBAL_LANGUAGE] + '.png)')
+  d3.selectAll('.switch.large').style('background-image', 'url(images/yes-no-' + GLOBAL_LANGUAGE + '.png)').classed(GLOBAL_LANGUAGE,true).classed(other_lang, false)
   $(".linkback-home").html(LINKBACKTEXT[GLOBAL_LANGUAGE]["home"])
   $(".linkback-title").html(LINKBACKTEXT[GLOBAL_LANGUAGE]["title"])
+  $('title').html(LINKBACKTEXT[GLOBAL_LANGUAGE]["title"])
+  var fig3togglemargin = (GLOBAL_LANGUAGE == "english") ? "-40px" : "0px";
+  d3.select(".fig3-toggle").style("margin-top", fig3togglemargin)
+  
   $('#heroimage').find('h1').html(TITLE[GLOBAL_LANGUAGE])
   $('#language_option_header').html(LANGUAGE_OPTIONS_HEADER[GLOBAL_LANGUAGE])
   $ ('#english').html(LANGUAGE_ENGLISH[GLOBAL_LANGUAGE])
@@ -405,7 +414,7 @@ $(".language_option")
 
   //FIRST DATA VIZ TEXT
   $('.xlabel').html(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
-  $('.tooltip-text-state').html(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE])
+  d3.select('.tooltip-text-state').html(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE]).call(wrapText, wrapWidth);
   var tooltip_header = $('.tooltip-header')
   for (var i=0; i<tooltip_header.length; i++) {
       tooltip_header.eq(i).data(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][i][1]), tooltip_header.eq(i).text();

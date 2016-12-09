@@ -182,6 +182,17 @@ hr {
     background-color: #1696d2;
 }
 
+.switch.large.spanish{
+  width: 73px;
+}
+.switch.large.off.spanish {
+    background-position: -71px 0px;
+}
+
+.switch.large.on.spanish {
+    background-position: -20px 0px;
+}
+
 
 
 
@@ -380,7 +391,7 @@ hr {
   margin-left: .9em;
   margin-top: .5em;
   margin-bottom: .5em;  
-  margin-right: 1em;
+  margin-right: 20px;
 }
 
 #dropdown-side-label-text {

@@ -318,8 +318,8 @@ function drawFirstGraphic() {
           d3.selectAll(".tooltip-text-state-mobile").remove()
           tooltip(d3.select("#firstGraphic .selected").datum())
         }else{
-          d3.selectAll(".tooltip-text-state").text(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE])
-          d3.selectAll(".tooltip-text-state-mobile").text(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE])
+          d3.selectAll(".tooltip-text-state").text(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE]).call(wrapText, wrapWidth)
+          d3.selectAll(".tooltip-text-state-mobile").text(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE]).call(wrapText, wrapWidth)
           d3.selectAll("#firstGraphic .selected-text").classed("selected-text", false).classed("deselected-text", true)
 
           d3.selectAll("image.checkbox")
@@ -546,6 +546,8 @@ function drawFirstGraphic() {
   //   .attr("height",function(){
   //     return Math.abs(d3.select(".tooltip-header").node().getBoundingClientRect().top - d3.select(".tooltip-text.state").node().getBoundingClientRect().bottom)
   //   })
+  var wrapWidth = (IS_PHONE) ? 1000 : 190;
+
   chart.tooltipLeft
       .append("text")
       .attr("class", function() {
@@ -559,7 +561,7 @@ function drawFirstGraphic() {
       .attr("y", "2em")
       .attr("x", ".45em")
         .attr("text-anchor", "start")
-        .text(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE])
+        .text(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE]).call(wrapText, wrapWidth)
 
 
 chart.states = states

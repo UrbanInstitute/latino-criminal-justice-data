@@ -454,7 +454,7 @@ text.grid-legend-text-mobile {
 
 
 #measures-button {
-  width: 20em;
+  width: 18em;
   display: inline;
   float: left;
   border: black;
@@ -750,7 +750,10 @@ select#measures-menu{
   .ui-selectmenu-button.ui-button {
     background-size: 35px 45px !important;
   }
-
+  .map-legend svg {
+    height: 12em !important;
+  }
+}
 
 
  @media (max-width: 600px) {
@@ -817,6 +820,7 @@ select#measures-menu{
           float: left !important;
           margin-top: 5px !important;
           width: 90% !important;
+
         }
 
  
@@ -875,6 +879,13 @@ select#measures-menu{
   }
   .div-toggle-inline {
     margin-bottom: .5em;
+  }
+
+  #measures-button{
+  width: 16em;
+}
+  .map-legend svg {
+    height: 14em;
   }
   /*FIRST GRAPHIC*/
   #tooltip {

@@ -11,7 +11,16 @@ function drawTopten(){
   $("#legend3-mobile").empty();
   $("#legend3-nonmobile").empty();
 cellScale = (IS_MOBILE) && !(IS_PHONE)? .1 : .14
-var cellWidth= cellScale*$('#grid').width()
+gridWidthFunction = function() {
+  if ($('#grid').width() > 220) {
+  return $('#grid').width(); 
+} else {
+    return 220;
+  }
+}
+gridWidth = gridWidthFunction();
+
+var cellWidth= cellScale*gridWidth
 var cellGap = .17*cellWidth
 
 var options = {
@@ -33,7 +42,7 @@ var $grid = $("#grid");
 var aspect_width = 23;
 var aspect_height = 40;
 var margin = { top: 0, right: 0, bottom: 10, left: 32 };
-var width= ($grid.width())
+var width= gridWidth
 var height = Math.ceil((width * aspect_height) / aspect_width) - margin.top - margin.bottom; 
 
 var gridColumns = ["number_prison", "number_prison_ct", "arrests", "probation", "parole"]

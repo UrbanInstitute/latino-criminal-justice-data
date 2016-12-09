@@ -529,7 +529,7 @@ h1 {
 
 @media (max-width: 1100px) {
   .content {width:auto; padding:0px 30px}
-  .container {width:auto; margin-bottom: 60px;}
+  .container {width:auto;}
   ul {margin-left: 15px;}
   li {padding-left:0px;}
     #left{ width:100%;}

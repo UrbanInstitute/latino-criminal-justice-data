@@ -138,7 +138,7 @@ var frequency = "_frequency";
 
 //TOGGLES
 d3.select("#step2-regular").classed("on", true)
-d3.select("#mobile-text").text("")
+//d3.select("#mobile-text").text("")
 d3.select("#step2-regular")
   .on('click', function() {
       if(d3.select(this).classed("on")){

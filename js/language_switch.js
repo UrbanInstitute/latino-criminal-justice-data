@@ -306,14 +306,10 @@ $(window).load(function() {
   $('#header_text').html(HEADERTEXT[GLOBAL_LANGUAGE])
   $ ('#english').html(LANGUAGE_ENGLISH[GLOBAL_LANGUAGE])
   $('#spanish').html(LANGUAGE_SPANISH[GLOBAL_LANGUAGE])
-  if (IS_PHONE) {
-    $('.mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
-  } else {
-    $('.non-mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
-  }
+  $('.non-mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
   $('.ui-selectmenu-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][0][1])
   $('#second-header').html(SECOND_HEADER[GLOBAL_LANGUAGE])
-  $('#dropdown-side-label').html(SECONDSECTION_DROPDOWN_SIDE[GLOBAL_LANGUAGE])
+  $('#dropdown-side-label-text').html(SECONDSECTION_DROPDOWN_SIDE[GLOBAL_LANGUAGE])
   $('#third-section-text').html(THIRDSECTION[GLOBAL_LANGUAGE])
   $('#conclusion-text').html(CONCLUSION[GLOBAL_LANGUAGE])
   $('#left').html(FOOTER_TEXT[GLOBAL_LANGUAGE])
@@ -343,16 +339,11 @@ $(".language_option")
   }
   $('.ui-selectmenu-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][0][1])
   $('.xlabel').html(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
-
-  if (IS_PHONE) {
-    $('.mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
-  } else {
-    $('.non-mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
-  }
+  $('.non-mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
   $('#second-header').html(SECOND_HEADER[GLOBAL_LANGUAGE])
   $('#dropdown-side-label').html(SECONDSECTION_DROPDOWN_SIDE[GLOBAL_LANGUAGE])
   $('#third-section-text').html(THIRDSECTION[GLOBAL_LANGUAGE])
-  $('.grid-cat-labels').html(MEASURES_GRID[GLOBAL_LANGUAGE])
+  //$('.grid-cat-labels').html(MEASURES_GRID[GLOBAL_LANGUAGE])
   $('#conclusion-text').html(CONCLUSION[GLOBAL_LANGUAGE])
   $('#left').html(FOOTER_TEXT[GLOBAL_LANGUAGE])
   $('#right').html(PROJECT_CREDITS[GLOBAL_LANGUAGE])
@@ -403,6 +394,8 @@ $(".language_option")
 
   //THIRD DATA VIZ
 
+
+
   var grid_legend_text = ((IS_MOBILE) || (IS_PHONE))? $('.grid-legend-text-mobile') : $('.grid-legend-text')
   for (var i=0; i<grid_legend_text.length; i++){
     if (grid_legend_text.eq(i).text() == (DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])) {
@@ -412,6 +405,14 @@ $(".language_option")
     }
   }
   d3.selectAll(grid_legend_text).call(wrapText,80)
+
+  for (var i=0; i< $('.grid-cat-labels').length; i++){
+    if ($('.grid-cat-labels').eq(i).text() == (MEASURES_GRID[GLOBAL_LANGUAGE][i][1])) {
+    } else {
+      $('.grid-cat-labels').eq(i).html(MEASURES_GRID[GLOBAL_LANGUAGE][i][1])
+
+    }
+  }
 
 
 

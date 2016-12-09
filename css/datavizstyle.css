@@ -768,6 +768,11 @@ select#measures-menu{
   #dropdown-side-label-text {
     font-size: .8em;
   }
+  .grid-legend svg{
+    height: 11em;
+    padding-top: 1.5em;
+  }
+
 }
 
 

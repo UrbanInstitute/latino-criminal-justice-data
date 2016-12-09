@@ -3,11 +3,13 @@ function getParameterByName(name, url) {
       url = window.location.href;
     }
     name = name.replace(/[\[\]]/g, "\\$&");
+
     var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
         results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " ")).toLowerCase();
+
 }
 
 
@@ -16,6 +18,14 @@ var GLOBAL_LANGUAGE = getParameterByName("language", window.location.href)
 if (GLOBAL_LANGUAGE != "spanish" && GLOBAL_LANGUAGE != "english") {
   GLOBAL_LANGUAGE = "english";
 }
+ // $("#" + GLOBAL_LANGUAGE).on("click", function() {
+ //      if (history.pushState) {
+ //        console.log(GLOBAL_LANGUAGE)
+ //          var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?language=' + [GLOBAL_LANGUAGE];
+ //          window.history.pushState({path:newurl},'page 2',newurl);
+ //      }
+ //    })
+
 
 
 

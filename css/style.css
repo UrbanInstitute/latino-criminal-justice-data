@@ -145,11 +145,13 @@ h3{
 
 }
 
-ul.inside {
-  margin-left: 40px;
-}
-}
+.container li {
+	
+	margin-left:5%;
+	
 
+	
+}
 
 
 .text{

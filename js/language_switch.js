@@ -33,6 +33,17 @@ if (GLOBAL_LANGUAGE != "spanish" && GLOBAL_LANGUAGE != "english") {
 var IS_PHONE = d3.select("#isPhone").style("display") == "block"
 var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
 
+var LINKBACKTEXT = {
+  english:{
+    home: "Features",
+    title: "The Alarming Lack of Data on Latinos in the Criminal Justice System"
+  },
+  spanish:{
+    home: "Presenta",
+    title: "La alarmante falta de información sobre latinos en el sistema de justicia penal"
+
+  }
+}
 
 var BUTTON_NAMES= {
     english: {
@@ -346,6 +357,8 @@ $(window).load(function() {
   $('#conclusion-text').html(CONCLUSION[GLOBAL_LANGUAGE])
   $('#left').html(FOOTER_TEXT[GLOBAL_LANGUAGE])
   $('#right').html(PROJECT_CREDITS[GLOBAL_LANGUAGE])
+  $(".linkback-home").html(LINKBACKTEXT[GLOBAL_LANGUAGE]["home"])
+  $(".linkback-title").html(LINKBACKTEXT[GLOBAL_LANGUAGE]["title"])
 
 
 
@@ -362,6 +375,8 @@ $(".language_option")
 
   //MAIN TEXT CONTAINERS//
   d3.selectAll('.switch.large').style('background-image', 'url(images/yes-no-' + GLOBAL_LANGUAGE + '.png)')//('xlink:href', 'images/yes-no-' + [GLOBAL_LANGUAGE] + '.png')//('background-image', 'url(..images/yes-no-' + [GLOBAL_LANGUAGE] + '.png)')
+  $(".linkback-home").html(LINKBACKTEXT[GLOBAL_LANGUAGE]["home"])
+  $(".linkback-title").html(LINKBACKTEXT[GLOBAL_LANGUAGE]["title"])
   $('#heroimage').find('h1').html(TITLE[GLOBAL_LANGUAGE])
   $('#language_option_header').html(LANGUAGE_OPTIONS_HEADER[GLOBAL_LANGUAGE])
   $ ('#english').html(LANGUAGE_ENGLISH[GLOBAL_LANGUAGE])

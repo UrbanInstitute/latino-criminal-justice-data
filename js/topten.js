@@ -278,7 +278,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .append("div")
       .classed("grid-legend", true)
       .append("svg")
-      .attr("width", width*legend_width_phone)
+      .attr("width", width/1.5 *legend_width_phone)
       .attr("height", (width*1.2) *legend_height_mobile*legend_height_phone);
   chartTen.legend = chartTen.legendSVG
       .append('g')

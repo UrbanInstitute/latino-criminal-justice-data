@@ -417,7 +417,7 @@ function drawFirstGraphic() {
     })
     .attr("transform", function(d, i){ 
       if (i == 5) {
-        return "translate(" + (i*label_width_scale + label_width_scale/3)+" , " + (.98*height)+ ")"; // + label_5_x_phone + label_5_x_mobile)+" , " + label_height*label_y_phone*label_y_mobile  +")"; //label 5 needs to  be aligned under one cell
+        return "translate(" + (i*label_width_scale + label_width_scale/4)+" , " + (.98*height)+ ")"; // + label_5_x_phone + label_5_x_mobile)+" , " + label_height*label_y_phone*label_y_mobile  +")"; //label 5 needs to  be aligned under one cell
     //   return "translate(" + (i*100 + 30) +" , " + label_height +")"; //label 5 needs to  be aligned under one cell
     } else { 
     

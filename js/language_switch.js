@@ -342,6 +342,7 @@ var PROJECT_CREDITS = {
 
 //WHEN PAGE LOADS, USE ENGLISH TEXT
 $(window).load(function() { 
+  d3.selectAll('.switch.large').style('background-image', 'url(images/yes-no-' + GLOBAL_LANGUAGE + '.png)')//('xlink:href', 'images/yes-no-' + [GLOBAL_LANGUAGE] + '.png')//('background-image', 'url(..images/yes-no-' + [GLOBAL_LANGUAGE] + '.png)')
   $('#language_option_header').html(LANGUAGE_OPTIONS_HEADER[GLOBAL_LANGUAGE])
   $('.toggle_text').html(TOGGLE_TEXT[GLOBAL_LANGUAGE])
   $('#first-section-text').html(FIRSTSECTION[GLOBAL_LANGUAGE])
@@ -359,6 +360,7 @@ $(window).load(function() {
   $('#right').html(PROJECT_CREDITS[GLOBAL_LANGUAGE])
   $(".linkback-home").html(LINKBACKTEXT[GLOBAL_LANGUAGE]["home"])
   $(".linkback-title").html(LINKBACKTEXT[GLOBAL_LANGUAGE]["title"])
+  $('.tooltip-text-state').html(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE])
 
 
 

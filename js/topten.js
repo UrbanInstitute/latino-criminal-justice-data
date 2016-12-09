@@ -11,6 +11,8 @@ function drawTopten(){
   $("#legend3-mobile").empty();
   $("#legend3-nonmobile").empty();
 cellScale = (IS_MOBILE) && !(IS_PHONE)? .1 : .14
+
+
 gridWidthFunction = function() {
   if ($('#grid').width() > 220) {
   return $('#grid').width(); 
@@ -18,8 +20,9 @@ gridWidthFunction = function() {
     return 220;
   }
 }
-gridWidth = gridWidthFunction();
 
+
+gridWidth = gridWidthFunction();
 var cellWidth= cellScale*gridWidth
 var cellGap = .17*cellWidth
 
@@ -35,7 +38,6 @@ var chartTen=this;
 var color = d3.scaleThreshold()
     .domain([1, 2, 3, 4])
     .range(["#ffffff", " #cfe8f3", "#46abdb", "#12719e", "#0a4c6a"]);
-
 
 
 var $grid = $("#grid");
@@ -421,7 +423,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       });
 
       var grid_legend_text = (IS_MOBILE)? ('.grid-legend-text-mobile') : ('.grid-legend-text')
-      var grid_legend_text_wrap = (IS_PHONE)? "1000" : "100"
+      var grid_legend_text_wrap = (IS_PHONE)? "1000" : "140"
       chartTen.legend.selectAll(grid_legend_text).call(wrapText,grid_legend_text_wrap)
 
 

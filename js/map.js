@@ -413,7 +413,15 @@ legendTextX = "4em"
       .classed("map-legend", true)
       .append("svg")
       .attr("width", width)
-      .attr("height", (height/1.8) * legend_height_mobile);
+     // .attr("height", (height/1.8) * legend_height_mobile);
+  d3.select("#legend")
+    .style("height",function(){
+      return Math.abs(d3.select("#no-data").node().getBoundingClientRect().top - d3.select("#cross-tabbed").node().getBoundingClientRect().bottom) + "px"
+    })
+  d3.select("#legend svg")
+    .attr("height",function(){
+      return Math.abs(d3.select("#no-data").node().getBoundingClientRect().top - d3.select("#cross-tabbed").node().getBoundingClientRect().bottom)
+    })
 
   chartMap.legend = chartMap.legendSVG
       .append("g")

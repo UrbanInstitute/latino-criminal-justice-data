@@ -10,10 +10,16 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " ")).toLowerCase();
 }
 
+
+
 var GLOBAL_LANGUAGE = getParameterByName("language", window.location.href)
 if (GLOBAL_LANGUAGE != "spanish" && GLOBAL_LANGUAGE != "english") {
   GLOBAL_LANGUAGE = "english";
 }
+
+
+
+
 var IS_PHONE = d3.select("#isPhone").style("display") == "block"
 var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
 
@@ -40,8 +46,8 @@ var LANGUAGE_ENGLISH= {
 }
 
 var LANGUAGE_SPANISH= {
-  english: [ "Spanish"],
-  spanish: ["Spanish (spanish)"]
+  english: [ "Español"],
+  spanish: ["Español"]
 }
 
 

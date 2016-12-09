@@ -538,6 +538,14 @@ function drawFirstGraphic() {
     .attr("height",function(){
       return Math.abs(d3.select(".tooltip-header").node().getBoundingClientRect().top - d3.select(".tooltip-text.num4").node().getBoundingClientRect().bottom)
     })
+  // d3.select(".tooltip-div-left")
+  //   .style("height",function(){
+  //     return Math.abs(d3.select(".tooltip-header").node().getBoundingClientRect().top - d3.select(".tooltip-text-state").node().getBoundingClientRect().bottom) + "px"
+  //   })
+  // d3.select(".tooltip-div-left svg")
+  //   .attr("height",function(){
+  //     return Math.abs(d3.select(".tooltip-header").node().getBoundingClientRect().top - d3.select(".tooltip-text.state").node().getBoundingClientRect().bottom)
+  //   })
   chart.tooltipLeft
       .append("text")
       .attr("class", function() {

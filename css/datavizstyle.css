@@ -673,9 +673,10 @@ select#measures-menu{
 #legend3-nonmobile {
    display: block;
   position: relative;
-  float: right;
+  float: left;
   margin-top: 2em;
   width: 35%;
+  margin-left: .5em;
 
 }
 
@@ -978,16 +979,15 @@ select#measures-menu{
   #grid {
         margin-top: 0em !important;
       }
-    #grid {
-      width: 65% !important;
-    }
+  
 
     #legend3-nonmobile {
    display: block;
   position: relative;
-  float: right;
+  float: left;
   margin-top: 2em;
   width: 35%;
+  height: 16em;
 
 }
 #dropdown-side-label {

@@ -137,7 +137,6 @@ cell_scale_mobile = (IS_MOBILE) && !(IS_PHONE) ? 1.2 : 1;
 width_phone = (IS_MOBILE)? 1.3 : 1;
 row_x_phone = (IS_PHONE)? 25.5: 1;
 row_x_mobile = (IS_MOBILE) && !(IS_PHONE) ? 60: 1;
-grid_height_phone = (IS_PHONE) ? .95 : 1;
 grid_height_mobile = (IS_MOBILE) && !(IS_PHONE) ? .86: 1;
 grid_translateX = (IS_MOBILE) ? 30 : 0;
 
@@ -147,7 +146,7 @@ chartTen.svg = d3.select("#grid")
     .classed("svg-container", true)
     .append("svg")
     .attr("width", width)
-    .attr("height", height*1.08*grid_height_phone*grid_height_mobile)
+    .attr("height", height*1.08*grid_height_mobile)
 
 
 var filteredData_unsorted = gridStates.features.filter(function(d){
@@ -272,15 +271,15 @@ function wrapText(text, width) {
 }
 
 
-legend_height_mobile = (IS_MOBILE) && !(IS_PHONE) ? .7 : 1;
 legend_height_phone = (IS_PHONE) ? .5: 1;
 legend_width_phone=(IS_PHONE)?1.5: 1;
-legend_text_y_phone = (IS_MOBILE) && !(IS_PHONE)? .2:0;
 legendX_rect = ".1em"
-legendX_text = 3
-legendY_phone_rect = (IS_PHONE) ? .5 : 1
-legendY_phone_text = (IS_PHONE) ? 1.15 : 1
-legendY_phone_text2 = (IS_PHONE) ? .6 : 1
+legendX_text = 2.5
+legendY_mobile_rect = (IS_MOBILE) && !(IS_PHONE) ? .92 : 1
+legendY_phone_rect = (IS_PHONE) ? .6 : 1
+legendY_phone_text = (IS_PHONE) ? 1 : 1
+legendY_phone_text = (IS_PHONE) ? 1 : 1
+legendY_phone_text2 = (IS_PHONE) ? .67 : 1
 
 
 legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
@@ -289,15 +288,15 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .append("div")
       .classed("grid-legend", true)
       .append("svg")
-      .attr("width", width/1.5 *legend_width_phone)
-      .attr("height", (width*1.2) *legend_height_mobile*legend_height_phone);
+      .attr("width", width/1.3 *legend_width_phone)
+      .attr("height", (width*1.2) *legend_height_phone);
   chartTen.legend = chartTen.legendSVG
       .append('g')
       // .attr("transform", function(){
       //   if (IS_PHONE) {
-      //     return  "translate(-5 ,0)"
+      //     return  "translate(0 ,0)"
       //   }  else 
-      //     return "translate(0 ,0)"
+      //     return "translate(-2 ,0)"
       // })
 
 
@@ -331,7 +330,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .attr("id", "data-no-cat")
       .attr("class", "legend-icon")
       .attr("x", legendX_rect)
-      .attr("y",3.1*legendY_phone_rect + "em")
+      .attr("y",3.1*legendY_phone_rect*legendY_mobile_rect + "em")
       .attr("width", 16)
       .attr("height", 16)
     chartTen.legend.append("text")
@@ -343,7 +342,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
         }
       })
       .attr("x", legendX_text  + "em")
-      .attr("y", 4.95*legendY_phone_text2+ "em")
+      .attr("y", 5*legendY_phone_text2+ "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -355,7 +354,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .attr("id", "combined")
       .attr("class", "legend-icon")
       .attr("x", legendX_rect)
-      .attr("y",6.2*legendY_phone_rect + "em")
+      .attr("y",6.2*legendY_phone_rect*legendY_mobile_rect + "em")
       .attr("width", 16)
       .attr("height", 16)
     chartTen.legend.append("text")
@@ -367,7 +366,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
         }
       })
       .attr("x", legendX_text  + "em")
-      .attr("y", (8.8*legendY_phone_text2) + "em")
+      .attr("y", (9.1*legendY_phone_text2) + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -379,7 +378,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .attr("id", "separate")
       .attr("class", "legend-icon")
       .attr("x", legendX_rect)
-      .attr("y",9.3*legendY_phone_rect + "em")
+      .attr("y",9.3*legendY_phone_rect*legendY_mobile_rect + "em")
       .attr("width", 16)
       .attr("height", 16)
     chartTen.legend.append("text")
@@ -391,7 +390,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
         }
       })
       .attr("x", legendX_text  + "em")
-      .attr("y", (13*legendY_phone_text2) + "em")
+      .attr("y", (13.2*legendY_phone_text2) + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
       .text(function (d, i) {
@@ -403,7 +402,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .attr("id", "cross-tabbed")
       .attr("class", "legend-icon")
       .attr("x", legendX_rect)
-      .attr("y",12.4*legendY_phone_rect + "em")
+      .attr("y",12.4*legendY_phone_rect*legendY_mobile_rect + "em")
       .attr("width", 16)
       .attr("height", 16)
     chartTen.legend.append("text")
@@ -423,8 +422,9 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       });
 
       var grid_legend_text = (IS_MOBILE)? ('.grid-legend-text-mobile') : ('.grid-legend-text')
-      var grid_legend_text_wrap = (IS_PHONE)? "1000" : "140"
-      chartTen.legend.selectAll(grid_legend_text).call(wrapText,grid_legend_text_wrap)
+      var legend_wrap = (IS_PHONE) ? 190 : 140;
+
+      chartTen.legend.selectAll(grid_legend_text).call(wrapText,legend_wrap)
 
 
 

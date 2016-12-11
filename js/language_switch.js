@@ -470,7 +470,10 @@ $(".language_option")
 
     }
   }
-  d3.selectAll(grid_legend_text).call(wrapText,80)
+  var legend_wrap = (IS_PHONE) ? 190 : 140;
+  d3.selectAll(grid_legend_text).call(wrapText,legend_wrap)
+  console.log(legend_wrap)
+
 
   for (var i=0; i< $('.grid-cat-labels').length; i++){
     if ($('.grid-cat-labels').eq(i).text() == (MEASURES_GRID[GLOBAL_LANGUAGE][i][1])) {

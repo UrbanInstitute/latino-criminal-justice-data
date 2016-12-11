@@ -15,9 +15,13 @@ function getParameterByName(name, url) {
 
 
 var GLOBAL_LANGUAGE = getParameterByName("language", window.location.href)
-if (GLOBAL_LANGUAGE != "spanish" && GLOBAL_LANGUAGE != "english") {
-  GLOBAL_LANGUAGE = "english";
+if (GLOBAL_LANGUAGE.indexOf("spanish") != -1) {
+  GLOBAL_LANGUAGE = "spanish"
+} else {
+  GLOBAL_LANGUAGE = "english"
 }
+
+console.log(GLOBAL_LANGUAGE)
  // $("#" + GLOBAL_LANGUAGE).on("click", function() {
  //      if (history.pushState) {
  //        console.log(GLOBAL_LANGUAGE)
@@ -373,6 +377,14 @@ $(window).load(function() {
   d3.select("#header-pinned .share-icons." + GLOBAL_LANGUAGE).style("display","block")
   d3.select("#header-pinned .share-icons." + other_lang).style("display","none")
   d3.select("meta[name=description]").attr("content", METATEXT[GLOBAL_LANGUAGE])
+  var legend_text = (IS_MOBILE) ? $('.legend-text-mobile') : $('.legend-text')
+    for (var i=0; i<legend_text.length; i++){
+    if (legend_text.eq(i).text() == (DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])) {
+    } else {
+      legend_text.eq(i).html(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])
+
+    }
+  } 
 
 })
 
@@ -445,18 +457,15 @@ $(".language_option")
       measures.eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
     }
   } 
-  var legend_text = $('.legend-text')
-    //for (var i=0; i<legend_text.length; i++){
-    //     console.log(DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][i][1]) //**********WHY IS THIS PRODUCING AN ERROR?
-    // if (legend_text.eq(i).text() == (DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][i][1])) {
-    //    console.log(legend_text.eq(i).text())
-    // } else {
-    //   legend_text.eq(i).html(DATA_QUALITY_LABELS2[GLOBAL_LANGUAGE][i][1])
+  var legend_text = (IS_MOBILE) ? $('.legend-text-mobile') : $('.legend-text')
+    for (var i=0; i<legend_text.length; i++){
+    if (legend_text.eq(i).text() == (DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])) {
+       console.log(legend_text.eq(i).text())
+    } else {
+      legend_text.eq(i).html(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])
 
-
-
-    // }
-  //} 
+    }
+  } 
 
   //THIRD DATA VIZ
 
@@ -472,7 +481,6 @@ $(".language_option")
   }
   var legend_wrap = (IS_PHONE) ? 190 : 140;
   d3.selectAll(grid_legend_text).call(wrapText,legend_wrap)
-  console.log(legend_wrap)
 
 
   for (var i=0; i< $('.grid-cat-labels').length; i++){
@@ -486,29 +494,7 @@ $(".language_option")
 
 
 
-
 })
 
-
-
-
-// $("#spanish")
-// .on("click", function() {
-//   selectLegend = d3.select("#legend")
-//   legendText = selectLegend.selectAll(".legend-text")
- 
-//   d3.select(this).classed("active", true)
-//  d3.selectAll.each(function(d, i) {
-//     if ($(".legend-text").text() == $(".legend-text").data(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])) {
-//       $(".legend-text").text($(".legend-text").data(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1]));
-//     } else {
-//       $(".legend-text").data(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1], $(".legend-text").text());
-//       $(".legend-text").text(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])
-//   }
-
-
-//   })
-
-// })
 
 

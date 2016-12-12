@@ -285,7 +285,7 @@ var PROJECT_CREDITS = {
                     <a href=\"http:\/\/www.urban.org\/author\/alexandra-tilsley\" target=\"_blank\">Alex Tilsley</a> and <a href=\"http:\/\/www.urban.org\/author\/daniel-matos\" target=\"_blank\">Daniel Matos</a> \
                     <div>&nbsp;</div>\
                     <p><em>Photo via Shutterstock</em></p>\
-                    <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/race_ethnicity\" target=\"_blank\">View this project on Github.</a></div>"],
+                    <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/latino-criminal-justice-data\" target=\"_blank\">View this project on Github.</a></div>"],
   spanish: ["<h2>Créditos del proyecto</h2><div class=\"urbanstatement\">Como organización, el Urban Institute no toma posición en los temas, pero sí faculta y apoya a sus expertos para que compartan sus propias opiniones y recomendaciones sobre políticas, las cuales se basan en la evidencia y se enmarcan en trabajos académicos.</div>\
                     <h3 class=\"job\">Investigación</h3>\
                     <a href=\"http:\/\/www.urban.org\/author\/sarah-eppler-epstein\" target=\"_blank\">Sarah Eppler-Epstein</a>, <a href=\"http:\/\/www.urban.org\/author\/annie-gurvis\" target=\"_blank\">Annie Gurvis</a> y <a href=\"http:\/\/www.urban.org\/author\/ryan-king\" target=\"_blank\">Ryan King</a>\
@@ -295,7 +295,7 @@ var PROJECT_CREDITS = {
                     <a href=\"http:\/\/www.urban.org\/author\/alexandra-tilsley\" target=\"_blank\">Alex Tilsley</a> y <a href=\"http:\/\/www.urban.org\/author\/daniel-matos\" target=\"_blank\">Daniel Matos</a> \
                     <div>&nbsp;</div>\
                     <p><em>Fotografía a través de Shutterstock</em></p>\
-                    <div class=\"credits\">Derechos de autor &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/race_ethnicity\" target=\"_blank\">Vea este proyecto en Github.</a></div>"]
+                    <div class=\"credits\">Derechos de autor &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/latino-criminal-justice-data\" target=\"_blank\">Vea este proyecto en Github.</a></div>"]
 }
 
 
@@ -385,12 +385,10 @@ $(window).load(function() {
 //WHEN CLICKING ON A LANGUAGE OPTION
 $(".language_option")
 .on("click", function() {
-  console.log("hello")
     GLOBAL_LANGUAGE = d3.select(this).select("span").attr("id");
   var other_lang = (GLOBAL_LANGUAGE == "english") ? "spanish" : "english"
 
   history.pushState({}, "", "?language=" + GLOBAL_LANGUAGE);
-  console.log(GLOBAL_LANGUAGE)
 
   //MAIN TEXT CONTAINERS//
   d3.selectAll('.switch.large').style('background-image', 'url(images/yes-no-' + GLOBAL_LANGUAGE + '.png)').classed(GLOBAL_LANGUAGE,true).classed(other_lang, false)

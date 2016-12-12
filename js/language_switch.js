@@ -117,8 +117,8 @@ var MEASURES_DROPDOWN = {
     ["parole","Parole population"]
   ],
   spanish: [
-    ["prison","Población penitenciaria"], 
-    ["prison_pop","Población penitenciaria por delito"], 
+    ["number_prison","Población penitenciaria"], 
+    ["number_prison_ct","Población penitenciaria por delito"], 
     ["arrests","Arrestos"], 
     ["probation","Población en libertad condicional"], 
     ["parole","Población en libertad bajo palabra"]
@@ -352,14 +352,18 @@ $(window).load(function() {
   $ ('#english').html(LANGUAGE_ENGLISH[GLOBAL_LANGUAGE])
   $('#spanish').html(LANGUAGE_SPANISH[GLOBAL_LANGUAGE])
   $('.non-mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
-  $('.ui-selectmenu-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][0][1])
+  // $('.ui-selectmenu-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][0][1])
   $('#second-header').html(SECOND_HEADER[GLOBAL_LANGUAGE])
   $('#dropdown-side-label-text').html(SECONDSECTION_DROPDOWN_SIDE[GLOBAL_LANGUAGE])
-  var measures = $('.measure_type')
-  for (var i=0; i<measures.length; i++){
-      measures.eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
-      measures.eq(i).data(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
-  } 
+  // var measures = $('.measure_type')
+  // for (var i=0; i<measures.length; i++){
+  //     measures.eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
+  //     measures.eq(i).data(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
+  // } 
+  for(var i =0; i < MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++){
+    $("option#" + MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][0]).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
+  }
+  $("#measures").selectmenu("refresh");
   $('#third-section-text').html(THIRDSECTION[GLOBAL_LANGUAGE])
   $('#conclusion-text').html(CONCLUSION[GLOBAL_LANGUAGE])
   $('#left').html(FOOTER_TEXT[GLOBAL_LANGUAGE])
@@ -444,22 +448,10 @@ $(".language_option")
   }
   //SECOND DATA VIZ  
 
-  var measures = $('.measure_type')
-  for (var i=0; i<MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++){
-    // if (measures.eq(i).text() == (MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])) {
-    // } else {
-      measures.eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
-      measures.eq(i).data(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
-  } 
-
-    var measures2 = $('.ui-menu-item-wrapper')
-  for (var i=0; i<MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++){
-      measures2.eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
-      measures2.eq(i).data(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
-  } 
-     $('.ui-selectmenu-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][0][1])
-
-
+  for(var i =0; i < MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++){
+    $("option#" + MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][0]).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
+  }
+  $("#measures").selectmenu("refresh");
   var legend_text = (IS_MOBILE) ? $('.legend-text-mobile') : $('.legend-text')
     for (var i=0; i<legend_text.length; i++){
     if (legend_text.eq(i).text() == (DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])) {

@@ -29,8 +29,7 @@ var cellGap = .17*cellWidth
 var options = {
   filter: 'step3-regular'
 }
-// var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
-// var IS_PHONE = d3.select("#isPhone").style("display") == "block"
+
 
 var chartTen=this;
 
@@ -74,18 +73,6 @@ d3.select("#step3-regular")
 
 }) 
 
-// //TOGGLES
-// d3.selectAll(".step3_button").classed("active", false);
-// d3.select("#step3-regular").classed("active", true)
-// d3.select("#mobile-text").text("")
-// d3.selectAll('.step3_button')
-//   .on('click', function() {
-//     d3.selectAll(".step3_button.active").classed("active", false);
-//     d3.select(this).classed("active", true);
-//     options.filter = d3.select(this).attr("id");
-//     grid.update(gridStates);
-
-// }) 
 
 /*DATA SOURCES*/
 
@@ -461,26 +448,11 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
 
       d3.select(this)
        .classed("hover", false)
-      //  .style("fill", function(d){
-      //   return ttSquareColor(d, selectedColumn)
-      //  })
-      //  .style("stroke", function(d) {
-      //   return ttStrokeColor(d, selectedColumn);
-      // })
-      // if(IS_PHONE) {
-      //   d3.selectAll('.cell-text-mobile.' + selectedState)
-      //   .style('fill', '#000000')
-      // } else {
+
       d3.select('.place-label.' + selectedState)
        .style("fill", function(d) { 
         return squareText(d);
         })
-        // .style("stroke", function(d) { 
-        //   return ttStrokeColor(d, selectedColumn);
-        // })
-        // .style("stroke-width", function(d) { 
-        //   return ttStrokeWidth(d, selectedColumn);
-        // })
       
       
       // }
@@ -500,7 +472,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
          if (mystate.properties[selectedColumn + frequency] == "2") {
           return mystate.properties[selectedColumn + rating]; 
         } return "0"; 
-          return mystate.properties[selectedColumn + rating];     
+      //    return mystate.properties[selectedColumn + rating];     
         }
   }
 
@@ -508,38 +480,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
 
 
     tooltipRating = tooltipRatingSwitch();
-            
-          // chartTen.tooltipGrid
-          //   .append("text")
-          //   .attr("class", "tooltip-map-text")
-          //   .attr("dy", 0)
-          //   .attr("y", "2em")
-          //   .attr("x", function() {
-          //     if (IS_PHONE) {
-          //       return "0em"
-          //   } else return "-1em"
-          //   })
-          //   .attr("text-anchor", "start")
-          //   .text(function() {
-          //     if (tooltipRating == "0") {
-          //       return mystate.properties.name + "  does not report race or ethnicity in its " + $('.ui-selectmenu-text').text() + " data";//mystate.properties.name;
-          //     } else  if (tooltipRating == "1"){
-          //       return mystate.properties.name + " reports race but not ethnicity in its " + $('.ui-selectmenu-text').text() + " data";
-          //     } else  if (tooltipRating == "2"){
-          //       return mystate.properties.name + " combines race and ethnicity into one category in its " + $('.ui-selectmenu-text').text() + " data";
-          //     } else  if (tooltipRating == "3"){
-          //       return mystate.properties.name + " reports both race and ethnicity in it " + $('.ui-selectmenu-text').text() + " data";
-          //     }  else  if (tooltipRating == "4"){
-          //       return mystate.properties.name + " collects both race and ethnicity and reports combined racial-ethnic categories in its " + $('.ui-selectmenu-text').text() + " data";
-          //     }
 
-          //   });
-
-          //    chartMap.tooltipMap.selectAll('.tooltip-map-text').call(wrapText,500)
-       
-
-            // var width = $tooltip.width() - margin.left - margin.right,
-            // height = height/2 - margin.top - margin.bottom;
     }
 
 
@@ -595,13 +536,6 @@ Grid.prototype.update = function(gridStates, mystate, selectedColumn) {
         }
       } 
     }) 
-   //  .style("stroke-opacity", function(d) {
-   //  if (options.filter == 'step3-regular') {
-   //    if (d.properties[gridColumn + frequency] == 2){
-   //      return '0'; 
-   //    }
-   //   }
-   // })
     .delay(function(d,i) { return i * 50; })
    .style("fill", function(d) {
       return ttSquareColor(d, gridColumn);

@@ -1,8 +1,3 @@
-//FOR WRAPPING TEXT IN LEGEND
-//THINGS TO DO: 
-
-//TITLE-OVERFLOWING
-//EXPAND LANGUAGE OPTIONS
 
 function wrapText(text, width) {
   text.each(function() {
@@ -40,10 +35,8 @@ function drawMap(){
   $("#grid").empty();
   $("#legend3-mobile").empty();
   $("#legend3-nonmobile").empty();
-//map is forked from a combination of https://github.com/githamm/us-state-squares and https://github.com/lvonlanthen/data-map-d3
 cell_scale = (IS_PHONE) ? .6 : 1;
-// var IS_PHONE = d3.select("#isPhone").style("display") == "block"
-// var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
+
 
 
 
@@ -114,28 +107,6 @@ var frequency = "_frequency";
 
  //EVENT HANDLERS
 
-
-
- // d3.select("#step1-regular")
- //    .on('click', function() {
- //    //  d3.selectAll(".step1_button.active").classed("active", false);
- //    //  d3.select(this).classed("active", true);
- //    options.filter = d3.select(this).attr("id");
- //      if(d3.select(this).classed("on")){
- //        d3.select(this).classed("on", false)
- //        d3.select(this).classed("off", true)
- //        selectedData = "num_crime_cat_all";
- //        firstGraphic.update(states);
- //      }
- //      else {
- //        d3.select(this).classed("on", true)
- //        d3.select(this).classed("off", false)
- //        selectedData = "num_crime_cat_2";
- //        firstGraphic.update(states);
- //      }
-
- //    }) 
-
 //TOGGLES
 d3.select("#step2-regular").classed("on", true)
 //d3.select("#mobile-text").text("")
@@ -154,13 +125,6 @@ d3.select("#step2-regular")
         choropleth.update(mapStates)
 
       }
-
-
-    // d3.selectAll(".step2_button.active").classed("active", false);
-    // d3.select(this).classed("active", true);
-    // options.filter = d3.select(this).attr("id");
-    // choropleth.update(mapStates);
-    // console.log(options.filter);
 
 }) 
 
@@ -227,10 +191,6 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
 
   function Choropleth(mapStates) {
 
-    // var IS_MOBILE = d3.select("#isMobile").style("display") == "block"
-    // var IS_PHONE = d3.select("#isPhone").style("display") == "block"
-
-
 
     var height_scale = (IS_PHONE) ? .9 : 1;
     cell_scale = (IS_PHONE) ? .6 : 1;
@@ -253,12 +213,6 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
             return height-35}
         })
 
-
-   //   .attr("preserveAspectRatio", "xMinYMin meet")
-   //   .attr("viewBox", "-70 0 700 700")
-    //  .classed("svg-content-responsive", true);
-   // .attr('width', width + margin.left + margin.right)
-   // .attr('height', height + margin.top + margin.bottom);
 
 
   chartMap.map = chartMap.svg.append('g')
@@ -296,13 +250,9 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
               .classed("hover", true ) // should then accept fill from CSS
             tooltip(mystate)
             selectedState = d3.select(this).attr('class').split(' ')[0]
-            // if(IS_PHONE) {
-            //    d3.selectAll('.cell-text-mobile.' + selectedState)
-            //   .style('fill', '#ffffff')
-            // } else {
+
             d3.selectAll('.place-label.' + selectedState)
               .style('fill', '#ffffff')
-            // }
             d3.select('.rating-' + tooltipRating)
               .style('font-weight', '900')
     })
@@ -316,28 +266,14 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
            .style("stroke", function(d) {
             return strokeColor(d);
           })
-          // if(IS_PHONE) {
-          //   d3.selectAll('.cell-text-mobile.' + selectedState)
-          //   .style('fill', '#000000')
-          // } else {
           d3.selectAll('.place-label')
            .style("fill", function(d) { 
             return squareText(d);
           })
-          
-          // }
-  
-        d3.select('.rating-' + tooltipRating)
+        
+          d3.select('.rating-' + tooltipRating)
               .style('font-weight', '400')
-        })
-
-
- // chartMap.tooltipMapsvg= d3.select(".tooltip-map")
- //    .append("svg")
- //    .attr("width", width*(tooltip_phone_width)*tooltip_mobile_width)
- //    .attr("height", height/5 - (tooltip_mobile_height/2) + (tooltip_phone_height/1.4))
- //  chartMap.tooltipMap= chartMap.tooltipMapsvg.append("g")
- //    .attr("transform", "translate("+ (.1*width)+ ",0)");
+          })
 
 
   
@@ -361,37 +297,6 @@ d3.json("data/state_squares.geojson", function(error1, jsonResults) {
     }
     tooltipRating = tooltipRatingSwitch()
             
-//           chartMap.tooltipMap
-//             .append("text")
-//             .attr("class", "tooltip-map-text")
-//             .attr("dy", 0)
-//             .attr("y", "2em")
-//             .attr("x", function() {
-//               if (IS_PHONE) {
-//                 return "0em"
-//             } else return "-1em"
-//             })
-//             .attr("text-anchor", "start")
-//             .text(function() {
-//               if (tooltipRating == "0") {
-//                 return mystate.properties.name + "  does not report race or ethnicity in its " + $('.ui-selectmenu-text').text() + " data";//mystate.properties.name;
-//               } else  if (tooltipRating == "1"){
-//                 return mystate.properties.name + " reports race but not ethnicity in its " + $('.ui-selectmenu-text').text() + " data";
-//               } else  if (tooltipRating == "2"){
-//                 return mystate.properties.name + " combines race and ethnicity into one category in its " + $('.ui-selectmenu-text').text() + " data";
-//               } else  if (tooltipRating == "3"){
-//                 return mystate.properties.name + " reports both race and ethnicity in it " + $('.ui-selectmenu-text').text() + " data";
-//               }  else  if (tooltipRating == "4"){
-//                 return mystate.properties.name + " collects both race and ethnicity and reports combined racial-ethnic categories in its " + $('.ui-selectmenu-text').text() + " data";
-//               }
-
-//             });
-
-//              chartMap.tooltipMap.selectAll('.tooltip-map-text').call(wrapText,500)
-       
-
-//             // var width = $tooltip.width() - margin.left - margin.right,
-//             // height = height/2 - margin.top - margin.bottom;
  }
 
 
@@ -665,22 +570,13 @@ Choropleth.prototype.update = function(mapStates) {
             } 
         } return "#d2d2d2";
   }
-  // console.log(this.datum())
-  // var getSquareColor = squareColor(this);
+
 
    chartMap.map
    		.transition()
       	.delay(function(d,i) { return i * 10; })
     	.duration(1250)
      	.style("opacity", "1")
-		   // }) 
-     	// .style("stroke-opacity", function(d) {
-     	// 	if (options.filter == 'step2-regular') {
-      //  		if (d.properties[Cat + frequency] == 2){
-      //       return '0'; 
-      //   	} 
-     	//    }
-	     // })
 	    .style("fill", function(d) {
         return squareColor(d);
 	    })
@@ -699,21 +595,10 @@ Choropleth.prototype.update = function(mapStates) {
       .transition()
         .delay(function(d,i) {return i * 10; })
       .duration(1250)
-     /* .style("opacity", function(d) { 
-        if (options.filter !== 'all') {
-          if (d.properties[Cat + frequency] == 2) {
-            return 1;
-          } else { 
-              return "0";
-            }    
-        } return 1;
-      }) */
       .style("fill", function(d) { 
         return squareText(d);
       });
       
- //     stateText.style("text-anchor", "start")
-
   }
 
 

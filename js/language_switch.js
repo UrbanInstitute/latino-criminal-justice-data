@@ -21,17 +21,6 @@ if (GLOBAL_LANGUAGE.indexOf("spanish") != -1) {
   GLOBAL_LANGUAGE = "english"
 }
 
-console.log(GLOBAL_LANGUAGE)
- // $("#" + GLOBAL_LANGUAGE).on("click", function() {
- //      if (history.pushState) {
- //        console.log(GLOBAL_LANGUAGE)
- //          var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?language=' + [GLOBAL_LANGUAGE];
- //          window.history.pushState({path:newurl},'page 2',newurl);
- //      }
- //    })
-
-
-
 
 
 var IS_PHONE = d3.select("#isPhone").style("display") == "block"
@@ -348,7 +337,6 @@ var PROJECT_CREDITS = {
 // })
 var wrapWidth = (IS_PHONE) ? 1000 : 190;
 
-//WHEN PAGE LOADS, USE ENGLISH TEXT
 $(window).load(function() { 
   var other_lang = (GLOBAL_LANGUAGE == "english") ? "spanish" : "english"
   d3.selectAll('.switch.large').style('background-image', 'url(images/yes-no-' + GLOBAL_LANGUAGE + '.png)').classed(GLOBAL_LANGUAGE,true).classed(other_lang, false)
@@ -364,6 +352,11 @@ $(window).load(function() {
   $('.ui-selectmenu-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][0][1])
   $('#second-header').html(SECOND_HEADER[GLOBAL_LANGUAGE])
   $('#dropdown-side-label-text').html(SECONDSECTION_DROPDOWN_SIDE[GLOBAL_LANGUAGE])
+  var measures = $('.measure_type')
+  console.log("measures = " + measures.length)
+  for (var i=0; i<measures.length; i++){
+      measures.eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
+  } 
   $('#third-section-text').html(THIRDSECTION[GLOBAL_LANGUAGE])
   $('#conclusion-text').html(CONCLUSION[GLOBAL_LANGUAGE])
   $('#left').html(FOOTER_TEXT[GLOBAL_LANGUAGE])
@@ -392,10 +385,12 @@ $(window).load(function() {
 //WHEN CLICKING ON A LANGUAGE OPTION
 $(".language_option")
 .on("click", function() {
+  console.log("hello")
     GLOBAL_LANGUAGE = d3.select(this).select("span").attr("id");
   var other_lang = (GLOBAL_LANGUAGE == "english") ? "spanish" : "english"
 
   history.pushState({}, "", "?language=" + GLOBAL_LANGUAGE);
+  console.log(GLOBAL_LANGUAGE)
 
   //MAIN TEXT CONTAINERS//
   d3.selectAll('.switch.large').style('background-image', 'url(images/yes-no-' + GLOBAL_LANGUAGE + '.png)').classed(GLOBAL_LANGUAGE,true).classed(other_lang, false)
@@ -447,20 +442,33 @@ $(".language_option")
       $('.tooltip-text').eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
     }
   }
-  //SECOND DATA VIZ    ******DROPDOWN TEXT NOT WORKING EVERYTIME
-  var measures = $('.measure_type')
-  d3.select(this).classed("active", true)
-  for (var i=0; i<measures.length; i++){
+  //SECOND DATA VIZ  
+measures_menu = $('#measures')
+console.log(measures_menu)
 
-    if (measures.eq(i).text() == (MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])) {
-    } else {
+  var measures = $('.measure_type')
+  for (var i=0; i<MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++){
+    // if (measures.eq(i).text() == (MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])) {
+    // } else {
+      console.log("Settings measures " + i + " to " + MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
       measures.eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
-    }
+
+    // }
   } 
+
+    var measures2 = $('.ui-menu-item-wrapper')
+  for (var i=0; i<MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++){
+    // if (measures.eq(i).text() == (MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])) {
+    // } else {
+      console.log("Settings measures " + i + " to " + MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
+      measures2.eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
+
+    // }
+  } 
+
   var legend_text = (IS_MOBILE) ? $('.legend-text-mobile') : $('.legend-text')
     for (var i=0; i<legend_text.length; i++){
     if (legend_text.eq(i).text() == (DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])) {
-       console.log(legend_text.eq(i).text())
     } else {
       legend_text.eq(i).html(DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])
 

@@ -60,20 +60,13 @@ function drawFirstGraphic() {
 
 
   //EVENT HANDLERS
- 
 
-
-
- // d3.selectAll(".step1_button").classed("active", false);
- // d3.select("#step1-regular").classed("active", true)
 
   d3.select("#step1-regular").classed("on", true)
   d3.select("#mobile-text").text("")
  // d3.selectAll('.step1_button')
  d3.select("#step1-regular")
     .on('click', function() {
-    //  d3.selectAll(".step1_button.active").classed("active", false);
-    //  d3.select(this).classed("active", true);
       if(d3.select(this).classed("on")){
         d3.select(this).classed("on", false)
         d3.select(this).classed("off", true)
@@ -155,28 +148,11 @@ function drawFirstGraphic() {
                   .attr("class", "g")
                   .attr("transform", "translate(5, " + (.05*height)+ ")")
     xLabel = chart.d3.select("#xlabel-div")
-                  // .append("svg")
-                  // .attr("width", width) 
-                  // .attr("height", width/10)
 
-
-  //wrapText_mobile = (IS_PHONE) || (IS_MOBILE) ? 300: 1000;
     xLabel
-      // .append('text')
-      //   .attr("text-anchor", "start")
-      //   .attr('class', 'xlabel')
-      //   .attr('x', '.2em')
-      //   .attr('y', '2em')
-
         .text(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
         .style('fill', "#000000")
-     // if (IS_PHONE) {
-     //        chart.d3.select('.xLabel').call(wrapText,100)
-     //        } else {
-     //        chart.d3.select('.xLabel').call(wrapText,1000)
-     //        }
-///NOT WORKING
-      //ADDING GROUPS
+
 
     
     for(var j = 0; j < 6; j++){
@@ -220,11 +196,6 @@ function drawFirstGraphic() {
         .on("mouseout", function (d) {
             dispatch.call("dehoverState");
         })
-        // .on("click", function(d){
-        //     dispatch.clickState(d3.select(this).attr('class').split(' ')[1])
-        //     console.log('hi')
-        // })
-
      
       cells.append("text")
         .attr("class",function(d){
@@ -233,8 +204,6 @@ function drawFirstGraphic() {
           }
               return "cell-text " + d.properties.abbr;
           })
-  //  .attr("class", "cell-label")
-   // .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
         .attr("x", function(d,i) {
           if (i%2 !== 0) {
             return (squareDim + j*columnGap) + squareDim*.45;
@@ -328,77 +297,9 @@ function drawFirstGraphic() {
             }) 
         }
 
-            // if (STATESELECT == null) {
-            //     $tooltipgraph.empty();
-            // } else {
-            //     tooltip(STATESELECT)
-            // }
       });
 
-       
-             
-  
 
-             // d3.select(this)         
-             //    .style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
-             //  tooltip(mystate)
-             //  selectedState = d3.select(this).attr('class').split(' ')[1]
-             //  if(IS_PHONE) {
-             //     d3.selectAll('.cell-text-mobile.' + selectedState)
-             //    .style('fill', '#ffffff')
-             //  } else {
-             //  d3.selectAll('.cell-text.' + selectedState)
-             //    .style('fill', '#ffffff')
-             //  }
-       
-
-        // chart.group.selectAll(".cell")
-        //   .on("mouseover", function(selectedState) {
-  
-        //     d3.select(this)         
-        //       //.style('fill', '#231f20') // Un-sets the "explicit" fill (might need to be null instead of '')
-        //       .classed("hover", true ) // should then accept fill from CSS
-        //     chart.tooltipLeft.selectAll('.tooltip-text-state')
-        //     .remove()
-        //     chart.tooltipLeft.selectAll('.tooltip-text-state-mobile')
-        //     .remove()
-        //     tooltip(selectedState) //, selectedState)
-        //     var selectedState = d3.select(this).attr('class').split(' ')[1]
-        //     if(IS_PHONE) {
-        //        d3.selectAll('.cell-text-mobile.' + selectedState)
-        //       .style('fill', '#ffffff')
-        //     } else {
-        //     d3.selectAll('.cell-text.' + selectedState)
-        //       .style('fill', '#ffffff')
-        //     }
-
-        // })
-        // .on("mouseout",  function() {
-        //  var selectedState = d3.select(this).attr('class').split(' ')[1]
-
-          // d3.select(this)
-          //  .classed("hover", false)
-          //  .style('fill', "#1696d2") // Re-sets the "explicit" fill
-          // if(IS_PHONE) {
-          //   d3.selectAll('.cell-text-mobile')
-          //   .style('fill', '#000000')
-          // } else {
-          // d3.selectAll('.cell-text')
-          //   .style('fill', '#000000')
-          // }
-
-          
-        // chart.tooltipLeft.selectAll('text')
-        //     .remove()
-        // chart.tooltipRight.selectAll('text')
-        //     .remove()
-        // chart.tooltipRight.selectAll('.checkbox')
-        //     .remove()
-        // addHeaders();
-        // addMeasures();
-
-
-        // })
       
    var CATEGORY_LABELS = ["0", "1", "2", "3", "4", "5"]
 
@@ -439,27 +340,13 @@ function drawFirstGraphic() {
     })
 
 
-    
-
-         //  chart.bottomRow.append("text")
-   //    .attr("class", "firstGraphic-column-text")
-   //    .attr("transform", function(d, i){ return "translate("+ (i*4 + 2) +" ,10)"})
-   //    .attr("text-anchor", "start")
-   //     .text(function (d) {
-   //        return CATEGORY_LABELS[i];
-   //    });
-   //  }
-
+  
 
   tooltipLeft_phone_width = (IS_PHONE) ? 1.5 : 1;
    tooltipRight_mobile_height = (IS_MOBILE&& !IS_PHONE) ? .72 : 1;
    tooltipLeft_mobile_height = (IS_MOBILE&& !IS_PHONE)? .8: 1;
    tooltipLeft_phone_height = (IS_PHONE)? .5: 1;
 
-  // chart.tooltip = d3.select("#tooltip")
-  //   .append("svg")
-  //   .attr("width", width)
-  //   .attr("height", height/2.3 + tooltip_phone_height*2)
 
   chart.tooltipLeft = d3.select(".tooltip-div-left")
     .append("svg")
@@ -538,14 +425,7 @@ function drawFirstGraphic() {
     .attr("height",function(){
       return Math.abs(d3.select(".tooltip-header").node().getBoundingClientRect().top - d3.select(".tooltip-text.num4").node().getBoundingClientRect().bottom)
     })
-  // d3.select(".tooltip-div-left")
-  //   .style("height",function(){
-  //     return Math.abs(d3.select(".tooltip-header").node().getBoundingClientRect().top - d3.select(".tooltip-text-state").node().getBoundingClientRect().bottom) + "px"
-  //   })
-  // d3.select(".tooltip-div-left svg")
-  //   .attr("height",function(){
-  //     return Math.abs(d3.select(".tooltip-header").node().getBoundingClientRect().top - d3.select(".tooltip-text.state").node().getBoundingClientRect().bottom)
-  //   })
+
   var wrapWidth = (IS_PHONE) ? 1000 : 190;
 
   chart.tooltipLeft
@@ -617,11 +497,6 @@ function tooltip(mystate) {
           .call(wrapText,wrapWidth)
 
 
-
-
-     
-       //   var width = $tooltip.width() - margin.left - margin.right,
-        //  height = height/2 - margin.top - margin.bottom;
    }
 
 
@@ -680,32 +555,10 @@ function tooltip(mystate) {
             } else{
               return (yBase - (((i-1)/2)*squareDim)) 
             }
-          }) //so that all columns start from the bottom up
+          }) 
         
-        // if(IS_PHONE) {
-        //   chart.group.select(".cell-text-mobile." + data[i].properties.abbr)
-        //   .transition()
-        //   .duration(2000)
-        //   .attr("x", function() {
-        //     if (i%2 !== 0) {
-        //       return (squareDim + j*columnGap) + squareDim*.45;
-        //   } else {
-        //     return (j*columnGap) + squareDim*.45;
-        //   }
-        //   })
-        //   .attr("y", function() {
-        //     if (i%2 == 0){
-        //       return (yBase - (i/2))
-        //     } else if (i == 1) {
-        //       return yBase
-        //     } else{
-        //       return (yBase - (((i-1)/2)*squareDim))
 
-        //     }
-        //    }) //so that all columns start from the bottom up  
-
-        // } else {
-                  chart.group.select(".cell-text." + data[i].properties.abbr)
+      chart.group.select(".cell-text." + data[i].properties.abbr)
           .transition()
           .duration(2000)
             .attr("x", function() {
@@ -723,11 +576,7 @@ function tooltip(mystate) {
             } else{
               return (yBase - (((i-1)/2)*squareDim)) + squareDim*.55;
             }
-           }) //so that all columns start from the bottom up  
-
-          // }
-
-
+           }) 
         
        }
       }

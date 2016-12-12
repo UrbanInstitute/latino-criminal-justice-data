@@ -259,6 +259,10 @@ var FIRSTGRAPHIC_SELECTSTATE = {
   spanish: ["Seleccione un estado"]
 }
 
+var DISCLAIMER = {
+  english: [],
+  spanish: ["Note: The English language version of this feature includes links to source content not available in Spanish- spanish translation"]
+}
 
 
 //FOOTER
@@ -279,7 +283,8 @@ var FOOTER_TEXT = {
 }
 
 var PROJECT_CREDITS = {
-  english: ["<h2>Project credits</h2><div class=\"urbanstatement\">As an organization, the Urban Institute does not take positions on issues, but it does empower and support its experts in sharing their own evidence-based views and policy recommendations that have been shaped by scholarship.</div>\
+  english: ["<h2>Project credits</h2><div class=\"urbanstatement\">This project was funded by the Public Welfare Foundation, and the authors would like to thank them for their generous support. The authors also extend their appreciation to Juan Cartagena, Jeronimo Saldana, and Ana Yáñez-Correa for their input on the creation and development of this project.\
+  </div> <div class=\"urbanstatement\">As an organization, the Urban Institute does not take positions on issues, but it does empower and support its experts in sharing their own evidence-based views and policy recommendations that have been shaped by scholarship.</div>\
                     <h3 class=\"job\">Research</h3>\
                     <a href=\"http:\/\/www.urban.org\/author\/sarah-eppler-epstein\" target=\"_blank\">Sarah Eppler-Epstein</a>, <a href=\"http:\/\/www.urban.org\/author\/annie-gurvis\" target=\"_blank\">Annie Gurvis</a> and <a href=\"http:\/\/www.urban.org\/author\/ryan-king\" target=\"_blank\">Ryan King</a>\
                     <h3 class=\"job\">Design and Development</h3>\
@@ -289,7 +294,8 @@ var PROJECT_CREDITS = {
                     <div>&nbsp;</div>\
                     <p><em>Photo via Shutterstock</em></p>\
                     <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/latino-criminal-justice-data\" target=\"_blank\">View this project on Github.</a></div>"],
-  spanish: ["<h2>Créditos del proyecto</h2><div class=\"urbanstatement\">Como organización, el Urban Institute no toma posición en los temas, pero sí faculta y apoya a sus expertos para que compartan sus propias opiniones y recomendaciones sobre políticas, las cuales se basan en la evidencia y se enmarcan en trabajos académicos.</div>\
+  spanish: ["<h2>Créditos del proyecto</h2><div class=\"urbanstatement\">This project was funded by the Public Welfare Foundation, and the authors would like to thank them for their generous support. The authors also extend their appreciation to Juan Cartagena, Jeronimo Saldana, and Ana Yáñez-Correa for their input on the creation and development of this project.\
+  </div> <div class=\"urbanstatement\">Como organización, el Urban Institute no toma posición en los temas, pero sí faculta y apoya a sus expertos para que compartan sus propias opiniones y recomendaciones sobre políticas, las cuales se basan en la evidencia y se enmarcan en trabajos académicos.</div>\
                     <h3 class=\"job\">Investigación</h3>\
                     <a href=\"http:\/\/www.urban.org\/author\/sarah-eppler-epstein\" target=\"_blank\">Sarah Eppler-Epstein</a>, <a href=\"http:\/\/www.urban.org\/author\/annie-gurvis\" target=\"_blank\">Annie Gurvis</a> y <a href=\"http:\/\/www.urban.org\/author\/ryan-king\" target=\"_blank\">Ryan King</a>\
                     <h3 class=\"job\">Diseño y desarrollo</h3>\
@@ -343,7 +349,7 @@ var wrapWidth = (IS_PHONE) ? 1000 : 190;
 $(window).load(function() { 
   var other_lang = (GLOBAL_LANGUAGE == "english") ? "spanish" : "english"
   d3.selectAll('.switch.large').style('background-image', 'url(images/yes-no-' + GLOBAL_LANGUAGE + '.png)').classed(GLOBAL_LANGUAGE,true).classed(other_lang, false)
-
+  $('.disclaimer').html(DISCLAIMER[GLOBAL_LANGUAGE])
   $('#language_option_header').html(LANGUAGE_OPTIONS_HEADER[GLOBAL_LANGUAGE])
   $('.toggle_text').html(TOGGLE_TEXT[GLOBAL_LANGUAGE])
   $('#first-section-text').html(FIRSTSECTION[GLOBAL_LANGUAGE])
@@ -392,6 +398,7 @@ $(".language_option")
   var other_lang = (GLOBAL_LANGUAGE == "english") ? "spanish" : "english"
 
   history.pushState({}, "", "?language=" + GLOBAL_LANGUAGE);
+  $('.disclaimer').html(DISCLAIMER[GLOBAL_LANGUAGE])
 
   //MAIN TEXT CONTAINERS//
   d3.selectAll('.switch.large').style('background-image', 'url(images/yes-no-' + GLOBAL_LANGUAGE + '.png)').classed(GLOBAL_LANGUAGE,true).classed(other_lang, false)

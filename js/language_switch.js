@@ -107,8 +107,8 @@ var MEASURES_GRID= {
 
 var MEASURES_DROPDOWN = {
   english: [
-    ["prison","Prison population"], 
-    ["prison_pop","Prison population by offense"], 
+    ["number_prison","Prison population"], 
+    ["number_prison_ct","Prison population by offense"], 
     ["arrests","Arrests"], 
     ["probation","Probation population"], 
     ["parole","Parole population"]
@@ -353,9 +353,9 @@ $(window).load(function() {
   $('#second-header').html(SECOND_HEADER[GLOBAL_LANGUAGE])
   $('#dropdown-side-label-text').html(SECONDSECTION_DROPDOWN_SIDE[GLOBAL_LANGUAGE])
   var measures = $('.measure_type')
-  console.log("measures = " + measures.length)
   for (var i=0; i<measures.length; i++){
       measures.eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
+      measures.eq(i).data(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
   } 
   $('#third-section-text').html(THIRDSECTION[GLOBAL_LANGUAGE])
   $('#conclusion-text').html(CONCLUSION[GLOBAL_LANGUAGE])
@@ -409,7 +409,6 @@ $(".language_option")
   for (var i=0; i<MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++) {
     $('.tooltip-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
   }
-  $('.ui-selectmenu-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][0][1])
   $('.xlabel').html(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
   $('.non-mobile-text').html(SECONDSECTION[GLOBAL_LANGUAGE]);
   $('#second-header').html(SECOND_HEADER[GLOBAL_LANGUAGE])
@@ -443,28 +442,22 @@ $(".language_option")
     }
   }
   //SECOND DATA VIZ  
-measures_menu = $('#measures')
-console.log(measures_menu)
 
   var measures = $('.measure_type')
   for (var i=0; i<MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++){
     // if (measures.eq(i).text() == (MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])) {
     // } else {
-      console.log("Settings measures " + i + " to " + MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
       measures.eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
-
-    // }
+      measures.eq(i).data(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
   } 
 
     var measures2 = $('.ui-menu-item-wrapper')
   for (var i=0; i<MEASURES_DROPDOWN[GLOBAL_LANGUAGE].length; i++){
-    // if (measures.eq(i).text() == (MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])) {
-    // } else {
-      console.log("Settings measures " + i + " to " + MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
       measures2.eq(i).html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
-
-    // }
+      measures2.eq(i).data(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1])
   } 
+     $('.ui-selectmenu-text').html(MEASURES_DROPDOWN[GLOBAL_LANGUAGE][0][1])
+
 
   var legend_text = (IS_MOBILE) ? $('.legend-text-mobile') : $('.legend-text')
     for (var i=0; i<legend_text.length; i++){

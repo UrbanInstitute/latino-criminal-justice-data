@@ -131,6 +131,7 @@ d3.select("#step2-regular")
   //DROPDOWN
 $("#measures").selectmenu({
   change: function(event, d){
+
   options.category = this.value;
   choropleth.update(mapStates);
   }

@@ -716,7 +716,7 @@ button.ui-button::-moz-focus-inner {
 	text-overflow: ellipsis;
 	font-family: Lato;
 	margin-top: 2px;
-	font-size: 22px;
+	font-size: 16px;
 	vertical-align: middle;
 }
 .ui-selectmenu-button.ui-button {

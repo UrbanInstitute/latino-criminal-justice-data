@@ -15,11 +15,14 @@ function getParameterByName(name, url) {
 
 
 var GLOBAL_LANGUAGE = getParameterByName("language", window.location.href)
-if (GLOBAL_LANGUAGE.indexOf("spanish") != -1) {
-  GLOBAL_LANGUAGE = "spanish"
-} else {
-  GLOBAL_LANGUAGE = "english"
+ if (GLOBAL_LANGUAGE != "spanish" && GLOBAL_LANGUAGE != "english") {
+  GLOBAL_LANGUAGE = "english";
 }
+// if (GLOBAL_LANGUAGE.indexOf("spanish") != -1) {
+//   GLOBAL_LANGUAGE = "spanish"
+// } else {
+//   GLOBAL_LANGUAGE = "english"
+// }
 
 
 

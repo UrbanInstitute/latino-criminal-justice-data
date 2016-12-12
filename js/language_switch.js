@@ -293,7 +293,7 @@ var PROJECT_CREDITS = {
                     <a href=\"http:\/\/www.urban.org\/author\/alexandra-tilsley\" target=\"_blank\">Alex Tilsley</a> and <a href=\"http:\/\/www.urban.org\/author\/daniel-matos\" target=\"_blank\">Daniel Matos</a> \
                     <div>&nbsp;</div>\
                     <p><em>Photo via Shutterstock</em></p>\
-                    <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/latino-criminal-justice-data\" target=\"_blank\">View this project on Github.</a></div>"],
+                    <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a>December 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/latino-criminal-justice-data\" target=\"_blank\">View this project on Github.</a></div>"],
   spanish: ["<h2>Créditos del proyecto</h2><div class=\"urbanstatement\">This project was funded by the Public Welfare Foundation, and the authors would like to thank them for their generous support. The authors also extend their appreciation to Juan Cartagena, Jeronimo Saldana, and Ana Yáñez-Correa for their input on the creation and development of this project.\
   </div> <div class=\"urbanstatement\">Como organización, el Urban Institute no toma posición en los temas, pero sí faculta y apoya a sus expertos para que compartan sus propias opiniones y recomendaciones sobre políticas, las cuales se basan en la evidencia y se enmarcan en trabajos académicos.</div>\
                     <h3 class=\"job\">Investigación</h3>\
@@ -304,7 +304,7 @@ var PROJECT_CREDITS = {
                     <a href=\"http:\/\/www.urban.org\/author\/alexandra-tilsley\" target=\"_blank\">Alex Tilsley</a> y <a href=\"http:\/\/www.urban.org\/author\/daniel-matos\" target=\"_blank\">Daniel Matos</a> \
                     <div>&nbsp;</div>\
                     <p><em>Fotografía a través de Shutterstock</em></p>\
-                    <div class=\"credits\">Derechos de autor &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/latino-criminal-justice-data\" target=\"_blank\">Vea este proyecto en Github.</a></div>"]
+                    <div class=\"credits\">Derechos de autor &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a>diciembre 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/latino-criminal-justice-data\" target=\"_blank\">Vea este proyecto en Github.</a></div>"]
 }
 
 

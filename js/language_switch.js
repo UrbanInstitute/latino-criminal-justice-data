@@ -42,7 +42,7 @@ var LINKBACKTEXT = {
 }
 var METATEXT = {
   english: "No one knows exactly how many Latinos are arrested each year or how many are in prison, on probation, or on parole.",
-  spanish: "fake text"
+  spanish: "Nadie sabe exactamente cuántos latinos son arrestados cada año o cuántos se encuentran en prisión, en libertad condicional o libertad bajo palabra."
 }
 
 var BUTTON_NAMES= {

@@ -152,7 +152,7 @@ function drawFirstGraphic() {
     xLabel = chart.d3.select("#xlabel-div")
 
     xLabel
-        .text(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
+        .html(FIRSTGRAPHIC_XLABEL[GLOBAL_LANGUAGE])
         .style('fill', "#000000")
 
 
@@ -392,7 +392,7 @@ function drawFirstGraphic() {
         .attr("y", 3.8+ 2.3*i +"em")
         .attr("x", "2.7em")
         .attr("text-anchor", "start")
-        .text(function () {
+        .html(function () {
             return MEASURES_DROPDOWN[GLOBAL_LANGUAGE][i][1]
           });
       }
@@ -407,7 +407,7 @@ function drawFirstGraphic() {
     .attr("y", "1em")
     .attr("x", ".8em")
     .attr("text-anchor", "start")
-    .text(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][1][1])
+    .html(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][1][1])
   chart.tooltipLeft
     .append("text")
     .attr("class", "tooltip-header")
@@ -415,7 +415,7 @@ function drawFirstGraphic() {
     .attr("y", "1em")
     .attr("x", ".8em")
     .attr("text-anchor", "start")
-    .text(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][0][1]);
+    .html(FIRSTGRAPHIC_TOOLTIPHEADER[GLOBAL_LANGUAGE][0][1]);
 
   }
   addHeaders()

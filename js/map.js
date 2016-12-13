@@ -359,7 +359,7 @@ legendTextX = "4em"
       })
       .attr("x",legendTextX)
       .attr("text-anchor", "start")
-      .text(function (d, i) {
+      .html(function (d, i) {
          return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][0][1]
       });
 
@@ -397,7 +397,7 @@ legendTextX = "4em"
         } return "6.3em"
       })
       .attr("text-anchor", "start")
-      .text(function (d, i) {
+      .html(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][1][1];
       });
 
@@ -434,7 +434,7 @@ legendTextX = "4em"
         } return "9em"
       })
       .attr("text-anchor", "start")
-      .text(function (d, i) {
+      .html(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][2][1];
       });
 
@@ -471,7 +471,7 @@ legendTextX = "4em"
         } return "11.7em"
       })
       .attr("text-anchor", "start")
-      .text(function (d, i) {
+      .html(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][3][1];
       });
 
@@ -508,7 +508,7 @@ legendTextX = "4em"
         } return "14.4em"
       })
       .attr("text-anchor", "start")
-      .text(function (d, i) {
+      .html(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][4][1];
       });
 

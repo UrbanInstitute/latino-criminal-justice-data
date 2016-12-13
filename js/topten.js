@@ -222,7 +222,7 @@ label_side_phone = (IS_PHONE) ? -25.2 : 1;
       .attr("transform", "translate(" + (i*(cellWidth + cellGap) + 70*cell_mobile_start)*cell_scale_phone*cell_scale_mobile + ","+.1*height+") rotate(-45)" )
       .attr("text-anchor", "end")
 
-      .text(function () { 
+      .html(function () { 
            return MEASURES_GRID[GLOBAL_LANGUAGE][i][1] 
 
        });
@@ -310,7 +310,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .attr("y", .8 * legendY_phone_text + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
-      .text(function (d, i) {
+      .html(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][0][1];
       });
 
@@ -334,7 +334,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .attr("y", 5*legendY_phone_text2*legendY_mobile_text+ "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
-      .text(function (d, i) {
+      .html(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][1][1];
       });
 
@@ -358,7 +358,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .attr("y", (10.1*legendY_phone_text2)*legendY_mobile_text + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
-      .text(function (d, i) {
+      .html(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][2][1];
       });
 
@@ -382,7 +382,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .attr("y", 14.2*legendY_phone_text2*legendY_mobile_text + "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
-      .text(function (d, i) {
+      .html(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][3][1];
       });
 
@@ -406,7 +406,7 @@ legend3 =  (IS_PHONE)? ('#legend3-mobile') : ('#legend3-nonmobile')
       .attr("y", 18.3*legendY_phone_text2*legendY_mobile_text+ "em")
       .attr("dy", 0)
       .attr("text-anchor", "start")
-      .text(function (d, i) {
+      .html(function (d, i) {
           return DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][4][1];
       });
 

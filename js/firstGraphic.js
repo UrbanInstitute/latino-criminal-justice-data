@@ -84,7 +84,6 @@ function drawFirstGraphic() {
 
     }) 
 
-
   /*DATA SOURCES*/
 
 
@@ -108,6 +107,9 @@ function drawFirstGraphic() {
             jsonState[0].properties.reg_arrests = csvState.reg_arrests;
             jsonState[0].properties.reg_probation = csvState.reg_probation;
             jsonState[0].properties.reg_parole = csvState.reg_parole;
+            jsonState[0].properties.state_name_english= csvState.state_name_english;
+            jsonState[0].properties.state_name_spanish= csvState.state_name_spanish;
+
           }
         })
       
@@ -448,6 +450,12 @@ chart.states = states
 
 
 function tooltip(mystate) {
+
+var GLOBAL_LANGUAGE = getParameterByName("language", window.location.href)
+ if (GLOBAL_LANGUAGE != "spanish" && GLOBAL_LANGUAGE != "english") {
+  GLOBAL_LANGUAGE = "english";
+}
+
   d3.selectAll(".checkbox").remove()
     tooltipCatNames_switch = function() {
     if (options.filter== 'step1-regular') {
@@ -492,7 +500,7 @@ function tooltip(mystate) {
           .attr("x", ".2em")
           .attr("text-anchor", "start")
           .text(function() {
-            return mystate.properties.name;
+            return mystate.properties['state_name_' + GLOBAL_LANGUAGE];
           })
           .call(wrapText,wrapWidth)
 

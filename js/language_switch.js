@@ -144,7 +144,7 @@ var HEADERTEXT = {
   spanish: ["<p><strong>Nadie sabe exactamente cuántos latinos son arrestados cada año o cuántos se encuentran en prisión, en libertad condicional o libertad bajo palabra. </strong></p> \
   <p>Una encuesta de información de justicia penal del estado indicó que 40 estados reportaban raza (\por ejemplo, &ldquo;blanca&rdquo;, &ldquo;negra&rdquo;, &ldquo;otra&rdquo;) en sus registros de arresto, pero solo 15 estados reportaban el origen étnico. Aunque los latinos son tan solo uno de los muchos grupos étnicos en los Estados Unidos, se proyecta que la población será latinoamericana en un <a href=\"http:\/\/www.census.gov\/content\/dam\/Census\/library\/publications\/2015\/demo\/p25-1143.pdf\" \
    target=\"_blank\">28,6 por ciento para el 2060</a> y que los latinos son el grupo más afectado cuando los estados ignoran el origen étnico. </p>\
-   <a href=\"http:\/\/www.urban.org\/sites\/default\/files\/alfresco\/publication-pdfs\/413174-Examining-Racial-and-Ethnic-Disparities-in-Probation-Revocation.PDF\" target=\"_blank\">Evidencia</a> muestra que nuestro sistema de justicia penal tiene \
+   <a href=\"http:\/\/www.urban.org\/sites\/default\/files\/alfresco\/publication-pdfs\/413174-Examining-Racial-and-Ethnic-Disparities-in-Probation-Revocation.PDF\" target=\"_blank\">La evidencia</a> muestra que nuestro sistema de justicia penal tiene \
    <a href=\"http:\/\/www.sentencingproject.org\/issues\/racial-disparity\/\"target=\"_blank\">considerables discrepancias raciales</a>. Pero, sin información integral, los legisladores, los miembros de la comunidad y los defensores no pueden saber cómo es que los encarcelamientos en masa afectan específicamente a los latinos y no puede hacerse un seguimiento en forma precisa de las discrepancias de origen étnico. </p>\
    <p>El incumplimiento del estado de recoger y reportar información sobre el origen étnico no solo afecta a los latinos, sino a todo el sistema de justicia penal. Los estados solo cuentan a las personas como \"negra\" o \"blanca\", <a href=\"http:\/\/www.sentencingproject.org\/wp-content\/uploads\/2016\/06\/The-Color-of-Justice-Racial-and-Ethnic-Disparity-in-State-Prisons.pdf\"target=\"_blank\"> probablemente etiquetando a la mayor parte de su población penitenciaria latinoamericana como \"blanca\"</a>\
    , inflando artificialmente la cantidad de personas \&rdquo;blancas\" en prisión y enmascarando la discrepancia blanca/negra en el sistema de justicia penal.</p>"]
@@ -158,7 +158,7 @@ var FIRSTSECTION ={
   </p> <p>States collect criminal justice data through several agencies, and these agencies may not coordinate their efforts. To ensure that Latinos are accurately counted across the criminal justice system, states must make sure all relevant agencies—including law enforcement, the department of corrections, and the parole board—collect the same ethnicity data. \
   If states do not collect accurate and complete data across all agencies, it is impossible to assess how the system affects Latinos.</p>"],
   spanish:["<h1>Pocos estados incluyen a los latinos en la mayor parte de su información de justicia penal.</h1> <p>Hemos hecho seguimiento a toda la información sobre raza y origen étnico que pudimos encontrar a través de fuentes en línea de fácil acceso para cada estado y Washington, DC, en las cinco categorías: población penitenciaria, población penitenciaria por delito, arrestos, población en libertad condicional y población en libertad bajo palabra. \
-  </p> <p> Solo un estado, Alaska, incluía información en forma consistente sobre latinos en reportes recientes y regulares sobre arrestos y prisión, libertad condicional y libertad bajo palabra. Aunque es posible que más estados recopilen esta información en forma rutinaria, solo consideramos información que los estados ponen al acceso del público. Setenta y cinco por ciento de los estados reportaron información recientemente y en forma regular, por origen étnico en por lo menos una de nuestras cinco medidas, \
+  </p> <p> Solo un estado, Alaska, incluía información en forma consistente sobre latinos en reportes recientes y regulares sobre arrestos y prisión, libertad condicional y libertad bajo palabra. Aunque es posible que más estados recopilen esta información en forma rutinaria, solo consideramos información que los estados ponen al acceso del público. El setenta y cinco por ciento de los estados reportaron información recientemente y en forma regular, por origen étnico en por lo menos una de nuestras cinco medidas, \
   pero solo el 39 por ciento lo hicieron en dos o más medidas.\
   </p> <p>Los estados recogen información de justicia penal a través de varias agencias y estas no pueden coordinar sus esfuerzos. Para asegurar que los latinos sean contabilizados en forma precisa en el sistema de justicia penal, los estados deben asegurarse que todas las agencias relevantes, incluyendo las fuerzas del orden, el departamento de correccionales y la junta de libertad condicional, recojan la misma información sobre origen étnico. \
   Si los estados no recogen información precisa e íntegra a través de todas las agencias, es imposible evaluar cómo es que el sistema afecta a los latinos.</p>"]
@@ -223,7 +223,7 @@ var CONCLUSION ={
     <p>La recopilación y el reporte de información en el sistema de justicia penal es inconsistente e incompleto. Presentamos las siguientes recomendaciones para mejorar la calidad y la utilidad de la información sobre raza y origen étnico:\
     <ul class=\"inside\"><li>Los estados deben, por lo menos, cumplir los estándares actuales de la Oficina del Censo y recoger información sobre raza y origen étnico por separado antes de combinarla. Esto daría como resultado subcategorías más descriptivas y precisas, como \&ldquo;no hispano blanco&rdquo;\ e &ldquo;hispano negro&rdquo;\.</li>\
     <li>La información debe recogerse y reportarse públicamente por lo menos cada dos años. Esto ofrecería información más frecuente sobre latinos, uno de los grupos demográficos de más rápido crecimiento en el país.</li>\
-    <li>La información sobre raza y origen étnico debe ser auto reportada, no determinada por empleados estatales. La auto identificación evitaría que las personas sean encasilladas en identidades que no indiquen como propias y es consistente con los estándares de recopilación de información de la Oficina del Censo.</li>\
+    <li>La información sobre raza y origen étnico debe ser autoreportada, no determinada por empleados estatales. La autoidentificación evitaría que las personas sean encasilladas en identidades que no indiquen como propias y es consistente con los estándares de recopilación de información de la Oficina del Censo.</li>\
     </ul>\
     </p>Si los estados siguen los <a href=\"http:\/\/www.pewresearch.org\/fact-tank\/2016\/10\/04\/federal-officials-may-revamp-how-americans-identify-race-ethnicity-on-census-and-other-forms/\" target=\"_blank\">cambios censales para el 2020, propuestos por el gobierno federal </a>y combinan raza y \
     origen étnico en una pregunta, a las personas involucradas en el sistema de justicia se les debe permitir marcar más de una casilla. Y, aunque los estados deberían por lo menos incluir una categoría de &ldquo;hispano&rdquo; o &ldquo;latino&rdquo;, los latinos no son un monolito. \
@@ -262,7 +262,7 @@ var FIRSTGRAPHIC_SELECTSTATE = {
 
 var DISCLAIMER = {
   english: [],
-  spanish: ["Note: The English language version of this feature includes links to source content not available in Spanish- spanish translation"]
+  spanish: ["Nota: La versión en inglés de este artículo contiene enlaces a contenido fuente que no están disponibles en español."]
 }
 
 
@@ -294,8 +294,8 @@ var PROJECT_CREDITS = {
                     <a href=\"http:\/\/www.urban.org\/author\/alexandra-tilsley\" target=\"_blank\">Alex Tilsley</a> and <a href=\"http:\/\/www.urban.org\/author\/daniel-matos\" target=\"_blank\">Daniel Matos</a> \
                     <div>&nbsp;</div>\
                     <p><em>Photo via Shutterstock</em></p>\
-                    <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a>December 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/latino-criminal-justice-data\" target=\"_blank\">View this project on Github.</a></div>"],
-  spanish: ["<h2>Créditos del proyecto</h2><div class=\"urbanstatement\">This project was funded by the Public Welfare Foundation, and the authors would like to thank them for their generous support. The authors also extend their appreciation to Juan Cartagena, Jeronimo Saldana, and Ana Yáñez-Correa for their input on the creation and development of this project.\
+                    <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> December 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/latino-criminal-justice-data\" target=\"_blank\">View this project on Github.</a></div>"],
+  spanish: ["<h2>Créditos del proyecto</h2><div class=\"urbanstatement\">Este proyecto ha sido financiado por la Public Welfare Foundation (Fundación de Bienestar Público), y los autores agradecen a la fundación su generoso apoyo. Los autores también extienden su agradecimiento a Juan Cartagena, Jeronimo Saldana y Ana Yáñez-Correa por su aporte en la creación y el desarrollo de este proyecto.\
   </div> <div class=\"urbanstatement\">Como organización, el Urban Institute no toma posición en los temas, pero sí faculta y apoya a sus expertos para que compartan sus propias opiniones y recomendaciones sobre políticas, las cuales se basan en la evidencia y se enmarcan en trabajos académicos.</div>\
                     <h3 class=\"job\">Investigación</h3>\
                     <a href=\"http:\/\/www.urban.org\/author\/sarah-eppler-epstein\" target=\"_blank\">Sarah Eppler-Epstein</a>, <a href=\"http:\/\/www.urban.org\/author\/annie-gurvis\" target=\"_blank\">Annie Gurvis</a> y <a href=\"http:\/\/www.urban.org\/author\/ryan-king\" target=\"_blank\">Ryan King</a>\
@@ -305,7 +305,7 @@ var PROJECT_CREDITS = {
                     <a href=\"http:\/\/www.urban.org\/author\/alexandra-tilsley\" target=\"_blank\">Alex Tilsley</a> y <a href=\"http:\/\/www.urban.org\/author\/daniel-matos\" target=\"_blank\">Daniel Matos</a> \
                     <div>&nbsp;</div>\
                     <p><em>Fotografía a través de Shutterstock</em></p>\
-                    <div class=\"credits\">Derechos de autor &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a>diciembre 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/latino-criminal-justice-data\" target=\"_blank\">Vea este proyecto en Github.</a></div>"]
+                    <div class=\"credits\">Derechos de autor &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> diciembre 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/latino-criminal-justice-data\" target=\"_blank\">Vea este proyecto en Github.</a></div>"]
 }
 
 

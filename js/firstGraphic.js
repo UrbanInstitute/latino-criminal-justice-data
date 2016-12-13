@@ -289,8 +289,8 @@ function drawFirstGraphic() {
           d3.selectAll(".tooltip-text-state-mobile").remove()
           tooltip(d3.select("#firstGraphic .selected").datum())
         }else{
-          d3.selectAll(".tooltip-text-state").text(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE]).call(wrapText, wrapWidth)
-          d3.selectAll(".tooltip-text-state-mobile").text(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE]).call(wrapText, wrapWidth)
+          d3.selectAll(".tooltip-text-state").html(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE]).call(wrapText, wrapWidth)
+          d3.selectAll(".tooltip-text-state-mobile").html(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE]).call(wrapText, wrapWidth)
           d3.selectAll("#firstGraphic .selected-text").classed("selected-text", false).classed("deselected-text", true)
 
           d3.selectAll("image.checkbox")
@@ -443,7 +443,7 @@ function drawFirstGraphic() {
       .attr("y", "2em")
       .attr("x", ".45em")
         .attr("text-anchor", "start")
-        .text(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE]).call(wrapText, wrapWidth)
+        .html(FIRSTGRAPHIC_SELECTSTATE[GLOBAL_LANGUAGE]).call(wrapText, wrapWidth)
 
 
 chart.states = states
@@ -499,7 +499,7 @@ var GLOBAL_LANGUAGE = getParameterByName("language", window.location.href)
           .attr("y", "2em")
           .attr("x", ".2em")
           .attr("text-anchor", "start")
-          .text(function() {
+          .html(function() {
             return mystate.properties['state_name_' + GLOBAL_LANGUAGE];
           })
           .call(wrapText,wrapWidth)

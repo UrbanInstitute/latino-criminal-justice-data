@@ -346,6 +346,20 @@ ul{
     }
 }
 
+@media(max-width:400px) {
+    #header-pinned .title{
+        font-size: 15px !important;
+        margin-left: 55px !important;
+		width:250px;
+	 line-height: 20px;
+    white-space: normal;
+    overflow:visible;
+	margin-top:3px;
+	margin-bottom:3px;
+    }
+}
+
+
 @media(max-width:320px) {
     #header-pinned .title{
         font-size: 12px !important;

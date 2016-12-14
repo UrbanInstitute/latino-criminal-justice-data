@@ -45,6 +45,17 @@ var METATEXT = {
   spanish: "Nadie sabe exactamente cuántos latinos son arrestados cada año o cuántos se encuentran en prisión, en libertad condicional o libertad bajo palabra."
 }
 
+var META_TITLE = {
+  english: "The Alarming Lack of Data on Latinos in the Criminal Justice System",
+  spanish: "La alarmante falta de información sobre latinos en el sistema de justicia penal"
+}
+
+var META_URL = {
+  english: "http://urbn.is/cjdata",
+  spanish: "http://urbn.is/cjdataesp"
+}
+
+
 var BUTTON_NAMES= {
     english: {
     regular: "Regularly and Recently Reported Data",
@@ -84,9 +95,9 @@ var DATA_QUALITY_LABELS= {
   ],
   spanish: [
     ['no_data', 'No hay información sobre raza u origen étnico.'],
-    ['data_no_cat', 'Únicamente información sobre raza, no hay una categoría para latino/hispano.'],
+    ['data_no_cat', 'Solo información sobre raza, no hay una categoría para latino/hispano.'],
     ['combined', 'Latino/hispano incluido como una raza.'],
-    ['separate',  'El origen étnico latino/hispano se reporta además de raza.'],
+    ['separate',  'Se reporta el origen étnico latino/hispano se reporta además de raza.'],
     ['cross_tabbed', 'Raza dividida en subgrupos por origen étnico.']
   ]
 }
@@ -142,12 +153,12 @@ var HEADERTEXT = {
    <p>A state’s failure to collect and report ethnicity data affects not only Latinos but the entire criminal justice system. States that only count people as &ldquo;black\" or &ldquo;white&rdquo; <a href=\"http:\/\/www.sentencingproject.org\/wp-content\/uploads\/2016\/06\/The-Color-of-Justice-Racial-and-Ethnic-Disparity-in-State-Prisons.pdf\"target=\"_blank\"> likely label most of their Latino prison population &ldquo;white,\&rdquo;</a>\
    artificially inflating the number of &ldquo;white&rdquo; people in prison and masking the white/black disparity in the criminal justice system.</p>"],
   spanish: ["<p><strong>Nadie sabe exactamente cuántos latinos son arrestados cada año o cuántos se encuentran en prisión, en libertad condicional o libertad bajo palabra. </strong></p> \
-  <p>Una encuesta de información de justicia penal del estado indicó que 40 estados reportaban raza (\por ejemplo, &ldquo;blanca&rdquo;, &ldquo;negra&rdquo;, &ldquo;otra&rdquo;) en sus registros de arresto, pero solo 15 estados reportaban el origen étnico. Aunque los latinos son tan solo uno de los muchos grupos étnicos en los Estados Unidos, se proyecta que la población será latinoamericana en un <a href=\"http:\/\/www.census.gov\/content\/dam\/Census\/library\/publications\/2015\/demo\/p25-1143.pdf\" \
-   target=\"_blank\">28,6 por ciento para el 2060</a> y que los latinos son el grupo más afectado cuando los estados ignoran el origen étnico. </p>\
-   <a href=\"http:\/\/www.urban.org\/sites\/default\/files\/alfresco\/publication-pdfs\/413174-Examining-Racial-and-Ethnic-Disparities-in-Probation-Revocation.PDF\" target=\"_blank\">La evidencia</a> muestra que nuestro sistema de justicia penal tiene \
-   <a href=\"http:\/\/www.sentencingproject.org\/issues\/racial-disparity\/\"target=\"_blank\">considerables discrepancias raciales</a>. Pero, sin información integral, los legisladores, los miembros de la comunidad y los defensores no pueden saber cómo es que los encarcelamientos en masa afectan específicamente a los latinos y no puede hacerse un seguimiento en forma precisa de las discrepancias de origen étnico. </p>\
+  <p>Una encuesta de información de justicia penal del estado indicó que 40 estados reportaban raza (\por ejemplo, &ldquo;blanca&rdquo;, &ldquo;negra&rdquo;, &ldquo;otra&rdquo;) en sus registros de arresto, pero solo 15 estados reportaban el origen étnico. Aunque los latinos son tan solo uno de los muchos grupos étnicos en los Estados Unidos, se predice que la población general <a href=\"http:\/\/www.census.gov\/content\/dam\/Census\/library\/publications\/2015\/demo\/p25-1143.pdf\" \
+   target=\"_blank\">28,6 por ciento latino en el 2060</a> y que los latinos son el grupo más afectado cuando los estados no consideren el origen étnico. </p>\
+   <a href=\"http:\/\/www.urban.org\/sites\/default\/files\/alfresco\/publication-pdfs\/413174-Examining-Racial-and-Ethnic-Disparities-in-Probation-Revocation.PDF\" target=\"_blank\">Evidencia</a> muestra que nuestro sistema de justicia penal tiene \
+   <a href=\"http:\/\/www.sentencingproject.org\/issues\/racial-disparity\/\"target=\"_blank\">disparidades considerables raciales</a>. Pero, sin información completa, los legisladores, los miembros de la comunidad y los defensores no pueden saber cómo es que la encarcelación en masa afectan específicamente a los latinos y no puede hacerse un seguimiento en forma precisa de las disparidades de origen étnico. </p>\
    <p>El incumplimiento del estado de recoger y reportar información sobre el origen étnico no solo afecta a los latinos, sino a todo el sistema de justicia penal. Los estados solo cuentan a las personas como \"negra\" o \"blanca\", <a href=\"http:\/\/www.sentencingproject.org\/wp-content\/uploads\/2016\/06\/The-Color-of-Justice-Racial-and-Ethnic-Disparity-in-State-Prisons.pdf\"target=\"_blank\"> probablemente etiquetando a la mayor parte de su población penitenciaria latinoamericana como \"blanca\"</a>\
-   , inflando artificialmente la cantidad de personas \&rdquo;blancas\" en prisión y enmascarando la discrepancia blanca/negra en el sistema de justicia penal.</p>"]
+   , exagerando de manera artificial la cantidad de personas \&rdquo;blancas\" en prisión y ocultando la disparidad blanca/negra en el sistema de justicia penal.</p>"]
 
 }
 
@@ -157,11 +168,11 @@ var FIRSTSECTION ={
   but only 39 percent did so for two or more measures.\
   </p> <p>States collect criminal justice data through several agencies, and these agencies may not coordinate their efforts. To ensure that Latinos are accurately counted across the criminal justice system, states must make sure all relevant agencies—including law enforcement, the department of corrections, and the parole board—collect the same ethnicity data. \
   If states do not collect accurate and complete data across all agencies, it is impossible to assess how the system affects Latinos.</p>"],
-  spanish:["<h1>Pocos estados incluyen a los latinos en la mayor parte de su información de justicia penal.</h1> <p>Hemos hecho seguimiento a toda la información sobre raza y origen étnico que pudimos encontrar a través de fuentes en línea de fácil acceso para cada estado y Washington, DC, en las cinco categorías: población penitenciaria, población penitenciaria por delito, arrestos, población en libertad condicional y población en libertad bajo palabra. \
-  </p> <p> Solo un estado, Alaska, incluía información en forma consistente sobre latinos en reportes recientes y regulares sobre arrestos y prisión, libertad condicional y libertad bajo palabra. Aunque es posible que más estados recopilen esta información en forma rutinaria, solo consideramos información que los estados ponen al acceso del público. El setenta y cinco por ciento de los estados reportaron información recientemente y en forma regular, por origen étnico en por lo menos una de nuestras cinco medidas, \
-  pero solo el 39 por ciento lo hicieron en dos o más medidas.\
-  </p> <p>Los estados recogen información de justicia penal a través de varias agencias y estas no pueden coordinar sus esfuerzos. Para asegurar que los latinos sean contabilizados en forma precisa en el sistema de justicia penal, los estados deben asegurarse que todas las agencias relevantes, incluyendo las fuerzas del orden, el departamento de correccionales y la junta de libertad condicional, recojan la misma información sobre origen étnico. \
-  Si los estados no recogen información precisa e íntegra a través de todas las agencias, es imposible evaluar cómo es que el sistema afecta a los latinos.</p>"]
+  spanish:["<h1>Pocos estados incluyen a los latinos en la mayor parte de su información de justicia penal.</h1> <p>Hemos realizado un seguimiento a toda la información sobre raza y origen étnico disponible para el público y fácil de encontrar para cada estado y Washington, DC, en las siguientes cinco categorías: población penitenciaria, población penitenciaria por delito, arrestos, población en libertad condicional y población en libertad bajo palabra. \
+  </p> <p> Solo un estado, Alaska, incluía información de manera consistente sobre latinos en informes publicados recientemente y regularmente sobre arrestos y prisión, libertad condicional y libertad bajo palabra. Aunque es posible que más estados recopilen esta información de forma rutinaria, solo consideramos información que los estados ponen disponible al público. El setenta y cinco por ciento de los estados reportaron información recientemente y regularmente por origen étnico en por lo menos una de nuestras cinco categorías, \
+  pero solo el 39 por ciento lo hicieron en dos o más categorías.\
+  </p> <p>Los estados recogen información de justicia penal a través de varias agencias y estas no necesariamente  coordinan sus esfuerzos. Para asegurar que los latinos sean contabilizados en forma precisa en el sistema de justicia penal, los estados deben asegurarse que todas las agencias relevantes, incluyendo las fuerzas del orden, el departamento de correccionales y el comité libertad condicional, recojan la misma información sobre origen étnico. \
+  Si los estados no recogen información precisa e completa a través de todas las agencias, es imposible evaluar cómo es que el sistema afecta a los latinos.</p>"]
 }
 
 var SECONDSECTION = {
@@ -172,12 +183,12 @@ var SECONDSECTION = {
   as &ldquo;Hispanic&rdquo; separately from how many are reported as &ldquo;black&rdquo; or &ldquo;white&rdquo; but not whether &ldquo;Hispanic&rdquo; people are also &ldquo;black&rdquo; or &ldquo;white.&rdquo; Other agencies combined race and ethnicity into one category: a person can be counted as &ldquo;Hispanic&rdquo; or &ldquo;white&rdquo; but not both. Still others did not include a category for Latinos in their publicly available data or did not publish accessible race and ethnicity data at all. </p>\
   <p>States included Latinos in their prison population data far more than in the other data categories we tracked. Thirty-eight states reported data on Latinos in prison compared with only 20 that reported data on Latinos in the parole population, 18 that reported data on Latinos in the probation population, 15 that reported data on Latinos in arrest records, and just 1 that reported data on Latinos in prison by offense.</p>\
   <p>Hardly any states reported data on Latinos in combined categories (e.g., &ldquo;Hispanic white&rdquo; or &ldquo;non-Hispanic black&rdquo;). Only three—New Hampshire, North Carolina, and Vermont—tracked both race and ethnicity and reported them in combination in any data category (prison population in North Carolina and arrests in New Hampshire and Vermont).</p>"],
-  spanish: ["<p>También vimos la <em>calidad</em> de la información sobre origen étnico de los estados. Existe un desacuerdo en esta esfera sobre cómo reunir información de raza y origen étnico, así como si esas deben ser <a href=\"http:\/\/www.usccr.gov\/pubs\/RC2010Web_Version.pdf\" target=\"_blank\">categorías separadas</a>. <a href=\"http:\/\/www.pewresearch.org\/fact-tank\/2015\/06\/15\/is-being-hispanic-a-matter-of-race-ethnicity-or-both\/\" \
+  spanish: ["<p>También analizamos la <em>calidad</em> de la información sobre origen étnico de los estados. Existe un desacuerdo en esta esfera sobre cómo colectar información de raza y origen étnico, y si esas deben ser <a href=\"http:\/\/www.usccr.gov\/pubs\/RC2010Web_Version.pdf\" target=\"_blank\">categorías separadas</a>. <a href=\"http:\/\/www.pewresearch.org\/fact-tank\/2015\/06\/15\/is-being-hispanic-a-matter-of-race-ethnicity-or-both\/\" \
   target=\"_blank\">Muchos latinos</a> consideran su raza hispana o latina, en lugar de identificarse racialmente como blanco o negro, y étnicamente como latino o hispano. Cuando evaluamos la calidad de la información demográfica, seguimos la política federal actual y las definiciones de la Oficina del Censo en relación a \
-  <a href=\"https:\/\/www.census.gov\/quickfacts\/meta\/long_RHI425215.htm\" target=\"_blank\">raza</a> y <a href=\"http:\/\/www.census.gov\/topics\/population\/hispanic-origin\/about.html\">origen étnico</a>, lo que les permite a los latinos identificarse tanto como hispanos y como de una raza en particular.</p>\
-  <p>Las agencias estatales que recogieron y reportaron la información más detallada sobre raza y origen étnico siguieron las pautas de la Oficina del Censo: ellos recogieron información sobre raza y origen étnico por separado, pero la reportaron como categorías combinadas, como &ldquo;no hispano blanco&rdquo; o &ldquo;hispano negro&rdquo;. Algunas agencias preguntaron sobre raza y origen étnico por separado, pero no combinaron la información en el reporte. Con esta información, podemos determinar cuántas personas son reportadas \
-  como &ldquo;hispanas&rdquo; aparte de cuántas son reportadas como &ldquo;negras&rdquo; o &ldquo;blancas&rdquo;, pero no si las personas &ldquo;hispanas&rdquo; también eran &ldquo;negras&rdquo; o &ldquo;blancas&rdquo;. Otras agencias combinaron la raza y el origen étnico en una categoría: una persona puede ser contada como &ldquo;hispana&rdquo; o &ldquo;blanca&rdquo; pero no como ambas. Aun así, otros no incluyeron una categoría para latinos en su información a disposición del público y no publicaron información accesible sobre raza y origen étnico en absoluto. </p>\
-  <p>Los estados incluyeron latinos en su información de población penitenciaria mucho más que en las otras categorías de información a la que hicimos seguimiento. Treinta y ocho estados reportaron información sobre latinos en prisión, en comparación con tan solo 20 que reportaron información sobre latinos en la población con libertad bajo palabra, 18 reportaron información sobre latinos en la población con libertad condicional, 15 que reportaron información sobre latinos en registros de arresto y tan solo 1 que reportó información sobre latinos en prisión por delito.</p>\
+  <a href=\"https:\/\/www.census.gov\/quickfacts\/meta\/long_RHI425215.htm\" target=\"_blank\">raza</a> y <a href=\"http:\/\/www.census.gov\/topics\/population\/hispanic-origin\/about.html\">origen étnico, lo cual </a>, lo que les permite a los latinos identificarse tanto como hispanos y también como de una raza especifica.</p>\
+  <p>Las agencias estatales que recogieron y reportaron la información más detallada sobre raza y origen étnico siguieron las pautas de la Oficina del Censo: ellos recogieron información sobre raza y origen étnico por separado, pero la reportaron como categorías combinadas, como &ldquo;no hispano blanco&rdquo; o &ldquo;hispano negro&rdquo;. Algunas agencias preguntaron sobre raza y origen étnico por separado, pero no combinaron la información en el informe. Con esta información, podemos determinar cuántas personas son reportadas \
+  como &ldquo;hispanas&rdquo; aparte de cuántas son reportadas como &ldquo;negras&rdquo; o &ldquo;blancas&rdquo;, pero no si las personas &ldquo;hispanas&rdquo; también eran &ldquo;negras&rdquo; o &ldquo;blancas&rdquo;. Otras agencias combinaron la raza y el origen étnico en una categoría: una persona puede ser contada como &ldquo;hispana&rdquo; o &ldquo;blanca&rdquo; pero no como ambas. Aun así, otros no incluyeron una categoría para latinos en su información disponible para el público o no publicaron información accesible sobre raza y origen étnico en absoluto. </p>\
+  <p>Los estados incluyeron latinos en su información de población penitenciaria mucho más que en las otras categorías de información a la que hicimos seguimiento. Treinta y ocho estados reportaron información sobre latinos en prisión, en comparación con tan solo 20 que reportaron información sobre latinos en la población con libertad bajo palabra, 18 que reportaron información sobre latinos en la población con libertad condicional, 15 que reportaron información sobre latinos en registros de arresto y tan solo 1 que reportó información sobre latinos en prisión por delito.</p>\
   <p>Casi ningún estado reportó información sobre latinos en categorías combinadas (por ejemplo, &ldquo;hispano blanco&rdquo; o &ldquo;no hispano negro&rdquo;). Solo tres, New Hampshire, Carolina del Norte y Vermont, hicieron seguimiento tanto a la raza como al origen étnico y lo reportaron en combinación con cualquier otra categoría de información (población penitenciaria en Carolina del Norte y arrestos en Nuevo Hampshire y Vermont).</p>"]
 }
 
@@ -196,9 +207,9 @@ var THIRDSECTION = {
   english:["<h1>States with large Latino populations do not necessarily have better data</h1> \
       <p>Seventy-five percent of Latinos in the United States live in just 10 states. Many of these states have significant gaps in reported ethnicity data despite their large Latino populations. California, Florida, and New Mexico, for example, all reported ethnicity data in fewer categories than the average state. \
       </p> <p>Data reporting in these states is especially important because states with more Latino residents are likely to have more Latinos in their criminal justice systems. The effects of criminal justice policies on Latinos can go unseen by the public and policymakers in states where agencies do not report ethnicity data. </p>"],
-  spanish: ["<h1>Los estados con grandes poblaciones latinoamericanas no necesariamente tienen mejor información.</h1> \
-      <p>Setenta y cinco por ciento de latinos en Estados Unidos viven en tan solo 10 estados. Muchos de estos estados tienen considerables brechas en la información reportada sobre origen étnico, a pesar de sus grandes poblaciones latinoamericanas. California, Florida y Nuevo México, por ejemplo, todos reportaron información sobre origen étnico en menos categorías que el estado promedio. \
-      </p> <p>El reporte de los datos en estos estados es especialmente importante, ya que es probable que los estados con más residentes latinoamericanos tengan más latinos en sus sistemas de justicia penal. Los efectos de las políticas del sistema de justicia penal sobre los latinos pueden pasar desapercibidos por el público y por los legisladores en los estados en los que las agencias no reportan información sobre origen étnico. </p>"]
+  spanish: ["<h1>Los estados con grandes poblaciones latinas no necesariamente tienen mejor información.</h1> \
+      <p>Setenta y cinco por ciento de latinos en Estados Unidos viven en tan solo 10 estados. Muchos de estos estados tienen considerables brechas en la información reportada sobre origen étnico, a pesar de sus grandes poblaciones latinas. California, Florida y Nuevo México, por ejemplo, todos reportaron información sobre origen étnico en menos categorías que el promedio observado entre estados. \
+      </p> <p>El informe de los datos en estos estados es especialmente importante, ya que es probable que los estados con más residentes latinoamericanos tengan más latinos en sus sistemas de justicia penal. Los efectos de las políticas del sistema de justicia penal sobre los latinos pueden pasar desapercibidos por el público y por los legisladores en los estados en los cuales las agencias no reportan información sobre origen étnico. </p>"]
 }
 
 var CONCLUSION ={
@@ -218,15 +229,15 @@ var CONCLUSION ={
     <p>Some states may want to capture ethnicity data but cannot easily do so because of funding issues, time limits, or other constraints. But as the United States becomes more racially and ethnically diverse, states must work to ensure that all people are counted and considered when developing policy.</p>"],
   spanish:["<h1 class=\"last-header\">Estableciendo un estándar de información más alto</h1>\
     <p>La información importa porque afecta las políticas. Hemos visto esto en todo el país ya que el incremento del <a href=\"http:\/\/www.washingtonpost.com\/sf\/investigative\/2015\/12\/26\/a-year-of-reckoning-police-fatally-shoot-nearly-1000\" target=\"_blank\">seguimiento de los disparos de la policía</a>,\
-    avivado en parte por la <a href=\"http://www.nytimes.com/interactive/2014/08/13/us/ferguson-missouri-town-under-siege-after-police-shooting.html\" target=\"_blank\">muerte de Michael Brown en el 2014</a> en Ferguson, Missouri, provocó un discurso nacional acerca de las <a href=\"http://www.iacp.org/CommunityPoliceRelations\" target=\"_blank\">relaciones entre la comunidad y la policía</a>.\
-    El uso de los datos para ilustrar los problemas puede cambiar el discurso e influir en las políticas y en la práctica. Excluir de los datos a los latinos involucrados en el sistema de justicia, los excluye de las políticas. </p>\
-    <p>La recopilación y el reporte de información en el sistema de justicia penal es inconsistente e incompleto. Presentamos las siguientes recomendaciones para mejorar la calidad y la utilidad de la información sobre raza y origen étnico:\
+    alimentado en parte por la <a href=\"http://www.nytimes.com/interactive/2014/08/13/us/ferguson-missouri-town-under-siege-after-police-shooting.html\" target=\"_blank\">muerte de Michael Brown en el 2014</a> en Ferguson, Missouri, provocó un discurso nacional acerca de las <a href=\"http://www.iacp.org/CommunityPoliceRelations\" target=\"_blank\">relaciones entre la comunidad y la policía</a>.\
+    El uso de los datos para ilustrar los problemas puede cambiar el discurso e influir a las políticas y en la práctica. El hecho de excluir a los latinos involucrados en el sistema de justiciade de los datos los excluye de las políticas. </p>\
+    <p>La recopilación y el informe de información en el sistema de justicia penal es inconsistente e incompleto. Presentamos las siguientes recomendaciones para mejorar la calidad y la utilidad de la información sobre raza y origen étnico:\
     <ul class=\"inside\"><li>Los estados deben, por lo menos, cumplir los estándares actuales de la Oficina del Censo y recoger información sobre raza y origen étnico por separado antes de combinarla. Esto daría como resultado subcategorías más descriptivas y precisas, como \&ldquo;no hispano blanco&rdquo;\ e &ldquo;hispano negro&rdquo;\.</li>\
-    <li>La información debe recogerse y reportarse públicamente por lo menos cada dos años. Esto ofrecería información más frecuente sobre latinos, uno de los grupos demográficos de más rápido crecimiento en el país.</li>\
+    <li>La información debe recogerse y reportarse públicamente por lo menos cada dos años. Esto ofrecería información más frecuente sobre latinos, uno de los grupos demográficos creciendo más rápido crecimiento en el país.</li>\
     <li>La información sobre raza y origen étnico debe ser autoreportada, no determinada por empleados estatales. La autoidentificación evitaría que las personas sean encasilladas en identidades que no indiquen como propias y es consistente con los estándares de recopilación de información de la Oficina del Censo.</li>\
     </ul>\
-    </p>Si los estados siguen los <a href=\"http:\/\/www.pewresearch.org\/fact-tank\/2016\/10\/04\/federal-officials-may-revamp-how-americans-identify-race-ethnicity-on-census-and-other-forms/\" target=\"_blank\">cambios censales para el 2020, propuestos por el gobierno federal </a>y combinan raza y \
-    origen étnico en una pregunta, a las personas involucradas en el sistema de justicia se les debe permitir marcar más de una casilla. Y, aunque los estados deberían por lo menos incluir una categoría de &ldquo;hispano&rdquo; o &ldquo;latino&rdquo;, los latinos no son un monolito. \
+    </p>Si los estados siguen los <a href=\"http:\/\/www.pewresearch.org\/fact-tank\/2016\/10\/04\/federal-officials-may-revamp-how-americans-identify-race-ethnicity-on-census-and-other-forms/\" target=\"_blank\">cambios censales para el 2020, propuestos por el gobierno nacional </a>y combinan raza y \
+    origen étnico en una pregunta, se les debe permitir a las personas involucradas en el sistema de justicia se les debe permitir marcar más de una casilla. Y, aunque los estados deberían por lo menos incluir una categoría de &ldquo;hispano&rdquo; o &ldquo;latino&rdquo;, los latinos no son un monolito. \
     <a href=\"http:\/\/www.pewsocialtrends.org\/2015\/06\/11\/chapter-7-the-many-dimensions-of-hispanic-racial-identity\" target=\"_blank\">Muchos latinos se identifican</a> como de raza mixta, indígenas o afrolatinos. El origen étnico hispano o latino puede dividirse aún más \
     <a href=\"http:\/\/www.pewhispanic.org/2012\/04/04\/when-labels-dont-fit-hispanics-and-their-views-of-identity/\" target=\"_blank\">por país de origen</a> (por ejemplo, mexicano o cubano).</p>\
     <p>Algunos estados pueden desear recopilar información sobre origen étnico, pero no pueden hacerlo fácilmente debido a problemas de financiamiento, límites de tiempo u otras restricciones. Pero, a medida que Estados Unidos se hace más diverso racial y étnicamente, los estados deben trabajar para asegurar que todas las personas sean contabilizadas y consideradas cuando desarrollen una política.</p>"]
@@ -236,7 +247,7 @@ var CONCLUSION ={
 
 var TOGGLE_TEXT = {
   english: ["Show only regularly and recently reported data?"],
-  spanish: ["¿Mostrar solo información reportada recientemente y en forma regular?"]
+  spanish: ["¿Mostrar solo información reportada recientemente y regularmente?"]
 }
 
 var FIRSTGRAPHIC_XLABEL = {
@@ -275,9 +286,9 @@ var FOOTER_TEXT = {
   referring to people, communities, or populations and &ldquo;Hispanic&rdquo; when referring to data because that is the term most states use when reporting data.</p>\
   <p>We define regularly and recently reported data as data that has been publicly reported at least twice, at least every other year, and at least as recently as 2014.</p> \
   <p>Please contact <a href=\"mailto:agurvis@urban.org\">agurvis@urban.org</a> and <a href=\"mailto:seppler-epstein@urban.org\">seppler-epstein@urban.org</a> with any questions about this project or the associated data.</p>"],
-  spanish: ["<h2>Acerca de la información</h2><p>Recopilamos la información utilizada en esta presentación de fuentes a nivel estatal disponible para el público en los 50 estados y Washington, DC. Además de un análisis de los sitios web de agencias estatales, revisamos los resultados de búsqueda de Google para cada categoría de información y cada estado, utilizando términos de búsqueda enfocados en reportes anuales, estadísticas, raza y origen étnico. A partir de ahí, creamos una base de datos de la información más reciente y \
-  completa disponible. La recopilación de información se realizó entre junio y septiembre del 2016 y todas las fuentes utilizadas en esta presentación estaban disponibles durante ese periodo. La información encontrada utilizando nuestro protocolo de búsqueda no puede reflejar toda la información recopilada o reportada por cada estado, agencia o departamento.</p>\
-  <p>Se considera que los estados incluyen a los latinos en su reporte de datos cuando su reporte demográfico racial o étnico incluye categorías como &ldquo;hispano&rdquo; o &ldquo;latino&rdquo;. Puede reportarse a los latinos como un origen étnico o un grupo racial distinto o combinado con un grupo racial (por ejemplo, &ldquo;hispano negro&rdquo; o &ldquo;no hispano blanco&rdquo;). Reconocemos que &ldquo;hispano&rdquo; y &ldquo;latino&rdquo; tienen significados distintos. Esta presentación utiliza &ldquo;latino&rdquo; cuando \
+  spanish: ["<h2>Acerca de la información</h2><p>Recopilamos la información utilizada en esta presentación de fuentes a nivel estatal disponible para el público en los 50 estados y Washington, DC. Además de un análisis de los sitios de web de agencias estatales, revisamos los resultados de búsqueda de Google para cada categoría de información y cada estado, utilizando términos de búsqueda enfocados en informes anuales, estadísticas, raza y origen étnico. De eso, creamos una base de datos de la información más reciente, \
+  completa, y disponible. La recopilación de información se realizó entre junio y septiembre del 2016 y todas las fuentes utilizadas en esta presentación estaban disponibles durante ese periodo. La información encontrada utilizando nuestro protocolo de búsqueda no puede reflejar toda la información recopilada o reportada por cada estado, agencia o departamento.</p>\
+  <p>Se considera que los estados incluyen a los latinos en su informe de datos cuando su informe demográfico racial o étnico incluye categorías como &ldquo;hispano&rdquo; o &ldquo;latino&rdquo;. Puede reportarse a los latinos como un origen étnico o un grupo racial distinto o combinado con un grupo racial (por ejemplo, &ldquo;hispano negro&rdquo; o &ldquo;no hispano blanco&rdquo;). Reconocemos que &ldquo;hispano&rdquo; y &ldquo;latino&rdquo; tienen significados distintos. Esta presentación utiliza &ldquo;latino&rdquo; cuando \
   se refiere a personas, comunidades o poblaciones e &ldquo;hispano&rdquo; cuando se refiere a información, ya que es el término que la mayoría de estados utiliza al reportar información.</p>\
   <p>Definimos la información reportada recientemente y en forma regular como información reportada públicamente por lo menos dos veces, por lo menos cada dos años y por lo menos en el 2014.</p> \
   <p>Por favor comuníquese con <a href=\"mailto:agurvis@urban.org\">agurvis@urban.org</a> y <a href=\"mailto:seppler-epstein@urban.org\">seppler-epstein@urban.org</a> si tiene alguna pregunta sobre este proyecto o la información asociada.</p>"]
@@ -350,6 +361,15 @@ $(window).load(function() {
   d3.select("#header-pinned .share-icons." + GLOBAL_LANGUAGE).style("display","block")
   d3.select("#header-pinned .share-icons." + other_lang).style("display","none")
   d3.select("meta[name=description]").attr("content", METATEXT[GLOBAL_LANGUAGE])
+  d3.select("meta[name=\"twitter:title\"]").attr("content", META_TITLE[GLOBAL_LANGUAGE])
+  d3.select("meta[name=\"twitter:description\"]").attr("content", METATEXT[GLOBAL_LANGUAGE])
+  d3.select("meta[property=\"og:title\"]").attr("content", META_TITLE[GLOBAL_LANGUAGE])
+  d3.select("meta[property=\"og:description\"]").attr("content", METATEXT[GLOBAL_LANGUAGE])
+  d3.select("meta[property=\"og:url\"]").attr("content", META_URL[GLOBAL_LANGUAGE])
+
+
+
+
   var legend_text = (IS_MOBILE) ? $('.legend-text-mobile') : $('.legend-text')
     for (var i=0; i<legend_text.length; i++){
     if (legend_text.eq(i).text() == (DATA_QUALITY_LABELS[GLOBAL_LANGUAGE][i][1])) {
@@ -400,6 +420,15 @@ $(".language_option")
   d3.select("#header-pinned .share-icons." + GLOBAL_LANGUAGE).style("display","block")
   d3.select("#header-pinned .share-icons." + other_lang).style("display","none")
   d3.select("meta[name=description]").attr("content", METATEXT[GLOBAL_LANGUAGE])
+ // d3.select("meta[name=twitter:title]").attr("content", META_TITLE[GLOBAL_LANGUAGE])
+  d3.select("meta[name=\"twitter:description\"]").attr("content", METATEXT[GLOBAL_LANGUAGE])
+  d3.select("meta[property=\"og:title\"]").attr("content", META_TITLE[GLOBAL_LANGUAGE])
+  d3.select("meta[property=\"og:description\"]").attr("content", METATEXT[GLOBAL_LANGUAGE])
+  d3.select("meta[property=\"og:url\"]").attr("content", META_URL[GLOBAL_LANGUAGE])
+
+
+
+
   //ALL DATA VIZ TEXT
   $('.toggle_text').html(TOGGLE_TEXT[GLOBAL_LANGUAGE])
 

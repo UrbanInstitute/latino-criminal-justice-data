@@ -565,8 +565,9 @@ var GLOBAL_LANGUAGE = getParameterByName("language", window.location.href)
             }
           }) 
         
+      var cellText = (IS_PHONE) ? ('.cell-text-mobile') : ('.cell-text')
 
-      chart.group.select(".cell-text." + data[i].properties.abbr)
+      chart.group.select(cellText + '.' + data[i].properties.abbr)
           .transition()
           .duration(2000)
             .attr("x", function() {

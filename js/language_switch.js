@@ -302,7 +302,7 @@ var PROJECT_CREDITS = {
                     <h3 class=\"job\">Design and Development</h3>\
                     <a href=\"http:\/\/www.urban.org\/author\/john-wehmann\" target=\"_blank\">John Wehmann</a> and <a href=\"http:\/\/www.urban.org\/author\/vivian-hou\" target=\"_blank\">Vivian Hou</a>\
                     <h3 class=\"job\">Editorial</h3>\
-                    <a href=\"http:\/\/www.urban.org\/author\/alexandra-tilsley\" target=\"_blank\">Alex Tilsley</a> and <a href=\"http:\/\/www.urban.org\/author\/daniel-matos\" target=\"_blank\">Daniel Matos</a> \
+                    <a href=\"http:\/\/www.urban.org\/author\/alexandra-tilsley\" target=\"_blank\">Alexandra Tilsley</a> and <a href=\"http:\/\/www.urban.org\/author\/daniel-matos\" target=\"_blank\">Daniel Matos</a> \
                     <div>&nbsp;</div>\
                     <p><em>Photo via Shutterstock</em></p>\
                     <div class=\"credits\">Copyright &copy; <a href=\"http:\/\/www.urban.org/\">Urban Institute</a> December 2016. <a href=\"https:\/\/github.com\/UrbanInstitute\/latino-criminal-justice-data\" target=\"_blank\">View this project on Github.</a></div>"],
